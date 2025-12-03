@@ -10,6 +10,9 @@ data/
 │   ├── human/          # Human aging-related genes (307 genes)
 │   ├── models/         # Model organism longevity genes (2,205 genes)
 │   └── expression/     # Gene expression signatures of aging
+├── cellage/             # Cell Senescence Database (HAGR)
+│   ├── cellage3.tsv    # Cell senescence genes (950 genes)
+│   └── signatures1.csv # Senescence expression signatures (1,259 genes)
 ├── medical/            # Medical datasets (future)
 ├── benchmarks/         # ML benchmark datasets (future)
 └── experimental/       # Temporary/test datasets (future)
@@ -38,6 +41,26 @@ updates on key databases in ageing research. Nucleic Acids Research,
 
 **Documentation**: See `/research/datasets/genage-*.md` for detailed schemas and usage
 
+### CellAge Database
+
+**Source**: Human Ageing Genomic Resources (HAGR)
+**Website**: https://genomics.senescence.info/cells/
+**License**: Creative Commons Attribution 3.0 Unported License
+**Downloaded**: 2025-12-02
+
+**Databases Included**:
+1. **CellAge** - 950 genes associated with cellular senescence
+2. **Cell Senescence Signatures** - 1,259 genes with expression signatures
+
+**Citation**:
+```
+Avelar, R. A., et al. (2020). A multidimensional systems biology analysis of
+cellular senescence in aging and disease. Genome Biology, 21(1), 91.
+https://doi.org/10.1186/s13059-020-01990-9
+```
+
+**Documentation**: See `data/cellage/README.md` for detailed information
+
 ## Usage Guidelines
 
 1. **Version Control**: Small datasets (<25MB) are committed to git
@@ -63,5 +86,6 @@ updates on key databases in ageing research. Nucleic Acids Research,
 ---
 
 **Last Updated**: 2025-12-02
-**Total Datasets**: 1 source (3 datasets)
-**Total Size**: ~10-25 MB (estimated)
+**Total Datasets**: 2 sources (5 datasets: 3 GenAge + 2 CellAge)
+**Total Genes**: 4,721 total (307 human aging + 2,205 model organisms + 950 senescence + 1,259 signatures)
+**Total Size**: ~250 KB

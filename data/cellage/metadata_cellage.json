@@ -1,0 +1,33 @@
+{
+  "dataset": "CellAge Database",
+  "source": "Human Ageing Genomic Resources (HAGR)",
+  "source_url": "https://genomics.senescence.info/cells/",
+  "download_url": "https://genomics.senescence.info/cells/cellAge.zip",
+  "downloaded_date": "2025-12-02T18:00:00",
+  "build": "3",
+  "build_date": "2023-04-22",
+  "license": "Creative Commons Attribution 3.0 Unported License",
+  "description": "Database of genes associated with cellular senescence",
+  "files": [
+    {
+      "name": "cellAge.zip",
+      "path": "data/cellage/cellAge.zip",
+      "size_bytes": 21540,
+      "format": "zip"
+    },
+    {
+      "name": "cellage3.tsv",
+      "path": "data/cellage/cellage3.tsv",
+      "size_bytes": 73728,
+      "format": "tsv",
+      "records": 950,
+      "columns": ["Entrez ID", "Gene symbol", "Gene name", "Cancer Cell", "Type of senescence", "Senescence Effect", "Reference"]
+    },
+    {
+      "name": "release.html",
+      "path": "data/cellage/release.html",
+      "size_bytes": 2976,
+      "format": "html"
+    }
+  ]
+}
