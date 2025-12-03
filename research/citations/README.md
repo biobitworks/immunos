@@ -29,6 +29,7 @@ Master BibTeX file containing all references across all projects.
 ### Project-Specific BibTeX Files
 
 - `genage-references.bib` - GenAge database and aging research
+- `cellage-references.bib` - CellAge database and cellular senescence research
 - `immunos-references.bib` - IMMUNOS-MCP and artificial immune systems
 - *(add more as needed)*
 
