@@ -1,0 +1,24 @@
+{
+  "dataset": "Gene Expression Signatures",
+  "source": "Human Ageing Genomic Resources (HAGR)",
+  "source_url": "https://genomics.senescence.info/",
+  "download_url": "https://genomics.senescence.info/gene_expression/signatures_supplement.zip",
+  "downloaded_date": "2025-12-02T17:22:00.331954",
+  "build": "21",
+  "build_date": "2023-08-28",
+  "license": "Creative Commons Attribution 3.0 Unported License",
+  "files": [
+    {
+      "name": "signatures_supplement.zip",
+      "path": "data/genage/expression/signatures_supplement.zip",
+      "size_bytes": 50006,
+      "format": "zip"
+    },
+    {
+      "name": "ageing_signatures.xlsx",
+      "path": "data/genage/expression/ageing_signatures.xlsx",
+      "size_bytes": 52781,
+      "format": "xlsx"
+    }
+  ]
+}

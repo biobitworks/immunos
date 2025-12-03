@@ -1,0 +1,30 @@
+{
+  "dataset": "GenAge Model Organisms",
+  "source": "Human Ageing Genomic Resources (HAGR)",
+  "source_url": "https://genomics.senescence.info/",
+  "download_url": "https://genomics.senescence.info/genes/models_genes.zip",
+  "downloaded_date": "2025-12-02T17:21:59.633670",
+  "build": "21",
+  "build_date": "2023-08-28",
+  "license": "Creative Commons Attribution 3.0 Unported License",
+  "files": [
+    {
+      "name": "models_genes.zip",
+      "path": "data/genage/models/models_genes.zip",
+      "size_bytes": 48796,
+      "format": "zip"
+    },
+    {
+      "name": "genage_models.csv",
+      "path": "data/genage/models/genage_models.csv",
+      "size_bytes": 214711,
+      "format": "csv"
+    },
+    {
+      "name": "release.html",
+      "path": "data/genage/models/release.html",
+      "size_bytes": 2545,
+      "format": "html"
+    }
+  ]
+}
