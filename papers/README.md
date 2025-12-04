@@ -7,14 +7,22 @@ Automated system for downloading open-access papers with figures, organizing by 
 ```bash
 cd /Users/byron/projects/papers
 
-# Download paper from URL
-python scripts/download_paper.py "https://pmc.ncbi.nlm.nih.gov/articles/PMC7737760/"
+# Download single paper from DOI
+python scripts/download_paper.py 10.1038/s41467-025-58466-2
 
-# Download by DOI
-python scripts/download_paper.py --doi "10.1093/nar/gkad927"
+# Download from URL
+python scripts/download_paper.py https://doi.org/10.1038/s41467-025-58466-2
 
-# With custom tags
-python scripts/download_paper.py "URL" --tags aging-biology,database
+# Batch download multiple papers
+python scripts/download_paper.py \
+  10.1038/s41467-025-66434-z \
+  10.1038/s41467-025-66354-y \
+  10.1038/s43587-025-01016-8
+
+# Mixed URLs and DOIs
+python scripts/download_paper.py \
+  https://doi.org/10.1038/s41467-025-58466-2 \
+  10.1038/s43587-025-01016-8
 ```
 
 ## Project Structure
@@ -43,17 +51,36 @@ Papers are organized by DOI with `/` replaced by `_`:
 ## Features
 
 ### Automated Download
+- ✅ **Batch downloads** - Download multiple papers at once
+- ✅ **License checking** - Automatically checks open access status
 - ✅ PDF download from multiple publishers
 - ✅ Figure extraction (all formats)
-- ✅ Metadata generation
+- ✅ Metadata generation via Crossref API
 - ✅ Literature note creation
+- ✅ SQLite database tracking
+- ✅ Restricted paper tracking (non-open access)
 
 ### Supported Publishers
-- PubMed Central (PMC)
-- bioRxiv / medRxiv
-- arXiv
-- Direct PDF URLs
-- *(More can be added)*
+- ✅ Nature family (Nature, Nature Communications, Nature Aging, etc.)
+- 🚧 PubMed Central (PMC) - planned
+- 🚧 bioRxiv / medRxiv - planned
+- 🚧 arXiv - planned
+- 🚧 Direct PDF URLs - planned
+
+### License Support
+**Automatically downloads**:
+- ✅ CC-BY (Creative Commons Attribution)
+- ✅ CC-BY-NC (Non-commercial)
+- ✅ CC-BY-SA (Share-alike)
+- ✅ CC-BY-NC-ND (Non-commercial, no derivatives)
+- ✅ CC0 (Public domain)
+
+**Tracks but does not download**:
+- ❌ Paywalled papers
+- ❌ TDM-only licenses
+- ❌ Subscription-only access
+
+Restricted papers are tracked in `RESTRICTED_ACCESS.md` for reference.
 
 ### Metadata Tracking
 
@@ -133,39 +160,137 @@ Notes are compatible with research vault:
 
 ## Usage Examples
 
-### Example 1: Download GenAge Paper
+### Example 1: Single Paper Download
 
 ```bash
-python scripts/download_paper.py \
-  "https://academic.oup.com/nar/article/52/D1/D900/7449493" \
-  --tags aging-biology,database,genage
+cd /Users/byron/projects/papers
+
+python scripts/download_paper.py 10.1038/s41467-025-58466-2
+```
+
+**Output**:
+```
+======================================================================
+Checking licenses for 1 papers...
+======================================================================
+
+✅ 10.1038/s41467-025-58466-2
+   Spatial transcriptomics of the aging mouse brain reveals origins...
+   License: https://creativecommons.org/licenses/by/4.0
+
+======================================================================
+License Check Summary:
+  ✅ Open Access: 1 papers
+  ❌ Restricted: 0 papers
+======================================================================
+
+Downloading 1 open access papers...
 ```
 
 **Creates**:
-- `10.1093_nar_gkad927/paper.pdf`
-- `10.1093_nar_gkad927/figure_*.png`
-- `10.1093_nar_gkad927/metadata.json`
-- `10.1093_nar_gkad927/note.md`
+- `10.1038_s41467-025-58466-2/paper.pdf` (10 MB)
+- `10.1038_s41467-025-58466-2/figure_*.png` (7 figures)
+- `10.1038_s41467-025-58466-2/metadata.json`
+- `10.1038_s41467-025-58466-2/note.md`
+- Entry in `papers.db` database
 
-### Example 2: Download from PubMed Central
+### Example 2: Batch Download with License Checking
 
 ```bash
 python scripts/download_paper.py \
-  "https://pmc.ncbi.nlm.nih.gov/articles/PMC7737760/"
+  10.1038/s41467-025-66434-z \
+  10.1038/s41467-025-66354-y \
+  10.1038/s43587-025-01016-8 \
+  10.1038/s43587-024-00616-0 \
+  10.1038/s43587-025-01043-5
 ```
 
-### Example 3: Query Database
+**Output**:
+```
+======================================================================
+Checking licenses for 5 papers...
+======================================================================
+
+✅ 10.1038/s41467-025-66434-z
+   Midbrain extracellular matrix and microglia are associated with...
+   License: https://creativecommons.org/licenses/by/4.0
+
+✅ 10.1038/s41467-025-66354-y
+   Vulnerability to memory decline in aging revealed by a mega-ana...
+   License: https://creativecommons.org/licenses/by/4.0
+
+✅ 10.1038/s43587-025-01016-8
+   Organ-specific proteomic aging clocks predict disease and longe...
+   License: https://creativecommons.org/licenses/by/4.0
+
+❌ 10.1038/s43587-024-00616-0 - RESTRICTED
+   Nature of epigenetic aging from a single-cell perspective
+   License: https://www.springernature.com/gp/researchers/text-and-data-mining
+
+❌ 10.1038/s43587-025-01043-5 - RESTRICTED
+   Protein restriction reshapes aging across organs
+   License: https://www.springernature.com/gp/researchers/text-and-data-mining
+
+======================================================================
+License Check Summary:
+  ✅ Open Access: 3 papers
+  ❌ Restricted: 2 papers
+======================================================================
+
+Downloading 3 open access papers...
+[Downloads only the 3 open access papers]
+
+⚠️  2 papers were RESTRICTED and not downloaded
+✓ Updated RESTRICTED_ACCESS.md
+```
+
+### Example 3: Mixed URLs and DOIs
+
+```bash
+python scripts/download_paper.py \
+  https://doi.org/10.1038/s41467-025-58466-2 \
+  10.1038/s43587-025-01016-8 \
+  https://www.nature.com/articles/s41467-025-66354-y
+```
+
+The script automatically extracts DOIs from URLs and processes them.
+
+### Example 4: Query Database
+
+```bash
+# List all papers
+sqlite3 papers.db "SELECT title, journal, year FROM papers ORDER BY year DESC"
+
+# Count papers by journal
+sqlite3 papers.db "SELECT journal, COUNT(*) FROM papers GROUP BY journal"
+
+# Papers with most figures
+sqlite3 papers.db "
+  SELECT p.title, COUNT(f.id) as fig_count
+  FROM papers p
+  LEFT JOIN figures f ON p.doi = f.paper_doi
+  GROUP BY p.doi
+  ORDER BY fig_count DESC
+"
+```
+
+### Example 5: Python Database Query
 
 ```python
 import sqlite3
+import json
 
 conn = sqlite3.connect('papers.db')
 cursor = conn.cursor()
 
-# Find all papers from 2024
-cursor.execute("SELECT title, doi FROM papers WHERE year = 2024")
-for title, doi in cursor.fetchall():
-    print(f"{title} ({doi})")
+# Find all papers from 2025
+cursor.execute("SELECT title, doi, authors FROM papers WHERE year = 2025")
+for title, doi, authors_json in cursor.fetchall():
+    authors = json.loads(authors_json)
+    print(f"{title}")
+    print(f"  DOI: {doi}")
+    print(f"  Authors: {len(authors)} authors")
+    print()
 ```
 
 ## Requirements
