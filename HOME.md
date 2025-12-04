@@ -61,12 +61,13 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 - Automated paper download system
 - SQLite database tracking
 - Obsidian-integrated literature notes
-- 1 paper downloaded (Wang et al. 2025 - Brain aging spatial transcriptomics)
+- 7 papers downloaded + 2 tracked (restricted access)
 
 **Quick Stats**:
-- 1 Paper (Nature Communications 2025)
-- 7 Figures downloaded
-- 21.4 MB total storage
+- 4 Nature Communications papers
+- 3 Nature Aging papers
+- 38 Figures downloaded
+- 123.5 MB total storage
 
 ---
 

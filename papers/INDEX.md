@@ -14,9 +14,10 @@ WHERE file.name != "INDEX" AND file.name != "README"
 SORT year DESC
 ```
 
-**Total Papers**: 1
-**Total Figures**: 7
+**Total Papers**: 7 (6 new + 1 original)
+**Total Figures**: 38
 **Latest Download**: 2025-12-03
+**Restricted Access**: 2 papers tracked (not downloaded)
 
 ## Recent Papers
 
@@ -35,18 +36,77 @@ SORT year DESC
 
 **Downloaded**: PDF (10 MB) + 7 figures (11.4 MB total)
 
+### [Midbrain extracellular matrix and microglia are associated with cognition in aging mice](10.1038_s41467-025-66434-z/note.md)
+
+**Gray DT, Gutierrez A, Jami-Alahmadi Y, et al. (2025)**
+*Nature Communications* | DOI: [10.1038/s41467-025-66434-z](https://doi.org/10.1038/s41467-025-66434-z)
+
+**Relevance**: ⭐⭐⭐⭐⭐ Midbrain ECM and microglia in cognitive aging
+
+**Downloaded**: PDF (385 KB) + 6 figures (6.9 MB total)
+
+### [Vulnerability to memory decline in aging revealed by a mega-analysis of structural brain change](10.1038_s41467-025-66354-y/note.md)
+
+**75 authors (2025)**
+*Nature Communications* | DOI: [10.1038/s41467-025-66354-y](https://doi.org/10.1038/s41467-025-66354-y)
+
+**Relevance**: ⭐⭐⭐⭐⭐ Large-scale structural brain aging study
+
+**Downloaded**: PDF (479 KB) + 4 figures (mega-analysis)
+
+### [Organ-specific proteomic aging clocks predict disease and longevity across diverse populations](10.1038_s43587-025-01016-8/note.md)
+
+**25 authors (2025)**
+*Nature Aging* | DOI: [10.1038/s43587-025-01016-8](https://doi.org/10.1038/s43587-025-01016-8)
+
+**Relevance**: ⭐⭐⭐⭐⭐ Proteomic aging clocks - highly relevant to GenAge
+
+**Downloaded**: PDF (15 MB) + 5 figures
+
+### [Odoribacter splanchnicus rescues aging-related intestinal P-glycoprotein damage](10.1038_s41467-025-65692-1/note.md)
+
+**18 authors (2025)**
+*Nature Communications* | DOI: [10.1038/s41467-025-65692-1](https://doi.org/10.1038/s41467-025-65692-1)
+
+**Relevance**: ⭐⭐⭐⭐ Gut microbiome and aging
+
+**Downloaded**: PDF (6.1 MB) + 6 figures
+
+### [Anti-uPAR CAR T cells reverse and prevent aging-associated defects in intestinal regeneration](10.1038_s43587-025-01022-w/note.md)
+
+**24 authors (2025)**
+*Nature Aging* | DOI: [10.1038/s43587-025-01022-w](https://doi.org/10.1038/s43587-025-01022-w)
+
+**Relevance**: ⭐⭐⭐⭐⭐ CAR T cell therapy for aging - breakthrough approach
+
+**Downloaded**: PDF (39 MB) + 5 figures
+
+### [Iron homeostasis and cell clonality drive cancer-associated intestinal DNA methylation drift in aging](10.1038_s43587-025-01021-x/note.md)
+
+**12 authors (2025)**
+*Nature Aging* | DOI: [10.1038/s43587-025-01021-x](https://doi.org/10.1038/s43587-025-01021-x)
+**License**: CC-BY-NC-ND-4.0
+
+**Relevance**: ⭐⭐⭐⭐ Epigenetic aging and cancer
+
+**Downloaded**: PDF (9.2 MB) + 5 figures
+
 ---
 
 ## By Topic
 
-### Aging Biology
-- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025 - Brain aging spatial transcriptomics]]
+### Brain Aging & Cognition
+- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025]] - Spatial transcriptomics of white matter inflammation
+- [[10.1038_s41467-025-66434-z/note|Gray et al. 2025]] - Midbrain ECM and microglia
+- [[10.1038_s41467-025-66354-y/note|Mega-analysis 2025]] - Memory decline and structural brain changes
 
-### Spatial Transcriptomics
-- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025 - Mouse brain white matter]]
+### Proteomic & Epigenetic Aging
+- [[10.1038_s43587-025-01016-8/note|Proteomic aging clocks 2025]] - Organ-specific clocks
+- [[10.1038_s43587-025-01021-x/note|Iron homeostasis 2025]] - DNA methylation drift
 
-### Inflammation
-- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025 - White matter inflammation origins]]
+### Gut Biology & Aging
+- [[10.1038_s41467-025-65692-1/note|Odoribacter 2025]] - Microbiome rescue of intestinal function
+- [[10.1038_s43587-025-01022-w/note|CAR T cells 2025]] - Intestinal regeneration therapy
 
 ## By Year
 
@@ -55,8 +115,16 @@ SORT year DESC
 
 ## By Journal
 
-### Nature Communications
-- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025]] - Spatial transcriptomics, aging, white matter
+### Nature Communications (4 papers)
+- [[10.1038_s41467-025-58466-2/note|Wang et al. 2025]] - Spatial transcriptomics, white matter inflammation
+- [[10.1038_s41467-025-66434-z/note|Gray et al. 2025]] - Midbrain ECM and microglia
+- [[10.1038_s41467-025-66354-y/note|Mega-analysis 2025]] - Memory decline (75 authors)
+- [[10.1038_s41467-025-65692-1/note|Odoribacter 2025]] - Gut microbiome aging
+
+### Nature Aging (3 papers)
+- [[10.1038_s43587-025-01016-8/note|Proteomic clocks 2025]] - Organ-specific aging biomarkers
+- [[10.1038_s43587-025-01022-w/note|CAR T therapy 2025]] - Intestinal regeneration
+- [[10.1038_s43587-025-01021-x/note|Iron homeostasis 2025]] - Epigenetic drift (CC-BY-NC-ND)
 
 ## Database
 
@@ -229,15 +297,25 @@ tags:
 
 | Paper | PDF Size | Figures | Total Size |
 |-------|----------|---------|------------|
-| Wang et al. 2025 | 10 MB | 7 (11.4 MB) | 21.4 MB |
-| **TOTAL** | **10 MB** | **7 figures** | **21.4 MB** |
+| Wang et al. 2025 (spatial transcriptomics) | 10.0 MB | 7 (11.4 MB) | 21.4 MB |
+| Gray et al. 2025 (midbrain ECM) | 0.4 MB | 6 (6.9 MB) | 7.3 MB |
+| Mega-analysis 2025 (memory decline) | 0.5 MB | 4 (est 4 MB) | 4.5 MB |
+| Proteomic clocks 2025 | 15.0 MB | 5 (est 5 MB) | 20.0 MB |
+| Odoribacter 2025 (gut microbiome) | 6.1 MB | 6 (est 6 MB) | 12.1 MB |
+| CAR T therapy 2025 | 39.0 MB | 5 (est 5 MB) | 44.0 MB |
+| Iron homeostasis 2025 | 9.2 MB | 5 (est 5 MB) | 14.2 MB |
+| **TOTAL** | **80.2 MB** | **38 figures** | **~123.5 MB** |
 
 **Storage strategy**: Download high-value papers with figures. For large datasets, prefer web interfaces or on-demand downloads.
+
+**Restricted access** (not downloaded): See [[RESTRICTED_ACCESS|RESTRICTED_ACCESS.md]] for 2 tracked papers
 
 ---
 
 **Created**: 2025-12-03
+**Updated**: 2025-12-03 (batch download)
 **Location**: `/Users/byron/projects/papers/`
 **Database**: `papers.db` (SQLite)
-**Total papers**: 1
-**Total figures**: 7
+**Total papers**: 7 open access + 2 restricted (tracked only)
+**Total figures**: 38
+**Total storage**: ~123.5 MB
