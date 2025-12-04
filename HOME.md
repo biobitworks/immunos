@@ -51,6 +51,25 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 ---
 
+## 📄 Papers Archive
+
+**Focus**: Open-access academic papers with figures, organized by DOI
+
+[[papers/INDEX|→ **Open Papers Dashboard**]]
+
+**Status**: Active
+- Automated paper download system
+- SQLite database tracking
+- Obsidian-integrated literature notes
+- 1 paper downloaded (Wang et al. 2025 - Brain aging spatial transcriptomics)
+
+**Quick Stats**:
+- 1 Paper (Nature Communications 2025)
+- 7 Figures downloaded
+- 21.4 MB total storage
+
+---
+
 ## 📁 Quick Navigation
 
 ### By Type
@@ -74,12 +93,14 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 **Available Workspaces**:
 1. **Aging Research** - Filtered to /research/
-2. **IMMUNOS-MCP** - Filtered to /immunos-mcp/
-3. **IMMUNOS81** - Filtered to /immunos81/
-4. **All Projects** - Global view
+2. **Papers Archive** - Filtered to /papers/
+3. **IMMUNOS-MCP** - Filtered to /immunos-mcp/
+4. **IMMUNOS81** - Filtered to /immunos81/
+5. **All Projects** - Global view
 
 **Graph Filters**:
 - Aging Research: `path:research/`
+- Papers Archive: `path:papers/`
 - IMMUNOS-MCP: `path:immunos-mcp/`
 - IMMUNOS81: `path:immunos81/`
 
