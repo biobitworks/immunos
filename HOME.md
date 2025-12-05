@@ -61,7 +61,9 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 - Automated paper download system
 - SQLite database tracking
 - Obsidian-integrated literature notes
-- 7 papers downloaded + 2 tracked (restricted access)
+- 6 papers fully downloaded (19% success rate)
+- 26 papers blocked (paywalls + bot detection)
+- Total: 32 papers tracked in database
 
 **Quick Stats**:
 - 4 Nature Communications papers
@@ -107,5 +109,5 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 ---
 
-**Last Updated**: 2025-12-03
+**Last Updated**: 2025-12-04
 **Vault**: `/Users/byron/projects/`

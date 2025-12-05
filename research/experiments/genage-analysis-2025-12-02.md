@@ -1,13 +1,13 @@
 ---
 title: GenAge Data Analysis Summary
-date: 2025-12-02
+date: 2025-12-04
 tags: [genage, aging, data-analysis, genomics]
 type: analysis-report
 ---
 
 # GenAge Data Analysis Summary
 
-**Analysis Date**: 2025-12-02 17:22:57
+**Analysis Date**: 2025-12-04 23:37:19
 **Data Source**: Human Ageing Genomic Resources (HAGR)
 **Website**: https://genomics.senescence.info/
 
@@ -92,7 +92,55 @@ Comprehensive analysis of three GenAge datasets:
 
 **Description**: Meta-analysis results from 127 microarray and RNA-Seq datasets across mammals (human, mouse, rat).
 
-**Note**: Contains meta-analysis results from 127 datasets
+### Sheets Structure
+
+The Excel file contains 3 sheets:
+1. **Source** - Citation information (Palmer et al. ageing transcriptome meta-analysis)
+2. **TableS3-Over.All** - Genes overexpressed with age (450 genes)
+3. **TableS7-Under.All** - Genes underexpressed with age (163 genes)
+
+### Expression Patterns
+
+#### Overexpressed with Age (450 genes)
+
+**Top genes** (highest significance):
+- C1QA (QValue = 0.0)
+- GPNMB (QValue = 0.0)
+- B2M (QValue = 0.0)
+- EFEMP1 (QValue = 0.0)
+- C1QC, C1QB (QValue = 0.0)
+- SKAP2, IL33, PLEK (QValue = 0.0)
+
+**Patterns**: Inflammation, immune activation, extracellular matrix remodeling
+
+#### Underexpressed with Age (163 genes)
+
+**Top genes** (highest significance):
+- UQCRFS1 (QValue = 0.000022)
+- SUCLG1 (QValue = 0.000023)
+- MLF1 (QValue = 0.000051)
+- UROS (QValue = 0.000125)
+- FKBP4 (QValue = 0.000103)
+- VLDLR, TFRC, VPS36, COX7B (QValue < 0.001)
+
+**Patterns**: Mitochondrial function, energy metabolism, oxidative phosphorylation
+
+### Summary Statistics
+
+| Category | Count | Significance |
+|----------|-------|--------------|
+| Overexpressed | 450 | Inflammation, immune response |
+| Underexpressed | 163 | Metabolism, mitochondrial function |
+| **Total** | **613** | Consistent across tissues |
+
+### Key Insights from Expression Data
+
+1. **Inflammaging Pattern**: Overexpressed genes dominated by immune/inflammatory markers (C1QA, C1QB, C1QC, IL33)
+2. **Metabolic Decline**: Underexpressed genes show clear mitochondrial/metabolic signature (UQCRFS1, COX7B, SUCLG1)
+3. **Cross-tissue consistency**: Genes selected across all tissues (meta-analysis of 127 studies)
+4. **High confidence**: Most significant genes have QValue < 0.001 (very low false discovery rate)
+
+**Note**: Full analysis completed with openpyxl and pandas on 2025-12-04
 
 ---
 
@@ -196,6 +244,6 @@ print(f"Model organism genes: {len(models_df)}")
 
 ---
 
-**Last Updated**: 2025-12-02
+**Last Updated**: 2025-12-04
 **Data Source**: HAGR GenAge Build 21 (August 2023)
 **License**: CC BY 3.0
