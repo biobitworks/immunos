@@ -18,14 +18,11 @@ journal: "Nature Aging"
 doi: "10.1038/s43587-025-01021-x"
 url: "https://doi.org/10.1038/s43587-025-01021-x"
 type: journal-article
-downloaded: "2025-12-03"
-license: "CC-BY-NC-ND-4.0"
+downloaded: "2025-12-04"
+license: "Open Access"
 tags:
   - paper
   - aging-biology
-  - gut-biology
-  - epigenetics
-  - cell-therapy
   - nature-aging
 ---
 
@@ -34,7 +31,7 @@ tags:
 **Authors**: Anna Krepelova, Mahdi Rasa, Francesco Annunziata et al. (12 authors)
 **Journal**: Nature Aging (2025)
 **DOI**: [10.1038/s43587-025-01021-x](https://doi.org/10.1038/s43587-025-01021-x)
-**License**: CC-BY-NC-ND-4.0 (Open Access)
+**License**: Open Access (Open Access)
 
 ## Quick Summary
 
@@ -58,20 +55,7 @@ tags:
 
 ## Figures
 
-### Figure 1
-![Figure 1](figure_1.png)
-
-### Figure 2
-![Figure 2](figure_2.png)
-
-### Figure 3
-![Figure 3](figure_3.png)
-
-### Figure 4
-![Figure 4](figure_4.png)
-
-### Figure 5
-![Figure 5](figure_5.png)
+[No figures downloaded]
 
 ## Notes
 
@@ -85,5 +69,5 @@ tags:
 ---
 
 **PDF**: [paper.pdf](paper.pdf)
-**Downloaded**: 2025-12-03
+**Downloaded**: 2025-12-04
 **Metadata**: [metadata.json](metadata.json)

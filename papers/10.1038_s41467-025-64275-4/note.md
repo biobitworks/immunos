@@ -13,8 +13,8 @@ journal: "Nature Communications"
 doi: "10.1038/s41467-025-64275-4"
 url: "https://doi.org/10.1038/s41467-025-64275-4"
 type: journal-article
-downloaded: "2025-12-03"
-license: "CC-BY-NC-ND-4.0"
+downloaded: "2025-12-04"
+license: "Open Access"
 tags:
   - paper
   - aging-biology
@@ -26,7 +26,7 @@ tags:
 **Authors**: Andrew C. Miller, Joseph Futoma, Salar Abbaspourazad et al. (7 authors)
 **Journal**: Nature Communications (2025)
 **DOI**: [10.1038/s41467-025-64275-4](https://doi.org/10.1038/s41467-025-64275-4)
-**License**: CC-BY-NC-ND-4.0 (Open Access)
+**License**: Open Access (Open Access)
 
 ## Quick Summary
 
@@ -50,65 +50,7 @@ tags:
 
 ## Figures
 
-### Figure 1
-![Figure 1](figure_1.png)
-
-### Figure 2
-![Figure 2](figure_2.png)
-
-### Figure 3
-![Figure 3](figure_3.png)
-
-### Figure 4
-![Figure 4](figure_4.png)
-
-### Figure 5
-![Figure 5](figure_5.png)
-
-### Figure 6
-![Figure 6](figure_6.png)
-
-### Figure 7
-![Figure 7](figure_7.png)
-
-### Figure 8
-![Figure 8](figure_8.png)
-
-### Figure 9
-![Figure 9](figure_9.png)
-
-### Figure 10
-![Figure 10](figure_10.png)
-
-### Figure 11
-![Figure 11](figure_11.png)
-
-### Figure 12
-![Figure 12](figure_12.png)
-
-### Figure 13
-![Figure 13](figure_13.png)
-
-### Figure 14
-![Figure 14](figure_14.png)
-
-### Figure 15
-![Figure 15](figure_15.png)
-
-### Figure 16
-![Figure 16](figure_16.png)
-
-### Figure 17
-![Figure 17](figure_17.png)
-
-### Figure 18
-![Figure 18](figure_18.png)
-
-### Figure 19
-![Figure 19](figure_19.png)
-
-### Figure 20
-![Figure 20](figure_20.png)
+[No figures downloaded]
 
 ## Notes
 
@@ -122,5 +64,5 @@ tags:
 ---
 
 **PDF**: [paper.pdf](paper.pdf)
-**Downloaded**: 2025-12-03
+**Downloaded**: 2025-12-04
 **Metadata**: [metadata.json](metadata.json)

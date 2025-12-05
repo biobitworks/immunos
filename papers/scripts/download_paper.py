@@ -25,6 +25,8 @@ from pathlib import Path
 from datetime import datetime
 import argparse
 import sys
+import requests
+import time
 
 def sanitize_doi(doi):
     """Convert DOI to safe folder name"""
@@ -144,52 +146,110 @@ def check_licenses(dois):
     return results
 
 def download_nature_pdf(doi, output_dir):
-    """Download Nature family paper PDF using curl"""
+    """Download Nature family paper PDF using requests"""
     pdf_url = f"https://www.nature.com/articles/{doi}.pdf"
     pdf_path = output_dir / 'paper.pdf'
 
-    try:
-        result = subprocess.run(
-            ['curl', '-s', '-L', pdf_url, '-o', str(pdf_path)],
-            capture_output=True,
-            timeout=120
-        )
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/pdf,*/*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': f'https://www.nature.com/articles/{doi}'
+    }
 
-        if result.returncode == 0 and pdf_path.exists() and pdf_path.stat().st_size > 1000:
-            return str(pdf_path)
+    try:
+        response = requests.get(pdf_url, headers=headers, timeout=120, allow_redirects=True)
+
+        if response.status_code == 200:
+            # Check if it's a real PDF (not HTML error page)
+            content = response.content
+            is_pdf = content[:5] == b'%PDF-'
+
+            if is_pdf and len(content) > 50000:
+                with open(pdf_path, 'wb') as f:
+                    f.write(content)
+                return str(pdf_path)
+            else:
+                return None
         else:
-            pdf_path.unlink(missing_ok=True)
+            print(f"⚠️  PDF download failed: HTTP {response.status_code}")
             return None
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(f"⚠️  PDF download error: {e}")
+        pdf_path.unlink(missing_ok=True)
         return None
 
 def download_nature_figures(doi, output_dir):
-    """Download figures from Nature paper using curl"""
+    """Download figures from Nature paper using requests with rate limiting"""
     figures = []
 
-    # Extract journal and article number from DOI
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'image/png,image/*,*/*',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Referer': f'https://www.nature.com/articles/{doi}'
+    }
+
+    # Extract components from DOI
+    # Example: 10.1038/s43587-025-01021-x
+    # -> journal_code: 43587, year: 2025, article_id: 1021
     parts = doi.split('/')
     if len(parts) >= 2:
-        journal_code = parts[-1].split('-')[0]  # e.g., "41467" from "s41467-025-58466-2"
+        doi_suffix = parts[-1]  # e.g., "s43587-025-01021-x"
 
-        for i in range(1, 21):
-            fig_url = f"https://media.springernature.com/full/springer-static/image/art%3A{doi}/MediaObjects/{journal_code}_{parts[-1].replace('s' + journal_code + '-', '').replace('-', '_')}_Fig{i}_HTML.png"
-            fig_path = output_dir / f"figure_{i}.png"
+        # Extract journal code (after 's', before first dash)
+        if doi_suffix.startswith('s'):
+            journal_code = doi_suffix.split('-')[0][1:]  # Remove 's' prefix
 
-            # Try to download
-            result = subprocess.run(
-                ['curl', '-s', '-L', fig_url, '-o', str(fig_path)],
-                capture_output=True,
-                timeout=30
-            )
+            # Extract year and article ID
+            doi_parts = doi_suffix.split('-')
+            if len(doi_parts) >= 3:
+                year = doi_parts[1]  # e.g., "025" -> we need "2025"
+                if len(year) == 3:
+                    year = '2' + year  # Assume 20xx century
 
-            if result.returncode == 0 and fig_path.exists() and fig_path.stat().st_size > 1000:
-                figures.append(str(fig_path.name))
-            else:
-                fig_path.unlink(missing_ok=True)
-                if i > 3:  # Stop after trying first 3
-                    break
+                # Article ID is the third part, with leading zeros removed
+                # e.g., "01021" -> "1021", "64275" -> "64275"
+                article_id = str(int(doi_parts[2])) if doi_parts[2].isdigit() else doi_parts[2]
+
+                # Construct figure URLs
+                # Format: {journal_code}_{year}_{article_id}_Fig{num}_HTML.png
+                consecutive_failures = 0
+                for i in range(1, 21):
+                    fig_url = f"https://media.springernature.com/lw1200/springer-static/image/art%3A{doi}/MediaObjects/{journal_code}_{year}_{article_id}_Fig{i}_HTML.png"
+                    fig_path = output_dir / f"figure_{i}.png"
+
+                    try:
+                        # Add delay to avoid rate limiting (2 seconds between requests)
+                        if i > 1:
+                            time.sleep(2)
+
+                        response = requests.get(fig_url, headers=headers, timeout=30, allow_redirects=True)
+
+                        if response.status_code == 200:
+                            content = response.content
+                            # Check if it's a real PNG file (not HTML error page)
+                            is_png = content[:8] == b'\x89PNG\r\n\x1a\n'
+
+                            if is_png and len(content) > 10000:
+                                with open(fig_path, 'wb') as f:
+                                    f.write(content)
+                                figures.append(str(fig_path.name))
+                                consecutive_failures = 0
+                            else:
+                                consecutive_failures += 1
+                                if consecutive_failures >= 3:
+                                    break
+                        else:
+                            consecutive_failures += 1
+                            if consecutive_failures >= 3:
+                                break
+
+                    except requests.exceptions.RequestException as e:
+                        print(f"⚠️  Figure {i} download error: {e}")
+                        consecutive_failures += 1
+                        if consecutive_failures >= 3:
+                            break
 
     return figures
 

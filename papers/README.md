@@ -337,6 +337,57 @@ pip install requests beautifulsoup4 pypdf pillow
 **Issue**: SQLite file in use
 **Solution**: Close other connections to papers.db
 
+## Current Limitations & Known Issues
+
+⚠️ **Important**: As of December 2025, SpringerNature has implemented aggressive bot detection that prevents automated downloads.
+
+### Status
+- **6 papers successfully downloaded** (19%) - Downloaded before protections engaged
+- **26 papers failed** (81%) - Blocked by bot detection and authentication requirements
+- See [DOWNLOAD_STATUS.md](DOWNLOAD_STATUS.md) and [INVESTIGATION_SUMMARY.md](INVESTIGATION_SUMMARY.md) for details
+
+### Specific Issues
+
+1. **PDF Access - ALL PAYWALLED**
+   - All Nature journal PDFs redirect to authentication portal
+   - Requires institutional login despite "open access" licenses
+   - **Workaround**: Use institution VPN + manual download
+
+2. **Figure Downloads - Bot Detection**
+   - SpringerNature CDN blocks automated requests after ~10-20 downloads
+   - IP/session gets blocked for 24-48 hours
+   - **Workaround**: Manual downloads or official API key
+
+3. **Rate Limiting**
+   - Even with 2s delays between requests, blocks occur
+   - Both Python (requests/subprocess) and bash curl affected
+   - **Workaround**: Wait 24-48hrs between batch attempts
+
+### Recommended Approaches
+
+1. **Institutional Access** (Best)
+   - Use university VPN
+   - Download through authenticated browser
+   - Full access to PDFs and figures
+
+2. **SpringerNature API**
+   - Apply for API key: https://dev.springernature.com/
+   - Legitimate bulk download access
+   - Proper rate limiting and authentication
+
+3. **Alternative Sources**
+   - PubMed Central (PMC) mirrors
+   - Author preprints (arXiv/bioRxiv)
+   - Contact authors directly
+
+### Scripts Available
+
+- `scripts/download_paper.py` - Original script (currently blocked)
+- `scripts/batch_download_figures.sh` - Batch retry script with rate limiting
+- `scripts/download_figures_only.sh` - Single paper figure downloader
+
+**Note**: These scripts work but will trigger rate limits after ~10-20 requests.
+
 ## Integration with Research Vault
 
 ### Link to Existing Notes
