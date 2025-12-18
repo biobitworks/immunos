@@ -25,6 +25,71 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 ---
 
+## 🧪 BioViz Research Project
+
+**Focus**: Extracellular matrix research, lab setup, and longevity science
+
+[[research/projects/bioviztech/README|→ **Open BioViz Dashboard**]]
+
+**Status**: Active Development
+- Grant applications (Yunes Foundation, Fast Grants)
+- Lab resource planning and equipment research
+- ECM imaging and tissue engineering protocols
+- Longevity Hackathon 2025 (Sept-Oct)
+
+**Components**:
+- Grant applications and budget planning
+- Lab resources and vendor research
+- Technical documentation and protocols
+- Literature reviews on ECM and aging
+- Project management and meeting notes
+
+---
+
+## 💼 Portfolio & Professional Development
+
+**Focus**: Career planning, strategic goals, and fundraising
+
+[[portfolio/README|→ **Open Portfolio Dashboard**]]
+
+**Status**: Active
+- Q4 2025 OKRs and quarterly reviews
+- Knowledge base and strategic planning
+- GoFundMe campaign materials
+- Financial models and investor materials
+
+---
+
+## 🏢 Biobitworks Logistics
+
+**Focus**: Community lab network coordination and logistics
+
+[[biobitworks-logistics/README|→ **Open Biobitworks Dashboard**]]
+
+**Status**: Active - Network Building
+- 5 Labs: Counter Culture Labs, Biopunk Lab, BioCurious, Oakland BioLab (new), Berkeley (potential)
+- Protocol library with Google Drive sync
+- Resource sharing and equipment coordination
+- Community building and partnerships
+
+**Features**:
+- Structured lab database (JSON)
+- Shared protocol library (core, shared, lab-specific)
+- Network coordination tools
+- Resource tracking and logistics
+
+---
+
+## 🔬 Research Experiments
+
+**Recent Experiments**:
+- [[research/experiments/proteomics-claims-2025/README|Proteomics Claims Validation 2025]]
+  - 8 claims tested using pertpy analysis
+  - Jupyter notebooks and statistical reports
+  - Supporting data for aging mechanisms research
+
+---
+
 ## 🛡️ IMMUNOS-MCP Project
 
 **Focus**: Artificial immune system for code security scanning
@@ -97,17 +162,23 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 **Available Workspaces**:
 1. **Aging Research** - Filtered to /research/
 2. **Papers Archive** - Filtered to /papers/
-3. **IMMUNOS-MCP** - Filtered to /immunos-mcp/
-4. **IMMUNOS81** - Filtered to /immunos81/
-5. **All Projects** - Global view
+3. **BioViz Project** - Filtered to /research/projects/bioviztech/
+4. **Portfolio** - Filtered to /portfolio/
+5. **Proteomics Experiments** - Filtered to /research/experiments/proteomics-claims-2025/
+6. **IMMUNOS-MCP** - Filtered to /immunos-mcp/
+7. **IMMUNOS81** - Filtered to /immunos81/
+8. **All Projects** - Global view
 
 **Graph Filters**:
 - Aging Research: `path:research/`
 - Papers Archive: `path:papers/`
+- BioViz Project: `path:research/projects/bioviztech/`
+- Portfolio: `path:portfolio/`
+- Proteomics Experiments: `path:research/experiments/proteomics-claims-2025/`
 - IMMUNOS-MCP: `path:immunos-mcp/`
 - IMMUNOS81: `path:immunos81/`
 
 ---
 
-**Last Updated**: 2025-12-04
+**Last Updated**: 2025-12-10
 **Vault**: `/Users/byron/projects/`

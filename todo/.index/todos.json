@@ -1,0 +1,690 @@
+{
+  "last_updated": "2025-12-13T13:28:47.519895",
+  "todos": {
+    "TODO-20251213-001": {
+      "id": "TODO-20251213-001",
+      "title": "Test the todo system",
+      "status": "done",
+      "created": "2025-12-13T13:16:23.955917",
+      "due": "2025-12-14T23:59:59.955942",
+      "completed": "2025-12-13T13:24:00.027392",
+      "priority": "high",
+      "project": "immunos",
+      "tags": [
+        "testing",
+        "setup"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-002": {
+      "id": "TODO-20251213-002",
+      "title": "Test the todo system",
+      "status": "done",
+      "created": "2025-12-13T13:16:43.420276",
+      "due": "2025-12-14T23:59:59.420309",
+      "completed": "2025-12-13T13:24:00.078385",
+      "priority": "high",
+      "project": "immunos",
+      "tags": [
+        "testing",
+        "setup"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-003": {
+      "id": "TODO-20251213-003",
+      "title": "Test NK Cell integration",
+      "status": "inbox",
+      "created": "2025-12-13T13:22:43.052893",
+      "due": "2025-12-16T23:59:59.052918",
+      "completed": null,
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "testing"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-004": {
+      "id": "TODO-20251213-004",
+      "title": "Overdue test todo",
+      "status": "done",
+      "created": "2025-12-13T13:23:36.664389",
+      "due": "2025-12-01T23:59:59",
+      "completed": "2025-12-13T13:24:00.156040",
+      "priority": "high",
+      "project": "immunos",
+      "tags": [
+        "testing"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-005": {
+      "id": "TODO-20251213-005",
+      "title": "Received Opus 4.5 scientific review",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.993615",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.994534",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-006": {
+      "id": "TODO-20251213-006",
+      "title": "Strategic reframing: Prion \u2192 Cytoplasmic Inheritance",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.994900",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.995404",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-007": {
+      "id": "TODO-20251213-007",
+      "title": "Added 4 new citations (3 verified, 1 pending source)",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.995763",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.996131",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-008": {
+      "id": "TODO-20251213-008",
+      "title": "Verified 3 new citations via DOI",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.996465",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.996969",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-009": {
+      "id": "TODO-20251213-009",
+      "title": "Wrote blog version v3.0 (3,104 words)",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.997427",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.998312",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-010": {
+      "id": "TODO-20251213-010",
+      "title": "Wrote bioRxiv version v3.0 (~8,500 words, 52 refs)",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.998743",
+      "due": null,
+      "completed": "2025-12-13T13:28:38.999204",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-011": {
+      "id": "TODO-20251213-011",
+      "title": "Created comprehensive revision changelog",
+      "status": "done",
+      "created": "2025-12-13T13:28:38.999675",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.000136",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-012": {
+      "id": "TODO-20251213-012",
+      "title": "Updated README.md for v3.0",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.000848",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.001389",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-013": {
+      "id": "TODO-20251213-013",
+      "title": "Updated PROJECT.md for v3.0",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.001861",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.002416",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-014": {
+      "id": "TODO-20251213-014",
+      "title": "Updated CITATIONS_STATUS.md for v3.0",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.002957",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.003487",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-015": {
+      "id": "TODO-20251213-015",
+      "title": "Created daily journal entry (2025-12-12)",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.004133",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.005167",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-016": {
+      "id": "TODO-20251213-016",
+      "title": "Created IMMUNOS snapshot",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.005788",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.006387",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-017": {
+      "id": "TODO-20251213-017",
+      "title": "Addressed all 7 Opus critiques (100%)",
+      "status": "done",
+      "created": "2025-12-13T13:28:39.006913",
+      "due": null,
+      "completed": "2025-12-13T13:28:39.007531",
+      "priority": "medium",
+      "project": "prion-clock",
+      "tags": [
+        "prion-clock",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-018": {
+      "id": "TODO-20251213-018",
+      "title": "Memory system with T Cell adaptive decay",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.480631",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.481412",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-019": {
+      "id": "TODO-20251213-019",
+      "title": "Snapshot system for context checkpoints",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.481979",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.482552",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-020": {
+      "id": "TODO-20251213-020",
+      "title": "Recovery system (<5 second restoration)",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.483127",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.483740",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-021": {
+      "id": "TODO-20251213-021",
+      "title": "Daily journal system",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.484388",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.485343",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-022": {
+      "id": "TODO-20251213-022",
+      "title": "Token analyzer with optimization",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.486008",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.486651",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-023": {
+      "id": "TODO-20251213-023",
+      "title": "Citation verification system",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.487299",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.487939",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-024": {
+      "id": "TODO-20251213-024",
+      "title": "Prion Clock citation verification (23/23 = 100%)",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.488563",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.489239",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-025": {
+      "id": "TODO-20251213-025",
+      "title": "Prion Clock v3.0 snapshot created",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.489880",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.490575",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-026": {
+      "id": "TODO-20251213-026",
+      "title": "Daily journal for 2025-12-11, 2025-12-12",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.491251",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.491974",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-027": {
+      "id": "TODO-20251213-027",
+      "title": "Token optimization: 68% reduction via `.claudeignore`",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.492799",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.494280",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-028": {
+      "id": "TODO-20251213-028",
+      "title": "`immunos_memory.py` - Memory storage & retrieval",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.495492",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.496915",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-029": {
+      "id": "TODO-20251213-029",
+      "title": "`immunos_snapshot.py` - Context snapshots",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.497912",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.498786",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-030": {
+      "id": "TODO-20251213-030",
+      "title": "`immunos_recover.py` - Context recovery",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.499632",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.500483",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-031": {
+      "id": "TODO-20251213-031",
+      "title": "`immunos_journal.py` - Daily journal creation",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.501577",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.502704",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-032": {
+      "id": "TODO-20251213-032",
+      "title": "`immunos_token_analyzer.py` - Token analysis",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.503644",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.504507",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-033": {
+      "id": "TODO-20251213-033",
+      "title": "`immunos_cite_verify.py` - Citation verification",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.505321",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.506252",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-034": {
+      "id": "TODO-20251213-034",
+      "title": "Memory, snapshot, recovery",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.507083",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.508005",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-035": {
+      "id": "TODO-20251213-035",
+      "title": "Citation verification",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.508844",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.509735",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-036": {
+      "id": "TODO-20251213-036",
+      "title": "Token optimization",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.510626",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.511530",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-037": {
+      "id": "TODO-20251213-037",
+      "title": "Daily journal",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.512414",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.513348",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-038": {
+      "id": "TODO-20251213-038",
+      "title": "Prion Clock integration",
+      "status": "done",
+      "created": "2025-12-13T13:28:47.514345",
+      "due": null,
+      "completed": "2025-12-13T13:28:47.515283",
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-039": {
+      "id": "TODO-20251213-039",
+      "title": "QML-AiNet",
+      "status": "someday",
+      "created": "2025-12-13T13:28:47.516291",
+      "due": null,
+      "completed": null,
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-040": {
+      "id": "TODO-20251213-040",
+      "title": "Multi-agent coordination",
+      "status": "someday",
+      "created": "2025-12-13T13:28:47.517298",
+      "due": null,
+      "completed": null,
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-041": {
+      "id": "TODO-20251213-041",
+      "title": "Knowledge graphs",
+      "status": "someday",
+      "created": "2025-12-13T13:28:47.518666",
+      "due": null,
+      "completed": null,
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251213-042": {
+      "id": "TODO-20251213-042",
+      "title": "Automated literature monitoring",
+      "status": "someday",
+      "created": "2025-12-13T13:28:47.519854",
+      "due": null,
+      "completed": null,
+      "priority": "medium",
+      "project": "immunos",
+      "tags": [
+        "immunos",
+        "migrated"
+      ],
+      "description": null,
+      "file": "daily/2025-12-13.md"
+    }
+  },
+  "stats": {
+    "total": 42,
+    "by_status": {
+      "done": 37,
+      "inbox": 1,
+      "someday": 4
+    },
+    "by_priority": {
+      "high": 3,
+      "medium": 39
+    },
+    "overdue": 0,
+    "due_today": 0,
+    "due_this_week": 1
+  }
+}

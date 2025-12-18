@@ -83,6 +83,24 @@
 - **API**: Free with key registration
 - **Priority**: High for systems analysis
 
+### Cell Atlas & Neuroscience
+
+**[[databases/biccn|BICCN]]** 🧠 Brain Cell Census
+- Brain Initiative Cell Census Network
+- **Size**: ~100+ GB (multi-modal datasets)
+- **Data**: Single-cell genomics, spatial transcriptomics, morphology, connectivity
+- **Decision**: Use web portal only (NO download)
+- **Priority**: Low (brain-specific, not core aging biology)
+
+### Regulatory Genomics
+
+**[[databases/regulomedb|RegulomeDB]]** 🧬 Regulatory Variants
+- Annotates regulatory SNPs and variants
+- **Size**: ~10 GB (web-based)
+- **Data**: ENCODE, ChIP-seq, eQTL, GWAS annotations
+- **Use**: Score regulatory variants in aging genes
+- **Priority**: Moderate (useful for genomics research)
+
 ### Index
 📋 [[databases/README|All Databases]] - Complete database documentation
 
@@ -210,8 +228,8 @@
 - 3 git commits
 
 **Databases Tracked**:
-- 3 documented (HuggingFace, spatialLIBD, BioGRID)
-- 3 pending (Monarch KG, Dipper, RegulomeDB)
+- 5 documented (HuggingFace, spatialLIBD, BioGRID, BICCN, RegulomeDB)
+- 2 pending (Monarch KG, Dipper)
 
 **Data Assets**:
 - 307 human aging genes

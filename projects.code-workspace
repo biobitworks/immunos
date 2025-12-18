@@ -1,0 +1,85 @@
+{
+  "folders": [
+    {
+      "name": "immunos-mcp",
+      "path": "immunos-mcp"
+    },
+    {
+      "name": "immunos81",
+      "path": "immunos81"
+    },
+    {
+      "name": "rockbeatspaper",
+      "path": "rockbeatspaper"
+    },
+    {
+      "name": "experiments",
+      "path": "experiments"
+    }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder}/../.venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "[python]": {
+      "editor.defaultFormatter": "ms-python.black-formatter",
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    },
+    "black-formatter.args": [
+      "--line-length=100"
+    ],
+    "ruff.enable": true,
+    "ruff.organizeImports": true,
+    "ruff.fixAll": true,
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/*.pyc": true,
+      "**/.pytest_cache": true,
+      "**/.mypy_cache": true,
+      "**/.ruff_cache": true,
+      "**/*.egg-info": true
+    },
+    "editor.rulers": [100],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.minimap.enabled": true,
+    "editor.suggestSelection": "first",
+    "editor.inlineSuggest.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "terminal.integrated.defaultProfile.osx": "zsh",
+    "terminal.integrated.cwd": "${workspaceFolder}",
+    "files.associations": {
+      "*.md": "markdown",
+      "*.py": "python",
+      "*.toml": "toml",
+      "*.yaml": "yaml",
+      "*.yml": "yaml"
+    },
+    "markdown.preview.breaks": true,
+    "markdown.preview.linkify": true
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-python.black-formatter",
+      "charliermarsh.ruff",
+      "eamodio.gitlens",
+      "yzhang.markdown-all-in-one",
+      "github.copilot"
+    ]
+  }
+}

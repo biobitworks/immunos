@@ -1,0 +1,326 @@
+{% extends "base.html" %}
+
+{% block title %}IMMUNOS Dashboard - System Health{% endblock %}
+
+{% block content %}
+<!-- Threat Level Banner -->
+<div class="threat-banner" id="threat-banner">
+    <div class="threat-content">
+        <div class="threat-icon">
+            <div class="shield-icon">🛡️</div>
+        </div>
+        <div class="threat-info">
+            <h1 class="threat-title" id="threat-title">System Secure</h1>
+            <p class="threat-subtitle" id="threat-subtitle">No critical issues detected</p>
+        </div>
+        <div class="threat-score">
+            <div class="score-circle" id="score-circle">
+                <svg width="120" height="120">
+                    <circle cx="60" cy="60" r="50" class="score-bg"></circle>
+                    <circle cx="60" cy="60" r="50" class="score-fill" id="score-fill"></circle>
+                </svg>
+                <div class="score-value" id="score-value">100</div>
+            </div>
+            <div class="score-label">Health Score</div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Stats -->
+<div class="stats-grid">
+    <div class="stat-card critical">
+        <div class="stat-icon">🔴</div>
+        <div class="stat-content">
+            <div class="stat-value" id="stat-critical">0</div>
+            <div class="stat-label">Critical Issues</div>
+        </div>
+    </div>
+    <div class="stat-card warning">
+        <div class="stat-icon">⚠️</div>
+        <div class="stat-content">
+            <div class="stat-value" id="stat-warnings">0</div>
+            <div class="stat-label">Warnings</div>
+        </div>
+    </div>
+    <div class="stat-card info">
+        <div class="stat-icon">ℹ️</div>
+        <div class="stat-content">
+            <div class="stat-value" id="stat-info">0</div>
+            <div class="stat-label">Info Items</div>
+        </div>
+    </div>
+    <div class="stat-card success">
+        <div class="stat-icon">✅</div>
+        <div class="stat-content">
+            <div class="stat-value" id="stat-fixed">0</div>
+            <div class="stat-label">Fixed</div>
+        </div>
+    </div>
+</div>
+
+<!-- Cell Status Grid -->
+<div class="section-header">
+    <h2>🧬 IMMUNOS Cell Status</h2>
+    <p>Monitor all immune system components</p>
+</div>
+
+<div class="cells-grid">
+    <!-- NK Cell Scanner -->
+    <div class="cell-card nk-cell">
+        <div class="cell-header">
+            <div class="cell-icon">🔴</div>
+            <div class="cell-title">
+                <h3>NK Cell Scanner</h3>
+                <p>Anomaly Detection</p>
+            </div>
+            <div class="cell-status" id="nk-status">
+                <span class="status-badge idle">Idle</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Last Scan:</span>
+                <span class="stat-value" id="nk-last-scan">Never</span>
+            </div>
+            <div class="anomaly-breakdown" id="nk-anomalies">
+                <div class="anomaly-item high">
+                    <span class="anomaly-label">HIGH:</span>
+                    <span class="anomaly-count">0</span>
+                </div>
+                <div class="anomaly-item medium">
+                    <span class="anomaly-label">MEDIUM:</span>
+                    <span class="anomaly-count">0</span>
+                </div>
+                <div class="anomaly-item low">
+                    <span class="anomaly-label">LOW:</span>
+                    <span class="anomaly-count">0</span>
+                </div>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <a href="/scans" class="btn btn-secondary">View Details</a>
+            <button class="btn btn-primary" onclick="app.triggerScan()">Run Scan</button>
+        </div>
+    </div>
+
+    <!-- T Cell Memory -->
+    <div class="cell-card t-cell">
+        <div class="cell-header">
+            <div class="cell-icon">🧠</div>
+            <div class="cell-title">
+                <h3>T Cell Memory</h3>
+                <p>Adaptive Learning</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge active">Active</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Active Memories:</span>
+                <span class="stat-value" id="memory-count">0</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Last Decay:</span>
+                <span class="stat-value" id="memory-decay">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <a href="/memory" class="btn btn-secondary">Browse</a>
+            <button class="btn btn-primary" onclick="app.runMemoryDecay()">Run Decay</button>
+        </div>
+    </div>
+
+    <!-- B Cell Verifier -->
+    <div class="cell-card b-cell">
+        <div class="cell-header">
+            <div class="cell-icon">📚</div>
+            <div class="cell-title">
+                <h3>B Cell Verifier</h3>
+                <p>Citation Validation</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge idle">Idle</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Cache Hit Rate:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Last Verification:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <button class="btn btn-secondary" disabled>View Report</button>
+            <button class="btn btn-primary" disabled>Verify Citations</button>
+        </div>
+    </div>
+
+    <!-- Baseline Scanner -->
+    <div class="cell-card baseline">
+        <div class="cell-header">
+            <div class="cell-icon">📸</div>
+            <div class="cell-title">
+                <h3>Baseline Scanner</h3>
+                <p>File Integrity</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge idle">Idle</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Files Tracked:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Last Baseline:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <button class="btn btn-secondary" disabled>View Changes</button>
+            <button class="btn btn-primary" disabled>Update Baseline</button>
+        </div>
+    </div>
+
+    <!-- Dendritic Reporter -->
+    <div class="cell-card dendritic">
+        <div class="cell-header">
+            <div class="cell-icon">📊</div>
+            <div class="cell-title">
+                <h3>Dendritic Reporter</h3>
+                <p>Daily Synthesis</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge idle">Idle</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Latest Health:</span>
+                <span class="stat-value" id="journal-health">N/A</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Last Journal:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <button class="btn btn-secondary" disabled>View Journal</button>
+            <button class="btn btn-primary" disabled>Generate Now</button>
+        </div>
+    </div>
+
+    <!-- Todo System -->
+    <div class="cell-card todo">
+        <div class="cell-header">
+            <div class="cell-icon">✅</div>
+            <div class="cell-title">
+                <h3>Todo System</h3>
+                <p>Task Management</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge active">Active</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Active:</span>
+                <span class="stat-value" id="todo-active">0</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Completed:</span>
+                <span class="stat-value" id="todo-completed">0</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <a href="http://localhost:5001" target="_blank" class="btn btn-primary">Open Dashboard</a>
+        </div>
+    </div>
+
+    <!-- Token Analyzer -->
+    <div class="cell-card token">
+        <div class="cell-header">
+            <div class="cell-icon">💰</div>
+            <div class="cell-title">
+                <h3>Token Analyzer</h3>
+                <p>Optimization</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge idle">Idle</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Token Usage:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Status:</span>
+                <span class="stat-value">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <button class="btn btn-secondary" disabled>View Report</button>
+            <button class="btn btn-primary" disabled>Run Analysis</button>
+        </div>
+    </div>
+
+    <!-- Snapshot System -->
+    <div class="cell-card snapshot">
+        <div class="cell-header">
+            <div class="cell-icon">💾</div>
+            <div class="cell-title">
+                <h3>Snapshot System</h3>
+                <p>Context Preservation</p>
+            </div>
+            <div class="cell-status">
+                <span class="status-badge active">Active</span>
+            </div>
+        </div>
+        <div class="cell-body">
+            <div class="cell-stat">
+                <span class="stat-label">Snapshots:</span>
+                <span class="stat-value" id="snapshot-count">0</span>
+            </div>
+            <div class="cell-stat">
+                <span class="stat-label">Latest:</span>
+                <span class="stat-value" id="snapshot-latest">N/A</span>
+            </div>
+        </div>
+        <div class="cell-actions">
+            <button class="btn btn-secondary" disabled>View List</button>
+            <button class="btn btn-primary" disabled>Create Snapshot</button>
+        </div>
+    </div>
+</div>
+
+<!-- Activity Timeline -->
+<div class="section-header">
+    <h2>📜 Recent Activity</h2>
+    <p>Latest system events</p>
+</div>
+
+<div class="activity-timeline" id="activity-timeline">
+    <div class="activity-empty">
+        <div class="empty-icon">📭</div>
+        <p>No recent activity</p>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Dashboard-specific functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.app) {
+            window.app.loadDashboardData();
+        }
+    });
+</script>
+{% endblock %}
