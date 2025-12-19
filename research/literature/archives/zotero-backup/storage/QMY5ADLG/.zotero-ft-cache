@@ -1,0 +1,383 @@
+MINI REVIEW published: 17 December 2019 doi: 10.3389/fbioe.2019.00412
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 1 December 2019 | Volume 7 | Article 412
+Edited by: Jangwook P. Jung, Louisiana State University, United States
+Reviewed by: Sarah Calve, Purdue University, United States Jae-Won Shin, University of Illinois at Chicago, United States Michael Daniele, North Carolina State University, United States
+*Correspondence: Cynthia A. Reinhart-King cynthia.reinhart-king@vanderbilt.edu
+Specialty section: This article was submitted to Bioinformatics and Computational Biology, a section of the journal Frontiers in Bioengineering and Biotechnology
+Received: 15 September 2019 Accepted: 28 November 2019 Published: 17 December 2019
+Citation: Zhang J, Chada NC and Reinhart-King CA (2019) Microscale Interrogation of 3D Tissue Mechanics. Front. Bioeng. Biotechnol. 7:412. doi: 10.3389/fbioe.2019.00412
+Microscale Interrogation of 3D Tissue Mechanics
+Jian Zhang, Neil C. Chada and Cynthia A. Reinhart-King*
+Department of Biomedical Engineering, Vanderbilt University, Nashville, TN, United States
+Cells in vivo live in a complex microenvironment composed of the extracellular matrix (ECM) and other cells. Growing evidence suggests that the mechanical interaction between the cells and their microenvironment is of critical importance to their behaviors under both normal and diseased conditions, such as migration, differentiation, and proliferation. The study of tissue mechanics in the past two decades, including the assessment of both mechanical properties and mechanical stresses of the extracellular microenvironment, has greatly enriched our knowledge about how cells interact with their mechanical environment. Tissue mechanical properties are often heterogeneous and sometimes anisotropic, which makes them difficult to obtain from macroscale bulk measurements. Mechanical stresses were first measured for cells cultured on two-dimensional (2D) surfaces with well-defined mechanical properties. While 2D measurements are relatively straightforward and efficient, and they have provided us with valuable knowledge on cell-ECM interactions, that knowledge may not be directly applicable to in vivo systems. Hence, the measurement of tissue stresses in a more physiologically relevant three-dimensional (3D) environment is required. In this mini review, we will summarize and discuss recent developments in using optical, magnetic, genetic, and mechanical approaches to interrogate 3D tissue stresses and mechanical properties at the microscale.
+Keywords: extracellular matrix, traction stress, elasticity, stress sensor, tension sensor, active microrheology
+INTRODUCTION
+Tissues are composed of a large collection of ECM macromolecules (Frantz et al., 2010) and various types of cells (Figure 1A). In addition to extracellular chemical signals, cells in the tissues can sense and respond to the mechanical cues present (Humphrey et al., 2014). The mechanical properties of living tissues and their spatiotemporal variations have been associated with various physiological behaviors. Cellular forces and tissue mechanical properties can, independently or jointly, coordinate cell migration (Lo et al., 2000; Trepat et al., 2009), cell-cell interaction (ReinhartKing et al., 2008; Chen et al., 2019), cell division and cell cycle progression (Nam and Chaudhuri, 2018; Uroz et al., 2018), direct cell differentiation (Engler et al., 2006; Ruiz and Chen, 2008), drive tissue morphogenesis and sculpt organ structures (Nelson and Gleghorn, 2012; Campàs et al., 2014). Deregulation of the ECM and cellular mechanotransduction often leads to diseases such as cancer. Altered tissue stiffness, increased cellular softness and traction force generation are often associated with cancer progression and metastatic potential (Kraning-Rush et al., 2012; Lu et al., 2012; Plodinec et al., 2012; Boyd et al., 2014; Tan et al., 2014). Tissues and native ECMs are heterogeneous, anisotropic (Jones et al., 2015), and undergo constant non-linear local remodeling through strain stiffening, stress relaxation (Nam et al., 2016; Han et al., 2018), matrix degradation, and matrix deposition (Wolf et al., 2007; Attieh et al., 2017).
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+FIGURE 1 | Overview of technologies for probing microscale cellular and tissue mechanics. (A) Schematic of a tissue composed of different types of cells (brown, yellow, blue, green) and ECMs (pink). (B) Schematic of AFM probing of surface mechanics. (C) Schematic of optical tweezer probing of ECM mechanics. (D) Schematic of probing tissue mechanics from propagating waves within the tissue either directly by measuring wave speed through imaging or indirectly by measuring the BFS from light scattering. (E) Schematics demonstrating the measurement of released solid stresses after physical tissue incision (top-left). The deformations of the cut plane (top-right) are visualized with high-resolution ultrasonic or optical imaging, and the normal stresses perpendicular to the cut plane (σzz) are computed from finite element modeling (bottom). (F) Schematic of ECM deformations/displacements (green arrows) measured using embedded fluorescent beads (red dots) around a cell in 3D (blue). (G) Schematics of a cell-sized elastic bead or incompressible droplet (red) embedded within a cell cluster (top-left) and the normal stresses experienced by the bead/droplet sensor (bottom-right). (H) A representative image showing the distribution of optical retardance in an invading ex vivo breast tumor organoid as revealed by quantitative polarized microscopy, adapted from Wang et al. (2018a) with permission. Scale bar, 25 μm. (I) Schematic showing fluctuating tracers (green) in the cytoplasm (pink) or nucleus (blue) with superimposed trajectories (black), from which an MSD-lag time (τ ) plot characteristic of intracellular forces can be obtained (bottom-left). (J) Schematic of FRET-based stress sensors. (K) Schematic of the FliptR membrane tension probe (blue, left) which planarizes under pressure (red, right) from the neighboring lipid chains (green/ yellow).
+Such features can only be revealed through microscale, but not bulk, mechanical characterization. Microscale characterization of tissue mechanical properties also contributes to the assessment of stress distributions in 3D (Steinwachs et al., 2015; Nia et al., 2016), which was previously mainly done in 2D. However, cell behaviors and mechanotransduction are often different between 2D and 3D systems (Baker and Chen, 2012). Hence, methods for probing stress distributions in native ECMs and tissues are required. Here, we provide a brief review to introduce the most current technologies (Table 1) that probe or have the potential to probe 3D tissue mechanics at the microscale. Excellent reviews by colleagues with a different focus can be found to have a more comprehensive list and comparisons of the technologies (Hall et al., 2013; Cost et al., 2015; Jurchenko and Salaita, 2015; Campàs, 2016; Gayrard and Borghi, 2016; Polacheck and Chen, 2016; Sugimura et al., 2016; Kennedy et al., 2017; Roca-Cusachs et al., 2017).
+INTERROGATING TISSUE MECHANICAL PROPERTIES BY ACTIVE MICRORHEOLOGY
+The microscale tissue or cellular mechanical properties and constitutive relationships can be probed by active microrheology (Wilson and Poon, 2011), i.e., by applying controlled forces onto microscale probes or tracers that are in contact with the material and observing the resulting probe displacements.
+Atomic Force Microscopy (AFM)
+By laser tracking the deflection of the probing cantilever tip during indentation and retraction (Figure 1B), AFM indentation experiments have been used to measure the local stiffness of cancer cells (Rother et al., 2014), native ECMs and exvivo tissues (Iwashita et al., 2014; Taufalele et al., 2019). Viscoelasticity can be measured when the cantilever is operated
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 2 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+TABLE 1 | Summary of methods for probing microscale cellular and tissue mechanics.
+Method Input Output Strengths Limitations Typical
+applicationsa
+An example
+Active microrheology AFM Cantilever tip
+deflection
+Local cellular/tissue
+viscoelasticity
+High-resolution,
+continuous mapping
+Cannot map the
+interior of a tissue,
+requires physical
+contact
+2D; in vitro, ex vivo, in
+vivo
+Surface mapping of
+tissue rigidity (Kohn
+et al., 2016)
+Optical and magnetic
+tweezers
+Displacement of
+optically or
+magnetically
+controlled microbeads
+Able to detect
+spectrum-dependent
+viscoelasticity
+Low throughput,
+discrete probing,
+invasive injection
+3D; in vitro, ex vivo, in
+vivo
+Measuring
+viscoelasticity of cells
+and ECMs in 3D
+(Staunton et al., 2019)
+Deformable
+microdroplet
+Deformation of
+magnetic-responsive
+microdroplets
+Able to detect cellular
+as well as tissue level
+mechanical properties
+Low throughput,
+discrete probing,
+invasive injection
+3D; in vitro, ex vivo, in
+vivo
+Measuring
+viscoelasticity of a
+zebrafish embryo
+(Serwane et al., 2016)
+Strain-stress
+computation
+TFM Substrate/Matrix
+displacement
+Traction stress Full field mapping of
+absolute ECM stress
+Requires known ECM
+mechanical properties,
+cannot be applied in
+vivo
+2D, 3D; in vitro 3D mapping of
+cell-generated ECM
+stress (Legant et al.,
+2010)
+Tissue
+incision/ablation
+Structural, cellular and
+tissue deformation
+after stress release
+Released stress Applicable to clinical
+samples
+Requires known tissue
+mechanical properties,
+physical damage to
+sample
+2D, 3D; in vitro, ex
+vivo, in vivo
+2D mapping of solid
+stress in primary
+tumor (Nia et al., 2016)
+Cell-sized stress
+sensor
+Incompressible
+microdroplet
+Microdroplet shape
+deformation
+Local anisotropic
+normal stress
+Able to detect cellular
+as well as tissue level
+stress,
+independent of tissue
+mechanical properties
+Only measures
+anisotropic stress, low
+throughput, discrete
+probing,
+invasive injection
+3D; in vitro, in vivo Measuring anisotropic
+stress within living
+embryonic tissue
+(Campàs et al., 2014)
+Elastic microbead Volume strain,
+bead deformation
+Local anisotropic and
+isotropic normal
+stress, shear stress
+Low throughput,
+discrete probing,
+invasive injection
+Measuring
+compressive stress
+within living tissue
+(Mohagheghian et al.,
+2018)
+Molecular stress
+sensor
+Genetically encoded
+tension sensor
+Change in FRET
+efficiency
+Tension at the sensor
+protein
+High resolution,
+piconewton force
+sensitivity
+Requires rigorous
+control and calibration,
+force direction
+unknown
+2D; in vitro, in vivo Mapping force
+transmitted across
+vinculin (Grashoff
+et al., 2010)
+Synthetic
+substrate-anchored
+tension sensor
+Change in FRET
+efficiency,
+fluorescence gain/loss
+digital state
+Tension, digital state of
+tension
+High resolution,
+piconewton force
+sensitivity, applicable
+to virtually any surface
+Difficult to apply in
+vivo, difficult to obtain
+force direction
+2D; in vitro Mapping cellular
+traction force exerted
+on non-deformable
+surface (Blakely et al.,
+2014)
+(Continued)
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 3 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+TABLE 1 | Continued
+Method Input Output Strengths Limitations Typical
+applicationsa
+An example
+Fluctuation-based
+approach
+Force spectrum
+microscopy
+MSD of submicron
+tracer beads injected
+to the cytoplasm
+Collective cytoplasmic
+force
+Based on intrinsic
+cellular behaviors,
+measurement is
+independent of ECM
+or probe properties
+Low throughput,
+discrete probing,
+invasive injection,
+requires simultaneous
+mechanical
+characterization
+2D, 3D; in vitro Probing cytoplasmic
+motor activity in
+healthy and diseased
+state (Guo et al.,
+2014b)
+SINK MSD of chromatin
+particles
+Relative intracellular
+force
+Only relative force
+output,
+calibration required for
+quantitative output
+Measuring relative
+cellular force in
+heterogenous cell
+monolayer (Armiger
+et al., 2018)
+Opto-mechanical
+approach
+Brillouin light
+scattering microscopy
+Brillouin frequency
+shift
+Material longitudinal
+modulus
+Label free,
+non-contact,
+non-invasive,
+resolution same as the
+optical diffraction limit,
+continuous mapping
+Calibration and tissue
+density distribution
+required for
+quantitative output
+2D, 3D; in vitro, ex
+vivo, in vivo
+Mapping
+biomechanical
+properties of the
+crystalline lens in a
+mouse eye (Scarcelli
+and Yun, 2008).
+Dynamic
+micro-elastography
+Wave speed Material shear
+modulus
+Label free,
+non-contact,
+non-invasive,
+continuous mapping
+Tissue density
+distribution required,
+relatively low spatial
+resolution
+Mapping of depthwise
+stiffness distribution in
+the rabbit cornea
+(Wang and Larin,
+2014)
+Quantitative
+polarization
+microscopy
+Optical phase
+retardance
+Relative stress
+distribution
+Label free,
+non-contact,
+non-invasive,
+resolution same as the
+optical diffraction limit,
+continuous mapping
+Only relative stress
+output, calibration and
+control required for
+quantitative output
+Mapping relative
+stress distribution in a
+part of the wing of
+Drosophila
+melanogaster
+(Nienhaus et al., 2009)
+aIt is possible to extend the technique to other applications but with limited efficacy currently.
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 4 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+in an oscillating mode (Rother et al., 2014; Connizzo and Grodzinsky, 2017). Surface mapping of tissue mechanics using AFM can be used to identify mechanical heterogeneities in tissues, such as age-related heterogeneous vessel stiffening (Kohn et al., 2016) and malignancy-related heterogeneous tumor cell softening (Plodinec et al., 2012). However, the surface probing nature of AFM makes it difficult to use for 3D mapping of tissue mechanics.
+Optical and Magnetic Tweezers
+Optical tweezer has been used to probe the viscoelasticity of living cells and tissues (Staunton et al., 2016, 2019). By exerting sinusoidal forces at a wide range of the frequency spectrum on the micron-sized beads injected in the cytoplasm or the ECM (Figure 1C), and tracking the resulting bead displacements, optical tweezers were recently used to identify mismatch and adaptation of cytoskeletal mechanics with surrounding ECM mechanics (Staunton et al., 2019). Similarly, micron-sized magnetic-responsive beads injected into cells or tissues can be controlled by forces and torques using magnetic tweezers (Bausch et al., 1999). The fine-tuned forces and the wide range of frequencies of the optical/magnetic tweezer allow for the detection of spectrum-dependent tissue/cellular viscoelasticity in vitro and in vivo.
+Deformable Microdroplets
+Micro-injected cell-sized ferrofluid microdroplets (Figure 1G) can be used as a mechanical actuator in developing zebrafish embryos (Serwane et al., 2016). Instead of tracking bead displacements, the deformations of the cell-sized droplets are imaged over time upon the application of a uniform magnetic field. The mechanical properties of the tissue surrounding the droplet can then be derived from the deformation profile combined with physical properties of the ferrofluid droplet and the applied magnetic field. Both the optical/magnetic tweezer and the microdroplet approaches can be used to evaluate the 3D distribution of tissue mechanical properties, albeit with relatively low throughput. However, the resolution of probing is dependent on the number of beads/droplets injected, and as a result the spatiotemporal resolution of this method is limited so as to not compromise cellular/tissue function.
+INTERROGATING TISSUE STRESSES FROM TISSUE DEFORMATIONS
+ECM or tissue deformations provide useful information on the stress states of cells and tissues (Nam and Chaudhuri, 2018; Zhang et al., 2019), which can be used to calculate the 3D distribution of tissue stresses, as long as the mechanical properties and constitutive relationships of the tissue are completely known.
+Traction Force Microscopy (TFM)
+TFM is one of the most widely adopted approaches using matrix deformations to compute cell generated traction forces (Dembo and Wang, 1999; Schwarz and Soiné, 2015).
+Facilitated by the development of polyacrylamide hydrogels with well-controlled linear elasticity within the physiological range (Wang and Pelham, 1998; Beningo and Wang, 2002), traction stresses exerted on 2D hydrogels can be easily calculated from substrate deformations which are tracked using embedded fluorescent submicron beads (Dembo and Wang, 1999; Butler et al., 2002). Modifications and variations of TFM have been implemented to precisely reconstruct stresses at a resolution down to the level of focal adhesions (Schwarz et al., 2002; Han et al., 2015), and up to the level of cell monolayers (Trepat et al., 2009). Cell-substrate traction stresses can be further processed to reveal intercellular stress distributions assuming a force balance, which is known as the monolayer stress microscopy (Tambe et al., 2011, 2013). In principal, TFM can be adapted to 3D (Hall et al., 2013). 3D ECM deformations can be measured using confocal reflectance or optical coherence microscopy (Kim et al., 2016; Mulligan et al., 2017) in addition to using tracer beads (Figure 1F). However, accurate 3D stress mapping is feasible mostly in synthetic materials that are linearly elastic, homogenous and isotropic, such as polyethylene glycol (PEG) hydrogels (Legant et al., 2010). Nevertheless, 3D matrix strain is often too big to meet the small strain requirement for the linear elasticity approximation (Legant et al., 2010). Unlike 2D substrates, the non-continuity of a 3D matrix with irregular cavities due to cell or tissue occupancy usually requires computational discretization of the cavity surface and finite element modeling (Legant et al., 2010; Gjorevski and Nelson, 2012), which is computationally expensive. Despite those limitations, 3D TFM can be applied to non-linear materials with large deformations, as long as the matrix mechanical properties and constitutive relationships are fully resolved (Toyjanova et al., 2014; Steinwachs et al., 2015; Han et al., 2018).
+Tissue Incision/Ablation Approaches
+3D TFM relies mostly on randomly distributed fluorescent beads to compute matrix deformations, which is generally infeasible for tissue deformations. This obstacle can be overcome by monitoring tissue deformations directly after releasing the stored solid stresses (Stylianopoulos et al., 2012; Nia et al., 2016). By creating an incision surface through planar-cut, slicing, or needle-biopsy, the residual tissue stresses are released and the resulting surface deformations can be quantified through high-resolution ultrasonography or optical microscopy (Nia et al., 2016). The stresses normal to the incision surface and the stored elastic energy that are fully released can then be computed through finite element modeling and mapped to the incision surface, assuming known tissue mechanical properties (Nia et al., 2016; Figure 1E). This incision approach can be used to evaluate solid stresses in clinical tumor samples (Stylianopoulos et al., 2012; Nia et al., 2016). Additionally, laser ablation can be used instead of physical incision to precisely control the release of tension at the cellular/tissue level, and the resulting retraction response of the ablated structures can be used to estimate their tensional states before ablation (Ma et al., 2009; Campinho et al., 2013).
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 5 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+INTERROGATING TISSUE STRESSES FROM THE DEFORMATIONS OF CELL-SIZED STRESS SENSORS
+To overcome the complexities associated with the development of 3D TFM, the dependence of the stress calculation on the local tissue mechanical properties must be eliminated. Hence, several recent studies introduced microbead/droplet-based stress sensors of well-controlled mechanical properties to 3D systems. These types of stress sensors can be introduced to virtually any system, in vitro or in vivo (Campàs et al., 2014). However, only a small number of sensors can be used at once to avoid compromising tissue function, which limits the probe’s throughput. In addition, these sensors primarily detect compressive stresses (Dolega et al., 2017), and may not genuinely reflect the active cell-generated stresses that are largely tensile (Legant et al., 2010; Gjorevski and Nelson, 2012).
+Incompressible Microdroplets
+Cell-sized fluorescent oil microdroplets, with defined mechanical properties and coated with adhesion ligands, can be introduced to in vitro cell aggregates or living embryonic tissues (Campàs et al., 2014; Lucio et al., 2017). Local anisotropic stresses can then be calculated from the deformations of the droplets as visualized using fluorescent microscopy and calculated using computerized image analysis (Figure 1G). However, due to its incompressible nature, the oil droplet can only be used to probe the anisotropic normal stresses and not the isotropic compressive stresses.
+Elastic Microbeads
+In addition to the wide application as a compliant substrate in 2D TFM, elastic polyacrylamide hydrogels have also been used to quantify 3D stresses by creating microbeads that are embedded into tissues to act as cell-like pressure sensors (Dolega et al., 2017; Girardo et al., 2018). By simply comparing the volume change before and after applying an external pressure, the increment of local isotropic compressive stresses sensed by the microbeads can be calculated using its well-defined constitutive relationship. To calculate the absolute magnitude of stresses, however, the stress-free size of the bead needs to be known. To determine the size and shape of the beads, there have been two primary methodologies. The first approach is to release cell-generated forces, as is done in TFM, by inhibiting cell contractility or causing cell lysis (Mohagheghian et al., 2018; Lee et al., 2019). However, stress-releasing may be difficult in vivo (Mohagheghian et al., 2018), and it is not clear whether cell-sized beads can become completely stress-free in the ECM. The second approach is to measure the diffusion time of small molecules within the sensor using fluorescence correlation spectroscopy. The diffusion time correlates with the volume fraction of the gel, which in turn correlates with the compressive stress applied to the bead. Hence, the stress-free state can be easily measured from any stress-free beads with the same volume fraction (Ingremeau et al., 2017). However, this approach may only be good for short-term monitoring before most of the small molecules have diffused out from the beads.
+Unlike the incompressible microdroplet method which measures anisotropic stresses, the elastic microbead method measures the isotropic stresses using volume strain. With more information about bead deformations, either through surface tracking (Lee et al., 2019) or full deformation tracking using submicron tracers incorporated in the beads, similar to what is done in TFM (Mohagheghian et al., 2018), all types of stresses experienced by the sensor can be probed, including compressive, tensile, and shear stresses, albeit with increasing computational costs. Additionally, Förster resonance energy transfer (FRET) fluorophore pairs have been recently incorporated to PEGbased microbeads, which exhibit a characteristic fluorescence shift upon global or local tissue deformations (Neubauer et al., 2019). Nevertheless, substantial calibration is required before any quantitative information on 3D stresses can be derived, especially when compared to FRET pairs that are conjugated to elastic 2D substrates (Kong et al., 2005).
+INTERROGATING TISSUE STRESSES FROM THE FLUORESCENCE OF MOLECULAR STRESS SENSORS
+Stress sensors can also be engineered to be of the molecular size to detect sub-cellular forces with piconewton sensitivity. Unlike the cell-sized sensor described above, the forceinduced displacement in the molecular sensor is readily converted to a shift in emitted fluorescence, such as that observed in FRET (Figure 1J). However, compared to the detection of tissue or sensor deformations, the detection of fluorescence may require rigorous calibration and control (Grashoff et al., 2010; Cost et al., 2015).
+Genetically Encoded FRET-Based Tension Sensors
+Cells can be engineered to directly express FRET-based sensors (Cost et al., 2015; Freikamp et al., 2016; Gayrard and Borghi, 2016), which typically consist of a tension sensor module (TSMod) inserted into force-bearing proteins, such as vinculin (Grashoff et al., 2010), talin (Austen et al., 2015), E-cadherin (Borghi et al., 2012), α-actinin (Meng et al., 2008), β-actin (Guo et al., 2014a), etc. The TSMod has a spring-like peptide linker between a pair of FRET fluorophores. Force applied to the sensor increases the distance (Grashoff et al., 2010) or changes the orientation (Meng and Sachs, 2012) between the two fluorophores, thus, causing a decrease in FRET efficiency. FRET efficiency can be calibrated to the applied force using DNA springs (Meng and Sachs, 2012) or single-molecule force spectroscopy (Grashoff et al., 2010). The dynamic range, force response, and sensitivity of the tension sensor can be tuned by modifying the linker and FRET pair selection (Ringer et al., 2017; LaCroix et al., 2018). The genetically encoded sensors can also be introduced to in vivo applications (Cai et al., 2014), although more rigorous calibration and control may be required. For the genetically encoded tension sensor to work properly, it is important to ensure that the functions of the host protein and TSMod do not interfere with each other (Grashoff et al., 2010).
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 6 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+Synthetic Substrate-Anchored Tension Sensors
+Molecular tension sensors can also be functionalized to the substrate to detect cell-matrix forces (Liu et al., 2017). In general, these synthetic sensors have a tension-responsive linker module, which can be peptide-based (Morimatsu et al., 2013) or PEG-based (Stabley et al., 2012; Liu et al., 2014) molecular springs, double-stranded DNAs (dsDNA) (Wang and Ha, 2013) or hairpin DNAs (Blakely et al., 2014; Zhang et al., 2014). One end of the linker is for surface-anchoring, while the other end is conjugated with ligands for membrane receptors such as integrins (Morimatsu et al., 2013; Wang and Ha, 2013; Blakely et al., 2014) or epidermal growth factor receptors (Stabley et al., 2012). Force transmitted to the linker can be detected through FRET (Morimatsu et al., 2013), fluorescence quenching (Stabley et al., 2012; Blakely et al., 2014; Liu et al., 2014; Wang et al., 2018b), or simply fluorescence loss (Wang and Ha, 2013). Fluorescence quenching is also based on FRET or surface energy transfer except that the acceptor fluorophore is replaced by a quencher. The tension-induced linker extension then results in a decrease in quenching efficiency or a gain of fluorescence. Fluorescence loss can be achieved by conjugating only one fluorophore to the ligand end of the linker, which is permanently lost when the dsDNA ruptures under tension. The FRETefficiency can be calibrated as is done in the TSMod (Grashoff et al., 2010) or converted to forces through well-established mechanical models for PEG-based springs (Stabley et al., 2012), whereas gain/loss of fluorescence is usually detected when the applied tension exceeds the designed threshold. Compared to the FRET approach, the fluorescence gain/loss approach is easier to use with simpler fluorescence. However, due to the switch-like behavior, these probes are mostly suitable for detecting the on/off digital state instead of the actual magnitude of tension, although the range of forces can be estimated through multiplexing of multiple sensors with different tension thresholds (Wang and Ha, 2013; Sarkar et al., 2018). Furthermore, the direction of molecular tension can be detected when combined with fluorescence polarization microscopy (Brockman et al., 2018). These synthetic tension probes can be applied to virtually any surface including stiff glass that is not suitable for TFM, and have potential applications in 3D systems when functionalized to ECM fibers or incorporated into elastic microbeads as discussed earlier (Neubauer et al., 2019).
+Lipid Membrane Tension Sensors
+Tensions within the plasma membrane can be measured by the tether-pulling method, where controlled forces are applied through functionalized AFM cantilevers or optical/magnetic tweezer beads that are tethered to the membrane (Lieber et al., 2015; Diz-Muñoz et al., 2016). However, the tethering method is difficult to apply to tissues or cells in 3D. Recently, a fluorescent lipid tension reporter (FliptR) was developed (Colom et al., 2018), which consists of a membrane-targeting headgroup and two fluorescent dithienothiophene flippers. The two flippers can switch from a twisted state to a planarized state when pushed by the neighboring lipid chains (Figure 1K), resulting
+in a measurable increase in fluorescence lifetime. Tension in the cell membrane induces a lipid phase separation, which counterintuitively packs part of the lipid chains, pushes the inserted FliptR sensors and increases the overall fluorescence lifetime in a roughly linear manner (Colom et al., 2018). The headgroup of the sensor can be designed to specifically target the membrane of organelles, such as lysosomes, mitochondria, and the endoplasmic reticulum (Goujon et al., 2019). While the FliptR type sensors can be applied to cells in 3D easily through simple incubation (Hetmanski et al., 2019), a different calibration curve determined using the tether-pulling method is required to get the absolute tension values, each time they are applied to a different type of cell or membrane.
+OTHER APPROACHES
+Unlike the stress probing methods discussed earlier, which are based on either the stress-strain constitutive relationship or the displacement-fluorescence relationship, the last collection of approaches discussed here do not rely directly on strain/displacement information.
+Fluctuation-Based Approaches
+Fluctuation of a freely diffusing Brownian particle has long been used in passive rheology to measure the particle diffusion coefficient and fluid viscosity (Wilson and Poon, 2011; Zia, 2018). However, if the particle fluctuation is dominated by active cellular forces instead of thermal Brownian forces, then the fluctuation may be used to infer the cellular mechanical state. One of these approaches is force spectrum microscopy where submicron tracer particles are injected into the cytoplasm (Guo et al., 2014b). Instead of measuring static displacements, the mean-squared displacement (MSD) of the tracer is used as a readout (Figure 1I). With simultaneous optical tweezerbased mechanical characterization, the spectrum of cytoplasmic fluctuating forces can be calculated using Hooke’s law. This fluctuating force is suggested to be caused by the aggregate effect of all the motors and active processes in the cytoplasm (Guo et al., 2014b). Active cytoskeletal forces can be transmitted through focal adhesions to the ECM and detected by TFM or tension sensors, as well as into the nucleus through the linker of nucleoskeleton and cytoskeleton (LINC) (Alam et al., 2015), which can be detected by sensors from intranuclear kinetics (SINK), another fluctuation-based approach. SINK uses the MSD of the fluctuating chromatin particles as a readout, which reflects cellular force propagation and can be used to evaluate the relative output of intracellular forces (Spagnol and Dahl, 2014; Armiger et al., 2018). While the fluctuation approaches were predominantly developed for intracellular force measurement, it is also possible to quantify the forces generated by cells within 3D ECMs (Han et al., 2019).
+Opto-Mechanical Approaches
+Mechanical properties and states can also directly affect a material’s optical properties, which can therefore be used to probe tissue mechanics. One of such approaches with increasing application in mapping tissue mechanical properties is Brillouin
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 7 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+light scattering microscopy based on acousto-optic interaction (Scarcelli et al., 2013, 2015; Elsayad et al., 2016; Margueritat et al., 2019). Thermally excited sound waves inherent to a material propagate as acoustic “phonons,” which interact with optical “photons” of the probing laser, thus, resulting in light scattering and a spectral shift, known as the Brillouin frequency shift (BFS). The BFS is proportional to the speed of the sound wave, which in turn depends on the material longitudinal modulus (Scarcelli and Yun, 2008). Hence, 3D tissue mechanics can be mapped by measuring the spatial distribution of BFS. A similar approach is dynamic microelastography, where local shear modulus is derived from the speed of the induced mechanical waves propagating in the tissue (Kennedy et al., 2017; Figure 1D). Different imaging modalities, such as optical coherence tomography (Zhu et al., 2016) and microscopic magnetic resonance imaging (Othman et al., 2005), can be used to obtain the wave images, through which the wave speed can be determined (Kennedy et al., 2017). However, the resolution of micro-elastography is limited to tens of microns, as compared to the optical diffraction limit reached by Brillouin microscopy (Scarcelli et al., 2015; Kennedy et al., 2017). Another opto-mechanical approach that maps cell or tissue stress/strain is quantitative polarization microscopy based on material birefringence and photoelasticity (Acerbi et al., 2015; Wang et al., 2018a). Polarized light travels along different directions at different speeds within birefringent materials including cytoskeletal filaments and ECM fibers (Oldenbourg et al., 1998; Katoh et al., 1999; Koike-Tani et al., 2015). This difference can be quantified as the phase lag or optical retardance between the slow and fast light beams, which is proportional to the applied stress (Nienhaus et al., 2009; Shin et al., 2010). Optical retardance was found to be linearly proportional to cell contractility in both 2D and 3D, either fixed or live, and is applicable to complex biological systems including tumor tissues (Wang et al., 2018a; Figure 1H). However, careful control for sources other than photoelasticity that contribute to optical retardance is required. The opto-mechanical approaches are truly
+non-invasive, non-contact and label-free, and can be applied to virtually any system, from in vitro to in vivo (Scarcelli et al., 2015; Wang et al., 2018a).
+CONCLUSIONS AND OUTLOOK
+With the growing interest in exploring the roles of tissue mechanics in physiology and pathology, there are significant recent advancements in developing tools that can map 3D tissue mechanical properties and stresses at the microscale. Future work may be directed at increasing the throughput and/or accuracy of the 3D mapping of tissue mechanics using existing methods such as active microrheology and stress sensors. Opto-mechanical approaches will provide new insights into tissue mechanics due to their non-invasive, labelfree and high-throughput nature. Furthermore, simultaneous mapping of local mechanical properties and measurement of 3D deformations will enable accurate 3D TFM. With our developing knowledge of cellular mechanotransduction, it will be possible to utilize and/or engineer some of the cell’s intrinsic behaviors as a type of new mechanical probe, as evidenced by the fluctuation-based approaches. However, caution should also be paid to the discrepancies when interrogating tissue mechanics using different approaches (Wu et al., 2018), microscale or bulkscale.
+AUTHOR CONTRIBUTIONS
+JZ contributed to the conception of the work and wrote the article. NC wrote the article. CR-K supervised the work and wrote the article.
+FUNDING
+This work was supported by National Science Foundation Award 1740900, National Institutes of Health Grants HL127499, GM131178 (to CR-K).
+REFERENCES
+Acerbi, I., Cassereau, L., Dean, I., Shi, Q., Au, A., Park, C., et al. (2015). Human breast cancer invasion and aggression correlates with ECM stiffening and immune cell infiltration. Integr. Biol. 7, 1120–1134. doi: 10.1039/c5ib 00040h Alam, S. G., Lovett, D., Kim, D. I., Roux, K. J., Dickinson, R. B., and Lele, T. P. (2015). The nucleus is an intracellular propagator of tensile forces in NIH 3T3 fibroblasts. J. Cell Sci. 128, 1901–1911. doi: 10.1242/jcs.161703 Armiger, T. J., Lampi, M. C., Reinhart-King, C. A., and Dahl, K. N. (2018). Determining mechanical features of modulated epithelial monolayers using subnuclear particle tracking. J. Cell Sci. 131:jcs216010. doi: 10.1242/jcs.2 16010 Attieh, Y., Clark, A. G., Grass, C., Richon, S., Pocard, M., Mariani, P., et al. (2017). Cancer-associated fibroblasts lead tumor invasion through integrin-β3–dependent fibronectin assembly. J. Cell Biol. 216, 3509–3520. doi: 10.1083/jcb.201702033 Austen, K., Ringer, P., Mehlich, A., Chrostek-Grashoff, A., Kluger, C., Klingner, C., et al. (2015). Extracellular rigidity sensing by talin isoform-specific mechanical linkages. Nat. Cell Biol. 17, 1597–1606. doi: 10.1038/ncb3268
+Baker, B. M., and Chen, C. S. (2012). Deconstructing the third dimension - how 3D culture microenvironments alter cellular cues. J. Cell Sci. 125, 3015–3024. doi: 10.1242/jcs.079509 Bausch, A. R., Möller, W., and Sackmann, E. (1999). Measurement of local viscoelasticity and forces in living cells by magnetic tweezers. Biophys. J. 76, 573–579. doi: 10.1016/S0006-3495(99)77225-5 Beningo, K. A., and Wang, Y.-L. (2002). Flexible substrata for the detection of cellular traction forces. Trends Cell Biol. 12, 79–84. doi: 10.1016/S0962-8924(01)02205-X Blakely, B. L., Dumelin, C. E., Trappmann, B., McGregor, L. M., Choi, C. K., Anthony, P. C., et al. (2014). A DNA-based molecular probe for optically reporting cellular traction forces. Nat. Methods 11, 1229–1232. doi: 10.1038/nmeth.3145 Borghi, N., Sorokina, M., Shcherbakova, O. G., Weis, W. I., Pruitt, B. L., Nelson, W. J., et al. (2012). E-cadherin is under constitutive actomyosin-generated tension that is increased at cell-cell contacts upon externally applied stretch. Proc. Natl. Acad. Sci. U.S.A. 109:19034. doi: 10.1073/pnas.1204390109 Boyd, N. F., Li, Q., Melnichouk, O., Huszti, E., Martin, L. J., Gunasekara, A., et al. (2014). Evidence that breast tissue stiffness is associated with risk of breast cancer. PLoS ONE 9:e100937. doi: 10.1371/journal.pone.0100937
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 8 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+Brockman, J. M., Blanchard, A. T., Pui-Yan, V., Derricotte, W. D., Zhang, Y., Fay, M. E., et al. (2018). Mapping the 3D orientation of piconewton integrin traction forces. Nat. Methods 15, 115–118. doi: 10.1038/nmeth.4536 Butler, J. P., Tolic-Norrelykke, I. M., Fabry, B., and Fredberg, J. J. (2002). Traction fields, moments, and strain energy that cells exert on their surroundings. AJP Cell Physiol. 282, C595–C605. doi: 10.1152/ajpcell.00270.2001 Cai, D., Chen, S.-C., Prasad, M., He, L., Wang, X., Choesmel-Cadamuro, V., et al. (2014). Mechanical feedback through E-cadherin promotes direction sensing during collective cell migration. Cell 157, 1146–1159. doi: 10.1016/j.cell.2014.03.045 Campàs, O. (2016). A toolbox to explore the mechanics of living embryonic tissues. Semin. Cell Dev. Biol. 55, 119–130. doi: 10.1016/j.semcdb.2016.03.011 Campàs, O., Mammoto, T., Hasso, S., Sperling, R. A., O’Connell, D., Bischof, A. G., et al. (2014). Quantifying cell-generated mechanical forces within living embryonic tissues. Nat. Methods 11, 183–189. doi: 10.1038/nmeth.2761 Campinho, P., Behrndt, M., Ranft, J., Risler, T., Minc, N., and Heisenberg, C.P. (2013). Tension-oriented cell divisions limit anisotropic tissue tension in epithelial spreading during zebrafish epiboly. Nat. Cell Biol. 15, 1405–1414. doi: 10.1038/ncb2869 Chen, W., Tian, B., Liang, J., Yu, S., Zhou, Y., and Li, S. (2019). Matrix stiffness regulates the interactions between endothelial cells and monocytes. Biomaterials 221:119362. doi: 10.1016/j.biomaterials.2019.119362 Colom, A., Derivery, E., Soleimanpour, S., Tomba, C., Molin, M. D., Sakai, N., et al. (2018). A fluorescent membrane tension probe. Nat. Chem. 10, 1118–1125. doi: 10.1038/s41557-018-0127-3 Connizzo, B. K., and Grodzinsky, A. J. (2017). Tendon exhibits complex poroelastic behavior at the nanoscale as revealed by high-frequency AFM-based rheology. J. Biomech. 54, 11–18. doi: 10.1016/j.jbiomech.2017. 01.029 Cost, A.-L., Ringer, P., Chrostek-Grashoff, A., and Grashoff, C. (2015). How to measure molecular forces in cells: a guide to evaluating geneticallyencoded FRET-based tension sensors. Cell. Mol. Bioeng. 8, 96–105. doi: 10.1007/s12195-014-0368-1 Dembo, M., and Wang, Y.-L. (1999). Stresses at the cell-to-substrate interface during locomotion of fibroblasts. Biophys. J. 76, 2307–2316. doi: 10.1016/S0006-3495(99)77386-8 Diz-Muñoz, A., Thurley, K., Chintamen, S., Altschuler, S. J., Wu, L. F., Fletcher, D. A., et al. (2016). Membrane tension acts through PLD2 and mTORC2 to limit actin network assembly during neutrophil migration. PLoS Biol. 14:e1002474. doi: 10.1371/journal.pbio.1002474 Dolega, M. E., Delarue, M., Ingremeau, F., Prost, J., Delon, A., and Cappello, G. (2017). Cell-like pressure sensors reveal increase of mechanical stress towards the core of multicellular spheroids under compression. Nat. Commun. 8:14056. doi: 10.1038/ncomms14056 Elsayad, K., Werner, S., Gallemi, M., Kong, J., Sanchez Guajardo, E. R., Zhang, L., et al. (2016). Mapping the subcellular mechanical properties of live cells in tissues with fluorescence emission-brillouin imaging. Sci. Signal 9:rs5. doi: 10.1126/scisignal.aaf6326 Engler, A. J., Sen, S., Sweeney, H. L., and Discher, D. E. (2006). Matrix elasticity directs stem cell lineage specification. Cell 126, 677–689. doi: 10.1016/j.cell.2006.06.044 Frantz, C., Stewart, K. M., and Weaver, V. M. (2010). The extracellular matrix at a glance. J. Cell Sci. 123, 4195–4200. doi: 10.1242/jcs.023820 Freikamp, A., Cost, A.-L., and Grashoff, C. (2016). The piconewton force awakens: quantifying mechanics in cells. Trends Cell Biol. 26, 838–847. doi: 10.1016/j.tcb.2016.07.005 Gayrard, C., and Borghi, N. (2016). FRET-based molecular tension microscopy. Methods 94, 33–42. doi: 10.1016/j.ymeth.2015.07.010 Girardo, S., Träber, N., Wagner, K., Cojoc, G., Herold, C., Goswami, R., et al. (2018). Standardized microgel beads as elastic cell mechanical probes. J. Mater. Chem. B 6, 6245–6261. doi: 10.1039/C8TB01421C Gjorevski, N., and Nelson, C. M. (2012). Mapping of mechanical strains and stresses around quiescent engineered three-dimensional epithelial tissues. Biophys. J. 103, 152–162. doi: 10.1016/j.bpj.2012.05.048 Goujon, A., Colom, A., Straková, K., Mercier, V., Mahecic, D., Manley, S., et al. (2019). Mechanosensitive fluorescent probes to image membrane tension in mitochondria, endoplasmic reticulum, and lysosomes. J. Am. Chem. Soc. 141, 3380–3384. doi: 10.1021/jacs.8b13189
+Grashoff, C., Hoffman, B. D., Brenner, M. D., Zhou, R., Parsons, M., Yang, M. T., et al. (2010). Measuring mechanical tension across vinculin reveals regulation of focal adhesion dynamics. Nature 466, 263–266. doi: 10.1038/nature09198 Guo, J., Wang, Y., Sachs, F., and Meng, F. (2014a). Actin stress in cell reprogramming. Proc. Natl. Acad. Sci. U.S.A. 111, E5252–E5261. doi: 10.1073/pnas.1411683111 Guo, M., Ehrlicher, A. J., Jensen, M. H., Renz, M., Moore, J. R., Goldman, R. D., et al. (2014b). Probing the stochastic, motor-driven properties of the cytoplasm using force spectrum microscopy. Cell 158, 822–832. doi: 10.1016/j.cell.2014.06.051 Hall, M. S., Long, R., Feng, X., Huang, Y., Hui, C.-Y., and Wu, M. (2013). Toward single cell traction microscopy within 3D collagen matrices. Exp. Cell Res. 319, 2396–2408. doi: 10.1016/j.yexcr.2013.06.009 Han, S. J., Oak, Y., Groisman, A., and Danuser, G. (2015). Traction microscopy to identify force modulation in subresolution adhesions. Nat. Methods 12, 653–656. doi: 10.1038/nmeth.3430 Han, Y. L., Pegoraro, A. F., Li, H., Li, K., Yuan, Y., Xu, G., et al. (2019). Cell swelling, softening and invasion in a three-dimensional breast cancer model. Nat. Phys. doi: 10.1038/s41567-019-0680-8 Han, Y. L., Ronceray, P., Xu, G., Malandrino, A., Kamm, R. D., Lenz, M., et al. (2018). Cell contraction induces long-ranged stress stiffening in the extracellular matrix. Proc. Natl. Acad. Sci. U.S.A. 115, 4075–4080. doi: 10.1073/pnas.1722619115 Hetmanski, J. H. R., de Belly, H., Busnelli, I., Waring, T., Nair, R. V., Sokleva, V., et al. (2019). Membrane tension orchestrates rear retraction in matrix-directed cell migration. Dev. Cell 51, 460–475.e10. doi: 10.1016/j.devcel.2019.09.006 Humphrey, J. D., Dufresne, E. R., and Schwartz, M. A. (2014). Mechanotransduction and extracellular matrix homeostasis. Nat. Rev. Mol. Cell Biol. 15, 802–812. doi: 10.1038/nrm3896 Ingremeau, F., Dolega, M. E., Gallagher, J., Wang, I., Cappello, G., and Delon, A. (2017). Optical sensing of mechanical pressure based on diffusion measurement in polyacrylamide cell-like barometers. Soft Matter 13, 4210–4213. doi: 10.1039/C6SM02887J Iwashita, M., Kataoka, N., Toida, K., and Kosodo, Y. (2014). Systematic profiling of spatiotemporal tissue and cellular stiffness in the developing brain. Development 141, 3793–3798. doi: 10.1242/dev.109637 Jones, C. A. R., Cibula, M., Feng, J., Krnacik, E. A., McIntyre, D. H., Levine, H., et al. (2015). Micromechanics of cellularized biopolymer networks. Proc. Natl. Acad. Sci. U.S.A. 112, E5117–E5122. doi: 10.1073/pnas.1509663112 Jurchenko, C., and Salaita, K. S. (2015). Lighting Up the force: investigating mechanisms of mechanotransduction using fluorescent tension probes. Mol. Cell. Biol. 35, 2570–2582. doi: 10.1128/MCB.00195-15 Katoh, K., Hammar, K., Smith, P. J. S., and Oldenbourg, R. (1999). Birefringence imaging directly reveals architectural dynamics of filamentous actin in living growth cones. Mol. Biol. Cell 10, 197–210. doi: 10.1091/mbc.10.1.197 Kennedy, B. F., Wijesinghe, P., and Sampson, D. D. (2017). The emergence of optical elastography in biomedicine. Nat. Photonics 11, 215–221. doi: 10.1038/nphoton.2017.6 Kim, J., Jones, C. A. R., Groves, N. S., and Sun, B. (2016). Threedimensional reflectance traction microscopy. PLoS ONE 11:e0156797. doi: 10.1371/journal.pone.0156797 Kohn, J. C., Chen, A., Cheng, S., Kowal, D. R., King, M. R., and ReinhartKing, C. A. (2016). Mechanical heterogeneities in the subendothelial matrix develop with age and decrease with exercise. J. Biomech. 49, 1447–1453. doi: 10.1016/j.jbiomech.2016.03.016 Koike-Tani, M., Tani, T., Mehta, S. B., Verma, A., and Oldenbourg, R. (2015). Polarized light microscopy in reproductive and developmental biology. Mol. Reprod. Dev. 82, 548–562. doi: 10.1002/mrd.22221 Kong, H. J., Polte, T. R., Alsberg, E., and Mooney, D. J. (2005). FRET measurements of cell-traction forces and nano-scale clustering of adhesion ligands varied by substrate stiffness. Proc. Natl. Acad. Sci. U.S.A. 102, 4300–4305. doi: 10.1073/pnas.0405873102 Kraning-Rush, C. M., Califano, J. P., and Reinhart-King, C. A. (2012). Cellular traction stresses increase with increasing metastatic potential. PLoS ONE 7:e32572. doi: 10.1371/journal.pone.0032572 LaCroix, A. S., Lynch, A. D., Berginski, M. E., and Hoffman, B. D. (2018). Tunable molecular tension sensors reveal extension-based control of vinculin loading. Elife 7:e33927. doi: 10.7554/eLife.33927
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 9 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+Lee, W., Kalashnikov, N., Mok, S., Halaoui, R., Kuzmin, E., Putnam, A. J., et al. (2019). Dispersible hydrogel force sensors reveal patterns of solid mechanical stress in multicellular spheroid cultures. Nat. Commun. 10:144. doi: 10.1038/s41467-018-07967-4 Legant, W. R., Miller, J. S., Blakely, B. L., Cohen, D. M., Genin, G. M., and Chen, C. S. (2010). Measurement of mechanical tractions exerted by cells in three-dimensional matrices. Nat. Methods 7, 969–971. doi: 10.1038/nmeth.1531 Lieber, A. D., Schweitzer, Y., Kozlov, M. M., and Keren, K. (2015). Front-to-rear membrane tension gradient in rapidly moving cells. Biophys. J. 108, 1599–1603. doi: 10.1016/j.bpj.2015.02.007 Liu, Y., Galior, K., Ma, V. P.-Y., and Salaita, K. (2017). Molecular tension probes for imaging forces at the cell surface. Acc. Chem. Res. 50, 2915–2924. doi: 10.1021/acs.accounts.7b00305 Liu, Y., Medda, R., Liu, Z., Galior, K., Yehl, K., Spatz, J. P., et al. (2014). Nanoparticle Tension probes patterned at the nanoscale: impact of integrin clustering on force transmission. Nano Lett. 14, 5539–5546. doi: 10.1021/nl501912g Lo, C.-M., Wang, H.-B., Dembo, M., and Wang, Y. (2000). Cell movement is guided by the rigidity of the substrate. Biophys. J. 79, 144–152. doi: 10.1016/S0006-3495(00)76279-5 Lu, P., Weaver, V. M., and Werb, Z. (2012). The extracellular matrix: a dynamic niche in cancer progression. J. Cell Biol. 196, 395–406. doi: 10.1083/jcb.201102147 Lucio, A. A., Mongera, A., Shelton, E., Chen, R., Doyle, A. M., and Campàs, O. (2017). Spatiotemporal variation of endogenous cell-generated stresses within 3D multicellular spheroids. Sci. Rep. 7:12022. doi: 10.1038/s41598-017-12363-x Ma, X., Lynch, H. E., Scully, P. C., and Hutson, M. S. (2009). Probing embryonic tissue mechanics with laser hole drilling. Phys. Biol. 6:036004. doi: 10.1088/1478-3975/6/3/036004 Margueritat, J., Virgone-Carlotta, A., Monnier, S., Delanoë-Ayari, H., Mertani, H. C., Berthelot, A., et al. (2019). High-frequency mechanical properties of tumors measured by brillouin light scattering. Phys. Rev. Lett. 122:018101. doi: 10.1103/PhysRevLett.122.018101 Meng, F., and Sachs, F. (2012). Orientation-based FRET sensor for real-time imaging of cellular forces. J. Cell Sci. 125, 743–750. doi: 10.1242/jcs.093104 Meng, F., Suchyna, T. M., and Sachs, F. (2008). A fluorescence energy transferbased mechanical stress sensor for specific proteins in situ. FEBS J. 275, 3072–3087. doi: 10.1111/j.1742-4658.2008.06461.x Mohagheghian, E., Luo, J., Chen, J., Chaudhary, G., Chen, J., Sun, J., et al. (2018). Quantifying compressive forces between living cell layers and within tissues using elastic round microgels. Nat. Commun. 9:1878. doi: 10.1038/s41467-018-04245-1 Morimatsu, M., Mekhdjian, A. H., Adhikari, A. S., and Dunn, A. R. (2013). Molecular tension sensors report forces generated by single integrin molecules in living cells. Nano Lett. 13, 3985–3989. doi: 10.1021/nl40 05145 Mulligan, J. A., Bordeleau, F., Reinhart-King, C. A., and Adie, S. G. (2017). Measurement of dynamic cell-induced 3D displacement fields in vitro for traction force optical coherence microscopy. Biomed. Opt. Express 8:1152. doi: 10.1364/BOE.8.001152 Nam, S., and Chaudhuri, O. (2018). Mitotic cells generate protrusive extracellular forces to divide in three-dimensional microenvironments. Nat. Phys. 14, 621–628. doi: 10.1038/s41567-018-0092-1 Nam, S., Hu, K. H., Butte, M. J., and Chaudhuri, O. (2016). Strain-enhanced stress relaxation impacts nonlinear elasticity in collagen gels. Proc. Natl. Acad. Sci. U.S.A. 113, 5492–5497. doi: 10.1073/pnas.1523906113 Nelson, C. M., and Gleghorn, J. P. (2012). Sculpting organs: mechanical regulation of tissue development. Annu. Rev. Biomed. Eng. 14, 129–154. doi: 10.1146/annurev-bioeng-071811-150043 Neubauer, J. W., Hauck, N., Männel, M. J., Seuss, M., Fery, A., and Thiele, J. (2019). Mechanoresponsive hydrogel particles as a platform for threedimensional force sensing. ACS Appl. Mater. Interfaces 11, 26307–26313. doi: 10.1021/acsami.9b04312 Nia, H. T., Liu, H., Seano, G., Datta, M., Jones, D., Rahbari, N., et al. (2016). Solid stress and elastic energy as measures of tumour mechanopathology. Nat. Biomed. Eng. 1:0004. doi: 10.1038/s41551-01 6-0004
+Nienhaus, U., Aegerter-Wilmsen, T., and Aegerter, C. M. (2009). Determination of mechanical stress distribution in drosophila wing discs using photoelasticity. Mech. Dev. 126, 942–949. doi: 10.1016/j.mod.2009.09.002 Oldenbourg, R., Salmon, E. D., and Tran, P. T. (1998). Birefringence of single and bundled microtubules. Biophys. J. 74, 645–654. doi: 10.1016/S0006-3495(98)77824-5 Othman, S. F., Xu, H., Royston, T. J., and Magin, R. L. (2005). Microscopic magnetic resonance elastography (μMRE). Magn. Reson. Med. 54, 605–615. doi: 10.1002/mrm.20584 Plodinec, M., Loparic, M., Monnier, C. A., Obermann, E. C., Zanetti-Dallenbach, R., Oertle, P., et al. (2012). The nanomechanical signature of breast cancer. Nat. Nanotechnol. 7, 757–765. doi: 10.1038/nnano.2012.167 Polacheck, W. J., and Chen, C. S. (2016). Measuring cell-generated forces: a guide to the available tools. Nat. Methods 13, 415–423. doi: 10.1038/nmeth.3834 Reinhart-King, C. A., Dembo, M., and Hammer, D. A. (2008). Cell-cell mechanical communication through compliant substrates. Biophys. J. 95, 6044–6051. doi: 10.1529/biophysj.107.127662 Ringer, P., Weißl, A., Cost, A.-L., Freikamp, A., Sabass, B., Mehlich, A., et al. (2017). Multiplexing molecular tension sensors reveals piconewton force gradient across talin-1. Nat. Methods 14, 1090–1096. doi: 10.1038/nmeth.4431 Roca-Cusachs, P., Conte, V., and Trepat, X. (2017). Quantifying forces in cell biology. Nat. Cell Biol. 19, 742–751. doi: 10.1038/ncb3564 Rother, J., Nöding, H., Mey, I., and Janshoff, A. (2014). Atomic force microscopybased microrheology reveals significant differences in the viscoelastic response between malign and benign cell lines. Open Biol. 4:140046. doi: 10.1098/rsob.140046 Ruiz, S. A., and Chen, C. S. (2008). Emergence of Patterned stem cell differentiation within multicellular structures. Stem Cells 26, 2921–2927. doi: 10.1634/stemcells.2008-0432 Sarkar, A., Zhao, Y., Wang, Y., and Wang, X. (2018). Force-activatable coating enables high-resolution cellular force imaging directly on regular cell culture surfaces. Phys. Biol. 15:065002. doi: 10.1088/1478-3975/aac69d Scarcelli, G., Kling, S., Quijano, E., Pineda, R., Marcos, S., and Yun, S. H. (2013). Brillouin microscopy of collagen crosslinking: noncontact depth-dependent analysis of corneal elastic modulus. Investig. Opthalmol. Vis. Sci. 54:1418. doi: 10.1167/iovs.12-11387 Scarcelli, G., Polacheck, W. J., Nia, H. T., Patel, K., Grodzinsky, A. J., Kamm, R. D., et al. (2015). Noncontact three-dimensional mapping of intracellular hydromechanical properties by brillouin microscopy. Nat. Methods 12, 1132–1134. doi: 10.1038/nmeth.3616 Scarcelli, G., and Yun, S. H. (2008). Confocal brillouin microscopy for three-dimensional mechanical imaging. Nat. Photonics 2, 39–43. doi: 10.1038/nphoton.2007.250 Schwarz, U. S., Balaban, N. Q., Riveline, D., Bershadsky, A., Geiger, B., and Safran, S. A. (2002). Calculation of forces at focal adhesions from elastic substrate data: the effect of localized force and the need for regularization. Biophys. J. 83, 1380–1394. doi: 10.1016/S0006-3495(02)73909-X Schwarz, U. S., and Soiné, J. R. D. (2015). Traction force microscopy on soft elastic substrates: a guide to recent computational advances. Biochim. Biophys. Acta Mol. Cell Res. 1853, 3095–3104. doi: 10.1016/j.bbamcr.2015.05.028 Serwane, F., Mongera, A., Rowghanian, P., Kealhofer, D. A., Lucio, A. A., Hockenbery, Z. M., et al. (2016). In vivo quantification of spatially varying mechanical properties in developing tissues. Nat. Methods 14, 181–186. doi: 10.1038/nmeth.4101 Shin, I. H., Shin, S.-M., and Kim, D. Y. (2010). New, simple theory-based, accurate polarization microscope for birefringence imaging of biological cells. J. Biomed. Opt. 15:016028. doi: 10.1117/1.3327280 Spagnol, S. T., and Dahl, K. N. (2014). Active cytoskeletal force and chromatin condensation independently modulate intranuclear network fluctuations. Integr. Biol. 6, 523–531. doi: 10.1039/C3IB40226F Stabley, D. R., Jurchenko, C., Marshall, S. S., and Salaita, K. S. (2012). Visualizing mechanical tension across membrane receptors with a fluorescent sensor. Nat. Methods 9, 64–67. doi: 10.1038/nmeth.1747 Staunton, J. R., So, W. Y., Paul, C. D., and Tanner, K. (2019). Highfrequency microrheology in 3D reveals mismatch between cytoskeletal and extracellular matrix mechanics. Proc. Natl. Acad. Sci. U.S.A. 116, 14448–14455. doi: 10.1073/pnas.1814271116
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 10 December 2019 | Volume 7 | Article 412
+
+
+Zhang et al. Microscale Interrogation of 3D Tissue Mechanics
+Staunton, J. R., Vieira, W., Fung, K. L., Lake, R., Devine, A., and Tanner, K. (2016). Mechanical properties of the tumor stromal microenvironment probed in vitro and ex vivo by in situ-calibrated optical trap-based active microrheology. Cell. Mol. Bioeng. 9, 398–417. doi: 10.1007/s12195-016-0460-9 Steinwachs, J., Metzner, C., Skodzek, K., Lang, N., Thievessen, I., Mark, C., et al. (2015). Three-dimensional force microscopy of cells in biopolymer networks. Nat. Methods 13, 171–176. doi: 10.1038/nmeth.3685 Stylianopoulos, T., Martin, J. D., Chauhan, V. P., Jain, S. R., Diop-Frimpong, B., Bardeesy, N., et al. (2012). Causes, consequences, and remedies for growthinduced solid stress in murine and human tumors. Proc. Natl. Acad. Sci. U.S.A. 109, 15101–15108. doi: 10.1073/pnas.1213353109 Sugimura, K., Lenne, P.-F., and Graner, F. (2016). Measuring forces and stresses in situ in living tissues. Development 143, 186–196. doi: 10.1242/dev.119776 Tambe, D. T., Corey Hardin, C., Angelini, T. E., Rajendran, K., Park, C. Y., SerraPicamal, X., et al. (2011). Collective cell guidance by cooperative intercellular forces. Nat. Mater. 10, 469–475. doi: 10.1038/nmat3025 Tambe, D. T., Croutelle, U., Trepat, X., Park, C. Y., Kim, J. H., Millet, E., et al. (2013). Monolayer stress microscopy: limitations, artifacts, and accuracy of recovered intercellular stresses. PLoS ONE 8:e55172. doi: 10.1371/journal.pone.0055172 Tan, Y., Tajik, A., Chen, J., Jia, Q., Chowdhury, F., Wang, L., et al. (2014). Matrix softness regulates plasticity of tumour-repopulating cells via H3K9 demethylation and Sox2 expression. Nat. Commun. 5:4619. doi: 10.1038/ncomms5619 Taufalele, P. V., VanderBurgh, J. A., Muñoz, A., Zanotelli, M. R., and Reinhart-King, C. A. (2019). Fiber alignment drives changes in architectural and mechanical features in collagen matrices. PLoS ONE 14:e0216537. doi: 10.1371/journal.pone.0216537 Toyjanova, J., Bar-Kochba, E., López-Fagundo, C., Reichner, J., Hoffman-Kim, D., and Franck, C. (2014). High resolution, large deformation 3D traction force microscopy. PLoS ONE 9:e90976. doi: 10.1371/journal.pone.0090976 Trepat, X., Wasserman, M. R., Angelini, T. E., Millet, E., Weitz, D. A., Butler, J. P., et al. (2009). Physical forces during collective cell migration. Nat. Phys. 5, 426–430. doi: 10.1038/nphys1269 Uroz, M., Wistorf, S., Serra-Picamal, X., Conte, V., Sales-Pardo, M., Roca-Cusachs, P., et al. (2018). Regulation of cell cycle progression by cell–cell and cell–matrix forces. Nat. Cell Biol. 20, 646–654. doi: 10.1038/s41556-018-0107-2 Wang, S., and Larin, K. V. (2014). Noncontact depth-resolved micro-scale optical coherence elastography of the cornea. Biomed. Opt. Express 5:3807. doi: 10.1364/BOE.5.003807 Wang, W., Miller, J. P., Pannullo, S. C., Reinhart-King, C. A., and Bordeleau, F. (2018a). Quantitative assessment of cell contractility using polarized light microscopy. J. Biophoton. 11:e201800008. doi: 10.1002/jbio.201800008
+Wang, X., and Ha, T. (2013). Defining single molecular forces required to activate integrin and notch signaling. Science 340, 991–994. doi: 10.1126/science.1231041 Wang, Y., LeVine, D. N., Gannon, M., Zhao, Y., Sarkar, A., Hoch, B., et al. (2018b). Force-activatable biosensor enables single platelet force mapping directly by fluorescence imaging. Biosens. Bioelectron. 100, 192–200. doi: 10.1016/j.bios.2017.09.007 Wang, Y.-L., and Pelham, R. J. (1998). Preparation of a flexible, porous polyacrylamide substrate for mechanical studies of cultured cells. Methods Enzymol. 298, 489–496. doi: 10.1016/S0076-6879(98)98041-7 Wilson, L. G., and Poon, W. C. K. (2011). Small-world rheology: an introduction to probe-based active microrheology. Phys. Chem. Chem. Phys. 13:10617. doi: 10.1039/c0cp01564d Wolf, K., Wu, Y. I., Liu, Y., Geiger, J., Tam, E., Overall, C., et al. (2007). Multistep pericellular proteolysis controls the transition from individual to collective cancer cell invasion. Nat. Cell Biol. 9, 893–904. doi: 10.1038/ncb1616 Wu, P.-H., Aroush, D. R.-B., Asnacios, A., Chen, W.-C., Dokukin, M. E., Doss, B. L., et al. (2018). A comparison of methods to assess cell mechanical properties. Nat. Methods 15, 491–498. doi: 10.1038/s41592-018-0015-1 Zhang, J., Goliwas, K. F., Wang, W., Taufalele, P. V., Bordeleau, F., and ReinhartKing, C. A. (2019). Energetic regulation of coordinated leader–follower dynamics during collective invasion of breast cancer cells. Proc. Natl. Acad. Sci. U.S.A. 116, 7867–7872. doi: 10.1073/pnas.1809964116 Zhang, Y., Ge, C., Zhu, C., and Salaita, K. (2014). DNA-based digital tension probes reveal integrin forces during early cell adhesion. Nat. Commun. 5:5167. doi: 10.1038/ncomms6167 Zhu, J., Qi, L., Miao, Y., Ma, T., Dai, C., Qu, Y., et al. (2016). 3D mapping of elastic modulus using shear wave optical micro-elastography. Sci. Rep. 6:35499. doi: 10.1038/srep35499 Zia, R. N. (2018). Active and passive microrheology: theory and simulation. Annu. Rev. Fluid Mech. 50, 371–405. doi: 10.1146/annurev-fluid-122316-044514
+Conflict of Interest: The authors declare that the research was conducted in the absence of any commercial or financial relationships that could be construed as a potential conflict of interest.
+Copyright © 2019 Zhang, Chada and Reinhart-King. This is an open-access article distributed under the terms of the Creative Commons Attribution License (CC BY). The use, distribution or reproduction in other forums is permitted, provided the original author(s) and the copyright owner(s) are credited and that the original publication in this journal is cited, in accordance with accepted academic practice. No use, distribution or reproduction is permitted which does not comply with these terms.
+Frontiers in Bioengineering and Biotechnology | www.frontiersin.org 11 December 2019 | Volume 7 | Article 412

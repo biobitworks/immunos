@@ -1,0 +1,22 @@
+{
+  "doi": "10.1083/jcb.200204153",
+  "title": "The relationship between force and focal complex development",
+  "authors": [
+    "Catherine G. Galbraith",
+    "Kenneth M. Yamada",
+    "Michael P. Sheetz"
+  ],
+  "journal": "The Journal of Cell Biology",
+  "year": 2002,
+  "url": "https://rupress.org/jcb/article/159/4/695/33100/The-relationship-between-force-and-focal-complex",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "To adhere and migrate, cells must be capable of applying cytoskeletal force to the extracellular matrix (ECM) through integrin receptors. However, it is unclear if connections between integrins and the ECM are immediately capable of transducing cytoskeletal contraction into migration force, or whether engagement of force transmission requires maturation of the adhesion. Here, we show that initial integrin\u2013ECM adhesions become capable of exerting migration force with the recruitment of vinculin, a marker for focal complexes, which are precursors of focal adhesions. We are able to induce the development of focal complexes by the application of mechanical force to fibronectin receptors from inside or outside the cell, and we are able to extend focal complex formation to vitronectin receptors by the removal of c-Src. These results indicate that cells use mechanical force as a signal to strengthen initial integrin\u2013ECM adhesions into focal complexes and regulate the amount of migration force applied to individual adhesions at localized regions of the advancing lamella.",
+  "volume": "159",
+  "issue": "4",
+  "pages": "695-705",
+  "citation_key": "galbraithRelationshipForceFocal2002",
+  "issn": "1540-8140, 0021-9525"
+}

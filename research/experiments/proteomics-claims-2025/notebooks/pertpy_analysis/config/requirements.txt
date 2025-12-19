@@ -1,0 +1,34 @@
+# PertPy DGE Analysis Requirements
+# Python 3.8+ required
+
+# Core packages
+pertpy>=0.5.0
+scanpy>=1.9.0
+anndata>=0.9.0
+pandas>=1.5.0
+numpy>=1.23.0
+scipy>=1.9.0
+
+# Statistical packages
+statsmodels>=0.13.0
+scikit-learn>=1.1.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.12.0
+plotly>=5.11.0
+
+# PertPy dependencies
+pydeseq2>=0.4.0
+adjustText>=0.8.0
+
+# Utilities
+tqdm>=4.64.0
+jupyter>=1.0.0
+ipykernel>=6.15.0
+h5py>=3.7.0
+
+# Optional but recommended
+numba>=0.56.0
+python-igraph>=0.10.0
+leidenalg>=0.9.0

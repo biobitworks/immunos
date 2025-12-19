@@ -1,0 +1,27 @@
+{
+  "doi": "10.1016/j.ultras.2014.07.010",
+  "title": "Probing single-cell mechanics with picosecond ultrasonics",
+  "authors": [
+    "Thomas Dehoux",
+    "Maroun Abi Ghanem",
+    "Omar F. Zouani",
+    "Mathieu Ducousso",
+    "Nikolay Chigarev",
+    "Cl\u00e9ment Rossignol",
+    "Nicolas Tsapis",
+    "Marie-Christine Durrieu",
+    "Bertrand Audoin"
+  ],
+  "journal": "Ultrasonics",
+  "year": 2015,
+  "url": "https://linkinghub.elsevier.com/retrieve/pii/S0041624X14002017",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "The mechanical properties of cells play a key role in several fundamental biological processes, such as migration, proliferation, differentiation and tissue morphogenesis. The complexity of the inner cell composition and the intricate meshwork formed by transmembrane cell-substrate interactions demands a non-invasive technique to probe cell mechanics and cell adhesion at a subcell scale. In this paper we review the use of laser-generated GHz acoustic waves\u2014a technique called picosecond ultrasonics (PU)\u2014to probe the mechanical properties of single cells. We \ufb01rst describe applications to vegetal cells and biomimetic systems. We show how these systems can be used as simple models to understand more complex animal cells. We then present an opto-acoustic bio-transducer designed for in vivo measurements in physiological conditions. We illustrate the use of this transducer through the simultaneous probing of the density and compressibility of Allium cepa cells. Finally, we demonstrate that this technique can quantify animal-cell adhesion on metallic surfaces by analyzing the acoustic pulses re\ufb02ected off the cell-metal interface. This innovative approach allows investigating quantitatively cell mechanics without \ufb02uorescent labels or mechanical contact to the cell.",
+  "volume": "56",
+  "pages": "160-171",
+  "citation_key": "dehouxProbingSinglecellMechanics2015",
+  "issn": "0041624X"
+}

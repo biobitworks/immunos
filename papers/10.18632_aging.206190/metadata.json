@@ -1,0 +1,20 @@
+{
+  "doi": "10.18632/aging.206190",
+  "title": "Deep learning and generative artificial intelligence in aging research and healthy longevity medicine",
+  "authors": [
+    "Dominika Wilczok"
+  ],
+  "journal": "Aging",
+  "year": 2025,
+  "url": "https://www.aging-us.com/lookup/doi/10.18632/aging.206190",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "With the global population aging at an unprecedented rate, there is a need to extend healthy productive life span. This review examines how Deep Learning (DL) and Generative Artificial Intelligence (GenAI) are used in biomarker discovery, deep aging clock development, geroprotector identification and generation of dualpurpose therapeutics targeting aging and disease. The paper explores the emergence of multimodal, multitasking research systems highlighting promising future directions for GenAI in human and animal aging research, as well as clinical application in healthy longevity medicine.",
+  "volume": "17",
+  "issue": "1",
+  "pages": "251-275",
+  "citation_key": "wilczokDeepLearningGenerative2025",
+  "issn": "1945-4589"
+}

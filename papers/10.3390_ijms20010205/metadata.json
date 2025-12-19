@@ -1,0 +1,22 @@
+{
+  "doi": "10.3390/ijms20010205",
+  "title": "Extracellular Matrix in Development and Disease",
+  "authors": [
+    "Julia Thom Oxford",
+    "Jonathon C. Reeck",
+    "Makenna J. Hardy"
+  ],
+  "journal": "International Journal of Molecular Sciences",
+  "year": 2019,
+  "url": "https://www.mdpi.com/1422-0067/20/1/205",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "The evolution of multicellular metazoan organisms was marked by the inclusion of an extracellular matrix (ECM), a multicomponent, proteinaceous network between cells that contributes to the spatial arrangement of cells and the resulting tissue organization. [...]",
+  "volume": "20",
+  "issue": "1",
+  "pages": "205",
+  "citation_key": "oxfordExtracellularMatrixDevelopment2019",
+  "issn": "1422-0067"
+}

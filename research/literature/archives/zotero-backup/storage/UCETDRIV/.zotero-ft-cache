@@ -1,0 +1,256 @@
+Methods for the visualization and analysis of extracellular matrix protein structure and degradation
+Annemarie K. Leonard#*,†, Elizabeth A. Loughran#*,†,‡, Yuliya Klymenko*,†, Yueying Liu*,†, Oleg Kim*,†,§, Marwa Asem*,†,‡, Kevin McAbee*,†, Matthew J. Ravosa*,†, and M. Sharon Stack*,†,1
+*University of Notre Dame, Notre Dame, IN, United States
+†Harper Cancer Research Institute, University of Notre Dame, South Bend, IN, United States
+‡Integrated Biomedical Sciences Graduate Program, University of Notre Dame, Notre Dame, IN, United States
+§University of California, Riverside, Riverside, CA, United States
+# These authors contributed equally to this work.
+Abstract
+This chapter highlights methods for visualization and analysis of extracellular matrix (ECM) proteins, with particular emphasis on collagen type I, the most abundant protein in mammals. Protocols described range from advanced imaging of complex in vivo matrices to simple biochemical analysis of individual ECM proteins. The first section of this chapter describes common methods to image ECM components and includes protocols for second harmonic generation, scanning electron microscopy, and several histological methods of ECM localization and degradation analysis, including immunohistochemistry, Trichrome staining, and in situ zymography. The second section of this chapter details both a common transwell invasion assay and a novel live imaging method to investigate cellular behavior with respect to collagen and other ECM proteins of interest. The final section consists of common electrophoresis-based biochemical methods that are used in analysis of ECM proteins. Use of the methods described herein will enable researchers to gain a greater understanding of the role of ECM structure and degradation in development and matrix-related diseases such as cancer and connective tissue disorders.
+1. INTRODUCTION
+Mammalian organisms are comprised of a series of interdependent tissue compartments physically delineated by a complex mixture of proteins that comprise the extracellular matrix (ECM). In addition to providing a structural scaffold to maintain tissue architecture and topology, these proteins also define tissue specificity and serve as a depot for growth factors and other components that regulate cellular behavior within a tissue context. ECM proteins provide guidance cues to modify cell behavior based not only on biochemical stimuli but on stiffness gradients as well. This provides a cell with the ability to generate a
+1 Corresponding author: sstack@nd.edu.
+HHS Public Access
+Author manuscript
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Published in final edited form as: MethodsCellBiol. 2018 ; 143: 79–95. doi:10.1016/bs.mcb.2017.08.005.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+distinct pattern of responses that are dependent on matrix protein composition, organization, rigidity, and topography. To this end, it is useful to incorporate methods that enable visualization of changes in matrix protein structure and organization into traditional biochemical studies of matrix degradation to enable a more comprehensive evaluation of cell:matrix interactions in the control of matrix organization and modulation of cell behavior. As collagens are the most abundant protein in the mammalian organism, comprising approximately one-third of the total body protein in humans, we have focused the methodological examples in this chapter predominantly on analysis of collagen and cell:collagen interactions.
+2 ADVANCED IMAGING FOR VISUALIZATION OF COLLAGEN AND OTHER
+ECM PROTEINS IN TISSUES
+2.1 SECOND HARMONIC GENERATION MICROSCOPY
+Second harmonic generation (SHG) microscopy is a nonlinear imaging method that has been used to visualize the endogenous ECM components of various sample types in a specific and sensitive manner (see Chapter “Nonlinear optical imaging of extracellular matrix proteins” by Shih et al. in this volume for a detailed discussion of multiharmonic generation microscopy). For example, SHG can be used to image complex samples such as human and animal tissue, as well as simpler samples like collagen gels. A major advantage of SHG microscopy includes the ability to image live, unstained, and unfixed tissues as well as fixed tissue (Keikhosravi, Bredfeld, Sagar, & Eliceiri, 2014). Using ImageJ and other computerbased image analysis tools, intensities, thresholds, and forward–backward excitation measurements associated with ECM proteins can be used for quantification of SHG data (Chen, Nadiarynkh, Plotnikov, & Campagnola, 2012).
+The ease of preparing samples for SHG provides a promising means to evaluate and categorize ECM structures as potential biomarkers for disease presence and/or prognosis. For example, a tumor-associated collagen signature-3 (TACS-3) can be categorized by SHG and is associated with a poor prognosis for breast cancer survival. Knowledge of the TACS-3 has the potential to improve diagnostic capabilities (Conklin et al., 2011). Another recent application includes work using ECM properties as determined by SHG imaging as a biomarker to delineate different subtypes of ovarian cancer (Tilbury et al., 2017).
+Derived from the nonlinear nature of this imaging technique, an additional value of SHG imaging is its capacity for simultaneous utilization with other imaging techniques on a given sample. This multimodal capability allows for two-photon excited fluorescence microscopy to be combined with SHG (Mohler, Millard, & Campagnola, 2003; Thomas, van Voskuilen, Gerritsen, & Sterenborg, 2014). In our laboratory, fresh peritoneal tissues containing RFPtagged ovarian cancer cells can be imaged to visualize the interaction between tumor cells and the surrounding collagen-rich matrix. Data in Fig. 1 demonstrate that the presence of tumors in the sample is often correlated with alterations in the quaternary structure of the collagen matrix. The peritoneal collagen sample was imaged with an excitation wavelength at 860 nm and emitted light was collected at 425–465 nm. Notethatoptimalexcitation wavelengthmayvarybasedonlaserandsample.Based on the images shown, it is not
+Leonard et al. Page 2
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+known whether the tumor cells are remodeling, degrading, or depositing new collagen to the peritoneal matrix. To clarify the nature of this interaction, various inhibitors could be added to the system. For example, to evaluate the contribution of enzymatic degradation to the observed tumor-related changes in matrix structure, mice could be treated intraperitoneally with matrix metalloproteinase (MMP) inhibitors prior to SHG imaging of peritoneal tissues. The coupling of SHG imaging and two-photon fluorescence microscopy has a wide range of applications beyond assessing enzymatic degradation of collagen. For example, a recent study utilized a fluorescently labeled collagen hybridizing peptide to probe mechanical damage in rat tail tendon in conjunction with SHG-detected collagen tissue architecture (Zitnay et al., 2017).
+2.2 SCANNING ELECTRON MICROSCOPY
+As a high-resolution complement to SHG imaging, scanning electron microscopy (SEM) can be used for visualization and analysis of the structural properties of fixed ECM proteins such as collagen (Panwar et al., 2015). An example is shown in Fig. 2 for SEM processing and imaging of peritoneal collagen. The protocol that follows details preparation of tissues, including collagen-rich tissues, for SEM imaging and was developed by the Stack laboratory in collaboration with the University of Missouri–Columbia Electron Microscopy Core and the Electron Microscopy Core at the University of Notre Dame Integrated Imaging Facility. Practical considerations for detailed protocols are provided in italics. The reader is also referred to Chapter “Ultrastructural analysis of the extracellular matrix” by Keene and Tufa in this volume for more details on SEM.
+2.2.1 Tissue Preparation Protocol for SEM
+1. Immediately after dissection, place tissue(s) in primary fixative of 2% glutaraldehyde, 2% paraformaldehyde in 0.1 M Cacodylate buffer, pH 7.35 for at least 1 h at room temperature, or at 4°C overnight. ItisimportanttoNOTletthe sample(s)dryoutatanytimeduringanyofthestepspriortocriticalpoint drying.Thesample(s)maybestoredintheprimaryfixativeat4°Cforseveral weekspriortosecondaryfixation.Notethatprimaryfixativesolutionisvery hazardousandshouldbeusedwithappropriatesafetymeasures;consultMSDS forglutaraldehydeandparaformaldehydepriortobeginningexperiments.
+2. Wash sample(s) with a rotating or rocking platform 3 × 20 min in 0.1 M Cacodylate buffer, pH 7.35.
+3. Place tissue(s) into the secondary fixation solution of 1% OsO4 in 0.1 M Cacodylate buffer, pH 7.35.
+4. Place sample(s) in a 100 W microwave under vacuum with dish lid (or tube caps) OFF. Set the cycle for the microwave such that it runs 1 min off, 80s on, 3 min off, 40 s on. NotethatallstepswithOsO4mustbecarriedoutinaventilated chemicalhoodforsafety.OsO4isacutelytoxic.Preventcontactwitheyes,skin, andrespiratorytract.ConsultMSDSInformationpriortoworkingwithOsO4 anddevelopaStandardOperatingProcedurewithyourinstitution’ssafetyofficer beforebeginningexperimentswithOsO4.
+Leonard et al. Page 3
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+5. Quickly rinse 3 × with 0.1 M Cacodylate buffer.
+6. Quickly rinse once with Milli-Q water.
+7. Wash 3 × with Milli-Q water for 5 min each on rocker or rotator.
+8. Dehydrate the sample(s) with an ethanol gradient, microwaving at 100 W for 40 s after removal of the previous solution and addition of the new solution:
+a. Add 20% ethanol to sample(s), microwave at 100 W for 40 s.
+b. Add 50% ethanol to sample(s), microwave at 100 W for 40 s.
+c. Add 70% ethanol to sample(s), microwave at 100 W for 40 s.
+d. Add 90% ethanol to sample(s), microwave at 100 W for 40 s.
+e. Add 100% ethanol to sample(s), microwave at 100 W for 40 s. Repeat this step for a total of three times.
+9. Perform critical point drying (CPD) of the sample(s) immediately after dehydration according to manufacturer’s specifications. Thisisthecriticalstepin protocol.IfCPDcannotbeperformedimmediatelyafterdehydration,stopafter step8candleavesample(s)in70%ethanol.
+10. After CPD step, store sample(s) in dry 37°C incubator prior to mounting and imaging.
+11. Mount dried sample(s) onto stubs. An example method of mounting a tissue specimen with silver paint is provided in the following steps.
+12. Place a processed dried tissue sample on a stub covered with a carbon sticker. Apply silver paint on tissue edges with a toothpick, including up the sides of the specimen until it reaches the top surface of the tissue. Thisisimportantinorder tocreateconductivitybetweenthesampletissuesurfaceandthecarbonlayer.Be carefulnottogetsilverpaintonyourareaofinterest.Thetissuemountingstep maybeperformedunderastereomicroscopetoensurecorrectorientationofthe tissue.Itisrecommendedthatcurvedtissuebecutinflatterpieces,usingrazor blades,suchthatsufficientcontactcanbemadewiththecarbonsurface.
+13. Dry sample(s) for at least 24 h in oven at 37°C prior to imaging. Check for silver cracking prior to imaging. Ifcracksarepresent,theyneedtobefilledinwith extrasilverpaintandbeallowedtodryforanadditional24h.
+14. Sputter coat sample(s) with 5–8 nm of a conductive material, such as iridium or platinum, prior to SEM imaging. Notethatthinnessofsputtercoatmaybevaried tooptimizeconductivityandimagingofsample(s).
+15. Store sample(s) overnight at 37°C. Fullyprocessedandproperlystoredsample(s) maybekeptindefinitelyforfutureimaging.
+Leonard et al. Page 4
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+2.3 HISTOLOGY
+2.3.1 Immunohistochemistry—There are a variety of ways to utilize immunohistochemistry (IHC) to assess ECM proteins and degradation. IHC can be simply utilized to determine the localization of various ECM proteins in a tissue with antibodies directed against the ECM protein of interest. For example, antibodies to collagen I, collagen IV, laminin, and fibronectin have been used to demonstrate the presence and define the localization of these ECM components in the submesothelial zone of human peritoneal tissue (Witz et al., 2001). More complex approaches to utilizing IHC have been developed to assess matrix degradation. Antibodies can be produced which recognize neoepitopes present after collagen degradation by MMPs. Collagenase-catalyzed cleavage of triple helical collagen occurs at a specific site in each alpha chain located three-quarters of the distance from the amino-terminus of the protein. The new amino-termini generated on the onequarter length (carboxyl-terminal) collagen fragment provide a de novo site for antibody recognition (Billinghurst et al., 1997). This can be used in a variety of biological applications. For example, an antibody against a neoepitope of collagen II has been used to assess the role of MMP13 in bone development (Lee, Lamplugh, Kluczyk, Leblond, & Mort, 2009).
+IHC can also be utilized to visualize cellular interactions with ECM proteins. For example, to model ovarian cancer metastasis, our laboratory incubated GFP-tagged ovarian cancer cells and multicellular aggregates with mouse peritoneal tissue prior to fixation and subsequent analysis by IHC (Fig. 3). A GFP antibody was utilized to assess the location of the cells in relation to the peritoneal collagen. This method could be coupled with an appropriate neoepitope antibody as a means of assessing collagen degradation induced by MMP-expressing ovarian cancer cells. Addition of MMP inhibitors to this assay would then enable further evaluation of mechanistic details relevant to peritoneal seeding by tumor cells.
+2.3.2 Trichrome Staining—Trichrome staining is used to visualize connective tissues, particularly collagen, in tissue sections. In a standard Masson’s Trichrome procedure, collagen is stained blue, nuclei are stained dark brown, muscle tissue is stained red, and cytoplasm is stained pink. Fig. 4 depicts a sample Trichrome stain of formalin-fixed paraffin-embedded rabbit oral gingiva prepared via the sample protocol below.
+1. Deparaffinize and rehydrate sample(s) to deionized (DI) H2O through the steps detailed below. In between each step, drain and remove the excess of the prior solution by blotting on paper towels before going on to the next step.
+a. Place in xylene solution for 5 min.
+b. Place in second xylene bath for 1 min with gentle agitation.
+c. Place in 100% ethanol for 1 min with intermittent agitation.
+d. Place in 95% alcohol solution for 1 min.
+e. Place in 70% alcohol solution for 1 min.
+f. Place in H2O for 2–3 min.
+2. Bring sections to room temperature. Donotallowthemtodry.
+Leonard et al. Page 5
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+3. Rehydrate sample(s) in phosphate-buffered saline (PBS) for 5 min at room temperature.
+4. Apply secondary fixative, Bouin’s solution, for 1 h at 56°C. PrewarmBouin’s solutionto60°C.Thisstepmayalsobeperformedatroomtemperature overnight.NotethatBouin’ssolutionisveryhazardousandmustbeusedin chemicalhood.ConsultMSDSpriortouse.
+5. Wash slides for 1–2 min in running tap H2O at room temperature to remove yellow color and cool the slides.
+6. Briefly rinse in DI H2O.
+7. Stain with Weigert’s Iron Hematoxylin (equal parts of Hematoxylin A and Hematoxylin B) for 5–10 min at room temperature. Stainfor5minifsolutionis fresh.Stainfor10minifsolutionisafewdaysold.Weigert’sIronHematoxylin isstableforupto2weeksat4°C.Separatedsolutionsarestableforupto5 years.
+8. Wash under warm running tap H2O for 10 min.
+9. Rinse in DI H2O for 1 min.
+10. Stain with Biebrich Scarlet–Acid Fuchsin for 5–15 min at room temperature for cytoplasm stain of sample(s). BiebrichScarlet–AcidFuchsinmustbediscarded aftereachuse.
+11. Wash 3 × for 1 min with DI H2O.
+12. Place in Phosphomolybdic Acid–Phosphotungstic Acid for 10–15 min at room temperature to prepare sections to uptake collagen staining solution. PhosphomolybdicAcid–PhosphotungsticAcidmustbediscardedaftereachuse. Ifpreformingthisstepdirectlyontheslideswithinacontainedarea,put PhosphomolybdicAcid–PhosphotungsticAcidsolutiononeachsample(s)3× for3–4minatroomtemperature.
+13. Drain slides on tissue(s). DoNOTrinseordry.
+14. Stain collagen with Aniline Blue for 10 min at room temperature. AnilineBlue solutionisgoodforseveralyearsandmaybeusedrepeatedly.
+15. Rinse 2 × for 1 min with DI H2O.
+16. Optionalstep:Differentiate in 1% acetic acid for 3–5 min at room temperature.
+17. Quickly, dehydrate with 95% and 100% ethanol with 3–4 dips per chamber. ExtendedsubmersioninalcoholwillremoveFuchsinstaining.
+18. Clear in xylene with 4–6 dips per chamber.
+19. Mount in a resinous medium.
+Leonard et al. Page 6
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+3 ANALYSIS OF CELLULAR INTERACTION WITH COLLAGEN-RICH
+MATRICES
+3.1 COLLAGEN INVASION ASSAY
+In vitro analyses of matrix invasion are commonly used to assess enzymatic activity and have been widely correlated with the ability of cells to invade matrix barriers during development and disease progression. Penetration of a three-dimensional collagen-rich matrix may require proteolytic removal of physical barriers to matrix penetration. The use of proteinase inhibitors in the protocol can enable analysis of the extent to which invasive behavior is proteinase dependent. A sample protocol for invasion of three-dimensional collagen gels prepared in a Boyden chamber with a porous filter is provided below. Note that this protocol can be adjusted to accommodate the preparation and analysis of other matrix proteins such as Matrigel© basement membrane extract. An example showing differential invasion of Matrigel© and type I collagen gels by ovarian cancer cells is depicted in Fig. 5. Additionally, following the invasion assay, the ECM components can be collected and analyzed using sodium-dodecyl sulfate polyacrylamide gel electrophoresis (SDS-PAGE) and Western blotting with matrix protein-specific antibodies to visualize specific patterns of matrix protein degradation (Munshi & Stack, 2002).
+Day 1
+1. Add serum-free media (SFM) to cells overnight. Serumcontainsproteinase inhibitors.
+2. Coat the underside of an 8 μm invasion chamber (BD #354578) with 500 μL of 100 μg/mL collagen I diluted in coating buffer (0.1 Na2CO3 at pH 9.6) at 37°C for 2h. Remove protein solution and rinse gently with coating buffer. Thisstep enables“invaded”cellstoadheretothebottomofthefilterratherthanpassing throughtothemediumbelow.
+3. Coat the inside of the chambers with 100 μL of 200 μg/mL collagen I for 24 h at 4°C. Notethatcollagenconcentrationandgelthicknessmaybevariedaccording toexperimentalintent.
+Day 2
+1. Carefully wash the chamber three times with 500 μL of SFM.
+2. Trypsinize the cells and neutralize with a double amount of soybean trypsin inhibitor.
+3. Spin down cells at 290 × gand resuspend in SFM at 500,000 cells/mL.
+4. Add 750 μL of SFM to outer well.
+5. Add 500 μL of cell suspension to inner invasion chamber. Avoidbubblesonboth sidesofthefilter.Atthisstep,proteinaseinhibitorscanbeaddedtotheinnerand outerchambers.
+Leonard et al. Page 7
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+6. Incubate at 37°C for 24–48 h. Theendpointdependsonthecelllineandshould beoptimizedforeachindividualcellline.Itisrecommendedthataninitialtime coursebeperformedtoassesstheoptimuminvasionendpointinthe24–96h range.
+Day 3/4
+1. Use a Q-tip to remove cells from the inner chamber. Thiswillremovethecells fromthetopsideofthemembranethathavenotmigratedthroughtheECMand filter.
+2. Wash chamber with 1 × PBS.
+3. Use Diff-Quik kit to fix and stain the invasive cells. Dipinsertsfor1minineach solution(1—fixative,2—stainingsolutionI,3—stainingsolutionII).
+4. Wash the well in water to remove excess dye.
+5. Leave to dry.
+6. When dried, excise filter with scalpel.
+7. Mount sample(s) on slide using Permount with cell side face down.
+8. Count cells on the underside of the filter. Thesuggestedmagnificationfor countingcellsunderamicroscopeis20×.Alternatively,imagescanbetakenand quantifiedwithImageJorasimilarcomputer-basedanalysistool.
+3.2 LIVE IMAGING OF MATRIX INVASION
+Live imaging of cell (or cell cluster) penetration through three-dimensional (3D) matrix constructs provides additional information relevant to analysis of mechanisms of invasion compared to the simple invasion assay protocol detailed above. Using this method of imaging allows for quantitative comparisons of fluorescently tagged cell lines under various conditions as they progress or penetrate through matrix proteins. It also allows for a more comprehensive understanding of how cell function-blocking compounds, such as MMP inhibitors, affect the penetration of the cells of interest. A sample protocol used in a recent study investigating regulation of collagen invasion by ovarian cancer cells is provided below (Klymenko, Kim, et al., 2017). Using this protocol, DOV13 ovarian cancer multicellular aggregates were found to penetrate a type I collagen matrix in an MMP-dependent manner (Fig. 6).
+1. Dilute rat tail collagen type I in cell culture medium to a 1.5 mg/mL concentration. ThecollagenstockMUSTbekeptoniceatalltimestoprevent solidifying.Thefreshlymademixtureofcollagenandcellculturemedium MUSTbeusedfor3Dgelconstructionimmediately,asitstartspolymerizingat roomtemperature.
+2. Place 200 μL of fresh mixture of collagen and cell culture medium into 20mm glass wells of glass-bottomed 35mm dishes (# D35–20-1-N, In Vitro Scientific). This200μLvolumeisdefinedstrictlyfor1.5mg/mLcollagenconcentration(see step1)anda20mmglassarea,asitprovidestheappropriate3Dgelheight
+Leonard et al. Page 8
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+suitableforthecapabilitiesofthemicroscopelasersusedinsubsequentstep5;if alteringcollagenconcentrationordishtype,theamountneededfor3Dgel constructionwillrequiremodificationaswell.Thiscanbeempirically determinedbasedontheequipmentutilized.
+3. For polymerization, place the mixture in a cell culture incubator (37°C, 5% CO2) for 20–30 min.
+4. Apply 200 μL of suspended fluorescently tagged cells or multicellular aggregates, prepared per protocol above, atop polymerized 3D collagen gel constructs.
+5. To image, use a confocal microscope with similar specifications to the following example: Nikon A1R-MP laser confocal microscope with ApoLWD 40 × WI lambda-S DIC N2 water-immersion objective lens for high-resolution 100 μm thick z-stack images of cell–matrix interaction. Suggestedz-stackvoxelsizeis 0.2075×0.2075×0.6896μm3.
+6. For matrix imaging use reflectance mode, Argonne laser with 488 nm wavelength.
+7. For RFP- or GFP-tagged cell imaging use a helium–neon laser with 594 nm wavelength, or Argonne laser with 488 nm wavelength, respectively.
+8. Image at time zero, and then continue imaging every 12–24 h for 7–14 days at 35 different ECM areas.
+9. Optional: If a detailed temporal cell–matrix dynamic imaging is needed, perform continuous z-stack image acquisition from time zero up to several days using an environmental chamber at 37°C and 5% CO2. Note:Dependingontheduration oftheimaging,thismightrequireasignificantamountofaharddrivespace.If desired,theacquiredsequenceofimagescanbesavedasamovieduringimage postprocessing.
+4 ZYMOGRAPHY
+4.1 IN-GEL ZYMOGRAPHY
+Zymography, or substrate gel electrophoresis, is a nonquantitative method for evaluation of proteinase profiles. In this modification of SDS-PAGE, the entire gel is polymerized with a protein substrate of interest, most commonly gelatin or casein. Electrophoresis under nonreducing conditions and subsequent removal of SDS enable renaturation of the proteinase(s) in the sample, allowing for substrate degradation in the confines of the gel. This technique thereby elicits information on the estimated size of proteinases. Incubation of both sample and gel with class-specific proteinase inhibitors provides additional mechanistic depth. A sample gelatin zymography protocol is provided below and depicted in Fig. 7.
+1. Incubate proteinase-containing sample(s) with nonreducing Laemmli sample dilution buffer (2.5% SDS) for 1 h on ice without boiling the sample(s). Ensure no contamination with beta-mercaptoethanol so that disulfide bonds remain
+Leonard et al. Page 9
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+intact. Toinvestigatethemechanisticclassofproteinase,addaclass-specific proteinaseinhibitor.
+2. Prepare an 8%−9% SDS-polyacrylamide gel containing copolymerized gelatin or casein (0.1%). Carry out electrophoresis of sample(s). Placegelinaveryclean glasscontainerfortheremainingsteps;contaminantsinthecontainermay influenceresults.
+3. Wash gel 2 × for 20–30 min with 2.5% Triton X-100 to remove SDS and renature proteinase to restore enzymatic activity. Gentlyrotateatroom temperatureduringwashes.
+4. Rinse gel with water 3 × to remove Triton X-100 prior to incubation.
+5. Incubate gel for 24–48 h at 37°C in buffer of choice. Forexample,ifanalyzing MMPactivity,bufferatpH8.3iscomposedof20mMglycine,10mMCaCl2,1 μMZnCl2.Notethattheoptimalincubationtimewillvarybasedonenzymatic activityandconcentrationoftheproteinase-containingsample.Ifthe concentrationislow,increaseincubationtime.
+6. After incubation, stain gels with Coomassie blue. Regions with proteolytic activity appear as clear regions against a blue background. Note:Precautions mustbetakenwithinterpretationofresultsforMMPactivity.MMPsare producedaspropeptide-containingzymogensandpropeptideremovalis necessaryforacquisitionofproteolyticactivity.However,evenintheabsenceof propeptidecleavage,MMPzymogensgainproteolyticactivityduetothe presenceofSDSinthegel,providingaclearedzoneinthegelatthezymogen molecularweight.Thisformoftheenzymewouldnotdemonstrateproteolytic activityinasolution-basedassay.Furthermore,overestimationofproteinase activitycanoccurusingthismethodinsamplescontainingnoncovalentenzyme: inhibitorcomplexessuchasMMPandtissueinhibitorsofmetalloproteinases (TIMP).MMP:TIMPcomplexeswilldissociateduringelectrophoresisresulting invisualizationofanactive“band”onthezymogram.Asolution-basedassay mayshowsignificantlyloweractivityduetotheintegrityoftheMMP:TIMP complex(Munshi & Stack, 2002).
+4.2 IN SITU ZYMOGRAPHY
+Another histological method for probing proteinase activity in tissues is in situ zymography. Frozen tissue sections can be incubated with a fluorescently labeled substrate to determine the localization of and qualitatively assess the abundance of a proteinase of interest. For example, the role of matriptase was assessed in skin cyrosections from a mouse model of the connective tissue disorder Netherton syndrome using fluorescently labeled denatured casein as a substrate (Sales et al., 2010). In situ zymography can also be used to assess gelatinolytic activity as shown in Fig. 8. In this example, a section of an ovarian cancer xenograft tumor was overlaid with a quenched fluorescent gelatin (FITC-conjugated DQ-gelatin). Proteolytic cleavage of gelatin removes fluorescence quenching and enables visualization of the FITC signal. While the proteolytic activity in this sample was likely due to MMP2 and MMP9,
+Leonard et al. Page 10
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+incubation of tissue sections with DQ-gelatin in the presence and absence of specific proteinase inhibitors can be used to provide additional mechanistic insight.
+ACKNOWLEDGMENTS
+For all methods involving mouse and rabbit tissue, procedures were carried out according to the regulations of the University of Notre Dame Animal Care and Use Committee. This chapter and the research examples herein were supported by the following grants: Research Grants RO1CA109545 (M.S.S.) and RO1CA086984 (M.S.S.) from the National Institutes of Health/National Cancer Institute; the Leo and Anne Albert Charitable Trust (M.S.S.); the National Science Foundation grant GRFP DGE-1313583 (E.A.L.); the Notre Dame Research Like a Champion grant (Y.K.); the Walther Cancer Foundation Seeding Research in Cancer grant (O.K.); the Walther Cancer Foundation Interdisciplinary Interface Training Program (M.J.R.); and the University of Notre Dame Integrated Imaging Facility. For his assistance with SHG microscopy, we thank Dr. Charles Tessier, Indiana University School of Medicine—South Bend.
+REFERENCES
+Billinghurst RC, Dahlberg L, Ionescu M, Reiner A, Bourne R, Rorabeck C, et al. (1997). Enhanced cleavage of type II collagen by collagenases in osteoarthritic articular cartilage. Journal of Clinical Investigation, 9(7), 1534–1545.
+Chen X, Nadiarynkh O, Plotnikov S, & Campagnola P (2012). Second harmonic generation microscopy for quantitative analysis of collagen fibrillar structure. Nature Protocols, 7(4), 654–669. [PubMed: 22402635]
+Conklin MW, Eickhoff JC, Riching KM, Pehlke CA, Eliceiri KW, Provenzano PP, et al. (2011). Aligned collagen is a prognostic signature for survival in human breast carcinoma. The American Journal of Pathology, 178(3), 1221–1232. [PubMed: 21356373]
+Eddie SL, Quartuccio SM, Ó hAinmhire E, Moyle-Heyrman G, Lantvit DD, Wei J, et al. (2015). Tumorigenesis and peritoneal colonization from fallopian tube epithelium. Oncotarget, 6(24), 20500–20512. [PubMed: 25971410]
+Keikhosravi A, Bredfeld J, Sagar A, & Eliceiri K (2014). Second-harmonic generation imaging of cancer In Waters J & Wittman T (Eds.), Methods cell biology (pp. 531–546). Madison, WI: Academic Press.
+Klymenko Y, Johnson J, Bos B, Lombard R, Campbell L, Loughran EA, et al. (2017). Heterogeneous cadherin expression and multicellular aggregate dynamics in ovarian cancer dissemination. Neoplasia, 19(7), 549–563. [PubMed: 28601643]
+Klymenko Y, Kim O, Loughran EA, Yang J, Lombard R, Alber M, et al. (2017). Cadherin composition and multicellular aggregate invasion in organotypic models of epithelial ovarian cancer intraperitoneal metastasis. Oncogene, 36, 5840–5851. [PubMed: 28628116]
+Lee ER, Lamplugh L, Kluczyk B, Leblond CP, & Mort JS (2009). Neoepitopes reveal the features of type II collagen cleavage and the identity of a collagenase involved in the transformation of the epiphyses anlagen in development. Developmental Dynamics, 238(6), 1547–1563. [PubMed: 19441084]
+Mohler W, Millard AC, & Campagnola PJ (2003). Second harmonic generation imaging of endogenous structural proteins. Methods, 29(1), 97–109. [PubMed: 12543075] Munshi H, & Stack MS (2002). Analysis of matrix degradation. Methods in Cell Biology, 69, 195205. [PubMed: 12070993]
+Panwar P, Lamour G, Mackenzie NCW, Yang H, Ko F, Li H, et al. (2015). Changes in structuralmechanical properties and degradability of collagen during aging-associated modifications. Journal of Biological Chemistry, 290(38), 23291–23306. [PubMed: 26224630]
+Roby KF, Taylor CC, Sweetwood JP, Cheng Y, Pace JL, Tawfix O, et al. (2000). Development of a syngeneic mouse model for events related to ovarian cancer. Carcinogenesis, 21(4), 585–591. [PubMed: 10753190]
+Sales KU, Masedunskas A, Bey AL, Rasmussen AL, Weigert R, List K, et al. (2010). Matriptase initiates activation of epidermal pro-kallikrein and disease onset in a mouse model of Netherton syndrome. Nature Genetics, 42(8), 676–683. [PubMed: 20657595]
+Leonard et al. Page 11
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+Tilbury KB, Campbell KR, Eliceiri KW, Salih S, Patankar M, & Campagnola P (2017). Stromal alterations in ovarian cancers via wavelength dependent second harmonic generation microscopy and optical scattering. BioMed Central Cancer, 17(1), 102. [PubMed: 28166758]
+Thomas G, van Voskuilen J, Gerritsen HC, & Sterenborg HJCM (2014). Advances and challenges in label-free nonlinear optical imaging using two-photon excitation fluorescence and second harmonic generation for cancer research. Journal of Photochemistry and Photobiology B: Biology, 141, 128–138.
+Witz CA, Montoya-Rodriguez IA, Cho S, Centonze VE, Bonewald LF, & Schenken RS (2001). Composition of the extracellular matrix of the peritoneum. Journal of the Society for Gynecologic Investigation, 8(5), 299–304. [PubMed: 11677151]
+Zitnay JL, Li Y, Qin Z, San BH, Depalle B, Reese SP, et al. (2017). Molecular level detection and localization of mechanical damage in collagen enabled by collagen hybridizing peptides. Nature Communications, 8, 14913. 1–12.
+Leonard et al. Page 12
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 1.
+Second harmonic generation microscopy (SHG) and two-photon fluorescence microscopy of mouse peritoneal tissue and intraperitoneal metastatic implants of mouse ovarian cancer tumors. (A–C) Examples of normal C57BI/6 mouse peritoneal collagen depicting various patterns of structural organization. Graydepicts SHG collagen signal. (D–F) Examples C57Bl/6 mouse peritoneal collagen (SHG) with ID8 mouse ovarian cancer metastasis (RFP signal) (Roby et al., 2000). (G–H) Examples of omental fat band collagen (SHG signal) with FVB/NJ mouse ovarian cancer cells (RFP signal) derived from the oviductal epithelium (PTENshRNA/KRASG12V) (Eddie et al., 2015). (I) Example of connective tissue-rich tumor between the stomach and liver in the FVB/NJ PTENshRNA/KRASG12V model of intraperitoneal metastasis. Image acquisition parameters and procedures are as follows. The parietal peritoneum, omental fat band, and connective tissue tumor were placed between two cover slips (22 × 50 mm, No. 2 micro cover glass, VWR) and oriented so that when applicable, the mesothelium faced the objective (25 × XLPlan N, 1.05 NA Water) of the two-photon confocal microscope (Olympus FV1000, software FLUOVIEW FV1000). Using a Mai Tai DeepSee titanium–sapphire 690–1040 nm laser, metastatic implants and peritoneal collagen were visualized by RFP and second harmonic generation (SHG) signals, respectively. At 12% laser power, the two-photon laser was set to 860 nm and emission was simultaneously collected at 425–465 and 575–625 nm for SHG and RFP, respectively. Scale bars equal the following: A: 100 μm, B: 100 μm, C: 25 μm, D: 100 μm, E: 33.3 μm, F: 12.5 μm, G: 100 μm, H: 16.7 μm, I: 33.3 μm.
+Leonard et al. Page 13
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 2.
+Scanning electron micrographs of murine peritoneal collagen. C57B1/6 murine peritoneal tissue explants were dissected with collagen layer exposed, subjected to SEM processing as described in the text, and imaged with FEI-Magellan 400 field emission microscope. Scale bars are equal to 50, 10, and 2 μm for A, B, and C, respectively.
+Leonard et al. Page 14
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 3.
+Immunohistochemistry for GFP-tagged tumor cells in an explant ovarian cancer cell adhesion assay. (A) GFP-tagged DOV13 ovarian cancer cells or multicellular aggregates (MCAs) were incubated with a murine parietal peritoneum explant and allowed to adhere for 2h. After rinsing, samples were fixed with 10% formalin and processed for histology. IHC for GPF reveals cells and MCAs in contact with peritoneal collagen. (B) Schematic of parietal peritoneum and ovarian cancer cell adhesion is given as a reference. Asterisk indicates area of sections that consist of peritoneal collagen (predominantly type I), which is found directly under the mesothelium and is between 10 and 40μm thick in mice. Scale bars equal 50 μm.
+Leonard et al. Page 15
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 4.
+Trichrome staining of oral gingiva of rabbits. Rabbits’ gingival tissues were extracted and processed using Masson’s Trichrome. Collagen stains blueand the nuclei are stained dark brown.The muscle tissue is stained redand cytoplasm is stainedpink.This example was prepared as detailed in the text. Scale bar is 600μm.
+Leonard et al. Page 16
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 5.
+OVCAR5 and OVCAR8 ovarian cancer cell invasion of three-dimensional Matrigel© and collagen gels. Samples were prepared as detailed in the respective invasion assay section in the text and allowed to incubate for 24 h, after which they were imaged at 10 × magnification. Scale bars are equal to 200μm.
+Leonard et al. Page 17
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 6.
+Pericellular collagen clearance and collagen invasion by ovarian cancer multicellular aggregates (MCAs). GFP-tagged DOV13 MCAs (that endogenously express the interstitial collagenase matrix metalloproteinase 14, MMP14) were prepared using the hanging drop method as described (Klymenko, Johnson, et al., 2017). MCAs were applied atop threedimensional collagen gels (1.5mg/mL) inside a glass-bottomed dish and were incubated in the presence or absence of the broad spectrum MMP inhibitor GM6001 (25μM) as indicated. Nikon’s A1R-MP confocal microscope was used for continuous z-stack imaging of cancer cells (green,fluorescence mode) and collagen (blue,reflectance mode) (Klymenko, Kim, et al., 2017). Representative images at 24- and 72-h incubation time points depict greater level of pericellular collagen area loss (2D slice view) and cell invasion (3D volume view) in nontreated MCAs in comparison with GM6001-treated MCAs. Scale bar: as indicated.
+Leonard et al. Page 18
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 7.
+Gelatin zymography. DOV13 cells were cultured in a six-well dish to ∼75% confluence and then switched to serum-free medium (SFM). Cells were then subjected to treatment as indicated below in SFM for 24 h. Conditioned medium (CM, 20 μL) was then collected for analysis by gelatin zymography as described. Cell treatments were as follows: (1) control cells–no treatment, (2) Concanavalin A (Con A, 20 μg/mL), (3) broad spectrum MMP inhibitor GM6001 (1 μM), (4) lysophosphatidic acid (LPA, 80 μM), and (5) LPA (80 μM) and GM6001 (1 μM). Zymography was carried out as detailed in the text. The gel was incubated in zymography buffer for 48 h in this example.
+Leonard et al. Page 19
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript
+
+
+FIG. 8.
+In situ zymography of gelatinase activity in xenograft ovarian tumor. The presence of gelatinase activity in cryosectionsfrom SKOV3 ovarian cancer xenograft tumors was assessed with in situ zymography using FITC-conjugated DQ-gelatin as described. Cleavage of the quenched fluorescent gelatin reveals the FITC signal. Tissues were snap frozen in isopentane cooled by liquid nitrogen. Original magnification of image was 200 ×.
+Leonard et al. Page 20
+MethodsCellBiol. Author manuscript; available in PMC 2019 January 03.
+Author Manuscript Author Manuscript Author Manuscript Author Manuscript

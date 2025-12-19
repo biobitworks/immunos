@@ -18,10 +18,23 @@ import json
 import re
 import argparse
 import requests
+import numpy as np
 from pathlib import Path
 from typing import List, Dict, Optional
 from dataclasses import dataclass, asdict
 from enum import Enum
+
+# Import negative selection components
+try:
+    from immunos_negsel import (
+        NegativeSelectionClassifier,
+        CodeFeatureExtractor,
+        ScannerFusion
+    )
+    NEGSEL_AVAILABLE = True
+except ImportError:
+    NEGSEL_AVAILABLE = False
+    print("Warning: immunos_negsel module not found. Negative selection disabled.", file=sys.stderr)
 
 
 class Severity(Enum):
@@ -56,6 +69,11 @@ class Anomaly:
 class NKCellScanner:
     """NK Cell scanner using negative selection with Ollama"""
 
+    # Detection mode
+    MODE_PATTERN = "pattern"      # Traditional regex patterns
+    MODE_NEGSEL = "negsel"        # Negative selection ML
+    MODE_HYBRID = "hybrid"        # Both methods combined
+
     # Security patterns to detect
     SECURITY_PATTERNS = {
         'api_key': r'(?i)(api[_-]?key|apikey)["\']?\s*[:=]\s*["\']([a-zA-Z0-9_\-]{20,})["\']',
@@ -72,9 +90,37 @@ class NKCellScanner:
         'type_ignore': r'#\s*type:\s*ignore',
     }
 
-    def __init__(self, ollama_url: str = "http://localhost:11434"):
+    def __init__(self, ollama_url: str = "http://localhost:11434",
+                 mode: str = "pattern", enable_negsel: bool = False):
         self.ollama_url = ollama_url
         self.anomalies: List[Anomaly] = []
+        self.mode = mode if NEGSEL_AVAILABLE else self.MODE_PATTERN
+
+        # Negative selection components
+        self.negsel_classifier: Optional[NegativeSelectionClassifier] = None
+        self.feature_extractor: Optional[CodeFeatureExtractor] = None
+        self.scanner_fusion: Optional[ScannerFusion] = None
+
+        # Initialize negative selection if enabled
+        if enable_negsel and NEGSEL_AVAILABLE:
+            self._initialize_negsel()
+
+    def _initialize_negsel(self):
+        """Initialize negative selection classifier"""
+        try:
+            # Try to load trained detector
+            self.negsel_classifier = NegativeSelectionClassifier.load_from_db("SAFE")
+            self.feature_extractor = CodeFeatureExtractor()
+            self.scanner_fusion = ScannerFusion()
+            print("✓ Loaded trained negative selection detector from database")
+        except ValueError:
+            # No trained detector found
+            print("⚠ No trained detector found. Run detector training first.")
+            print("  Use: python scripts/immunos_negsel.py train <safe_code_dir>")
+            self.negsel_classifier = None
+        except Exception as e:
+            print(f"⚠ Failed to initialize negative selection: {e}", file=sys.stderr)
+            self.negsel_classifier = None
 
     def call_ollama(self, model: str, prompt: str) -> Optional[str]:
         """Call Ollama API for analysis"""
@@ -381,6 +427,41 @@ If no issues, reply with empty array []."""
 
         return self.call_ollama(model, prompt)
 
+    def check_negsel(self, file_path: str) -> Optional[tuple]:
+        """
+        Check file using negative selection algorithm.
+
+        Returns:
+            (classification, confidence, severity) or None
+        """
+        if not self.negsel_classifier or not self.feature_extractor:
+            return None
+
+        try:
+            # Extract features
+            features = self.feature_extractor.extract_from_file(file_path)
+
+            # Classify
+            classification, confidence = self.negsel_classifier.predict_single(features)
+
+            # Determine severity based on classification and confidence
+            if classification == "non-self":
+                if confidence > 0.8:
+                    severity = Severity.HIGH
+                elif confidence > 0.5:
+                    severity = Severity.MEDIUM
+                else:
+                    severity = Severity.LOW
+
+                return (classification, confidence, severity)
+            else:
+                # It's "self" (safe) - no anomaly
+                return None
+
+        except Exception as e:
+            print(f"  NegSel error on {file_path}: {e}", file=sys.stderr)
+            return None
+
     def scan_file(self, file_path: Path, relative_path: str, baseline: Dict):
         """Scan a single file for anomalies"""
         # Skip binary files
@@ -401,17 +482,41 @@ If no issues, reply with empty array []."""
         except Exception:
             return
 
-        # Run checks
-        self.check_security_patterns(relative_path, content)
-        self.check_file_permissions(file_path, relative_path)
-        self.check_code_quality(relative_path, content)
-        self.check_documentation(relative_path, content)
-        self.check_structural(relative_path, baseline)
+        # Pattern-based checks (always run)
+        if self.mode in [self.MODE_PATTERN, self.MODE_HYBRID]:
+            self.check_security_patterns(relative_path, content)
+            self.check_file_permissions(file_path, relative_path)
+            self.check_code_quality(relative_path, content)
+            self.check_documentation(relative_path, content)
+            self.check_structural(relative_path, baseline)
+
+        # Negative selection check (if enabled)
+        if self.mode in [self.MODE_NEGSEL, self.MODE_HYBRID] and self.negsel_classifier:
+            negsel_result = self.check_negsel(str(file_path))
+
+            if negsel_result:
+                classification, confidence, severity = negsel_result
+
+                # Add anomaly
+                self.anomalies.append(Anomaly(
+                    category=Category.SECURITY.value,
+                    severity=severity.value,
+                    file_path=relative_path,
+                    line_number=None,
+                    pattern="negsel_detection",
+                    description=f"Negative selection classified as '{classification}' (confidence: {confidence:.2f})",
+                    recommendation=f"Review file for anomalous patterns. ML detector flagged as non-self.",
+                ))
 
     def scan_directory(self, projects_root: Path, baseline: Dict, use_ollama: bool = False):
         """Scan entire directory tree"""
         print(f"NK Cell scan starting...")
+        print(f"Detection mode: {self.mode}")
         print(f"Ollama integration: {'enabled' if use_ollama else 'disabled (use --ollama to enable)'}")
+        if self.negsel_classifier:
+            print(f"Negative selection: ✓ Active ({len(self.negsel_classifier.valid_detectors)} detectors loaded)")
+        else:
+            print(f"Negative selection: ✗ Not available")
         print()
 
         # Check todo system first
@@ -500,6 +605,12 @@ def main():
     parser.add_argument('--output', type=str,
                         default='/Users/byron/projects/.immunos/nk_scan.json',
                         help='Output report file')
+    parser.add_argument('--mode', type=str,
+                        choices=['pattern', 'negsel', 'hybrid'],
+                        default='pattern',
+                        help='Detection mode: pattern (regex), negsel (ML), or hybrid (both)')
+    parser.add_argument('--negsel', action='store_true',
+                        help='Enable negative selection ML detection')
     parser.add_argument('--ollama', action='store_true',
                         help='Enable Ollama semantic analysis (slower)')
     parser.add_argument('--ollama-url', type=str,
@@ -510,6 +621,14 @@ def main():
                         help='Projects root directory')
 
     args = parser.parse_args()
+
+    # Determine mode
+    if args.negsel or args.mode != 'pattern':
+        detection_mode = args.mode
+        enable_negsel = True
+    else:
+        detection_mode = 'pattern'
+        enable_negsel = False
 
     # Load baseline
     baseline_path = Path(args.baseline)
@@ -525,7 +644,11 @@ def main():
     print()
 
     # Create scanner and run
-    scanner = NKCellScanner(ollama_url=args.ollama_url)
+    scanner = NKCellScanner(
+        ollama_url=args.ollama_url,
+        mode=detection_mode,
+        enable_negsel=enable_negsel
+    )
     scanner.scan_directory(Path(args.projects_root), baseline, use_ollama=args.ollama)
 
     # Generate report

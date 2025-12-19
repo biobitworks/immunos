@@ -1,0 +1,21 @@
+{
+  "doi": "10.1038/s41580-022-00531-5",
+  "title": "Organization, dynamics and mechanoregulation of integrin-mediated cell\u2013ECM adhesions",
+  "authors": [
+    "Pakorn Kanchanawong",
+    "David A. Calderwood"
+  ],
+  "journal": "Nature Reviews Molecular Cell Biology",
+  "year": 2023,
+  "url": "https://www.nature.com/articles/s41580-022-00531-5",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "The ability of animal cells to sense, adhere to and remodel their local extracellular matrix (ECM) is central to control of cell shape, mechanical responsiveness, motility and signalling and hence to development, tissue formation, wound healing and the immune response. Cell-ECM interactions occur at a variety of specialised, multi-protein adhesion complexes that serve to physically link the ECM, predominantly via clustered transmembrane receptors of the integrin family, to the cytoskeleton and the intracellular signalling apparatus. Here we review how the interplay of mechanical forces, biochemical signalling, and molecular self-organisation determines the composition, organisation, mechanosensitivity and dynamics of adhesions. Progress in the identification of core common interactome modules and characterisation of rearrangements in response to force, together with advanced imaging approaches, has improved understanding of adhesion maturation and turnover and the relationships between adhesion structures and functions. Perturbations of adhesion contribute to a broad range of disease and to age-related dysfunction, thus an improved understanding may facilitate therapeutic intervention in these conditions.",
+  "volume": "24",
+  "issue": "2",
+  "pages": "142-161",
+  "citation_key": "kanchanawongOrganizationDynamicsMechanoregulation2023",
+  "issn": "1471-0072, 1471-0080"
+}

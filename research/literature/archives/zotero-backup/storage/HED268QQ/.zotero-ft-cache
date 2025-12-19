@@ -1,0 +1,395 @@
+The myofibroblast matrix: implications for tissue repair and fibrosis
+Franco Klingberg1, Boris Hinz1,*, and Eric S. White2,*
+1Laboratory of Tissue Repair and Regeneration, Matrix Dynamics Group, Faculty of Dentistry, University of Toronto, Toronto, Ontario, M5S 3E2, Canada
+2Department of Internal Medicine, Division of Pulmonary and Critical Care Medicine, University of Michigan, 1150 W Medical Center Drive, 6301 MSRB III SPC5642, Ann Arbor, MI, 48109, USA
+Abstract
+Myofibroblasts, and the extracellular matrix (ECM) in which they reside, are critical components of wound healing and fibrosis. The ECM, traditionally viewed as the structural elements within which cells reside, is actually a functional tissue whose components possess not only scaffolding characteristics, but also growth factor, mitogenic, and other bioactive properties. Although it has been suggested that tissue fibrosis simply reflects an ‘exuberant’ wound-healing response, examination of the ECM and the roles of myofibroblasts during fibrogenesis instead suggest that the organism may be attempting to recapitulate developmental programmes designed to regenerate functional tissue. Evidence of this is provided by the temporospatial re-emergence of embryonic ECM proteins by fibroblasts and myofibroblasts that induce cellular programmatic responses intended to produce a functional tissue. In the setting of wound healing (or physiological fibrosis), this occurs in a highly regulated and exquisitely choreographed fashion which results in cessation of haemorrhage, restoration of barrier integrity, and re-establishment of tissue function. However, pathological tissue fibrosis, which oftentimes causes organ dysfunction and significant morbidity or mortality, likely results from dysregulation of normal wound-healing processes or abnormalities of the process itself. This review will focus on the myofibroblast ECM and its role in both physiological and pathological fibrosis, and will discuss the potential for therapeutically targeting ECM proteins for treatment of fibrotic disorders.
+Keywords
+ECM; myofibroblast; fibrosis
+Copyright © 2012 Pathological Society of Great Britain and Ireland. Published by John Wiley & Sons, Ltd.
+*Correspondence to: Eric S White, MD, Associate Professor, Department of Internal Medicine, Division of Pulmonary and Critical Care Medicine, University of Michigan, 1150 W Medical Center Drive, 6301 MSRB III SPC 5642, Ann Arbor, MI 48109, USA. docew@med.umich.edu. Boris Hinz, PhD, Associate Professor, Laboratory of Tissue Repair and Regeneration, Matrix Dynamics Group, Faculty of Dentistry, Fitzgerald Building, Room 241, University of Toronto, 150 College Street, Toronto, Ontario M5S 3E2, Canada. boris.hinz@utoronto.ca. Author contribution statement
+All authors contributed equally to this work. No conflicts of interest were declared.
+NIH Public Access
+Author Manuscript
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+Published in final edited form as: J Pathol. 2013 January ; 229(2): 298–309. doi:10.1002/path.4104.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+Introduction
+Myofibroblast activation is a key event in physiological and pathological tissue repair. Myofibroblasts are the primary extracellular matrix (ECM)-secreting cells during wound healing and fibrosis, and are largely responsible for the contractility of scar tissue as it matures [1,2]. The contribution of myofibroblasts and their elaborated ECM to normal and pathological tissue repair [3] has been well studied in the lung [4–6], liver [7–9], kidney [10,11], skeletal muscle [12], systemic sclerosis [13–15], heart [16–18], and the stromal reaction to tumours [19,20].
+A number of recent reviews have considered the nature of myofibroblast progenitors in different organs [21], including resident fibroblasts [3,19,22–25], fibrocytes [26–28], smooth muscle cells [29], pericytes [30–33], epithelial and endothelial cells undergoing endothelial (EndoMT) or epithelial-to-mesenchymal transition (EMT) [34–38], mesenchymal stromal cells [39,40], and hepatic stellate cells [23], to name only the most prominent. Others have focused on the chemical and mechanical conditions controlling myofibroblast formation and survival [41], functional and phenotypic characteristics [42,43], and their suitability as therapeutic targets [44–48]. Due to space constraints, these concepts will not be explored here.
+Despite the abundant literature concerning the myofibroblast, surprisingly little focuses on specific features and functions of the myofibroblast ECM. Indeed, disturbance of the ECM and remodelling by myofibroblasts has a profound impact on their own behaviour and that of other cell types sharing the same microenvironment. This is intuitive since the ECM performs a multitude of biological functions, including providing mechanical stability, protection, and guidance for cells [49–51], and acting as a repository for growth factors [5254].
+The myofibroblast: born to produce and remodel ECM
+Myofibroblasts were first identified four decades ago as fibroblastic cells that simultaneously exhibit prominent endoplasmic reticulum and contractile microfilament bundles in wound granulation tissue [55]. One prominent feature of the myofibroblast is the neo-expression of α-smooth muscle actin (α-SMA) in stress fibres [56], the molecular basis for their high contractile activity. However, not all α-SMA-expressing cells are myofibroblasts. For example, α-SMA-positive cells that do not form microfilament bundles are not considered myofibroblasts since they are lacking their defining contractile element [57]. Conversely, α-SMA-negative fibroblasts that express microfilament bundles are functional contractile myofibroblasts, at least in vivo. Since fibroblasts almost inevitably form microfilament bundles (stress fibres) in standard cell culture conditions, ‘myofibroblast’ denotes α-SMA-positive stress fibre-forming cells.
+It bears mentioning that much of our understanding of myofibroblast behaviour arises from in vitro studies in which culture conditions vary greatly (eg culturing in ECM-coated dishes, culturing on ‘soft’ agar, culturing in attached or detached collagen gels). This may account for discrepant results among studies and should be considered when interpreting data reported in the literature. One must also recognize that in vivo, fibroblasts and
+Klingberg et al. Page 2
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+myofibroblasts encounter multiple ECM components simultaneously, thereby potentially altering behaviours from those observed in the experimental setting. Certainly, differences between fibroblast behaviour in two-dimensional and three-dimensional culture conditions are well documented [58] and also inject variability into the results of in vitro studies. Finally, the role of mechanotransduction – the sensing of matrix stiffness and response to such stiffness by cells – is beginning to be elucidated in fibroblasts and myofibroblasts, and also adds yet another layer of complexity to our understanding of the myofibroblast ECM. Indeed, a percentage of fibroblasts spontaneously acquire a myofibroblast phenotype in culture [57,59], likely due to stiffness of the culture vessel.
+Although collagen I and collagen III are often cited as the primary ECM proteins expressed by myofibroblasts, the myofibroblast produces myriad other ECM proteins during wound repair and fibrosis, such as collagen types IV, V, and VI [60]; glycoproteins; and proteoglycans such as fibronectin, laminin, and tenascin [3,61–72]. It is worth noting, however, that myofibroblasts are not necessarily the only source of these proteins, as epithelial, inflammatory, and endothelial cells may all produce these proteins as well. A schematic of the myofibroblast ECM to be discussed is shown in Figure 1.
+Collagens
+Collagens are primarily structural proteins composed of three procollagen chains configured in a classic triple helical pattern. Early in the course of wound granulation, myofibroblasts deposit type III collagen. This form imparts a measure of plasticity to the wound in the early phase of healing, although recent data suggest that collagen III deficiency promotes myofibroblast differentiation and wound contraction [73]. When granulation tissue is resorbed following physiological wound repair, myofibroblasts undergo apoptosis (see below) and the more rigid type I collagen is biochemically identified. Under pathological conditions (eg the proliferative cellular phase of palmar fibromatosis or areas of mesenchymal stromal invasion in breast carcinomas), type III collagens appear to be increased [74,75], as are type V collagens in desmoplastic human breast carcinomas and in small airway fibrosis of bronchiolitis obliterans complicating chronic lung transplant rejection [76–78]. Of course, densely fibrotic tissues demonstrate an abundance of type I collagens, but also type VI collagens [79–83].
+As wound healing approaches completion, apoptotic gene programmes are expressed within myofibroblasts, resulting in a relatively hypocellular scar. Cytokines that stimulate ECM synthesis early on are repressed once wound closure is completed and a functional basement membrane has been synthesized, thus suggesting the existence of a feedback loop [84]. However, in pathological fibrosis, evidence suggests that failure to initiate apoptosis of myofibroblasts (or decreased sensitivity to apoptotic stimuli) accounts for the seeming persistence of these cells in fibrotic tissues.
+Fibronectins (FNs)
+FN is expressed by multiple cell types and plays a key role in cell adhesive and migratory behaviour [85,86]. The functional FN dimer consists of two similar or identical subunits of 220–250 kDa that are held together by two disulphide bonds near their carboxyl-termini.
+Klingberg et al. Page 3
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+Like many glycoproteins, each monomer consists of a combination of different types of homologous repeating domains; in the case of FN, there are three, termed types I, II, and III. However, by virtue of alternative splicing of the pre-mRNA, two extra type III repeats (termed EDA for extra domain A and EDB for extra domain B) may be inserted into the mature protein; the splicing of these domains is independent of each other [85,87] but is highly up-regulated by the profibrotic cytokine TGF-β [88]. Alternative splicing of FN is particularly prominent during embryonic development, as well as during wound healing, pathological fibrosis, and malignancy, and gives rise to the term ‘oncofetal’ ECM. Evidence suggests that alternatively-spliced EDA FN (but not plasma FN) is necessary for TGF-β1induced myofibroblast differentiation [89,90] and is thus a critical component of the myofibroblast ECM.
+As a separate contribution, FN also binds a large number of growth factors that may promote myofibroblast differentiation. Most notably, FN localizes latent TGF-β1 complex by binding latent TGF-β binding proteins (LTBPs, see below) [91]. In addition, FN binds vascular endothelial growth factor (VEGF) [92], bone morphogenetic protein (BMP) 1 [93], hepatocyte growth factor (HGF) [94], fibroblast growth factor (FGF)-2 [95], and plateletderived growth factor (PDGF) [96], all of which may contribute to the myofibroblast phenotype.
+Elastin
+Elastin, a major ECM protein involved in connective tissue homeostasis, provides organs with structural integrity and is responsible for absorption of mechanical overload preventing damage [97]. Smooth muscle cells and fibroblasts are the major elastin-producing cells in normal tissues [98] such as skin, heart, arteries, and lung, which all undergo cyclic mechanical loading and unloading throughout life. Elastin deposition and organization occurs mainly during the late fetal and early neonatal periods and is reduced during maturity to a low turnover rate [99].
+It has been generally understood that elastin production by fibroblasts is low or absent following injury, which partly accounts for the reduced elasticity and breaking strength of scar tissue compared with the intact connective tissue [52]. Because of the low elastin turnover in normal and injured skin and arteries, current strategies aim to supply elastin-like proteins either by grafting [100–102] or by stimulating cellular elastin production [103,104]. However, some studies have shown that elastin production by fibroblasts is quite elevated after tissue damage in response to a number of cytokines, such as TNF-α, IL-1β, and TGFβ1 [105,106]. For example, in constrictive bronchiolitis obliterans, characterized by fibrosis development in the small airways, α-SMA-positive myofibroblasts demonstrated enhanced elastin expression [107].
+Fibrillins and LTBPs
+In addition to the major fibrillar components, the myofibroblast ECM contains a microfibrillar network formed by members of the fibrillin and latent TGF-β binding protein (LTBP) family. In humans, these glycoprotein families consist of three homologous fibrillin isoforms (fibrillin-1, -2, and -3) and four LTBPs (LTBP-1, -2, -3, and -4) that are mainly
+Klingberg et al. Page 4
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+characterized by highly repetitive and disulphide-rich domains. Microfibrils provide the basis for tropoelastin binding during elastic fibre formation, enhance the structural integrity of tissues and organs, and target growth factors such as TGF-β and bone morphogenic protein (BMP) to the ECM [108–110]. The disruption of microfibrillar assembly or growth factor association with fibrillins due to mutations within fibrillin genes leads to clinical relevant pathological connective tissue conditions such as Marfan’s syndrome, congenital contractual arachnodactyly, and systemic scleroderma [111–115].
+LTBPs share similarities with fibrillins in their repetitive sequence and domain structure. However, LTBPs are considerably smaller, ranging from 125 to 160 kDa when compared with fibrillins (~350 kDa). Analysis of LTBP isoforms from cultured human hepatic myofibroblast ECM reveals all four isotypes, suggesting that these proteins may play a role in liver fibrosis [116]. Moreover, culture studies may give an insight into the sequence of events in ECM assembly by fibroblasts during embryogenesis and tissue repair. Recent mouse fibrillin-1 knock-out studies showed that LTBP-1 incorporation into the ECM of fibroblasts depends on a FN network compared with the ECM association of LTBP-3 and LTBP-4, which depends on fibrillin-1 microfibrils [117]. In fibroblasts that are missing the gene for FN, LTBP-1 fails to incorporate into the ECM in the early phase but can be assembled in later stages [118].
+LTBP-1 is crucial for tissue repair, fibrosis, and myofibroblast biology because it serves as a storage protein for TGF-β1. The TGF-β family comprises multipotent cytokines modulating cell growth, apoptosis, inflammation, and ECM synthesis. In mammals, these functions are mediated by the widely expressed three isoforms TGF-β1, TGF-β2, and TGF-β3 that are encoded by three different genes of high homology [119]. TGF-β1 appears to be the most prevalent isoform that associates with fibroblast-to-myofibroblast activation [120], although both of the other isoforms have also been demonstrated to perform this action in vitro [121]. In vivo, TGF-β3 appears to attain a myofibroblast-supressing role [121,122]. LTBP-1 regulates the bioactivity of TGF-β1 at multiple levels: (1) it promotes efficient latent TGFβ1 secretion by assembling the large latent complex [123]; (2) it targets latent TGF-β1 as a large latent complex to the ECM by interacting with different proteins including FN and fibrillin [109,124,125]; and (3) it controls and directs cell-mediated TGF-β1 activation [125–127].
+In addition to the aforementioned, myriad other ECM components can be found in the myofibroblast ECM, including fibulins, matricellular proteins (such as CCN proteins, osteopontin, periostin, and SPARC, to name but a few), tenascins, and thrombospondins. These proteins have all been implicated in fibrogenesis and wound repair to various degrees, with the matricellular protein CCN2 (connective tissue growth factor, CTGF) and tenascinC perhaps being the best studied. Similarly, experimental data supporting the role of WISP-1, SPARC, osteopontin, and thrombospondins in myofibroblast functions in wound healing and fibrosis have been amply documented [52,128–143]. Below, we will highlight some recent evidence of the roles of these ECM proteins in wound repair and fibrosis.
+Klingberg et al. Page 5
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+CCN2 (CTGF)
+CCN proteins [so named because of the names of the first three family members identified: cysteine-rich 61 (CYR61), connective tissue growth factor (CTGF), and nephroblastoma overexpressed (NOV) [144]] are integral components of the ECM related to fibrosis and myofibroblast activation. Despite the designation as a growth factor, CCN2 is not a cytokine but an integral ECM protein that exerts its function through binding of cell integrins alone or recruitment of co-receptors [145]. A number of reviews have summarized CCN2 functions in fibrosis [146–148].
+Expression of CCN2 (CTGF) is locally up-regulated in a variety of fibrotic conditions and elevated in the serum of subjects with fibrosis. In addition, mutations in the CCN2 gene promoter are associated with systemic sclerosis in humans [149]. Experimentally, blocking or deleting CCN2 efficiently reduces fibrosis, thus identifying CCN2 as a potential critical modulator of fibrosis. However, subsequent studies seem to suggest that activating functions of CCN2 occur either up- or down-stream of TGF-β1 signalling since simultaneous blocking of TGF-β1 abolished their myofibroblast-activating effect [3,148]. TGF-β1 induces CCN2 expression in a variety of fibroblast culture and animal fibrosis models, nourishing the concept that CCN2 is a mere downstream mediator of TGF-β1 in myofibroblast differentiation [131]. However, different fibroblast culture models demonstrated expression of CCN2 in response to factors other than TGF-β1, such as endothelin-1 [150]. In many organs, however, CCN2 seems to work synergistically with TGF-β1 in enhancing fibrosis but does not induce fibrosis and/or myofibroblast activation in the absence of TGF-β1 or injury [151,152].
+Tenascin-C
+Tenascin-C is a member of the tenascin family of ECM proteins (which also include tenascins-X, -R, and -W). Tenascin-C is classically regarded as a marker for the immature ECM in the earlier phases of tissue repair, promoting stromal cell population of provisional ECM by generating a migration-supporting adhesive environment and exerting chemokinetic effects [153]. Indeed, tenascin-C plays a role in myofibroblast recruitment [154]. Whereas tenascin-C is down-regulated in normally healing wounds, it persists in hypertrophic scar tissue, where it seems to prevent cell apoptosis and prolongs the ECM synthesis and proliferative phase [153,155]. Tenascin-C null mice are protected against fibrosis in the lung [156] and liver [157] with reduced amounts of α-SMA-positive myofibroblasts. Less is known about the possible implication of other tenascin family members in myofibroblast biology and fibrosis. Tenascin-X knock-out mice exhibit reduced collagen amounts in skin dermis, which shares phenotypic similarities with the human Ehlers–Danlos syndrome, including increased extensibility and reduced strength of the skin [158,159]. Although cutaneous wounds of tenascin-X knock-out mice have reduced breaking strength, the contribution of myofibroblasts to the impaired biomechanical properties of the granulation tissue has not been tested yet [160].
+Klingberg et al. Page 6
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+Proteoglycans
+Proteoglycans (including heparan sulphate proteoglycans, hyaluronan, syndecans, and small leucine-rich proteoglycans) are critical components of the wound-healing response and are also implicated in tissue fibrosis. Experimental and mechanistic studies implicate these molecules in facilitating the assembly of matrices and the incorporation of growth factors (such as LTBP-1/TGF-β complexes) into the ECM [161].
+Hyaluronan has long been associated with conditions of fibrosis, and hyaluronic acid (HA) is clinically used as a serum biomarker for liver fibrosis [162]. In addition, HA is purported to regulate myofibroblast activation and persistence in a TGF-β1-dependent manner [163,164]. The mechanisms of this action are not entirely clear, although fibroblast binding to HA positions the TGF-β1 receptor close to the HA receptor CD44, which affects downstream TGF-β1 signalling [165]. HA also stabilizes cell–ECM adhesions [166], which are crucial for myofibroblast mechanosensing and activation [167]. Fibroblasts deficient of the HA receptor CD44 displayed impaired migration, stress fibre formation, and production of active TGF-β1, processes that are all dependent on cell adhesion [168]. Consistently, conditional overexpression of HA synthase 2 in α-SMA-positive lung myofibroblasts produced an invasive phenotype that promoted fibrosis progression in bleomycin-treated mouse lungs [169]. The same study showed that conditional deletion of HA synthase 2 under control of the Col1α2 promoter or inhibition of CD44 inhibited the aggressive myofibroblast phenotype and reduced development of fibrosis. Supported by these findings, HA signalling emerges as a novel target for therapeutic anti-fibrotic interventions.
+Syndecans are another class of heparan sulphate proteoglycans that have been shown to affect organ fibrosis [170–172]. Shedding of syndecan-1 (CD138) by matrix metalloproteinases (MMPs) and oxidative stress was shown to contribute to fibrosis development [173,174] and syndecan-1 supports FN fibrillogenesis [175]. The direct effects of syndecans or syndecan fragments on myofibroblast activation have not yet been tested. However, syndecan-2 is known to modulate TGF-β signalling and TGF-β receptor expression presumably by directly binding to TGF-β1 [176]. Furthermore, syndecan-4 knock-out mice exhibit reduced myofibroblast activation after myocardial infarct [177] and in an animal model of lung fibrosis [178].
+Small leucine-rich proteoglycans (SLRPs) comprise a group of proteoglycans with a small protein +core and unique tandem leucine-rich repeats. Among the best studied SLRPs are decorin, biglycan, lumican, and fibromodulin [179]. SLRPs fulfil a variety of functions that have a direct impact on ECM and cell homeostasis in fibrocontractive diseases; they regulate cell survival and collagen organization and they bind to growth factors, in particular TGF-β1 [180,181]. SLRPs are often up-regulated in different fibrotic conditions [179], which contradicts the general observation that they act as negative regulators of myofibroblast activation. By contrast, SLRPs are down-regulated in dermal scarring, correlating with fibrotic contractures [182]. This discrepancy may be explained by SLRP performing different functions in different phases of ECM remodelling during repair and fibrosis. For example, decorin potentially regulates myofibroblast activation by virtue of binding to active TGF-β1 [183]. Similarly, biglycan has anti-fibrogenic properties similar to decorin.
+Klingberg et al. Page 7
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+Biglycan-deficient cultured cardiac fibroblasts showed enhanced myofibroblast activation and contractile function due to increased TGF-β1 signalling [184]. Much less is known about the role of lumican in fibro-contractive diseases and regulating the myofibroblast phenotype, although it is up-regulated during myofibroblast activation of corneal fibroblasts [185].
+Post-translational modification of the myofibroblast ECM
+In addition to the composition of the ECM, mechanobiological properties also strongly dictate myofibroblast activation and function. Being contractile cells, myofibroblasts sense and modulate stiffness within the ECM through focal adhesions via integrin binding. Moreover, recent data suggest that mechanical stiffness alone, independent of TGF-β signalling, can induce myofibroblast activation in the setting of fibrosis [186]. Thus, stiffness of the ECM is also a critical modulator of wound healing and fibrosis. Crosslinking of ECM proteins is the major determinant of tissue stiffening. Despite the low turnover rate of collagens in structural tissues such as skin and cartilage, cross-linking of ECM proteins (particularly collagens) is a potentially important area of exploitation for therapeutic purposes in fibrotic disorders. Cross-linking ECM proteins may result in conformational changes that render epitopes ‘hidden’ from protease activity, thereby preventing digestion and remodelling of the ECM. Thus, targeting enzymes and other proteins (discussed below) may provide a means by which fibrotic processes may be effectively halted or perhaps even reversed.
+Transglutaminases (TGs) belong to a large family of proteins encoded by structural and functionally related genes [187,188]. The major function of TGs is to catalyse the Ca2+dependent formation of inter-protein isopeptide bridges between γ-carboxyamide glutamine residues and ε-amino groups in the protein-bound lysine residues [189,190]. TG2 is the most widely and ubiquitously expressed TG family member [191,192]. The ECM substrate spectrum of TG2 is large and comprises FN, vitronectin, collagen types I/II/V/VII/XI, laminin, fibrillin, and LTBP-1, to name only the most prominent [190,193]. Extensive crosslinking of collagen by TG2 produces collagen fibres that are resistant to degradation and that support myofibroblast-mediated fibrosis [194]. In addition to the mechanical consequences of TG cross-linked ECM, the interaction of TG with fibrillins and LTBP-1 modulates the deposition and activation of TGF-β1. Moreover, TGs are directly involved in the proteolytic activation of TGF-β1 from the large latent complex [129], thereby potentially inducing myofibroblast differentiation.
+Other important enzymes that promote ECM protein cross-linking in normal and pathological tissue repair belong to the lysyl oxidase (LOX) and lysyl oxidase-like (LOXL) families. LOX is a copper-dependent amine oxidase that forms reactive aldehyde groups from peptidyl lysines in its substrates by oxidative deamidation; these reactive groups spontaneously form covalent cross-links [195,196]. The covalent cross-linking of fibrillar collagen by LOX is of particular importance in fibrotic disease progression [197]. LOX is up-regulated in conditions of tissue repair and fibrosis [198] and induced by TGF-β1 in fibroblast cultures [199–201]. Furthermore, LOX plays a key role in promoting fibroblast-to myofibroblast activation in skin, heart, liver, kidney, and lung fibrosis [195,202–204]. The
+Klingberg et al. Page 8
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+conversion of fibroblast-secreted collagen into insoluble fibres by LOX contributes to the accumulation of stiff ECM and thereby contributes to the progression/persistence of fibrosis [198,205,206]. In addition to LOX, LOXL2 has been recently identified to form fibrosisspecific and stable collagen cross-links [207]. LOXL2 oxidatively deaminates the ε-amine group of specific lysine residues of collagen and elastin [208].
+Collagen cross-linking also occurs without enzymatic support by glycation; although this process is comparably slow, it is physiologically relevant given the low turnover time of collagen, with a half-life of 15 years in skin and one order of magnitude longer in cartilage [209,210]. A variety of fibrotic and pre-fibrotic conditions such as diabetes are characterized by pathological levels of advanced glycation end-products (AGEs) and tissue stiffening due to glycation [211]. AGEs are pro-fibrotic in that they promote the production of type I and type III collagens [212,213], increase fibroblast proliferation [214], induce TGF-β1dependent and -independent fibrotic changes [215,216], and induce collagen glycation [217].
+Outlook/conclusions
+Given the clear role of ECM as a mediator of fibrosis, it seems plausible that these proteins and their modifiers could be possible anti-fibrotic therapeutic targets. However, the ubiquitous nature and clear clinical importance of the ECM dictates that efforts be directed at identifying differences in ECM composition between normal and disease states. As an example, using mass spectrometry, our group has evaluated differences in ECM composition between normal and fibrotic human lung, identifying a number of ECM molecules clearly overexpressed in the diseased organ [218]. Although further study is needed to determine whether these changes reflect pathogenic mechanisms or are merely epiphenomena, we believe that ECM molecules, domains, or cross-links may offer possible novel therapeutic targets for patients with progressive fibrotic disorders.
+Among the list of major myofibroblast ECM components, FN seems to be an appropriate target to control myofibroblast development and survival. However, the critical nature of FN to development indicates a need for specific targeting within the molecule. In this regard, the EDA domain of FN is more attractive as a potential therapeutic target for the treatment of fibrotic diseases because it is a specific and crucial component of the myofibroblast ECM that is highly up-regulated in a variety of fibrotic diseases but virtually absent from most normal connective tissues [219–221].
+In addition to targeting EDA FN, a second potential target currently under investigation is LOXL2 [222,223]. Initial studies targeting LOX using the inhibitor β-aminopropionitrile (BAPN) reduced collagen cross-linking and scarring but did not proceed to clinical trials due to drug toxicity [224]. However, LOXL2 has also been identified in, and is associated with, fibrotic tissues [208,225]. LOXL2 antibodies are currently being considered for clinical trials in fibrotic disorders [222,223].
+Besides interfering with ECM proteins, targeting integrins as specific ECM receptors emerges as another promising therapeutic approach [226]. Many integrins contribute to fibrosis and myofibroblast differentiation through various pathways, including α3β1 [227],
+Klingberg et al. Page 9
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+α11β1 [228,229], integrin αvβ3 [230], α4β7 [90], and β1 integrin [186,231]. Of particular interest, αvβ6 integrins, necessary for epithelial activation of TGF-β1 [232], and αvβ5 integrins, involved in mesenchymal cell activation of TGF-β1, have emerged as potential targets in fibrotic disorders. Currently, antibody therapy to αvβ6 integrins is being tested in a phase 2 trial of patients with idiopathic pulmonary fibrosis (Clinicaltrials.gov identifier NCT01371305).
+In summary, experimental data suggest that both the myofibroblast and its ECM are critical contributors to pathological fibrogenesis in a variety of organs. Our knowledge in this arena has provided the foundation for upcoming and current clinical trials in patients with fibrotic disorders. Further investigation into the mechanisms by which the ECM promotes fibrosis will likely identify other promising potential targets for therapeutic intervention.
+Acknowledgments
+BH is supported by the Canadian Institutes of Health Research (grant No 210820), the Collaborative Health Research Programme (CIHR/NSERC; grant No 1004005), the Canada Foundation for Innovation and Ontario Research Fund (grant No 26653), and the Heart and Stroke Foundation Ontario (grant No NA7086); some of the data presented herein were funded from the European Union’s Seventh Framework Program (FP7/2007-2013) under grant agreement No 237946. ESW is supported by the National Institutes of Health (R01 HL085083, R01 HL109118, and U01 HL111016), the Drews Sarcoidosis Research Fund, and the Martin Edward Galvin Fund for Pulmonary Fibrosis Research at the University of Michigan. We wish to acknowledge all the investigators in this field whose work we were unable to cite due to space constraints.
+References
+1. Hinz B, Phan SH, Thannickal VJ, et al. Recent developments in myofibroblast biology: paradigms for connective tissue remodeling. Am J Pathol. 2012; 180:1340–1355. [PubMed: 22387320]
+2. Wynn TA. Cellular and molecular mechanisms of fibrosis. J Pathol. 2008; 214:199–210. [PubMed: 18161745]
+3. Hinz B. Formation and function of the myofibroblast during tissue repair. J Invest Dermatol. 2007; 127:526–537. [PubMed: 17299435]
+4. Hardie WD, Glasser SW, Hagood JS. Emerging concepts in the pathogenesis of lung fibrosis. Am J Pathol. 2009; 175:3–16. [PubMed: 19497999]
+5. Araya J, Nishimura SL. Fibrogenic reactions in lung disease. Annu Rev Pathol. 2010; 5:77–98. [PubMed: 20078216]
+6. Wynn TA. Integrating mechanisms of pulmonary fibrosis. J Exp Med. 2011; 208:1339–1350. [PubMed: 21727191]
+7. Hernandez-Gea V, Friedman SL. Pathogenesis of liver fibrosis. Annu Rev Pathol. 2011; 6:425–456. [PubMed: 21073339]
+8. Iredale J. Defining therapeutic targets for liver fibrosis: exploiting the biology of inflammation and repair. Pharmacol Res. 2008; 58:129–136. [PubMed: 18652898] 9. Iwaisako K, Brenner DA, Kisseleva T. What’s new in liver fibrosis? The origin of myofibroblasts in liver fibrosis. J Gastroenterol Hepatol. 2012; 27 (Suppl 2):65–68. [PubMed: 22320919]
+10. Meran S, Steadman R. Fibroblasts and myofibroblasts in renal fibrosis. Int J Exp Pathol. 2011; 92:158–167. [PubMed: 21355940]
+11. Grande MT, Lopez-Novoa JM. Fibroblast activation and myofibroblast generation in obstructive nephropathy. Nature Rev Nephrol. 2009; 5:319–328. [PubMed: 19474827]
+12. Serrano AL, Mann CJ, Vidal B, et al. Cellular and molecular mechanisms regulating fibrosis in skeletal muscle repair and disease. Curr Top Dev Biol. 2011; 96:167–201. [PubMed: 21621071]
+13. Beyer C, Distler O, Distler JH. Innovative antifibrotic therapies in systemic sclerosis. Curr Opin Rheumatol. 2012; 24:274–280. [PubMed: 22450392]
+Klingberg et al. Page 10
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+14. Varga J, Abraham D. Systemic sclerosis: a prototypic multisystem fibrotic disorder. J Clin Invest. 2007; 117:557–567. [PubMed: 17332883]
+15. Asano Y. Future treatments in systemic sclerosis. J Dermatol. 2010; 37:54–70. [PubMed: 20175840]
+16. van den Borne SW, Diez J, Blankesteijn WM, et al. Myocardial remodeling after infarction: the role of myofibroblasts. Nature Rev Cardiol. 2010; 7:30–37. [PubMed: 19949426]
+17. Rohr S. Myofibroblasts in diseased hearts: new players in cardiac arrhythmias? Heart Rhythm. 2009; 6:848–856. [PubMed: 19467515]
+18. Krenning G, Zeisberg EM, Kalluri R. The origin of fibroblasts and mechanism of cardiac fibrosis. J Cell Physiol. 2010; 225:631–637. [PubMed: 20635395] 19. De Wever O, Demetter P, Mareel M, et al. Stromal myofibroblasts are drivers of invasive cancer growth. Int J Cancer. 2008; 123:2229–2238. [PubMed: 18777559]
+20. Otranto M, Sarrazy V, Bonte F, et al. The role of the myofibroblast in tumor stroma remodeling. Cell Adh Migr. 2012; 6:203–219. [PubMed: 22568985]
+21. Hinz B, Phan SH, Thannickal VJ, et al. The myofibroblast: one function, multiple origins. Am J Pathol. 2007; 170:1807–1816. [PubMed: 17525249]
+22. Dranoff JA, Wells RG. Portal fibroblasts: underappreciated mediators of biliary fibrosis. Hepatology. 2010; 51:1438–1444. [PubMed: 20209607]
+23. Desmoulière A. Hepatic stellate cells: the only cells involved in liver fibrogenesis? A dogma challenged. Gastroenterology. 2007; 132:2059–2062. [PubMed: 17484899]
+24. Cirri P, Chiarugi P. Cancer-associated-fibroblasts and tumour cells: a diabolic liaison driving cancer progression. Cancer Metastasis Rev. 2012; 31:195–208. [PubMed: 22101652]
+25. Porter KE, Turner NA. Cardiac fibroblasts: at the heart of myocardial remodeling. Pharmacol Ther. 2009; 123:255–278. [PubMed: 19460403]
+26. Herzog EL, Bucala R. Fibrocytes in health and disease. Exp Hematol. 2010; 38:548–556. [PubMed: 20303382]
+27. Keeley EC, Mehrad B, Strieter RM. The role of fibrocytes in fibrotic diseases of the lungs and heart. Fibrogenesis Tissue Repair. 2011; 4:2. [PubMed: 21219601]
+28. Bellini A, Mattoli S. The role of the fibrocyte, a bone marrow-derived mesenchymal progenitor, in reactive and reparative fibroses. Lab Invest. 2007; 87:858–870. [PubMed: 17607298]
+29. Coen M, Gabbiani G, Bochaton-Piallat ML. Myofibroblast-mediated adventitial remodeling: an underestimated player in arterial pathology. Arterioscler Thromb Vasc Biol. 2011; 31:2391–2396. [PubMed: 21868702]
+30. Humphreys BD, Lin SL, Kobayashi A, et al. Fate tracing reveals the pericyte and not epithelial origin of myofibroblasts in kidney fibrosis. Am J Pathol. 2010; 176:85–97. [PubMed: 20008127]
+31. Lin SL, Kisseleva T, Brenner DA, et al. Pericytes and perivascular fibroblasts are the primary source of collagen-producing cells in obstructive fibrosis of the kidney. Am J Pathol. 2008; 173:1617–1627. [PubMed: 19008372]
+32. Armulik A, Genove G, Betsholtz C. Pericytes: developmental, physiological, and pathological perspectives, problems, and promises. Dev Cell. 2011; 21:193–215. [PubMed: 21839917]
+33. Kidd S, Spaeth E, Watson K, et al. Origins of the tumor microenvironment: quantitative assessment of adipose-derived and bone marrow-derived stroma. PLoS One. 2012; 7:e30563. [PubMed: 22363446]
+34. Chapman HA. Epithelial–mesenchymal interactions in pulmonary fibrosis. Annu Rev Physiol. 2011; 73:413–435. [PubMed: 21054168]
+35. Burns WC, Thomas MC. The molecular mediators of type 2 epithelial to mesenchymal transition (EMT) and their role in renal pathophysiology. Expert Rev Mol Med. 2010; 12:e17. [PubMed: 20504380]
+36. Quaggin SE, Kapus A. Scar wars: mapping the fate of epithelial–mesenchymal–myofibroblast transition. Kidney Int. 2011; 80:41–50. [PubMed: 21430641]
+37. Lee K, Nelson CM. New insights into the regulation of epithelial–mesenchymal transition and tissue fibrosis. Int Rev Cell Mol Biol. 2012; 294:171–221. [PubMed: 22364874]
+Klingberg et al. Page 11
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+38. Piera-Velazquez S, Li Z, Jimenez SA. Role of endothelial–mesenchymal transition (EndoMT) in the pathogenesis of fibrotic disorders. Am J Pathol. 2011; 179:1074–1080. [PubMed: 21763673]
+39. Mishra PJ, Glod JW, Banerjee D. Mesenchymal stem cells: flip side of the coin. Cancer Res. 2009; 69:1255–1258. [PubMed: 19208837]
+40. Hinz, B. The myofibroblast in connective tissue repair and regeneration. In: Archer, C.; Ralphs, J., editors. Regenerative Medicine and Biomaterials for the Repair of Connective Tissues. Woodhead Publishing Ltd; Cambridge: 2010. p. 39-82.
+41. Kis K, Liu X, Hagood JS. Myofibroblast differentiation and survival in fibrotic disease. Expert Rev Mol Med. 2011; 13:e27. [PubMed: 21861939]
+42. Sandbo N, Dulin N. Actin cytoskeleton in myofibroblast differentiation: ultrastructure defining form and driving function. Transl Res. 2011; 158:181–196. [PubMed: 21925115] 43. Follonier Castella L, Gabbiani G, McCulloch CA, et al. Regulation of myofibroblast activities: calcium pulls some strings behind the scene. Exp Cell Res. 2010; 316:2390–2401. [PubMed: 20451515]
+44. Hinz B, Gabbiani G. Fibrosis: recent advances in myofibroblast biology and new therapeutic perspectives. F1000 Biol Rep. 2010; 2:78. [PubMed: 21170369]
+45. Douglass A, Wallace K, Koruth M, et al. Targeting liver myofibroblasts: a novel approach in antifibrogenic therapy. Hepatol Int. 2008; 2:405–415. [PubMed: 19669316]
+46. Sivakumar P, Ntolios P, Jenkins G, et al. Into the matrix: targeting fibroblasts in pulmonary fibrosis. Curr Opin Pulm Med. 2012; 18:462–469. [PubMed: 22847104]
+47. Leask A. Towards an anti-fibrotic therapy for scleroderma: targeting myofibroblast differentiation and recruitment. Fibrogenesis Tissue Repair. 2010; 3:8. [PubMed: 20507556]
+48. Scotton CJ, Chambers RC. Molecular targets in pulmonary fibrosis: the myofibroblast in focus. Chest. 2007; 132:1311–1321. [PubMed: 17934117]
+49. Frantz C, Stewart KM, Weaver VM. The extracellular matrix at a glance. J Cell Sci. 2010; 123:4195–4200. [PubMed: 21123617]
+50. Hynes RO. The evolution of metazoan extracellular matrix. J Cell Biol. 2012; 196:671–679. [PubMed: 22431747]
+51. Ozbek S, Balasubramanian PG, Chiquet-Ehrismann R, et al. The evolution of extracellular matrix. Mol Biol Cell. 2010; 21:4300–4305. [PubMed: 21160071]
+52. Schultz GS, Wysocki A. Interactions between extracellular matrix and growth factors in wound healing. Wound Repair Regen. 2009; 17:153–162. [PubMed: 19320882]
+53. Discher DE, Mooney DJ, Zandstra PW. Growth factors, matrices, and forces combine and control stem cells. Science. 2009; 324:1673–1677. [PubMed: 19556500]
+54. Macri L, Silverstein D, Clark RA. Growth factor binding to the pericellular matrix and its importance in tissue engineering. Adv Drug Deliv Rev. 2007; 59:1366–1381. [PubMed: 17916397]
+55. Gabbiani G, Ryan GB, Majno G. Presence of modified fibroblasts in granulation tissue and their possible role in wound contraction. Experientia. 1971; 27:549–550. [PubMed: 5132594]
+56. Tomasek JJ, Gabbiani G, Hinz B, et al. Myofibroblasts and mechano-regulation of connective tissue remodelling. Nature Rev Mol Cell Biol. 2002; 3:349–363. [PubMed: 11988769]
+57. Hinz B. The myofibroblast: paradigm for a mechanically active cell. J Biomech. 2010; 43:146155. [PubMed: 19800625]
+58. Cukierman E, Pankov R, Stevens DR, et al. Taking cell–matrix adhesions to the third dimension. Science. 2001; 294:1708–1712. [PubMed: 11721053]
+59. Rohr S. Cardiac fibroblasts in cell culture systems: myofibroblasts all along? J Cardiovasc Pharmacol. 2011; 57:389–399. [PubMed: 21326104]
+60. Zhang K, Rekhter MD, Gordon D, et al. Myofibroblasts and their role in lung collagen gene expression during pulmonary fibrosis. A combined immunohistochemical and in situ hybridization study. Am J Pathol. 1994; 145:114–125. [PubMed: 7518191]
+61. Tomasek JJ, Schultz RJ, Episalla CW, et al. The cytoskeleton and extracellular matrix of the Dupuytren’s disease ‘myofibroblast’: an immunofluorescence study of a nonmuscle cell type. J Hand Surg Am. 1986; 11:365–371. [PubMed: 3519746]
+Klingberg et al. Page 12
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+62. Chang LY, Overby LH, Brody AR, et al. Progressive lung cell reactions and extracellular matrix production after a brief exposure to asbestos. Am J Pathol. 1988; 131:156–170. [PubMed: 2833103]
+63. Kuhn C, McDonald JA. The roles of the myofibroblast in idiopathic pulmonary fibrosis. Ultrastructural and immunohistochemical features of sites of active extracellular matrix synthesis. Am J Pathol. 1991; 138:1257–1265. [PubMed: 2024710]
+64. Berndt A, Kosmehl H, Katenkamp D, et al. Appearance of the myofibroblastic phenotype in Dupuytren’s disease is associated with a fibronectin, laminin, collagen type IV and tenascin extracellular matrix. Pathobiology. 1994; 62:55–58. [PubMed: 7524526]
+65. Aigner T, Neureiter D, Muller S, et al. Extracellular matrix composition and gene expression in collagenous colitis. Gastroenterology. 1997; 113:136–143. [PubMed: 9207271] 66. Magro G, Fraggetta F, Colombatti A, et al. Myofibroblasts and extracellular matrix glycoproteins in palmar fibromatosis. Gen Diagn Pathol. 1997; 142:185–190. [PubMed: 9065582]
+67. Mahida YR, Beltinger J, Makh S, et al. Adult human colonic subepithelial myofibroblasts express extracellular matrix proteins and cyclooxygenase-1 and –2. Am J Physiol. 1997; 273:G1341G1348. [PubMed: 9435560]
+68. Stokes MB, Hudkins KL, Zaharia V, et al. Up-regulation of extracellular matrix proteoglycans and collagen type I in human crescentic glomerulonephritis. Kidney Int. 2001; 59:532–542. [PubMed: 11168935]
+69. Whiting CV, Tarlton JF, Bailey M, et al. Abnormal mucosal extracellular matrix deposition is associated with increased TGF-beta receptor-expressing mesenchymal cells in a mouse model of colitis. J Histochem Cytochem. 2003; 51:1177–1189. [PubMed: 12923243]
+70. Crabb RA, Chau EP, Decoteau DM, et al. Microstructural characteristics of extracellular matrix produced by stromal fibroblasts. Ann Biomed Eng. 2006; 34:1615–1627. [PubMed: 17016762]
+71. Akhmetshina A, Dees C, Pileckyte M, et al. Rho-associated kinases are crucial for myofibroblast differentiation and production of extracellular matrix in scleroderma fibroblasts. Arthritis Rheum. 2008; 58:2553–2564. [PubMed: 18668558]
+72. Zwetsloot KA, Nedergaard A, Gilpin LT, et al. Differences in transcriptional patterns of extracellular matrix, inflammatory, and myogenic regulatory genes in myofibroblasts, fibroblasts, and muscle precursor cells isolated from old male rat skeletal muscle using a novel cell isolation procedure. Biogerontology. 2012; 13:383–398. [PubMed: 22534744]
+73. Volk SW, Wang Y, Mauldin EA, et al. Diminished type III collagen promotes myofibroblast differentiation and increases scar deposition in cutaneous wound healing. Cells Tissues Organs. 2011; 194:25–37. [PubMed: 21252470]
+74. Schürch W, Lagacé R, Seemayer TA. Myofibroblastic stromal reaction in retracted scirrhous carcinoma of the breast. Surg Gynecol Obstet. 1982; 154:351–358. [PubMed: 6278663]
+75. Lagace R, Grimaud JA, Schurch W, et al. Myofibroblastic stromal reaction in carcinoma of the breast: variations of collagenous matrix and structural glycoproteins. Virchows Arch A Pathol Anat Histopathol. 1985; 408:49–59. [PubMed: 3933171]
+76. Barsky SH, Rao CN, Grotendorst GR, et al. Increased content of type V collagen in desmoplasia of human breast carcinoma. Am J Pathol. 1982; 108:276–283. [PubMed: 6287844]
+77. Wilkes DS, Heidler KM, Yasufuku K, et al. Cell-mediated immunity to collagen V in lung transplant recipients: correlation with collagen V release into BAL fluid. J Heart Lung Transplant. 2001; 20:167. [PubMed: 11250258]
+78. Mares DC, Heidler KM, Smith GN, et al. Type V collagen modulates alloantigen-induced pathology and immunology in the lung. Am J Respir Cell Mol Biol. 2000; 23:62–70. [PubMed: 10873154]
+79. Betz P, Nerlich A, Wilske J, et al. Immunohistochemical localization of collagen types I and VI in human skin wounds. Int J Legal Med. 1993; 106:31–34. [PubMed: 8398888]
+80. Mollnau H, Munkel B, Schaper J. Collagen VI in the extracellular matrix of normal and failing human myocardium. Herz. 1995; 20:89–94. [PubMed: 7774870]
+81. Sabatelli P, Gualandi F, Gara SK, et al. Expression of collagen VI alpha5 and alpha6 chains in human muscle and in Duchenne muscular dystrophy-related muscle fibrosis. Matrix Biol. 2012; 31:187–196. [PubMed: 22226732]
+Klingberg et al. Page 13
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+82. Specks U, Nerlich A, Colby TV, et al. Increased expression of type VI collagen in lung fibrosis. Am J Respir Crit Care Med. 1995; 151:1956–1964. [PubMed: 7767545]
+83. Zeichen J, van Griensven M, Albers I, et al. Immunohistochemical localization of collagen VI in arthrofibrosis. Arch Orthop Trauma Surg. 1999; 119:315–318. [PubMed: 10447630]
+84. Streuli CH, Schmidhauser C, Kobrin M, et al. Extracellular matrix regulates expression of the TGF-beta 1 gene. J Cell Biol. 1993; 120:253–260. [PubMed: 8416992]
+85. White ES, Baralle FE, Muro AF. New insights into form and function of fibronectin splice variants. J Pathol. 2008; 216:1–14. [PubMed: 18680111] 86. Hynes, RO. Fibronectins. Springer-Verlag; New York: 1990.
+87. Muro AF, Iaconcig A, Baralle FE. Regulation of the fibronectin EDA exon alternative splicing. Cooperative role of the exonic enhancer element and the 5′ splicing site. FEBS Lett. 1998; 437:137–141. [PubMed: 9804187]
+88. Borsi L, Castellani P, Risso AM, et al. Transforming growth factor-beta regulates the splicing pattern of fibronectin messenger RNA precursor. FEBS Lett. 1990; 261:175–178. [PubMed: 2307231]
+89. Serini G, Bochaton-Piallat ML, Ropraz P, et al. The fibronectin domain ED-A is crucial for myofibroblastic phenotype induction by transforming growth factor-beta1. J Cell Biol. 1998; 142:873–881. [PubMed: 9700173]
+90. Kohan M, Muro AF, White ES, et al. EDA-containing cellular fibronectin induces fibroblast differentiation through binding to alpha4beta7 integrin receptor and MAPK/Erk 1/2-dependent signaling. FASEB J. 2010; 24:4503–4512. [PubMed: 20643910]
+91. Fontana L, Chen Y, Prijatelj P, et al. Fibronectin is required for integrin alphavbeta6-mediated activation of latent TGF-beta complexes containing LTBP-1. FASEB J. 2005; 19:1798–1808. [PubMed: 16260650]
+92. Wijelath ES, Rahman S, Namekata M, et al. Heparin-II domain of fibronectin is a vascular endothelial growth factor-binding domain: enhancement of VEGF biological activity by a singular growth factor/matrix protein synergism. Circ Res. 2006; 99:853–860. [PubMed: 17008606]
+93. Huang G, Zhang Y, Kim B, et al. Fibronectin binds and enhances the activity of bone morphogenetic protein 1. J Biol Chem. 2009; 284:25879–25888. [PubMed: 19617627]
+94. Rahman S, Patel Y, Murray J, et al. Novel hepatocyte growth factor (HGF) binding domains on fibronectin and vitronectin coordinate a distinct and amplified Met-integrin induced signalling pathway in endothelial cells. BMC Cell Biol. 2005; 6:8. [PubMed: 15717924]
+95. Bossard C, Van den Berghe L, Laurell H, et al. Antiangiogenic properties of fibstatin, an extracellular FGF-2-binding polypeptide. Cancer Res. 2004; 64:7507–7512. [PubMed: 15492277]
+96. Smith EM, Mitsi M, Nugent MA, et al. PDGF-A interactions with fibronectin reveal a critical role for heparan sulfate in directed cell migration during Xenopus gastrulation. Proc Natl Acad Sci U S A. 2009; 106:21683–21688. [PubMed: 19966216]
+97. Baldock C, Oberhauser AF, Ma L, et al. Shape of tropoelastin, the highly extensible protein that controls human tissue elasticity. Proc Natl Acad Sci U S A. 2011; 108:4322–4327. [PubMed: 21368178]
+98. Uitto J, Christiano AM, Kahari VM, et al. Molecular biology and pathology of human elastin. Biochem Soc Trans. 1991; 19:824–829. [PubMed: 1794566] 99. Swee MH, Parks WC, Pierce RA. Developmental regulation of elastin production. Expression of tropoelastin pre-mRNA persists after down-regulation of steady-state mRNA levels. J Biol Chem. 1995; 270:14899–14906. [PubMed: 7797468]
+100. Caves JM, Cui W, Wen J, et al. Elastin-like protein matrix reinforced with collagen microfibers for soft tissue repair. Biomaterials. 2011; 32:5371–5379. [PubMed: 21550111]
+101. Lamme EN, de Vries HJ, van Veen H, et al. Extracellular matrix characterization during healing of full-thickness wounds treated with a collagen/elastin dermal substitute shows improved skin regeneration in pigs. J Histochem Cytochem. 1996; 44:1311–1322. [PubMed: 8918906]
+102. Annabi N, Mithieux SM, Weiss AS, et al. Cross-linked open-pore elastic hydrogels based on tropoelastin, elastin and high pressure CO2. Biomaterials. 2010; 31:1655–1665. [PubMed:
+19969349]
+Klingberg et al. Page 14
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+103. Venkataraman L, Ramamurthi A. Induced elastic matrix deposition within three-dimensional collagen scaffolds. Tissue Eng Part A. 2011; 17:2879–2889. [PubMed: 21702719]
+104. Dong XR, Majesky MW. Restoring elastin with microRNA-29. Arterioscler Thromb Vasc Biol. 2012; 32:548–551. [PubMed: 22345590]
+105. Rosenbloom J, Bashir M, Yeh H, et al. Regulation of elastin gene expression. Ann N Y Acad Sci. 1991; 624:116–136. [PubMed: 2064215]
+106. Pierce RA, Moore CH, Arikan MC. Positive transcriptional regulatory element located within exon 1 of elastin gene. Am J Physiol Lung Cell Mol Physiol. 2006; 291:L391–L399. [PubMed: 16899711]
+107. Shifren A, Woods JC, Rosenbluth DB, et al. Upregulation of elastin expression in constrictive bronchiolitis obliterans. Int J Chron Obstruct Pulmon Dis. 2007; 2:593–598. [PubMed: 18268933]
+108. Wagenseil JE, Mecham RP. New insights into elastic fiber assembly. Birth Defects Res C Embryo Today. 2007; 81:229–240. [PubMed: 18228265]
+109. Ramirez F, Rifkin DB. Extracellular microfibrils: contextual platforms for TGFbeta and BMP signaling. Curr Opin Cell Biol. 2009; 21:616–622. [PubMed: 19525102]
+110. Ramirez F, Sakai LY. Biogenesis and function of fibrillin assemblies. Cell Tissue Res. 2010; 339:71–82. [PubMed: 19513754]
+111. Ramirez F, Dietz HC. Marfan syndrome: from molecular pathogenesis to clinical treatment. Curr Opin Genet Dev. 2007; 17:252–258. [PubMed: 17467262]
+112. Fleischmajer R, Jacobs L, Schwartz E, et al. Extracellular microfibrils are increased in localized and systemic scleroderma skin. Lab Invest. 1991; 64:791–798. [PubMed: 2046331]
+113. Godfrey, M. Congenital contractural arachnodactyly. In: Pagon, RA.; Bird, TD.; Dolan, CR., et al., editors. GeneReviewsTM [Internet]. University of Washington, Seattle; Seattle, WA: 1993.
+114. Avvedimento EV, Gabrielli A. Stiff and tight skin: a rear window into fibrosis without inflammation. Sci Transl Med. 2010; 2:23ps13.
+115. Barisic-Dujmovic T, Boban I, Adams DJ, et al. Marfan-like skeletal phenotype in the tight skin (Tsk) mouse. Calcif Tissue Int. 2007; 81:305–315. [PubMed: 17705049]
+116. Mangasser-Stephan K, Gartung C, Lahme B, et al. Expression of isoforms and splice variants of the latent transforming growth factor beta binding protein (LTBP) in cultured human liver myofibroblasts. Liver. 2001; 21:105–113. [PubMed: 11318979]
+117. Zilberberg L, Todorovic V, Dabovic B, et al. Specificity of latent TGF-ss binding protein (LTBP) incorporation into matrix: role of fibrillins and fibronectin. J Cell Physiol. 2012; 227:3828–3836. [PubMed: 22495824]
+118. Dallas SL, Sivakumar P, Jones CJ, et al. Fibronectin regulates latent transforming growth factorbeta (TGF beta) by controlling matrix assembly of latent TGF beta-binding protein-1. J Biol Chem. 2005; 280:18871–18880. [PubMed: 15677465]
+119. Annes JP, Munger JS, Rifkin DB. Making sense of latent TGFbeta activation. J Cell Sci. 2003; 116:217–224. [PubMed: 12482908]
+120. Desmoulière A, Geinoz A, Gabbiani F, et al. Transforming growth factor-beta 1 induces alphasmooth muscle actin expression in granulation tissue myofibroblasts and in quiescent and growing cultured fibroblasts. J Cell Biol. 1993; 122:103–111. [PubMed: 8314838] 121. Serini G, Gabbiani G. Modulation of alpha-smooth muscle actin expression in fibroblasts by transforming growth factor-beta isoforms: an in vivo and in vitro study. Wound Rep Reg. 1996; 4:278–287.
+122. Shah M, Foreman DM, Ferguson MW. Neutralisation of TGF-beta 1 and TGF-beta 2 or exogenous addition of TGF-beta 3 to cutaneous rat wounds reduces scarring. J Cell Sci. 1995; 108:985–1002. [PubMed: 7542672]
+123. Yoshinaga K, Obata H, Jurukovski V, et al. Perturbation of transforming growth factor (TGF)beta1 association with latent TGF-beta binding protein yields inflammation and tumors. Proc Natl Acad Sci U S A. 2008; 105:18758–18763. [PubMed: 19022904]
+124. Hynes RO. The extracellular matrix: not just pretty fibrils. Science. 2009; 326:1216–1219. [PubMed: 19965464]
+Klingberg et al. Page 15
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+125. Todorovic V, Rifkin DB. LTBPs, more than just an escort service. J Cell Biochem. 2012; 113:410–418. [PubMed: 22223425]
+126. Jenkins G. The role of proteases in transforming growth factor-beta activation. Int J Biochem Cell Biol. 2008; 40:1068–1078. [PubMed: 18243766]
+127. Wipff PJ, Hinz B. Integrins and the activation of latent transforming growth factor beta1 – an intimate relationship. Eur J Cell Biol. 2008; 87:601–615. [PubMed: 18342983]
+128. Bradshaw AD. The role of SPARC in extracellular matrix assembly. J Cell Commun Signal. 2009; 3:239–246. [PubMed: 19798598]
+129. Crawford SE, Stellmach V, Murphy-Ullrich JE, et al. Thrombospondin-1 is a major activator of TGF-beta1 in vivo. Cell. 1998; 93:1159–1170. [PubMed: 9657149] 130. Frangogiannis NG. Matricellular proteins in cardiac adaptation and disease. Physiol Rev. 2012; 92:635–688. [PubMed: 22535894]
+131. Grotendorst GR, Duncan MR. Individual domains of connective tissue growth factor regulate fibroblast proliferation and myofibroblast differentiation. FASEB J. 2005; 19:729–738. [PubMed: 15857887]
+132. Harris BS, Zhang Y, Card L, et al. SPARC regulates collagen interaction with cardiac fibroblast cell surfaces. Am J Physiol Heart Circ Physiol. 2011; 301:H841–H847. [PubMed: 21666116]
+133. Kos K, Wilding JP. SPARC: a key player in the pathologies associated with obesity and diabetes. Nature Rev Endocrinol. 2010; 6:225–235. [PubMed: 20195270]
+134. Lenga Y, Koh A, Perera AS, et al. Osteopontin expression is required for myofibroblast differentiation. Circ Res. 2008; 102:319–327. [PubMed: 18079410]
+135. McCurdy S, Baicu CF, Heymans S, et al. Cardiac extracellular matrix remodeling: fibrillar collagens and Secreted Protein Acidic and Rich in Cysteine (SPARC). J Mol Cell Cardiol. 2010; 48:544–549. [PubMed: 19577572]
+136. McCurdy SM, Dai Q, Zhang J, et al. SPARC mediates early extracellular matrix remodeling following myocardial infarction. Am J Physiol Heart Circ Physiol. 2011; 301:H497–H505. [PubMed: 21602472]
+137. Mori R, Shaw TJ, Martin P. Molecular mechanisms linking wound inflammation and fibrosis: knockdown of osteopontin leads to rapid repair and reduced scarring. J Exp Med. 2008; 205:4351. [PubMed: 18180311]
+138. Rentz TJ, Poobalarahi F, Bornstein P, et al. SPARC regulates processing of procollagen I and collagen fibrillogenesis in dermal fibroblasts. J Biol Chem. 2007; 282:22062–22071. [PubMed: 17522057]
+139. Singh M, Foster CR, Dalal S, et al. Osteopontin: role in extracellular matrix deposition and myocardial remodeling post-MI. J Mol Cell Cardiol. 2010; 48:538–543. [PubMed: 19573532]
+140. Sweetwyne MT, Murphy-Ullrich JE. Thrombospondin1 in tissue repair and fibrosis: TGF-βdependent and independent mechanisms. Matrix Biol. 2012; 31:178–186. [PubMed: 22266026]
+141. Borkham-Kamphorst E, van Roeyen CR, Van de Leur E, et al. CCN3/NOV small interfering RNA enhances fibrogenic gene expression in primary hepatic stellate cells and cirrhotic fat storing cell line CFSC. J Cell Commun Signal. 2012; 6:11–25. [PubMed: 21748432]
+142. Colston JT, de la Rosa SD, Koehler M, et al. Wnt-induced secreted protein-1 is a prohypertrophic and profibrotic growth factor. Am J Physiol Heart Circ Physiol. 2007; 293:H1839–H1846. [PubMed: 17616748]
+143. Heise RL, Stober V, Cheluvaraju C, et al. Mechanical stretch induces epithelial–mesenchymal transition in alveolar epithelia via hyaluronan activation of innate immunity. J Biol Chem. 2011; 286:17435–17444. [PubMed: 21398522]
+144. Brigstock DR, Goldschmeding R, Katsube KI, et al. Proposal for a unified CCN nomenclature. Mol Pathol. 2003; 56:127–128. [PubMed: 12665631]
+145. Jun JI, Lau LF. Taking aim at the extracellular matrix: CCN proteins as emerging therapeutic targets. Nature Rev Drug Discov. 2011; 10:945–963. [PubMed: 22129992]
+146. Chen XM, Qi W, Pollock CA. CTGF and chronic kidney fibrosis. Frontiers Biosci. 2009; 1:132141.
+Klingberg et al. Page 16
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+147. Gressner OA, Gressner AM. Connective tissue growth factor: a fibrogenic master switch in fibrotic liver diseases. Liver Int. 2008; 28:1065–1079. [PubMed: 18783549]
+148. Shi-Wen X, Leask A, Abraham D. Regulation and function of connective tissue growth factor/ CCN2 in tissue repair, scarring and fibrosis. Cytokine Growth Factor Rev. 2008; 19:133–144. [PubMed: 18358427]
+149. Fonseca C, Lindahl GE, Ponticos M, et al. A polymorphism in the CTGF promoter region associated with systemic sclerosis. N Engl J Med. 2007; 357:1210–1220. [PubMed: 17881752]
+150. Shi-wen X, Kennedy L, Renzoni EA, et al. Endothelin is a downstream mediator of profibrotic responses to transforming growth factor beta in human lung fibroblasts. Arthritis Rheum. 2007; 56:4189–4194. [PubMed: 18050250]
+151. Brigstock DR. Connective tissue growth factor (CCN2, CTGF) and organ fibrosis: lessons from transgenic animals. J Cell Commun Signal. 2010; 4:1–4. [PubMed: 19798591]
+152. Wang Q, Usinger W, Nichols B, et al. Cooperative interaction of CTGF and TGF-beta in animal models of fibrotic disease. Fibrogenesis Tissue Repair. 2011; 4:4. [PubMed: 21284856]
+153. Yates CC, Bodnar R, Wells A. Matrix control of scarring. Cell Mol Life Sci. 2011; 68:18711881. [PubMed: 21390544]
+154. Tamaoki M, Imanaka-Yoshida K, Yokoyama K, et al. Tenascin-C regulates recruitment of myofibroblasts during tissue repair after myocardial injury. Am J Pathol. 2005; 167:71–80. [PubMed: 15972953]
+155. Chiquet-Ehrismann R, Chiquet M. Tenascins: regulation and putative functions during pathological stress. J Pathol. 2003; 200:488–499. [PubMed: 12845616]
+156. Carey WA, Taylor GD, Dean WB, et al. Tenascin-C deficiency attenuates TGF-ss-mediated fibrosis following murine lung injury. Am J Physiol Lung Cell Mol Physiol. 2010; 299:L785L793. [PubMed: 20833777]
+157. El-Karef A, Yoshida T, Gabazza EC, et al. Deficiency of tenascin-C attenuates liver fibrosis in immune-mediated chronic hepatitis in mice. J Pathol. 2007; 211:86–94. [PubMed: 17121418]
+158. Mao JR, Taylor G, Dean WB, et al. Tenascin-X deficiency mimics Ehlers–Danlos syndrome in mice through alteration of collagen deposition. Nature Genet. 2002; 30:421–425. [PubMed: 11925569]
+159. Burch GH, Gong Y, Liu W, et al. Tenascin-X deficiency is associated with Ehlers–Danlos syndrome. Nature Genet. 1997; 17:104–108. [PubMed: 9288108]
+160. Egging D, van Vlijmen-Willems I, van Tongeren T, et al. Wound healing in tenascin-X deficient mice suggests that tenascin-X is involved in matrix maturation rather than matrix deposition. Connect Tissue Res. 2007; 48:93–98. [PubMed: 17453911]
+161. Chen Q, Sivakumar P, Barley C, et al. Potential role for heparan sulfate proteoglycans in regulation of transforming growth factor-beta (TGF-beta) by modulating assembly of latent TGFbeta-binding protein-1. J Biol Chem. 2007; 282:26418–26430. [PubMed: 17580303]
+162. Gressner OA, Weiskirchen R, Gressner AM. Biomarkers of hepatic fibrosis, fibrogenesis and genetic pre-disposition pending between fiction and reality. J Cell Mol Med. 2007; 11:10311051. [PubMed: 17979881]
+163. Webber J, Jenkins RH, Meran S, et al. Modulation of TGFbeta1-dependent myofibroblast differentiation by hyaluronan. Am J Pathol. 2009; 175:148–160. [PubMed: 19541937] 164. Simpson RM, Meran S, Thomas D, et al. Age-related changes in pericellular hyaluronan organization leads to impaired dermal fibroblast to myofibroblast differentiation. Am J Pathol. 2009; 175:1915–1928. [PubMed: 19808648]
+165. Ito T, Williams JD, Fraser D, et al. Hyaluronan attenuates transforming growth factor-beta1mediated signaling in renal proximal tubular epithelial cells. Am J Pathol. 2004; 164:1979–1988. [PubMed: 15161634]
+166. Twarock S, Tammi MI, Savani RC, et al. Hyaluronan stabilizes focal adhesions, filopodia, and the proliferative phenotype in esophageal squamous carcinoma cells. J Biol Chem. 2010; 285:23274–23282.
+167. Hinz B, Dugina V, Ballestrem C, et al. Alpha-smooth muscle actin is crucial for focal adhesion maturation in myofibroblasts. Mol Biol Cell. 2003; 14:2508–2519. [PubMed: 12808047]
+Klingberg et al. Page 17
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+168. Acharya PS, Majumdar S, Jacob M, et al. Fibroblast migration is mediated by CD44-dependent TGF beta activation. J Cell Sci. 2008; 121:1393–1402. [PubMed: 18397995]
+169. Li Y, Jiang D, Liang J, et al. Severe lung fibrosis requires an invasive fibroblast phenotype regulated by hyaluronan and CD44. J Exp Med. 2011; 208:1459–1471. [PubMed: 21708929]
+170. Frangogiannis NG. Syndecan-1: a critical mediator in cardiac fibrosis. Hypertension. 2010; 55:233–235. [PubMed: 20048190]
+171. Bartlett AH, Hayashida K, Park PW. Molecular and cellular mechanisms of syndecans in tissue injury and inflammation. Mol Cells. 2007; 24:153–166. [PubMed: 17978567]
+172. Kliment CR, Oury TD. Oxidative stress, extracellular matrix targets, and idiopathic pulmonary fibrosis. Free Radic Biol Med. 2010; 49:707–717. [PubMed: 20452419] 173. Kliment CR, Englert JM, Gochuico BR, et al. Oxidative stress alters syndecan-1 distribution in lungs with pulmonary fibrosis. J Biol Chem. 2009; 284:3537–3545. [PubMed: 19073610]
+174. Fitzgerald ML, Wang ZH, Park PW, et al. Shedding of syndecan-1 and-4 ectodomains is regulated by multiple signaling pathways and mediated by a TIMP-3-sensitive metalloproteinase. J Cell Biol. 2000; 148:811–824. [PubMed: 10684261]
+175. Stepp MA, Daley WP, Bernstein AM, et al. Syndecan-1 regulates cell migration and fibronectin fibril assembly. Exp Cell Res. 2010; 316:2322–2339. [PubMed: 20580707]
+176. Chen L, Klass C, Woods A. Syndecan-2 regulates transforming growth factor-beta signaling. J Biol Chem. 2004; 279:15715–15718. [PubMed: 14976204]
+177. Matsui Y, Ikesue M, Danzaki K, et al. Syndecan-4 prevents cardiac rupture and dysfunction after myocardial infarction. Circ Res. 2011; 108:1328–1339. [PubMed: 21493899]
+178. Jiang D, Liang J, Campanella GS, et al. Inhibition of pulmonary fibrosis in mice by CXCL10 requires glycosaminoglycan binding and syndecan-4. J Clin Invest. 2010; 120:2049–2057. [PubMed: 20484822]
+179. Kalamajski S, Oldberg A. The role of small leucine-rich proteoglycans in collagen fibrillogenesis. Matrix Biol. 2010; 29:248–253. [PubMed: 20080181]
+180. Hildebrand A, Romaris M, Rasmussen LM, et al. Interaction of the small interstitial proteoglycans biglycan, decorin and fibromodulin with transforming growth factor beta. Biochem J. 1994; 302:527–534. [PubMed: 8093006]
+181. Iozzo RV, Schaefer L. Proteoglycans in health and disease: novel regulatory signaling mechanisms evoked by the small leucine-rich proteoglycans. FEBS J. 2010; 277:3864–3875. [PubMed: 20840584]
+182. Honardoust D, Varkey M, Hori K, et al. Small leucine-rich proteoglycans, decorin and fibromodulin, are reduced in postburn hypertrophic scar. Wound Repair Regen. 2011; 19:368378. [PubMed: 21518082]
+183. Yamaguchi Y, Mann DM, Ruoslahti E. Negative regulation of transforming growth factor-beta by the proteoglycan decorin. Nature. 1990; 346:281–284. [PubMed: 2374594]
+184. Melchior-Becker A, Dai G, Ding Z, et al. Deficiency of biglycan causes cardiac fibroblasts to differentiate into a myofibroblast phenotype. J Biol Chem. 2011; 286:17365–17375. [PubMed: 21454527]
+185. Funderburgh JL, Caterson B, Conrad GW. Distribution of proteoglycans antigenically related to corneal keratan sulfate proteoglycan. J Biol Chem. 1987; 262:11634–11640. [PubMed: 2957372] 186. Liu F, Mih JD, Shea BS, et al. Feedback amplification of fibrosis through matrix stiffening and COX-2 suppression. J Cell Biol. 2010; 190:693–706. [PubMed: 20733059]
+187. Grenard P, Bates MK, Aeschlimann D. Evolution of transglutaminase genes: identification of a transglutaminase gene cluster on human chromosome 15q15., Structure of the gene encoding transglutaminase X and a novel gene family member, transglutaminase Z. J Biol Chem. 2001; 276:33066–33078. [PubMed: 11390390]
+188. Lorand L, Graham RM. Transglutaminases: crosslinking enzymes with pleiotropic functions. Nature Rev Mol Cell Biol. 2003; 4:140–156. [PubMed: 12563291]
+189. Aeschlimann D, Paulsson M. Transglutaminases: protein cross-linking enzymes in tissues and body fluids. Thromb Haemost. 1994; 71:402–415. [PubMed: 7914385]
+Klingberg et al. Page 18
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+190. Esposito C, Caputo I. Mammalian transglutaminasesIdentification of substrates as a key to physiological function and physiopathological relevance. FEBS J. 2005; 272:615–631. [PubMed: 15670145]
+191. Gundemir S, Colak G, Tucholski J, et al. Transglutaminase 2: a molecular Swiss army knife. Biochim Biophys Acta. 2012; 1823:406–419. [PubMed: 22015769]
+192. Nurminskaya MV, Belkin AM. Cellular functions of tissue transglutaminase. Int Rev Cell Mol Biol. 2012; 294:1–97. [PubMed: 22364871]
+193. Wang Z, Griffin M. TG2, a novel extracellular protein with multiple functions. Amino Acids. 2012; 42:939–949. [PubMed: 21818567]
+194. Huang L, Haylor JL, Hau Z, et al. Transglutaminase inhibition ameliorates experimental diabetic nephropathy. Kidney Int. 2009; 76:383–394. [PubMed: 19553913] 195. Kagan HM. Lysyl oxidase: mechanism, regulation and relationship to liver fibrosis. Pathol Res Pract. 1994; 190:910–919. [PubMed: 7899140]
+196. Smith-Mungo LI, Kagan HM. Lysyl oxidase: properties, regulation and multiple functions in biology. Matrix Biol. 1998; 16:387–398. [PubMed: 9524359]
+197. Kagan HM. Intra- and extracellular enzymes of collagen biosynthesis as biological and chemical targets in the control of fibrosis. Acta Trop. 2000; 77:147–152. [PubMed: 10996130]
+198. Lopez B, Gonzalez A, Hermida N, et al. Role of lysyl oxidase in myocardial fibrosis: from basic science to clinical aspects. Am J Physiol Heart Circ Physiol. 2010; 299:H1–H9. [PubMed: 20472764]
+199. Roy R, Polgar P, Wang Y, et al. Regulation of lysyl oxidase and cyclooxygenase expression in human lung fibroblasts: interactions among TGF-beta, IL-1 beta, and prostaglandin E. J Cell Biochem. 1996; 62:411–417. [PubMed: 8872612]
+200. Voloshenyuk TG, Landesman ES, Khoutorova E, et al. Induction of cardiac fibroblast lysyl oxidase by TGF-beta1 requires PI3K/Akt, Smad3, and MAPK signaling. Cytokine. 2011; 55:9097. [PubMed: 21498085]
+201. Goto Y, Uchio-Yamada K, Anan S, et al. Transforming growth factor-beta1 mediated upregulation of lysyl oxidase in the kidneys of hereditary nephrotic mouse with chronic renal fibrosis. Virchows Arch. 2005; 447:859–868. [PubMed: 16086153]
+202. Chanoki M, Ishii M, Kobayashi H, et al. Increased expression of lysyl oxidase in skin with scleroderma. Br J Dermatol. 1995; 133:710–715. [PubMed: 8555021]
+203. Di Donato A, Ghiggeri GM, Di Duca M, et al. Lysyl oxidase expression and collagen crosslinking during chronic adriamycin nephropathy. Nephron. 1997; 76:192–200. [PubMed: 9200411]
+204. Counts DF, Evans JN, Dipetrillo TA, et al. Collagen lysyl oxidase activity in the lung increases during bleomycin-induced lung fibrosis. J Pharmacol Exp Ther. 1981; 219:675–678. [PubMed: 6170751]
+205. Lopez B, Querejeta R, Gonzalez A, et al. Collagen cross-linking but not collagen amount associates with elevated filling pressures in hypertensive patients with stage C heart failure: potential role of lysyl oxidase. Hypertension. 2012; 60:677–683. [PubMed: 22824984]
+206. Noblesse E, Cenizo V, Bouez C, et al. Lysyl oxidase-like and lysyl oxidase are present in the dermis and epidermis of a skin equivalent and in human skin and are associated to elastic fibers. J Invest Dermatol. 2004; 122:621–630. [PubMed: 15086544]
+207. Barker HE, Chang J, Cox TR, et al. LOXL2-mediated matrix remodeling in metastasis and mammary gland involution. Cancer Res. 2011; 71:1561–1572. [PubMed: 21233336]
+208. Vadasz Z, Kessler O, Akiri G, et al. Abnormal deposition of collagen around hepatocytes in Wilson’s disease is associated with hepatocyte specific expression of lysyl oxidase and lysyl oxidase like protein-2. J Hepatol. 2005; 43:499–507. [PubMed: 16023247]
+209. Verzijl N, DeGroot J, Thorpe SR, et al. Effect of collagen turnover on the accumulation of advanced glycation end products. J Biol Chem. 2000; 275:39027–39031. [PubMed: 10976109]
+210. Sivan SS, Wachtel E, Tsitron E, et al. Collagen turnover in normal and degenerate human intervertebral discs as determined by the racemization of aspartic acid. J Biol Chem. 2008; 283:8796–8801. [PubMed: 18250164]
+Klingberg et al. Page 19
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+211. van Heerebeek L, Hamdani N, Handoko ML, et al. Diastolic stiffness of the failing diabetic heart: importance of fibrosis, advanced glycation end products, and myocyte resting tension. Circulation. 2008; 117:43–51. [PubMed: 18071071]
+212. Singh BK, Mascarenhas DD. Bioactive peptides control receptor for advanced glycated end product-induced elevation of kidney insulin receptor substrate 2 and reduce albuminuria in diabetic mice. Am J Nephrol. 2008; 28:890–899. [PubMed: 18566543]
+213. Tang M, Zhang W, Lin H, et al. High glucose promotes the production of collagen types I and III by cardiac fibroblasts through a pathway dependent on extracellular-signal-regulated kinase 1/2. Mol Cell Biochem. 2007; 301:109–114. [PubMed: 17206378]
+214. Tokudome T, Horio T, Yoshihara F, et al. Direct effects of high glucose and insulin on protein synthesis in cultured cardiac myocytes and DNA and collagen synthesis in cardiac fibroblasts. Metabolism. 2004; 53:710–715. [PubMed: 15164316]
+215. Martin P, Leibovich SJ. Inflammatory cells during wound repair: the good, the bad and the ugly. Trends Cell Biol. 2005; 15:599–607. [PubMed: 16202600]
+216. Chung AC, Zhang H, Kong YZ, et al. Advanced glycation end-products induce tubular CTGF via TGF-beta-independent Smad3 signaling. J Am Soc Nephrol. 2010; 21:249–260. [PubMed: 19959709]
+217. Schnider SL, Kohn RR. Glucosylation of human collagen in aging and diabetes mellitus. J Clin Invest. 1980; 66:1179–1181. [PubMed: 7430347]
+218. Booth AJ, Hadley R, Cornett AM, et al. Acellular normal and fibrotic human lung matrices as a culture system for in vitro investigation. Am J Resp Crit Care Med. 201210.1164/rccm. 201204-0754OC
+219. Kornblihtt AR, Pesce CG, Alonso CR, et al. The fibronectin gene as a model for splicing and transcription studies. FASEB J. 1996; 10:248–257. [PubMed: 8641558]
+220. Muro AF, Chauhan AK, Gajovic S, et al. Regulated splicing of the fibronectin EDA exon is essential for proper skin wound healing and normal lifespan. Journal Cell Biol. 2003; 162:149160. [PubMed: 12847088]
+221. Muro AF, Moretti FA, Moore BB, et al. An essential role for fibronectin extra type III domain A in pulmonary fibrosis. Am J Respir Crit Care Med. 2008; 177:638–645. [PubMed: 18096707]
+222. Rodriguez HM, Vaysberg M, Mikels A, et al. Modulation of lysyl oxidase-like 2 enzymatic activity by an allosteric antibody inhibitor. J Biol Chem. 2010; 285:20964–20974. [PubMed: 20439985]
+223. Barry-Hamilton V, Spangler R, Marshall D, et al. Allosteric inhibition of lysyl oxidase-like-2 impedes the development of a pathologic microenvironment. Nature Med. 2010; 16:1009–1017. [PubMed: 20818376]
+224. Cox TR, Erler JT. Remodeling and homeostasis of the extracellular matrix: implications for fibrotic diseases and cancer. Dis Model Mech. 2011; 4:165–178. [PubMed: 21324931]
+225. Lugassy J, Zaffryar-Eilot S, Soueid S, et al. The enzymatic activity of lysyl oxidas-like-2 (LOXL2) is not required for LOXL2-induced inhibition of keratinocyte differentiation. J Biol Chem. 2012; 287:3541–3549. [PubMed: 22157764]
+226. Gullberg D. Shift happens – a paradigm shift for the role of integrins in fibrosis. Matrix Biol. 2009; 28:383. [PubMed: 19880051] 227. Kim KK, Wei Y, Szekeres C, et al. Epithelial cell alpha3beta1 integrin links beta-catenin and Smad signaling to promote myofibroblast formation and pulmonary fibrosis. J Clin Invest. 2009; 119:213–224. [PubMed: 19104148]
+228. Carracedo S, Lu N, Popova SN, et al. The fibroblast integrin alpha11beta1 is induced in a mechanosensitive manner involving activin A and regulates myofibroblast differentiation. J Biol Chem. 2010; 285:10434–10445. [PubMed: 20129924]
+229. Talior-Volodarsky I, Connelly KA, Arora PD, et al. α11 integrin stimulates myofibroblast differentiation in diabetic cardiomyopathy. Cardiovasc Res. 201210.1093/cvr/cvs259
+230. Hinz B. Masters and servants of the force: the role of matrix adhesions in myofibroblast force perception and transmission. Eur J Cell Biol. 2006; 85:175–181. [PubMed: 16546559]
+Klingberg et al. Page 20
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+231. Chan MW, Chaudary F, Lee W, et al. Force-induced myofibroblast differentiation through collagen receptors is dependent on mammalian diaphanous (mDia). J Biol Chem. 2010; 285:9273–9281. [PubMed: 20071339]
+232. Horan GS, Wood S, Ona V, et al. Partial inhibition of integrin alpha(v)beta6 prevents pulmonary fibrosis without exacerbating inflammation. Am J Respir Crit Care Med. 2008; 177:56–65. [PubMed: 17916809]
+Klingberg et al. Page 21
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript
+
+
+Figure 1.
+The myofibroblast matrix. Schematic of some of the ECM molecules relevant to tissue fibrosis. The myofibroblast (centre, with red stress fibres containing α-smooth muscle actin) lies enmeshed in its ECM (green). Components of the ECM are depicted (clockwise, from the 12 o’clock position): elastins, fibrillins and LTBPs, proteoglycans, tenascins, matricellular proteins, collagens, and fibronectins. The myofibroblast encounters, signals, and modulates the expression of these various components as outlined in the text.
+Klingberg et al. Page 22
+J Pathol. Author manuscript; available in PMC 2014 April 30.
+NIH-PA Author Manuscript NIH-PA Author Manuscript NIH-PA Author Manuscript

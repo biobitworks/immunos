@@ -1,0 +1,27 @@
+{
+  "doi": null,
+  "title": "Methods for the visualization and analysis of extracellular matrix protein structure and degradation",
+  "authors": [
+    "Annemarie K. Leonard",
+    "Elizabeth A. Loughran",
+    "Yuliya Klymenko",
+    "Yueying Liu",
+    "Oleg Kim",
+    "Marwa Asem",
+    "Kevin McAbee",
+    "Matthew J. Ravosa",
+    "M. Sharon Stack"
+  ],
+  "journal": null,
+  "year": 2018,
+  "url": "https://linkinghub.elsevier.com/retrieve/pii/S0091679X17301267",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "This chapter highlights methods for visualization and analysis of extracellular matrix (ECM) proteins, with particular emphasis on collagen type I, the most abundant protein in mammals. Protocols described range from advanced imaging of complex in vivo matrices to simple biochemical analysis of individual ECM proteins. The first section of this chapter describes common methods to image ECM components and includes protocols for second harmonic generation, scanning electron microscopy, and several histological methods of ECM localization and degradation analysis, including immunohistochemistry, Trichrome staining, and in situ zymography. The second section of this chapter details both a common transwell invasion assay and a novel live imaging method to investigate cellular behavior with respect to collagen and other ECM proteins of interest. The final section consists of common electrophoresis-based biochemical methods that are used in analysis of ECM proteins. Use of the methods described herein will enable researchers to gain a greater understanding of the role of ECM structure and degradation in development and matrix-related diseases such as cancer and connective tissue disorders.",
+  "volume": "143",
+  "pages": "79-95",
+  "citation_key": "leonardMethodsVisualizationAnalysis2018",
+  "isbn": "978-0-12-812297-6"
+}

@@ -1,0 +1,979 @@
+“Systems Medicine is a masterpiece. Written in a conversational style, it invites us to think about health and disease in a profoundly simple new way. From the secrets of aging to the enigma of autoimmune diseases, Uri Alon uses physiological circuits and the principles that underlie them to illuminate how our bodies work, why specific diseases occur, and what strategies might be used to treat them. Whether you’re a curious mind, a biology enthusiast, or just someone excited to understand the magnificent orchestra of life, this book has something extraordinary to offer. To my mind, it’s nothing short of revolutionary.”
+—Steven Strogatz, Cornell University, USA, author of Nonlinear Dynamics and Chaos
+“Uri Alon has once again opened our eyes to a new frontier of quantitative thinking, this time applied to medicine. Systems Medicine is a masterpiece of clear interdisciplinary exposition, suitable for interested students and researchers with minimal mathematical or physiological background. Its inspiring narrative, accompanied by engaging exercises, explains how the recent application of dynamical systems methods to diabetes, stress, ageing, and autoimmune disorders resolves long-standing puzzles in medicine. This book is destined to be as influential as his earlier Systems Biology, along with potentially important impacts on human health.”
+—Nigel Goldenfeld, University of California San Diego, USA
+“This unique book will benefit an unusually broad range of students, scientists, and medical professionals. If you have a background in math, physics, or engineering, you will learn key concepts in physiology and medicine presented in the familiar language of dynamical systems. If your background is in biomedical sciences, you will learn how to build and employ powerful mathematical models to unveil hidden patterns behind disease vulnerabilities. Either way, Uri Alon will masterfully guide you to new insights into the underlying logic of physiological systems and their susceptibility to diseases.”
+—Ruslan Medzhitov, Yale University, USA
+
+
+“This book will be as influential and transformative as Alon’s Systems Biology. Its quantitative approach provides new insight into the mechanisms that underline common diseases. It should be of interest to students and researchers in medicine, biology, and engineering. It will introduce quantitative analysis to medical students, interesting medical problems to engineers, and catalyze a new synthesis of “systems medicine”. Alon is a pioneer and leading expert in systems biology. He is now pioneering a new field with this book.”
+—Liqun Luo, Stanford University, USA
+“This book is a paradigm-shifting journey elegantly guiding readers to perceive health and disease through a new lens. By weaving together multiple disciplines, from mathematics to biology and medicine, Alon paints a vivid picture of how our understanding of biological networks and their dynamics can revolutionize medical approaches. Using simple concepts coupled with real-world examples, the book offers a comprehensive exploration of physiological circuits and exemplifies the practical applications of Systems Medicine. With insightful clarity, Alon distills intricate scientific concepts into digestible insights, making this book accessible to both seasoned researchers and curious minds new to the field.”
+—Galit Lahav, Harvard University, USA
+
+
+Systems Medicine
+Why do we get certain diseases, whereas other diseases do not exist?
+In this book, Alon, one of the founders of systems biology, builds a foundation for systems medicine.
+Starting from basic laws, the book derives why physiological circuits are built the way they are. The circuits have fragilities that explain specific diseases and offer new strategies to treat them.
+By the end, the reader will be able to use simple and powerful mathematical models to describe physiological circuits. The book explores, in three parts, hormone circuits, immune circuits, and aging and age-related disease. It culminates in a periodic table of diseases.
+Alon writes in a style accessible to a broad range of readers undergraduates, graduates, or researchers from computational or biological backgrounds. The level of math is friendly and the math can even be bypassed altogether. For instructors and readers who want to go deeper, the book includes dozens of exercises that have been rigorously tested in the classroom.
+ABOUT THE AUTHOR
+Uri Alon is the Abisch-Frenkel Professor of Systems Biology at the Weizmann Institute of Science, Israel. https://www.weizmann.ac.il/mcb/UriAlon/homepage
+
+
+Chapman & Hall/CRC
+Computational Biology Series About
+the Series
+This series aims to capture new developments in computational biology, as well as high-quality work summarizing or contributing to more established topics. Publishing a broad range of reference works, textbooks, and handbooks, the series is designed to appeal to students, researchers, and professionals in all areas of computational biology, including genomics, proteomics, and cancer computational biology, as well as interdisciplinary researchers involved in associated fields, such as bioinformatics and systems biology.
+Computational Genomics with R
+Altuna Akalin, Bora Uyar, Vedran Franke, and Jonathan Ronen An
+Introduction to Computational Systems Biology: Systems-level Modelling of Cellular Networks Karthik Raman
+Virus Bioinformatics
+Dmitrij Frishman and Manuela Marz Multivariate Data Integration
+Using R: Methods and Applications with the mixOmics Package Kim-Anh LeCao and Zoe Marie Welham Bioinformatics
+A Practical Guide to NCBI Databases and Sequence Alignments Hamid D. Ismail
+Data Integration, Manipulation and Visualization of Phylogenetic Trees Guangchuang Yu
+Bioinformatics Methods From Omics to Next Generation Sequencing Shili Lin, Denise Scholtens, and Sujay Datta Systems Medicine Physiological Circuits and the Dynamics of Disease Uri Alon
+
+
+For more information about this series please visit: https://www.routledge.com/Chapman—HallCRC-Computational-BiologySeries/book-series/CRCCBS
+
+
+Systems Medicine
+Physiological Circuits and the
+Dynamics of Disease
+Uri Alon
+Weizmann Institute of Science, Israel
+
+
+Designed cover image: Nigel Orme First edition published 2024
+
+
+by CRC Press 2385 NW Executive Center Drive, Suite 320, Boca Raton, FL 33431
+
+
+and by CRC Press 4 Park Square, Milton Park, Abingdon, Oxon, OX14 4RN
+CRC Press is an imprint of Taylor & Francis Group, LLC
+© 2024 Uri Alon
+Reasonable efforts have been made to publish reliable data and information, but the author and publisher cannot assume responsibility for the validity of all materials or the consequences of their use. The authors and publishers have attempted to trace the copyright holders of all material reproduced in this publication and apologize to copyright holders if permission to publish in this form has not been obtained. If any copyright material has not been acknowledged please write and let us know so we may rectify in any future reprint.
+Except as permitted under U.S. Copyright Law, no part of this book may be reprinted, reproduced, transmitted, or utilized in any form by any electronic, mechanical, or other means, now known or hereafter invented, including photocopying, microfilming, and recording, or in any information storage or retrieval system, without written permission from the publishers.
+For permission to photocopy or use material electronically from this work, access www.copyright.com or contact the Copyright Clearance Center, Inc. (CCC), 222 Rosewood Drive, Danvers, MA 01923, 978-750-8400. For works that are not available on CCC please contact mpkbookspermissions@tandf.co.uk
+Trademark notice: Product or corporate names may be trademarks or registered trademarks and are used only for identification and explanation without intent to infringe.
+Library of Congress Cataloging‐in‐Publication Data Names: Alon, Uri, 1969- author. Title: Systems medicine : physiological circuits and the dynamics of disease / Uri Alon. Description: Boca Raton : CRC Press, 2024. | Includes bibliographical references and index. | Contents: The insulin-glucose circuit – Dynamical compensation, mutant resistance, and type-2 diabetes – The stress hormone axis as a two-gland oscillator – Autoimmune diseases as a fragility of mutant surveillance – Inflammation and fibrosis as a bistable system – Basic facts of aging – Aging and saturated repair – Age-related diseases – Periodic table of diseases – Epilogue: Simplicity in systems medicine. Identifiers: LCCN 2023014141 (print) | LCCN 2023014142 (ebook) | ISBN 9781032412283 (hardback) | ISBN 9781032411859 (paperback) | ISBN 9781003356929 (ebook) Subjects: LCSH: Biological systems–Mathematical models. | Human physiology–Mathematical models. | Systems biology. Classification: LCC QH324.2 .A467 2024 (print) | LCC QH324.2 (ebook) | DDC 570.285dc23/eng/20230630 LC record available at https://lccn.loc.gov/2023014141 LC ebook record available at https://lccn.loc.gov/2023014142
+ISBN: 978-1-032-41228-3 (hbk) ISBN: 978-1-032-41185-9 (pbk) ISBN: 978-1-003-35692-9 (ebk)
+DOI: 10.1201/9781003356929
+
+
+Typeset in Minion
+
+
+by codeMantra
+
+
+Contents
+INTRODUCTION
+ABOUT MATH AND BIOLOGICAL TERMS
+OUR FIRST FEEDBACK LOOP
+BACKGROUND READING
+PART I Hormone Circuits
+CHAPTER 1 ◾ The Insulin-Glucose Circuit
+GLUCOSE CONCENTRATION AND DYNAMICS IS TIGHTLY CONTROLLED
+GLUCOSE CONCENTRATION IS CONTROLLED BY INSULIN
+DIABETES IS A MALFUNCTION IN THIS SYSTEM
+MATHEMATICAL MODEL FOR THE GLUCOSE-INSULIN CIRCUIT
+A GRAPHICAL TOOL TO UNDERSTAND THE CIRCUIT, THE PHASE PORTRAIT
+INSULIN SENSITIVITY VARIES WIDELY BETWEEN PEOPLE
+THE MINIMAL MODEL FAILS TO EXPLAIN HOW PEOPLE WITH INSULIN RESISTANCE MAINTAIN NORMAL GLUCOSE LEVELS
+SUMMARY AND OUTLOOK
+EXERCISES
+NOTE
+REFERENCES
+
+
+CHAPTER 2 ◾ Dynamical Compensation, Mutant Resistance, and
+Type-2 Diabetes
+THE MINIMAL MODEL CANNOT EXPLAIN THE ROBUSTNESS OF GLUCOSE LEVELS TO VARIATIONS IN INSULIN SENSITIVITY
+A SLOW FEEDBACK LOOP ON BETA CELL MASS PROVIDES COMPENSATION
+Law 1: All Cells Come from Cells
+ORGAN SIZE CONTROL IN BETA CELLS IS PROVIDED BY FEEDBACK FROM GLUCOSE
+THE CELL MASS FEEDBACK CIRCUIT MAINTAINS HOMEOSTASIS DESPITE PARAMETER VARIATIONS
+THE SAME CIRCUIT APPEARS IN MANY HORMONE SYSTEMS – A CIRCUIT MOTIF
+THE CIRCUIT ALSO MAKES THE DYNAMICS ROBUST
+PREDIABETES IS DUE TO AN UPPER LIMIT TO BETA-CELL COMPENSATION
+Law 2: Biological Processes Saturate
+TYPE-2 DIABETES IS LINKED WITH INSTABILITY DUE TO A USHAPED REMOVAL CURVE
+THE CIRCUIT IS FRAGILE TO INVASION BY MUTANTS THAT MISREAD THE SIGNAL
+Law 3: Cells Mutate
+BIPHASIC (U-SHAPED) RESPONSE CURVES CAN PROTECT AGAINST MUTANT TAKEOVER
+SUMMARY
+EXERCISES
+NOTE
+FURTHER READING
+REFERENCES
+CHAPTER 2.5 ◾ Three Laws of Physiology
+
+
+CHAPTER 3 ◾ The Stress Hormone Axis as a Two-Gland Oscillator
+INTRODUCTION
+THE HPA AXIS RESPONDS TO PHYSICAL AND PSYCHOLOGICAL STRESS
+THE CLASSIC MODEL FOR THE HPA AXIS EXPLAINS RESPONSES ON THE TIMESCALE OF HOURS, BUT NOT ON THE TIMESCALE OF MONTHS
+THE HPA AXIS SHOWS A FEEDBACK LOOP IN WHICH TWO GLANDS CONTROL EACH OTHER’S SIZE
+THE PITUITARY AND ADRENAL GLANDS FORM A NEGATIVE FEEDBACK LOOP THAT CAN OSCILLATE WITH A SEASONAL TIMESCALE
+DAMPED OSCILLATIONS IN STEROID WITHDRAWAL OVER MONTHS
+RECOVERY FROM PROLONGED STRESS TAKES WEEKS AND SHOWS AN ENDORPHIN UNDERSHOOT
+SEASONALITY IN HORMONES
+LARGE-SCALE MEDICAL RECORDS SHOW HORMONE SEASONALITY WITH ANTIPHASE AND SPRING SHIFT
+BIPOLAR DISORDER HAS A TIMESCALE OF WEEKS-MONTHS, AND THIS TIMESCALE CAN BE GENERATED BY GLAND SIZE FLUCTUATIONS
+BIPOLAR DISORDER IS A STRESS-RELATED DISEASE
+THE HPA CIRCUIT SUGGESTS DRUG TARGETS TO LOWER CORTISOL
+SUMMARY
+EXERCISES
+NOTES
+REFERENCES
+CHAPTER 3.5 ◾ The Thyroid and Its Discontents
+
+
+THE HPT AXIS IS DESIGNED TO KEEP A STEADY LEVEL OF THYROID HORMONE T4
+STRUCTURE-FUNCTION RELATION IN THE HPT CIRCUIT
+HOW IS THYROID HORMONE PRODUCED?
+HYPERTHYROIDISM AND HYPOTHYROIDISM
+HASHIMOTO’S DISEASE, A CASE OF SELF-ATTACK
+TSH SHOWS A DELAY AFTER HASHIMOTO’S DISEASE IS TREATED
+SUBCLINICAL HASHIMOTO’S IS DUE TO DYNAMICAL COMPENSATION
+HYPERTHYROIDISM DUE TO TOXIC NODULES: A CASE OF A HYPER-SENSING MUTANT
+WHY ARE THERE AUTOIMMUNE DISEASES OF HORMONE GLANDS?
+EXERCISES
+FURTHER READING
+PART II Immune Circuits
+CHAPTER 4 ◾ Autoimmune Diseases as a Fragility of Mutant
+Surveillance
+INTRODUCTION
+TYPE-1 DIABETES IS A DISEASE IN WHICH THE IMMUNE SYSTEM KILLS BETA CELLS
+MANY ENDOCRINE ORGANS HAVE ORGAN-SPECIFIC AUTOIMMUNE DISEASE
+EXECUTIVE SUMMARY OF T-CELL BIOLOGY
+AUTOIMMUNE T CELLS ARE THOUGHT TO BE ERRORS
+WE EXPLORE THE IDEA THAT T CELLS CAN HELP TO REMOVE HYPER-SECRETING MUTANTS
+T CELLS CAN TELL THE DIFFERENCE IN ANTIGEN BETWEEN NEIGHBORING CELLS
+
+
+AUTOIMMUNE SURVEILLANCE CAN ELIMINATE ANY MUTANT, AND CAN DO SO WITH A LOW KILLING RATE
+SURVEILLANCE CAN DESCEND TO AUTOIMMUNE DISEASE IN SEVERAL WAYS
+ENDOCRINE TISSUES THAT RARELY GET AUTOIMMUNE DISEASE ARE PRONE TO DISEASES OF MUTANT EXPANSION
+EXERCISES
+NOTE
+REFERENCES
+CHAPTER 5 ◾ Inflammation and Fibrosis as a Bistable System
+INTRODUCTION
+INJURY LEADS TO INFLAMMATION, WHICH GOES TO EITHER HEALING OR FIBROSIS
+INFLAMMATION INCLUDES A MASSIVE INFLUX OF IMMUNE CELLS AND ACTIVATION OF MYOFIBROBLASTS
+MATHEMATICAL MODEL FOR MYOFIBROBLASTS SHOWS BISTABILITY
+THE MACROPHAGE-MYOFIBROBLAST CIRCUIT PROVIDES TWO FIBROSIS STATES AND A HEALING STATE
+INJURY AND INFLAMMATION CAN BE MODELED BY A TRANSIENT INFLUX OF MACROPHAGES
+THE TIME WINDOW FOR STOPPING INFLAMMATION IS DUE TO BISTABILITY
+THE LONG TIMESCALE FOR SCAR MATURATION AND HEALING IS DUE TO THE SLOWDOWN NEAR AN UNSTABLE FIXED POINT
+STRATEGIES FOR PREVENTING AND REVERSING FIBROSIS
+EXERCISES
+NOTE
+REFERENCES
+PART III Aging and Age-Related Diseases
+
+
+CHAPTER 6 ◾ Basic Facts of Aging
+AGING IS DEFINED BY RISK OF DEATH AND DISEASES THAT RISES WITH AGE
+AGING HAS NEARLY UNIVERSAL FEATURES
+GENETICALLY IDENTICAL ORGANISMS DIE AT DIFFERENT TIMES
+LIFESPAN CAN BE EXTENDED IN MODEL ORGANISMS
+LIFESPAN IS TUNED IN EVOLUTION ACCORDING TO DIFFERENT LIFE STRATEGIES
+MOLECULAR THEORIES OF AGING FOCUS ON CELLULAR DAMAGE
+DNA ALTERATIONS IN STEM CELLS CAN ACCUMULATE FOR DECADES
+DAMAGED AND SENESCENT CELLS BRIDGE BETWEEN MOLECULAR DAMAGE AND TISSUE-LEVEL DAMAGE
+REMOVING SENESCENT CELLS IN MICE SLOWS AGERELATED DISEASES AND INCREASES AVERAGE LIFESPAN
+EXERCISES
+REFERENCES
+CHAPTER 7 ◾ Aging and Saturated Repair
+A THEORY FOR AGING BASED ON SATURATING REMOVAL OF DAMAGE
+SENESCENT-CELL DYNAMICS IN MICE CAN TEST THE MODEL
+THE SATURATING REMOVAL MODEL CAN EXPLAIN SENESCENT CELL DYNAMICS
+ADDING NOISE TO THE MODEL EXPLAINS THE VARIATION BETWEEN INDIVIDUALS IN SENESCENT-CELL LEVELS
+THE SATURATING REMOVAL MODEL CAPTURES THE VARIATION BETWEEN INDIVIDUALS
+
+
+GOMPERTZ MORTALITY WITH SLOWDOWN IS FOUND IN THE MODEL
+THE HUMAN GOMPERTZ LAW IS CAPTURED AS WELL
+THE SATURATING REMOVAL MODEL EXPLAINS AGING PATTERNS ALSO IN ORGANISMS THAT LACK SENESCENT CELLS
+RAPID SHIFTS BETWEEN HAZARD CURVES
+SCALING OF SURVIVAL CURVES
+APPROACHES TO SLOW DOWN AGING AND AGING-RELATED DISEASES
+EXERCISES
+NOTES
+FURTHER READING
+REFERENCES
+CHAPTER 8 ◾ Age-Related Diseases
+DISEASES CAUSED BY THRESHOLD CROSSING OF SENESCENT CELLS HAVE AN EXPONENTIAL INCIDENCE CURVE
+DECLINE OF INCIDENCE AT VERY OLD AGES IS DUE TO POPULATION HETEROGENEITY
+THE MODEL DESCRIBES WELL THE INCIDENCE CURVES OF AGE-RELATED DISEASES
+CANCER INCIDENCE CURVES CAN BE EXPLAINED BY THRESHOLD CROSSING OF TUMOR GROWTH AND REMOVAL RATES
+MANY INFECTIOUS DISEASES HAVE AGE-RELATED MORTALITY
+A THEORY FOR IPF, A DISEASE OF UNKNOWN ORIGIN
+STEM CELLS MUST SELF-RENEW AND SUPPLY DIFFERENTIATED CELLS
+INCIDENCE OF IDIOPATHIC PULMONARY FIBROSIS CAN BE EXPLAINED BY STEM-CELL REMOVAL EXCEEDING
+
+
+PROLIFERATION
+SUSCEPTIBILITY TO IPF INVOLVES GENETIC AND ENVIRONMENTAL FACTORS THAT INCREASE STEM-CELL DEATH
+IPF IS MATHEMATICALLY ANALOGOUS TO ANOTHER AGERELATED DISEASE, OSTEOARTHRITIS
+REMOVING SENESCENT CELLS CAN REJUVENATE THE INCIDENCE OF AGE-RELATED DISEASES BY DECADES
+EXERCISES
+FURTHER READING
+REFERENCES
+CHAPTER 9 ◾ Periodic Table of Diseases
+PERIODIC TABLE OF DISEASES
+CELL TYPES CAN BE CLASSIFIED BY ABUNDANCE AND TURNOVER
+THE TABLE SHOWS BROAD PATTERNS OF DISEASES
+CANCER RISK RISES ALONG THE DIAGONAL OF THE TABLE
+SECRETORY CELLS SHOW THREE ZONES: TOXIC ADENOMAS, AUTOIMMUNE DISEASES, AND CANCER
+THE THREE-ZONE PATTERN CAN BE EXPLAINED BY CIRCUIT MOTIFS
+THE PERIODIC TABLE EXPLAINS AUTOIMMUNE DISEASES OF NON-ENDOCRINE CELLS
+PERMANENT TISSUES HAVE DEGENERATIVE DISEASES OF FAILED MAINTENANCE
+BARRIER TISSUES EXHIBIT IMMUNE HYPERSENSITIVITY DISEASES
+INFECTIOUS DISEASES OCCUR MAINLY IN BARRIER TISSUES
+FRONT-LINE TISSUES GET PROGRESSIVE FIBROTIC DISEASES OF OLD AGE
+CIRCUIT MOTIFS UNDERLIE THE DISEASE PATTERNS IN THE TABLE
+
+
+AGE OF ONSET AND LIFETIME RISK SHOW PATTERNS IN THE TABLE
+PREDICTED DISEASES IN THE TABLE
+EXERCISES
+REFERENCES
+EPILOGUE: SIMPLICITY IN SYSTEMS MEDICINE
+ACKNOWLEDGMENTS
+INDEX
+
+
+Introduction
+DOI: 10.1201/9781003356929-1
+H
+I, I’M URI ALON, A PROFESSOR from the Weizmann Institute in Israel. In
+my PhD in physics I looked for patterns in turbulent mixing; what I loved about physics were the moments of seeing, in complex systems, suddenly an angle where things looked simple. Toward the end of my PhD, I looked for subjects where the physics way of thinking might help to find new laws of nature. I didn’t know much about biology – the only thing I knew about proteins was what I read on the back of a cereal box. Then a friend gave me a textbook on cell biology. Here was matter that was alive! I fell in love with biology and resolved to see if there are laws to be found. I wasn’t alone. Luckily, Stanislas Leibler took me on as a postdoc, where I met other physicists who shared the vision of biological principles, Naama Barkai and Michael Elowitz. I was encouraged by biologists like Arnold Levine, Yosef Yarden, and Benny Geiger. Before long, I had my own group back in Israel. In the first decade, we focused on understanding the cell, with its networks of interacting proteins. At the time, around 2000, there was massive information on which protein interacts with whom, but it was hard to make sense of this information: the networks of interactions looked hopelessly complex. We discovered that these networks are simpler than they appear. They are made of a handful of recurring basic circuits which we named network motifs. These motifs show up again and again in
+
+
+different systems and in all organisms, and each has its own computational function. The basic circuits inside the cell are described in my book An Introduction to Systems Biology.
+Then, 10 years ago, I saw a poster in the elevator in my building that changed everything. The poster announced a talk by Yuval Dor, saying that glucose makes the cells that control it, called beta cells, both grow and die. This is a paradox – why does glucose do two opposite things to the same cells? It reminded me of a paradox I had studied in bacteria, where enzymes do a reaction and also its reverse. I felt I could do something in an exciting field – human hormone circuits. This was an opening to a new phase in my research career. I fell in love again with human medicine and physiology, and how physics-style thinking can help make sense of our bodies in health and illness. I’m excited to start this book with you, on systems medicine. My wish is that some of you will feel the same way – that you can do something in this field – and join us. Our topic is physiological circuits that describe how cells and organs communicate with each other. Rather than circuits inside a cell, we will discuss circuits of communication between cells. This level of description is relevant to some of the most common and deadly diseases that plague humanity. It’s good to think about the goal of the book. The goal is to start from basic principles or laws and derive why physiology is built the way it is, why specific diseases happen, and which new strategies might treat them.
+By the end, you will be able to use simple and powerful mathematical models to describe physiological circuits. The models are powerful because they turn details into useful understanding and new ways to think about medicine. We will understand the fundamental causes of some of the most mysterious diseases: diabetes, autoimmune diseases, and age-related diseases such as lung fibrosis and cancer. Our trajectory begins with basic principles. From these, we will derive the circuits and their fragility to disease. We will explore, in three parts, hormone circuits, immune circuits, and aging and age-related disease. Our story culminates in a periodic table of diseases.
+
+
+ABOUT MATH AND BIOLOGICAL TERMS
+I write this book with a heterogeneous readership in mind. Your background might be biology, engineering, physics, math, computer science, medicine, or other subjects, as an undergraduate, graduate, or researcher. For some of you the following equation is familiar, whereas others need brushing up:
+dx
+dt = −αx
+We will use this equation to describe the removal of cells, whose number is x. The rate of removal is α; you can think about this as the probability per unit time that a cell dies. Since cells are only removed in this equation, and not added, their number declines. In fact, x(t) declines exponentially with time, t, starting from their initial number x(0), as given by the solution
+x (t) = x (0)e−αt
+You can check this solution by taking the derivative dx
+dt , and since a
+derivative of an exponential e-αt is -αe-αt, you get our equation back,
+dx
+dt = −αx.
+That’s the level of the math in the book, ordinary differential equations that describe changes over time. You can skip the equations and still enjoy the book or go into them and learn ways of thinking about modeling. Similarly, for some readers, biological terms like beta cells and hormones are familiar; for others, they are new. I’ll assume no prior knowledge and use minimal jargon – biologists and physicians will see much fewer gene names than they are used to. I’ll explain terms when needed. A hormone is a molecule secreted by a set of cells into the blood, where it reaches and affects cells in distant parts of the body; beta cells are the cells that secrete the hormone insulin. I’d also like to say what this book is not. It is not a book on medical bioinformatics, the gathering and statistical interpretation of biomedical data. This field, sometimes also called systems medicine, is described in books listed at the end of this chapter. We will not discuss applications of machine learning or artificial intelligence to medicine. We will, however,
+
+
+use large medical datasets in this book to test our mechanistic models. This book is also not exhaustive, and I provide further reading below. The purpose of the book is to provide a way of thinking, and the examples are chosen to clearly demonstrate principles.
+OUR FIRST FEEDBACK LOOP
+This book is also written to be fun. So let’s jump right in! Here is our first feedback loop (Figure 0.1). A person can be in a relaxed state of mind. The relaxed state is good for learning and memory. In the relaxed state, our body behaves in specific ways. For example, we take slow deep breaths.
+FIGURE 0.1 The relaxed state is better for listening, learning, and remembering.
+The wonderful thing is that we can decide to take a deep breath, and this increases the chances that we enter the relaxed state. Because the relaxed state is good for learning, we will practice taking nice deep sighs of relief in this book from time to time. Let’s practice now: you don’t have to, but if you do, I promise you will enjoy it. Let’s all together take a nice deep sigh of relief. The next chapter gives a taste of our approach and teaches basic concepts within a fascinating bit of physiology. So let’s take a nice deep
+
+
+sigh of relief – here we go!
+BACKGROUND READING
+This book combines several disciplines – Systems Biology, Evolutionary Medicine, Mathematical Physiology and Dynamical Systems. These disciplines are exemplified by the following books which are recommended reading if you want to go deeper.
+Stearns, Stephen C., and Ruslan Medzhitov. 2015. Evolutionary Medicine. 1st edition. Sunderland, Massachussetts: Sinauer Associates is an imprint of Oxford University Press.
+Strogatz, Steven H. 2015. Nonlinear Dynamics and Chaos: With Applications to Physics, Biology, Chemistry, and Engineering, Second Edition. Boulder, CO.
+Keener, James, and James Sneyd, eds. Mathematical physiology: II: Systems physiology. New York, NY: Springer New York, 2009.
+Alon, Uri. An introduction to systems biology: design principles of biological circuits. CRC press, 2019.
+A different approach to systems medicine focuses on statistical analysis of large datasets. It is described in the following books.
+Wolkenhauer, Olaf. Systems Medicine: Integrative, Qualitative and Computational Approaches. Academic Press, 2020.
+Schmitz, Ulf, and Olaf Wolkenhauer, eds. Systems Medicine. Springer, 2016.
+Loscalzo, Joseph, ed. Network Medicine. Harvard University Press, 2017.
+Yan, Qing. Translational Bioinformatics and Systems Biology Methods for Personalized Medicine. Academic Press, 2017.
+Bai, J.P.F. and J. Hur (Editors). Systems Medicine, 2022.
+
+
+I
+Hormone Circuits
+
+
+CHAPTER 1
+The Insulin-Glucose Circuit
+DOI: 10.1201/9781003356929-3
+I
+N THIS CHAPTER AND the next, we focus on the glucose-insulin circuit. It is the
+hydrogen atom of hormone circuits – it provides principles that apply to many other systems. The circuit is also important medically. Its failure is the basis for diabetes, a disease afflicting about 10% of the world’s population (of which 90% is type-2 and 10% type-1 diabetes, stay tuned).
+GLUCOSE CONCENTRATION AND DYNAMICS IS
+TIGHTLY CONTROLLED
+The main variable in this system is the concentration of the sugar glucose in the blood. Glucose is an energy and carbon source for the cells in our body. It is the major fuel for the brain and for immune cells. Glucose concentration in the blood is maintained within a tight range around 5 mM. That reads ‘5 millimolar’, or, in other common units, 90 mg per deciliter. Glucose steady-state concentrations vary by only about 20% between healthy individuals. Such rigorous control is called homeostasis in biology – the ability of the body to keep important variables within a tight range. If glucose drops below 3 mM, the brain does not have enough energy and we can faint. Prolonged low glucose, called hypoglycemia, can be fatal. The body switches to alternative energy sources such as ketone bodies which can cause blood acidity, which is potentially lethal.
+
+
+Similarly, if glucose is too high, above 7 mM, it starts sticking to blood vessels and damaging them. Over years, this leads to the deadly symptoms of type-2 diabetes. The damaged blood vessels cause heart attacks, kidney disease, and, in the retina, blindness. Damaged blood vessels can also lead to amputation of legs and other grim outcomes. Let’s take a nice deep sigh of relief. The control is so rigorous that clinical criteria for diabetes are based on glucose blood tests. Blood glucose below 5.6 mM (100 mg/dL) after fasting for 8 hours or more is normal. Glucose between 5.6 and 6.9 mM is prediabetes, and above 6.9 mM (125 mg/dL) on two separate tests means diabetes. In addition to the stringent control of the steady-state level of glucose, the entire glucose dynamics after a meal is tightly regulated. These dynamics are measured in a clinical test for diabetes called the glucose tolerance test (GTT). In GTT, you drink 75 g of glucose and measure blood glucose in the following 2 hours. Glucose rises to about twice its basal level of 5 mM, and then falls back to baseline in about 2 hours (Figure 1.1). Different healthy people have similar glucose dynamics in the GTT. Aberrant dynamics are a sign of diabetes: glucose above 11 mM at 2 hours is a clinical criterion for diabetes (Figure 1.2).
+FIGURE 1.1 Blood glucose rises and falls over 2 hours after a glucose tolerance test.
+
+
+FIGURE 1.2 High glucose levels and slow recovery are clinical signs of diabetes in the glucose tolerance test.
+We can now ask how such rigorous control is achieved despite vast differences between people. Individuals can vary in weight by a large factor, undergo the changes of pregnancy, vary in activity and diet, and so on. Yet most people most of the time have glucose set-points and dynamics that are nearly the same.
+GLUCOSE CONCENTRATION IS CONTROLLED BY
+INSULIN
+How is the control of blood glucose concentration achieved? The answer is a feedback circuit involving the hormone insulin, a small protein that circulates in the blood. Insulin acts to remove glucose from the blood, by allowing it to enter cells in the muscle, liver, and fat where glucose is used or stored. Glucose is unable to enter these cells without special glucose transporters on the cell surface. The transporters are stored away in storage vesicles inside the cell (Figure 1.3A). When insulin is in the blood, it binds special sensors on the cell surface called insulin receptors (Figure 1.3B). These receptors bind insulin like a lock and key. When bound, the receptors initiate signaling pathways inside the cell that move the glucose transporters to the cell surface (Figure 1.3B), where they let glucose into the cell. As a result, insulin shunts glucose out of the blood and into the cells (Figure 1.3C).
+
+
+FIGURE 1.3 Insulin causes glucose to be removed from the blood into muscle and fat cells. Binding of insulin to its receptors causes transporters to translocate to the cell membrane and transport glucose into the cell. (A–C) described in text.
+Insulin is secreted by special cells in the pancreas called beta cells. The pancreas is a thin gland about the size of a dollar bill located in our upper abdomen (Figure 1.4). In this gland there are a billion beta cells, arranged in a million groups of about 1000 cells called islets of Langerhans. The islets also house other types of cells, like alpha cells that secrete glucagon, a hormone that acts to increase glucose in the blood – countering the action of insulin. Glucagon induces the production of glucose in the liver during fasting and sleep.
+
+
+FIGURE 1.4 Beta cells which secrete insulin are found in Islets of Langerhans in the pancreas along with other hormone secreting cells such as alpha cells that secrete glucagon.
+Beta cells are smart, and only secrete insulin when it is needed. The beta cells sense glucose, and the more glucose around, the more insulin they secrete. Insulin induces cells in the muscle and fat to take up glucose, and so blood glucose levels drop. This is a negative feedback loop: more glucose means more insulin and thus less glucose (Figure 1.5). Note the blunt-headed arrow, a symbol of a negative regulation in the world of biological circuits – in this case insulin reducing glucose levels.
+
+
+FIGURE 1.5 The glucose-insulin feedback loop, in which glucose causes beta cells to secrete insulin, which in turn removes glucose from the blood.
+The input to this circuit is glucose from meals that goes into the blood. Between meals glucose is produced by the liver. The liver stores glucose in times of plenty in a polymer called glycogen and breaks it down when we fast. When it runs out of glycogen, at about the middle of the night, the liver makes glucose out of amino acids taken from muscles, in a process called gluconeogenesis (“new production of glucose”). We denote both sources by m in Figure 1.5.
+DIABETES IS A MALFUNCTION IN THIS SYSTEM
+In type-1 diabetes (T1D), the immune system attacks beta cells and kills them off. As a result, there is no insulin and glucose cannot enter muscle cells. Until the 1920s, type-1 diabetes was a death sentence to the children who got it: about 1% of the population gets T1D, typically at the age of 10–14. With the discovery of insulin, diabetic children survive thanks to insulin injections, and now through continuous insulin pumps. Still, keeping glucose under external control is hard, and type-1 diabetes raises the risk for health complications. We will understand this autoimmune disease in Chapter 4. In the more common disease called type-2 diabetes (T2D), glucose rises over the years and causes damage to the body. A major cause of type-2 diabetes is insulin resistance, which we will describe below. We have now completed a verbal introduction to this system. It is a basic version of the verbal description generally taught to physicians and biologists. The verbal description is powerful in that it can intuitively explain the dynamics, such as the rise and fall after a glucose tolerance test, and the basic phenomena in diabetes. In this book, we want to go beyond verbal descriptions by adding equations. Equations can help us focus on important parameters and to generalize principles from one system to other systems. Most importantly, equations help us to ask new questions, such as what is the fundamental origin of diseases such as T1D and T2D. In this chapter, we lay the foundation for the next chapter in which we will make progress on these questions.
+
+
+(1.1)
+MATHEMATICAL MODEL FOR THE GLUCOSE
+INSULIN CIRCUIT
+Mathematical models for this circuit, developed since the 1970s, have benefitted clinical practice. They help to define key parameters like insulin resistance. They also provide practical ways to estimate these parameters for each patient based on clinical measurements. One important model is the minimal model by Richard Bergman (Bergman et al. 1979), and we will use a version of this model as a basis for our exploration. The model was developed using experiments on volunteers in which glucose or insulin were introduced intravenously, and their effects were monitored over time using glucose and insulin blood tests. The model uses differential equations to describe rates of change of glucose and insulin concentrations in the blood. This model, and all the models in this book, ignores some of the details of the system and focuses only on the main features essential to understand the principles we are interested in. The simplicity of the models might generate mistrust because one might think “It is more complicated than that! You didn’t take this or that into account.” We will see that ignoring some details is not only okay but necessary to see underlying principles. By exploring the art of building good models, we will learn how to tell which features are essential based on their timescale and magnitude. Let’s begin with the equation for the rate of change of insulin concentration, I(t). The equation has a form we will use throughout the book, where the rate of change equals production minus removal:
+Rate of change of insulin = dI/dt = production-removal
+For more details, see Solved Exercise 1.7. Let’s start with insulin production. Insulin is produced by beta cells, and the production rate rises with glucose. Thus, each beta cell makes q f(G) units of insulin concentration per unit time, where q is the maximal production rate per unit biomass of beta cells divided by the blood volume, and f(G) is an increasing function of glucose G, that ranges between 0 and 1. It describes how glucose
+regulates the secretion rate of insulin.1 Experimental measurements show an increasing S-shaped curve that saturates at high glucose, meaning that it reaches a maximal level (Figure 1.6; Alcazar and Buchwald 2019). Such curves are well described in many biological systems by a Hill function, given by
+f (G) = Gn
+K n+Gn
+
+
+(1.2)
+FIGURE 1.6 Insulin secretion by beta cells is a sigmoidal function of glucose. Adapted from Alcazar and Buchwald (2019).
+This function reaches half of its maximum value at a glucose concentration of G = K. This half-way concentration is about K = 8 mM in human islets. The steepness of the Hill function is controlled by the parameter n, the Hill coefficient. The higher n, the steeper the curve. For beta cells, n = 2 is a good approximation (Figure 1.6). Hill functions have a theoretical basis which can be found in most biochemistry textbooks (see Solved Exercise 1.8) (Phillips et al. 2012). All that we need to do now is to multiply the production rate by the total beta cell mass B to get an insulin production rate of qBf (G). We now turn to insulin removal. Removal of molecules is well described by giving them a constant rate of removal, γ, so that the number of molecules removed per unit time is γI. The difference between production and removal is our equation for insulin:
+dI/dt = qBf (G) − γI
+The removal rate γ is determined by the insulin half-life, about 5 minutes. Insulin is removed primarily by degradation in the liver, and the remainder is filtered out by the kidneys. To get some practice with the equation, let’s see how the insulin removal rate γ relates to its half-life. Imagine blocking insulin production (as in patients with T1D who have no beta cells, or by using certain drugs). In this case, there is no production, only removal, and hence
+dI/dt = −γI
+
+
+(1.3)
+(1.4)
+The solution of this equation is a concentration that decays exponentially with time from its initial level I(0):
+I (t) = I (0) exp (−γt)
+The half-life of insulin, t1/2, is the time it takes to go halfway down from its
+initial level. Thus I (t1/2) = I (0)/2. Plugging this into Eq. 1.3, we find
+exp (−γt1/2) = 1/2, and our solution for the half-life
+t1/2 = ln (2)/γ
+This is a general result: the half-life is inversely related to the removal rate faster removal leads to shorter half-life. Half-life is not affected by any of the production parameters like q and f(G) or by initial conditions. Removal rates will similarly determine half-lives throughout this book. Now let’s write the second equation, for glucose. Blood glucose concentration, G(t), is produced by meals and by liver production of glucose, whose sum is denoted m(t). Glucose is removed by the action of insulin. The rate of change of glucose is, as before, supply minus removal
+dG
+dt = m − aG
+Let’s focus on removal term – aG. Imagine that you are an engineer that needs to design this circuit. The simplest design is not to have insulin at all, but rather to have a constant glucose removal rate, a, the probability per unit time to lose a glucose molecule from the blood. Since high levels of glucose are harmful, it makes sense to remove it quickly after meals, with a large removal rate a. However, rapid removal means that at night or during fasting, the liver would need to make more glucose per unit time to keep 5 mM steady state. To see this, notice that the steady state of Eq. 1.4, that is, when glucose does not change with time, dG/dt = 0, is Gst = m/a. Steady-state glucose is the ratio of
+production and removal rates. The higher the removal rate a, the larger production m needs to be to maintain a 5 mM steady-state glucose concentration. Thus, a rapid glucose removal rate creates a wasteful cycle of high production and high removal. To avoid this wasteful cycle, the body uses insulin to increase the removal rate of glucose when needed. Insulin is made only when glucose is high. This provides a high removal rate after a meal and a low removal rate during fasting. Notably, since insulin is made in tiny amounts compared to glucose, the cost of the insulin system itself is negligible.
+
+
+(1.5)
+(1.6)
+Because glucose removal is enhanced by insulin, we let its removal rate rise with insulin, a = s I. The parameter s is called insulin sensitivity. It is an important parameter. Insulin sensitivity is the effect of a unit of insulin on glucose removal rate. This parameter is more familiar in its inverse form, insulin resistance, defined as 1/s. Insulin resistance is the extent to which insulin fails to work. Insulin sensitivity can be measured by injecting insulin and observing the subsequent reduction in glucose. Thus, our glucose equation is:
+dG/dt = m − sIG
+The insulin and glucose equations reach a steady state, which we can find by setting all rates of change to zero, namely dG/dt = 0 and dI/dt = 0. Solving this precisely yields a messy formula, but a good approximation can be made by
+assuming that f (G) = (G/K)2, as described in Solved Exercise 1.1. The steady-state glucose concentration is
+Gst = (γK 2mst/sqB)1/3
+The 5 mM steady state can be achieved provided the parameters are right. Let’s see how these equations do in the glucose tolerance test. We can solve the equations on the computer and provide a pulse of input glucose m(t) to describe the glucose going into the body when we drink 75 g of glucose. In response, G(t) rises, causing insulin I(t) to rise in turn, thereby increasing the removal rate of G, until it returns to baseline, as shown in Figure 1.7 (see Exercise 1.6 for more details). This resembles the measured response of healthy people, including a slight glucose undershoot before returning to baseline. The minimal model thus seems to capture the essential behavior.
+
+
+FIGURE 1.7 The minimal model captures the rise and fall of glucose and insulin over hours after a glucose input.
+A GRAPHICAL TOOL TO UNDERSTAND THE
+CIRCUIT, THE PHASE PORTRAIT
+Often, we don’t know for sure what is the precise mathematical model to describe a biological circuit. I’d like to present a way in which we can still make progress. This is a graphical tool that we will employ throughout the book, called the phase portrait (Strogatz 2018). The phase portrait will show us that the feedback loop can reach a steady state no matter what the exact parameters or forms of the interaction terms are. Later, we will use it to see how parameters like insulin resistance affect the system. The phase portrait has two axes, one for each of the variables, in our case insulin and glucose. The idea is to break the feedback loop into two arms. Study each arm separately, and then put them back together. The first arm describes how glucose induces beta cells to make insulin (black line in Figure 1.8). One experiment to measure this arm of the feedback loop uses intravenous injection of glucose to “clamp” blood glucose to a given value. Then, one allows insulin to reach steady state and measures its concentration. Plotting insulin versus glucose reveals a rising S-shaped function. The more glucose, the more insulin secreted by the beta cells.
+
+
+FIGURE 1.8 The feedback loop can be broken down into two arms called nullclines that meet at the fixed point.
+In the model, this line is given by setting dI/dt = 0 in Eq. 1.2, corresponding to zero change in insulin. This is called the insulin nullcline. Its formula is I = qBf(G)/γ, and so the nullcline has essentially the same shape as the induction function f(G). The second arm of the feedback loop (blue line in Figure 1.8) describes how insulin removes glucose. You clamp blood insulin at a given level and wait till glucose settles down to its steady state. At each level of insulin, you record the steady-state level of glucose, and plot this to get the decreasing blue line in Figure 1.7. The curve decreases because more insulin removes more glucose from the blood. Its equation can be derived by setting dG/dt = 0 in Eq. 1.5, to get the glucose nullcline, I = m/s G. Now we unleash the full feedback loop without artificially clamping one of the variables. Glucose and insulin now affect each other. The point to watch is where the two lines intersect. This is the fixed point of the system, where both glucose and insulin are at steady state simultaneously. These are the values you can measure with blood tests after fasting, say in the morning.
+
+
+We can add to the phase portrait little arrows that indicate the dynamics (Figure 1.9). The arrows show the direction of change for insulin and glucose. They converge into the fixed point, showing that all initial conditions flow to it it is a stable fixed point. The orange trajectory in Figure 1.9 shows how glucose and insulin evolve when we start with an initial excess of glucose. Glucose makes insulin rise, pushing glucose down toward its steady state of 5 mM, and both return to baseline.
+FIGURE 1.9 The phase portrait shows arrows that indicate insulin and glucose dynamics. One trajectory is shown in orange which begins with high glucose and flows into the fixed point.
+The phase portrait can help us arrive at conclusions even if we don’t know the mathematical functions or parameters in the model and hence the precise shapes of the nullclines. No matter what the exact shape of the curves, we know that one curve must increase – glucose induces insulin production – and the other curve must decrease – insulin removes glucose. This guarantees a steady state where the two curves intersect. So far so good. The minimal model provides a glucose set point, and the observed rise and fall of glucose and insulin in response to a meal. We can take a nice deep sigh of relief for making it this far.
+
+
+INSULIN SENSITIVITY VARIES WIDELY BETWEEN
+PEOPLE
+With our model in hand, let’s now ask about the tightness of glucose regulation. A striking observation is that one of the model parameters varies widely between individual people, but empirical evidence shows that the glucose steady state and dynamics remain constant. Is our current model capable of capturing this kind of consistency? The varying parameter is insulin sensitivity, s. Insulin sensitivity varies between people and over time because it is a physiological knob that allows the body to allocate glucose resources and determine which tissues get the glucose. For example, when we exercise or during caloric restriction, we need to use or store glucose, and signals are secreted that cause insulin sensitivity, s, to rise. The effect of insulin is magnified by higher s, and muscles and fat take up more glucose from the blood. In contrast, during infection and inflammation, insulin sensitivity drops insulin resistance rises – due to inflammatory signals in the circulation. Instead of storing it in muscle and fat, more glucose stays in the blood to help the immune system fight pathogens. Insulin resistance also rises during pregnancy, diverting glucose to the fetus. A further condition that leads to insulin resistance is chronic stress, through the action of the hormone cortisol that we will discuss in Chapter 3. A common cause of insulin resistance is obesity – s drops dramatically, often by a factor of 10, with body mass index (weight divided by height squared) as shown in Figure 1.10. Obesity causes fat to accumulate in muscle and liver, triggering inflammation and insulin resistance (James, Stöckli, and Birnbaum 2021).
+
+
+FIGURE 1.10 Insulin sensitivity drops with body mass index. Adapted from Kahn et al. (1993).
+Thus inflammation, pregnancy, chronic stress, and obesity lead to insulin resistance (low s). Each unit of insulin works less effectively than in non-resistant people. Insulin resistance, as we will see in the next chapter, is an important factor in T2D. Even though people vary in s by as much as a factor of ten, most people have normal glucose levels and dynamics. For example, most people with obesity, which all have low s, have normal 5 mM glucose and GTT dynamics.
+THE MINIMAL MODEL FAILS TO EXPLAIN HOW
+PEOPLE WITH INSULIN RESISTANCE MAINTAIN
+NORMAL GLUCOSE LEVELS
+Let’s see what the model predicts for insulin resistance. Suppose that s drops by a factor of 10 – or equivalently insulin resistance rises by a factor of 10, making insulin 10 times less effective at removing glucose. In the phase portrait (Figure 1.11), the glucose nullcline shifts to a higher level, because that nullcline is inversely proportional to s, I = m/sG. As a result, the glucose set-point shifts to higher levels, far above 5 mM.
+
+
+FIGURE 1.11 Insulin resistance raises one nullcline, shifting the fixed point to high glucose levels.
+The phase portrait shows that this is a general effect, no matter what the exact shape of the curves. Insulin resistance shifts the glucose nullcline up because a given insulin level results in more glucose, and hence steady-state glucose rises.
+This creates a problem for the model because all people with obesity have insulin resistance, but most have normal glucose levels.
+Indeed, if we simulate the minimal model with a 10-fold lower s, we see that steady-state glucose concentration rises by a factor of about 2 (Figure 1.12 blue line is the model prediction). You can see this from the solution of Eq. 1.6, where
+Gst depends on 1/s 1
+3 , and the cube root of 10 is about 2. In fact, glucose steady state depends on all model parameters.
+
+
+FIGURE 1.12 Insulin resistance in the minimal model causes high glucose dynamics, whereas most people with insulin resistance have normal glucose dynamics.
+The response time after a glucose tolerance test also increases substantially in the model when s is low (Figure 1.12 blue line). See Solved Exercise 1.2 for an analytic solution for the response time, which also depends on all model parameters. Thus, the minimal model cannot explain how most people with obesity have normal glucose (their observed dynamics is like that predicted for s = 1, black line). In fact, no model based on the description of the system we studied so far can do so. We need to add another control loop to make glucose dynamics robust to variations in parameters such as s. We will do this in the next chapter.
+SUMMARY AND OUTLOOK
+The prose description of the insulin-glucose circuit found in textbooks seems to work qualitatively well. But when we write the equations, we see that we need additional mechanisms to explain how glucose stays under tight control despite variations in physiological parameters. We need to explain why most people with obesity, pregnancy, or chronic stress have very different insulin resistances but normal 5 mM glucose and normal dynamics in the glucose tolerance test. In the next chapter, we will see how answering this question opens up general principles for feedback control in tissues. This new feedback has unavoidable fragilities that explain why beta cells fail in type-2 diabetes, as we will see in the next chapter, and why the body attacks its own beta cells in type-1 diabetes, as we will see later in Chapter 4. In the next chapter, we will also reveal the three basic “laws” that will carry us throughout the book. Let’s take a deep sigh of relief.
+EXERCISES
+Solved Exercise 1.1: Show that the minimal model has steady-state
+glucose that depends on insulin sensitivity s and all other model
+parameters
+Let’s write the minimal model equations again,
+
+
+(1.7)
+(1.8)
+(1.9)
+(1.10)
+dG
+dt = m − sIG
+dI
+dt = qBf (G) − γI
+Steady state means no change with time, and thus we set the time derivatives to zero: dG/dt = 0 and dI/dt = 0. We find from Eq. 1.7, that
+sIstGst = mst
+where mst is the fasting production of glucose from the liver. The subscripts “st” denote steady state throughout this book. Incidentally, this is the origin of the HOMA-IR equation used in research to estimate insulin sensitivity from steady-state glucose and insulin measurements:
+s = mst/IstGst
+using the parameter mst = 22.5 whose units assume that glucose is measured in mM and insulin in μU/mL (Matthews DR et. al., 1985). Similarly, there is a useful equation for beta cell function, based on the steady state of Eq. 1.8, given by qB = γI/f (G). Often researchers use an approximation for f(G), a straight line describing the slope near 5 mM glucose, f(G) ~ G − 3.5, providing the HOMA-B equation qB = c I/(G − 3.5) with c = 20 in the units above. To find the steady-state solution of the insulin equation, Eq. 1.8, let’s
+approximate the regulation function f(G) as ( G
+K )2, as suggested by (Topp et al.
+2000). This approximation is derived from the Hill function f (G) = Gn
+K n+Gn
+with n = 2 and is valid when ( G
+K )2 ≪ 1. This is not a terrible approximation
+since ( G
+K )2~( 5
+8 )2~0.3. Using this in Eq. 1.8, solved at steady state by setting
+dI/dt = 0, we find that qB(Gst/K)2 = γIst. Plugging this into Eq. 1.9, we obtain a steady-state glucose level Gst that depends on the cube root of all parameters
+(the cube root comes from the ( G
+K )2 regulation):
+Gst = (γK 2mst/sqB)1/3
+Let’s consider the case of insulin resistance due to an 8-fold drop in s, keeping all other parameters the same. This results in a 2-fold rise in Gst because 2 is the cube root of 8. This is a rise from 5 to 10 mM, way past the criterion for diabetes.
+
+
+We see that Gst is not robust to changes in insulin resistance, which means it is sensitive to changes in this parameter. We also see from Eq. 1.10 that glucose steady state is not robust to any of the other model parameters, including q, the maximal insulin production rate per beta cell. This parameter also changes because beta cell metabolism depends on many factors such as time of day (circadian rhythm), inflammation, and age. The parameter q also depends on total blood volume, as mentioned above, which dilutes the number of insulin molecules to units of concentration. Blood volume, which is about 5 L in adults, increases by 50% in pregnancy. It rises during childhood growth, in chronic exercise and in other physiological conditions. So being robust to q is also biologically important to achieve strict 5 mM control. Note that when s becomes very small, the glucose nullcline crosses the insulin nullcline line when it saturates, that is when it flattens out. The expression becomes simpler. Because in this regime f(G) = 1, we have at the fixed-point
+m
+sG = qBf(G)
+γ = qB/γ. Thus
+Gst = mstγ/sqB
+The predicted rise in Gst when insulin resistance is large is dramatic, Gst ~ 1/s,
+emphasizing the inability of this simple feedback loop to explain normal glucose in people with obesity.
+Solved Exercise 1.2: Show that half-life of glucose in the blood is not
+robust to insulin sensitivity in the minimal model
+Likewise, the half-life of glucose in the blood is not robust. To see this, let’s recall the removal term of glucose, namely s I G. The removal parameter – the factor multiplying G that has units of 1/time – is a = sI. The half-life, as discussed in the beginning of the chapter, is therefore t1/2 = ln (2)/a = ln (2)/sI. Let’s
+consider the case that the system is at steady state, and we then add a small amount of glucose to the blood that hardly affects insulin concentration. Since at steady state I = Ist, the half life of the added glucose is ln (2)/sIst. We can
+compute Ist from Eqs. 1.8 and 1.9: Ist = (ms2tqB/s2γK 2)1/3, and thus the half
+life is t1/2 = ln (2)/s Ist = ln (2)/(sms2tqB/γK 2)1/3. Therefore, glucose half
+life depends inversely on the cube root of insulin sensitivity, s−1/3. Half-life doubles if s shrinks by a factor of 8. Instead of returning to baseline within an hour of a meal, G stays high for 2 hours, surpassing criteria for diabetes. This is at odds with observations in most insulin resistant people.
+
+
+Exercise 1.3. Additional biological features of the glucose-insulin
+circuit and diabetes
+The goal of this exercise is to expand your knowledge of the glucose circuit and acquaint you with a nice video resource used by medical students. Watch the 19minute video from osmosis.com on diabetes. Diabetes mellitus (type 1, type 2) and diabetic ketoacidosis (DKA) https://www.youtube.com/watch?v=-BRVybvffU
+a. Choose one element of the glucose system or diabetes (except glucagon) that we did not cover in this chapter. Read about it and summarize its role in glucose control and/or diabetes in 100 words. b. Read about the hormone glucagon. Describe its role in 100 words. c. Speculate on why the body needs two opposing hormones, insulin and glucagon? (100 words)
+Exercise 1.4. Brain uptake of glucose
+The brain takes up glucose from the blood at an insulin-independent rate. Modify the insulin-glucose model with a term describing this effect.
+a. Write a formula for the steady states of glucose and insulin. b. Is the steady-state blood glucose level Gst affected by the brain’s uptake
+rate? c. Plot the nullclines in this case. Is there still a single fixed point?
+Exercise 1.5. Circadian changes in beta cells
+Cells have clocks that track the time of day called circadian clocks. Beta cells secrete more insulin for a given level of glucose during the day than during the night. This can be modeled as a change in the parameter q in the insulin-glucose model. Suppose that during the day q = q1 and during the night q = q2 with q1 > q2.
+a. What does the model predict for steady-state glucose and insulin during the day and night? Use the phase plot. b. Is it unhealthy to eat big late-night meals?
+Exercise 1.6. Simulate the glucose-insulin circuit
+Write a computer code to simulate the dynamics of the glucose insulin circuit, Eqs. 1.7 and 1.8 in Solved Exercise 1.1. Use the following parameters
+
+
+q = B = s = γ = 1, m = 0.5, and f (G) = G2/ (1 + G2).
+a. Show that the steady-state solution is Gst = 1, Ist = 0.5. b. Simulate the glucose tolerance test by adding a glucose input term that rises and falls with time, representing glucose arriving to the circulation from the
+gut, namely m (t) = 0.5 + e−(t−5)2. This glucose input function peaks at t = 5. Start the simulation at time t = 0 at steady state. Plot glucose and insulin as a function of time. c. Simulate insulin resistance by setting s = 0.1. Repeat the simulation of the glucose tolerance test.
+Here is a simple algorithm to get you started. Suppose you wish to solve the equations dx/dt = f(x) with initial condition x(0) = 0.
+x(0)=0 (initial condition) t(0)=0 (time=0) N=1000 (total time steps) dt=0.1 (0.1s intervals) for i=1:N t(i)=t(i-1)+dt dx(i)=f(x(i-1)) dt x(i)=x(i-1)+dx(i) end
+This numerical solution method is known as Euler’s explicit time advancement.
+Solved Exercise 1.7. Why is the rate of change equal to production
+minus removal?
+Here is an explanation of the equations in this book in which the rate of change equals production rate minus removal rate. Suppose there are X(t) molecules in the body at time t. Suppose that molecules are produced at rate p per unit time and removed at rate r per unit time. In a small time increment ∆t, p∆t molecules will be added and r∆t will be removed, for a total of (p − r)∆t. Therefore, at time t + ∆t, the number of molecules is X(t + ∆t) = X(t) + (p − r)∆t. Rearranging this we find (X(t + ∆t) − x(t))/∆t = p − r. If ∆t is very small, the term on the left is just the differential dX/dt. We conclude that the rate of change of X is dX/dt = p − r = production rate − removal rate.
+Solved Exercise 1.8. Why is the Hill equation justified biologically?
+Here is a simple case in which the Hill equation applies. Suppose that a receptor is activated only when it binds n molecules of ligand L. The receptor can either be
+
+
+unbound and inactive, denoted R, or bound to n molecules at once and active, denoted RLn. The equilibrium constant for this reaction, R+nL⇄RLn, is Kd = [R]
+[L]n/[RLn], where [R] is the unbound receptor concentration, [RLn] is the bound receptor concentration and [L] is the concentration of the ligand. Now since the receptor can only be in one of the two states, bound or unbound, we have [R] + [RLn] = [Rt] where [Rt] is the total receptor concentration. The fraction of active receptors is f(L) = [RLn]/Rt = [RLn]/(R + [RLn]). Using the expression for Kd, we find that the fraction of active receptors is f (L) = Ln
+Kn+Ln , where the half-way
+point K is defined by Kn = Kd. Thus f(L) has the form of the Hill equation. The
+Hill equation is a good approximation also in much more complex situations (Phillips, et al. 2012).
+NOTE
+1. Some additional features of the system are ignored here because they do not affect the core behavior of the feedback loop. This includes the following: Insulin secretion q is amplified by hormones released from the gut such as GLP-1 that sense incoming meals, and from brain inputs that anticipate meals. Insulin is secreted in two pulses, a brief spike of a few minutes followed by a prolonged insulin response to a meal, by beta cells that are heterogeneous with different sizes and secretion rates.
+REFERENCES
+Handbook of Diabetes, 4th edition, Rudy Bilous, Richard Donnely, 2010 ISBN: 978-1-444-39618-8 Wiley-Blackwell.
+Alcazar, Oscar, and Peter Buchwald. 2019. “Concentration-Dependency and Time Profile of Insulin Secretion: Dynamic Perifusion Studies With Human and Murine Islets.” Frontiers in Endocrinology 10. https://www.frontiersin.org/articles/10.3389/fendo.2019.00680.
+Bergman, Richard N, Y. Ziya Ider, Y. Ziya Ider, Charles R. Bowden, Charles R. Bowden, Claudio Cobelli, and Claudio Cobelli. 1979. “Quantitative Estimation of Insulin Sensitivity.” The American Journal of Physiology. https://doi.org/10.1172/JCI112886.
+
+
+Bergman, Richard N. 2021. “Origins and History of the Minimal Model of Glucose Regulation.” Frontiers in Endocrinology 11. https://www.frontiersin.org/articles/10.3389/fendo.2020.583016.
+DeFronzo, Ralph A., Ele Ferrannini, Leif Groop, Robert R. Henry, William H. Herman, Jens Juul Holst, Frank B. Hu, et al. 2015. “Type 2 Diabetes Mellitus.” Nature Reviews Disease Primers 1 (1): 1–22. https://doi.org/10.1038/nrdp.2015.19.
+James, David E., Jacqueline Stöckli, and Morris J. Birnbaum. 2021. “The Aetiology and Molecular Landscape of Insulin Resistance.” Nature Reviews Molecular Cell Biology 22 (11): 751–71. https://doi.org/10.1038/s41580-021-00390-6.
+Kahn, S. E., R. L. Prigeon, D. K. McCulloch, E. J. Boyko, R. N. Bergman, M. W. Schwartz, J. L. Neifing, et al. 1993. “Quantification of the Relationship between Insulin Sensitivity and β- Cell Function in Human Subjects: Evidence for a Hyperbolic Function.” Diabetes. https://doi.org/10.2337/diabetes.42.11.1663.
+Kotas, Maya E., and Ruslan Medzhitov. 2015. “Homeostasis, Inflammation, and Disease Susceptibility.” Cell 160 (5): 816–27. https://doi.org/10.1016/j.cell.2015.02.010.
+Matthews DR, Hosker JP, Rudenski AS, Naylor BA, Treacher DF, Turner RC (1985). “Homeostasis model assessment: insulin resistance and betacell function from fasting plasma glucose and insulin concentrations in man”. Diabetologia. 28 (7): 412–9. doi: 10.1007/BF00280883. PMID 3899825.
+Osmosis video on Diabetes Mellitus: https://www.youtube.com/watch?v=-BRVybvffU
+Phillips, Rob, Jane Kondev, Julie Theriot, and Hernan Garcia. 2012. Physical Biology of the Cell. 2nd ed. Garland Science. https://doi.org/10.1201/9781134111589.
+Strogatz, Steven H. 2018. Nonlinear Dynamics and Chaos with Student Solutions Manual: With Applications to Physics, Biology, Chemistry, and Engineering. CRC press.
+Topp, Brian, Keith Promislow, Gerda Devries, Robert M. Miura, and Diane T. Finegood. 2000. “A Model of β-Cell Mass, Insulin, and Glucose Kinetics: Pathways to Diabetes.” Journal of Theoretical Biology. https://doi.org/10.1006/jtbi.2000.2150.
+
+
+CHAPTER 2
+Dynamical Compensation, Mutant
+Resistance, and Type-2 Diabetes
+DOI: 10.1201/9781003356929-4
+W
+E NOW BUILD ON our work in Chapter 1 on the glucose-insulin system. We will
+understand how the system breaks down in type-2 diabetes and identify principles that apply broadly to other hormone circuits. The insulin circuit is one of several dozen endocrine systems in the body. Endocrine organs secrete hormones that flow in the bloodstream and communicate with distant tissues. We will see that endocrine organs face three universal challenges. They must:
+i. Work precisely even though they communicate with distant tissues that have unknown parameters that change over time. This is the problem of robustness to parameter variations.
+ii. Maintain a proper organ size, even though cell populations tend to grow or shrink exponentially. This is the problem of organ size control. iii. Avoid harmful mutant cells that can overgrow and take over the organ. This is the problem of mutant resistance.
+We will discover a unifying and beautiful circuit design that addresses all three problems at once! This chapter also introduces the fundamental physiological laws that will accompany us through the book. Before we start, let’s take a nice deep sigh of relief.
+
+
+THE MINIMAL MODEL CANNOT EXPLAIN THE
+ROBUSTNESS OF GLUCOSE LEVELS TO
+VARIATIONS IN INSULIN SENSITIVITY
+We ended the last chapter with a mystery. The insulin-glucose feedback loop of the minimal model explained the rise and fall of glucose after a meal but failed to explain how glucose levels are maintained when physiological parameters, like insulin sensitivity s, change. The minimal model predicts that insulin resistance (low s) raises the glucose baseline above 5 mM and lengthens the response time in the glucose tolerance test. However, most people with insulin resistance, including people with obesity, maintain a normal 5 mM glucose steady-state concentration and exhibit normal glucose responses. The minimal model is thus not robust to parameters like s. It is also not robust to differences in blood volume, which dilute out insulin, or to the beta-cell maximal insulin production rate, q. In fact, the minimal model is not robust to any of its parameters. Robustness must involve additional processes beyond the minimal model’s glucose-insulin feedback loop. Indeed, the way that the body compensates for insulin resistance is by making more insulin. Each beta cell upregulates its insulin production capacity to the maximal possible. Then, there is an increase in the number and mass of beta cells. This is called beta cell hyperplasia – more cells and hypertrophy – bigger cells. The two processes together increase the total mass of beta cells – with hypertrophy the dominant cause in humans after childhood. More beta cell mass means more insulin production. For example, people with obesity are insulin resistant and have more total beta cell mass than lean individuals. This extra secretion compensates for insulin resistance. It’s like factories making cars. To make more cars, one can increase production from each factory – but only up to a limit. Beyond that, more factories are needed. Let’s use the phase portrait to understand the effect of beta cell mass changes (Figures 2.1 and 2.2). The original set point of 5 mM glucose occurs at the intersection of the two nullclines. Insulin resistance shifts the blue nullcline and raises the fixed point to higher glucose (Figure 2.1). This is appropriate for shortterm (hours to days) physiological changes in insulin sensitivity, such as acute stress or inflammation, where elevated glucose is useful. However, long-term excess glucose over weeks causes beta-cell mass to gradually increase. This raises the other nullcline, shifting glucose concentration back towards its original level (Figure 2.2). In this compensated state, insulin secretion is higher than in the original setpoint, due to the enlarged beta-cell functional mass.
+
+
+FIGURE 2.1 Insulin resistance raises the glucose set point.
+FIGURE 2.2 Beta-cell mass rises to restore the glucose set point.
+
+
+For these shifts to produce precisely the right glucose level, 5 mM, beta cells must stop expanding at exactly the right mass (Figure 2.2). Remarkably, they do. The resulting increase in insulin exactly compensates for the decrease in s. Although each unit of insulin is less effective, the amount of insulin produced increases precisely enough to compensate. This compensation is seen in a hyperbolic relation, in which healthy people show an inverse relationship between insulin sensitivity, s, and steady-state fasting insulin, Ist. This hyperbolic relationship, Ist ~ 1/s, maintains a constant
+product of the two variables: sIst = const (Kahn et al. 1993) (Figure 2.3). By contrast, for people with diabetes, the same product is lower (Figure 2.3, right). The origin of this hyperbolic relationship has long been a mystery; we will soon understand it.
+FIGURE 2.3 The hyperbolic relationship shows that fasting insulin is inversely proportional to insulin sensitivity in healthy people. Adapted from Kahn et al. (1993).
+A SLOW FEEDBACK LOOP ON BETA CELL MASS
+PROVIDES COMPENSATION
+To explain how such precise compensation can come about, we need to extend the minimal model by adding an equation to describe how beta-cell total mass, B, can change. Here we enter the realm of the dynamics of cell populations. These dynamics are unlike the dynamics of protein concentrations inside cells or molecules in the
+
+
+(2.1)
+blood. For example, we used an equation for glucose that, at its core, has production and removal terms, dG/dt = m − αG. Glucose safely converges to a stable fixed point, given by the ratio of production and removal rates Gst = m/α (Figure 2.4).
+FIGURE 2.4 Circuits of molecular production and removal such as the glucose equation are inherently stable.
+Cells, in contrast, live on a knife’s edge. Their biology contains an inherent instability, due to exponential growth. Cells increase their biomass and divide (proliferate) at rate p and are removed at rate r (Figure 2.5). The removal rate includes active cell death (apoptosis) and other processes that take the cells out of the game like exhaustion, de-differentiation, and senescence. Since all cells come from cells, and all biomass is made by biomass, production of biomass is intrinsically autocatalytic. It is a rate constant p times the total mass of the cells: production = p B. Removal of beta-cell mass B is, as usual, B times the rate at which cells are removed: removal = r B. As a result, the change in total cell mass B is the difference between production and removal rates: dB/dt = pB − rB = (p − r)B = μB.
+FIGURE 2.5 Cell circuits describe growth and removal of cell populations.
+
+
+The key point is that the cell mass B appears in both growth and removal. It can therefore be taken outside the parentheses, leaving B times the net growth rate of cells, μ = p − r, the difference between production and removal rates. The problem is that if production exceeds removal, net growth rate μ is
+positive and total cell mass rises exponentially, B ~ eμt (Figure 2.6). Such explosive growth occurs in cancer. On the other hand, if removal exceeds production, net growth rate μ is negative, and cell numbers exponentially decay to zero, as in degenerative diseases. It is hard to keep total cell mass constant over time. This is known as the problem of organ size control.
+FIGURE 2.6 Cell circuits require stabilization because populations grow or decline exponentially unless net growth rate is precisely zero.
+Here we introduce the first of the three laws of physiology that are the foundation of this book:
+Law 1: All Cells Come from Cells
+The problem of organ size control is a natural outcome of this law. Organ size control is an amazing and universal problem. Our body constantly replaces its cells; about a million cells are made and removed every second. We make and remove about 100 g of tissue every day (Sender and Milo 2021). If the production and removal rates were not precisely equal, we would exponentially explode or collapse. To keep cell numbers constant, we need feedback control to balance growth and removal – to reach zero net growth rate, μ = 0. Moreover, the feedback loop must keep the organ at a good functional size. Hence, the feedback
+
+
+mechanism must somehow register the biological activity of the cells and accordingly control their growth rate.
+ORGAN SIZE CONTROL IN BETA CELLS IS
+PROVIDED BY FEEDBACK FROM GLUCOSE
+Organ size control of beta cells is achieved by means of glucose, as pointed out by Brian Topp and Dianne Finegood (Topp et al. 2000). The feedback signal is blood glucose, which controls both the growth and removal rates. Thus μ = μ (G). As measured in rodent islets, the removal rate of beta cells is high at low glucose and falls sharply around 5 mM glucose (Figure 2.7). Removal rate rises again at high glucose, a phenomenon called glucotoxicity, to which we will return soon.
+FIGURE 2.7 Beta-cell removal rate drops at about 5 mM glucose and rises again at high glucose levels.
+For now, let’s focus on the region around 5 mM. Biomass growth (which includes both cell division and growth of mass per cell) rises with glucose. For example, beta cells proliferate faster than normal in a fetus exposed to high glucose from a diabetic mother. Therefore, the curves describing the rates for growth and removal cross near G0 = 5 mM, the fixed point that we seek with zero growth rate
+(Figure 2.8).
+
+
+FIGURE 2.8 Beta cells reach a fixed point when growth and removal curves cross at about 5 mM.
+This way of plotting production and removal rates is called a rate plot, an important tool for understanding tissue-level circuits. The crossing point of the curves is the steady state, where cell production equals cell removal, and total cell mass does not change. Another way of plotting this is to use the net growth rate μ, defined as the difference between production and removal. Net growth rate crosses zero at μ (G0) = 0 (Figure 2.9).
+FIGURE 2.9 Beta cells reach a fixed point when their net growth rate equals zero.
+The fixed point G0 = 5 mM is stable for both beta cells and blood glucose. It is
+stable because perturbing glucose away from the fixed point causes it to move back. We can see this on our rate plot (Figure 2.10). If glucose is above 5 mM,
+
+
+beta cell mass grows faster than it is removed. Total beta cell mass increases, leading to more insulin, pushing glucose back down toward 5 mM. Conversely, if glucose is below 5 mM, beta cell mass is removed more rapidly than it grows, leading to less insulin, pushing glucose levels back up. These stable dynamics are indicated by the arrowheads pointing into the fixed point in Figure 2.10.
+FIGURE 2.10 The 5 mM fixed point is stable because higher glucose makes beta-cell mass grow over weeks producing more insulin that pushes glucose back down; a similar restoring force occurs when glucose is lower than 5 mM.
+This feedback loop operates on the timescale of weeks, which is the growth rate of beta-cell biomass. It is much slower than the insulin-glucose feedback loop that operates over minutes to hours. The slow feedback loop of cell mass dynamics keeps beta cells at a proper functional mass and keeps glucose, averaged over weeks, at 5 mM. The steep drop of the removal curve at G0 = 5 mM is important for the
+precision of the glucose fixed-point. Due to the steepness of the removal curve, variations in growth rate (black curves) do not shift the 5 mM fixed point by much (Figure 2.11). The steep removal curve is generated by the cooperativity of enzymes that sense glucose and its byproducts inside beta cells (Karin et al. 2016).
+
+
+(2.2)
+(2.3)
+(2.4)
+FIGURE 2.11 The glucose set point moves only slightly when beta-cell growth rate changes.
+THE CELL MASS FEEDBACK CIRCUIT MAINTAINS
+HOMEOSTASIS DESPITE PARAMETER
+VARIATIONS
+The slow feedback on beta cells can maintain a 5 mM glucose steady state despite variations in insulin sensitivity, s. To explain things in a quantitative way, we need to see this mathematically, not only graphically. To do so, let’s add beta cell mass changes to the minimal model. This leads to a revised model, the BIG model which stands for the Beta-cell-Insulin-Glucose model, Figure 2.12. It is simply the two equations of the minimal model of Chapter 1 with a new equation, Eq. 2.4, for the total beta-cell mass B:
+dG/dt = m − sIG
+dI/dt = qBf (G) − γI
+dB/dt = Bμ (G), μ (G0) = 0
+FIGURE 2.12 The BIG model circuit in which glucose controls betacell total mass, contributing a timescale of weeks to the faster insulinglucose feedback loop.
+
+
+(2.5)
+The only way to reach steady state in Eq. 2.4 is either at B = 0, meaning no beta cells at all, and therefore no insulin; or at zero net growth rate μ (G) = 0, which occurs when G = G0 = 5 mM glucose. The latter is the stable solution that
+describes healthy people. This powerful locking of glucose is similar to controllers in engineering known as integral feedback loops. If you want to know more about integral feedback in biology, see the Systems Biology course videos on my website or the book “Introduction to Systems Biology” (2019). It is easy to calculate the steady state of the BIG model, thanks to Eq. 2.4, that locks glucose steady state at Gst = G0 =5 mM. We can use this to find the insulin
+steady-state level by plugging Gst into Eq. 2.2, and setting dG
+dt = 0, to find
+Ist = mst/sGst. The lower s, the higher the insulin concentration. This means that the product of insulin steady-state level and insulin sensitivity is constant,
+sIst = mst
+Gst = const
+This explains the hyperbolic relation of Figure 2.3!
+FIGURE 2.13 The secrete-and-grow circuit appears in the parathyroid hormone (PTH) system that controls blood calcium (Ca).
+Finally, the beta-cell steady-state mass can be determined from Eq. 2.3, by setting dI/dt = 0, to find that
+Bst = γ Ist
+qf(Gst) = γmst
+sqGstf(Gst) . Interesting: beta-cell mass varies
+inversely with insulin sensitivity, B ~ 1/s. Beta-cell mass grows when s is small, as observed in people with insulin resistance. Beta-cell mass shrinks when insulin sensitivity is high, as in starvation. In fact, beta-cell mass varies with every parameter in the minimal model. Therefore, the organ-size control feedback
+makes beta-cell mass expand or contract to precisely buffer out the effects of parameter changes. It keeps the 5 mM steady-state despite variations in any of the minimal-model model parameters, including maximal insulin production per beta cell, q, insulin removal rate, γ, and even the fasting supply of glucose by the liver, mst.
+
+
+THE SAME CIRCUIT APPEARS IN MANY
+HORMONE SYSTEMS – A CIRCUIT MOTIF
+The same circuit logic appears in many hormone systems that perform homeostasis, namely tight control of an important factor in the body. The cells that secrete a hormone in response to a signal also grow in response to the same signal. For example, the concentration of free calcium ions in the blood is regulated tightly around 1 mM by a hormone called PTH, secreted by the parathyroid gland (Figure 2.13) (El-Samad, Goff, and Khammash 2002). The circuit has a negative feedback loop like insulin glucose, but with inverted signs: PTH causes increase of calcium, and calcium inhibits PTH secretion. The slow feedback loop occurs because parathyroid cell proliferation is regulated by calcium. Other organ systems have similar “secrete and grow” circuits (Figure 2.14), in which the size of the organ expands or contracts to buffer variation in parameters. For example, thyroid hormone, essential for regulating metabolism, is secreted by the thyroid gland at the throat. The controlling signal is called TSH, which causes the thyroid gland cells to both secrete thyroid hormone and to proliferate. The thyroid is famous for overgrowing, sometimes to the size of a grapefruit, when more thyroid hormone is needed. This condition is called goiter.
+FIGURE 2.14 The secrete-and-grow circuit is a circuit motif because it appears in numerous hormonal systems.
+
+
+Other systems with the same secrete-and-grow circuit are shown in Figure 2.14. They include acid secretion in the stomach by parietal cells under control of the hormone gastrin; secretion of cortisol by the adrenal gland under control of ACTH, and production of melanin by melanocytes in the skin under control of MSH. While the systems shown in Figure 2.14 differ in their molecular function, they share essentially the same circuit design as the insulin-glucose system. This is thus a circuit motif.
+THE CIRCUIT ALSO MAKES THE DYNAMICS
+ROBUST
+Remarkably, this circuit can also resolve the question of how glucose dynamics on the scale of hours are invariant to changes in insulin sensitivity. I mean that the BIG model shows how, in the glucose tolerance test, the response to a given input m(t), such as drinking 75 g of glucose, yields the same output curve G(t), including the same amplitude and response time, for widely different values of the insulin sensitivity parameter. This is unusual. Changing a key parameter in most models alters their dynamics. One might call such robustness of a dynamical response rheostasis, complementing the better-known concept of homeostasis which refers to maintaining a robust steady-state concentration of a metabolite. This rheostatic ability was discovered by Omer Karin during his PhD with me (Karin et al. 2016). We named it dynamic compensation (DC): Starting from steady state, the output dynamics in response to an input is invariant with respect to the value of a parameter. To avoid trivial cases, the parameter must matter to the dynamics when the system is away from steady state (technically, to be observable). Solved Exercise 2.1 at the end of the chapter shows how dynamic compensation occurs in the BIG model. The proof is based on rescaling of the variables. Let’s see how dynamic compensation works. We will use the separation of timescales in this system: cell mass changes much slower (weeks) than hormones (hours). Suppose that insulin sensitivity drops by a factor of 2, representing insulin resistance (Figure 2.15). As a result, insulin is less effective and glucose levels rise. Because glucose affects beta-cell growth rate, total beta cell mass rises over weeks (Figure 2.15 upper panels show the dynamics on the scale of weeks). More beta cells means that more insulin is secreted, gradually pushing glucose down to baseline. In the new steady state, there is twice the mass of beta cells and twice as much insulin. Glucose returns to its 5 mM baseline.
+
+
+FIGURE 2.15 Dynamic compensation in the BIG model. A drop in insulin sensitivity causes glucose to rise within hours, but then beta-cell mass rises over weeks and glucose returns to baseline. The glucose response to a meal (bottom panel) is abnormal during the transient period of weeks but returns to normal when beta cell mass adapts to its new level.
+Let’s now zoom in to the timescale of hours (Figure 2.15, lower panels). The response of glucose to a meal before the drop in s is identical to the response long after the drop (timepoint 1 and timepoint 3). In terms of glucose dynamics, the insulin resistance is invisible! The insulin response, however, is two times higher. Glucose dynamics in response to a meal are abnormal only during the transient period of days to weeks in which beta-cell mass has not yet reached its new, compensatory, steady state (timepoint 2).
+
+
+Dynamic compensation thus allows people with different insulin sensitivity s to show the same glucose meal dynamics. Their insulin dynamics scale as 1/s, namely more insulin when there is insulin resistance. This is indeed seen in experiments that follow non-diabetic people with and without insulin resistance over a day with three standardized meals (lower panels in Figure 2.16) (Polonsky, Given, and Van Cauter 1988). Their glucose levels rise and fall in the same way (lower left panel, Figure 2.16), but insulin levels are higher in people with insulin resistance (lower middle panel, Figure 2.16). As the model predicts, when normalized by the fasting insulin baseline, there is almost no difference in insulin between the two groups (lower right panel, Figure 2.16). The BIG model (upper panels in Figure 2.16) captures these observations.
+FIGURE 2.16 Non-diabetic obese people with insulin resistance show normal glucose responses to three meals. Their insulin is higher but resembles normal insulin when both are scaled to their baselines. Top panels show the BIG model (Karin et al. 2016), bottom panels show experimental data adapted from Polonsky et al. (1988).
+This circuit seems so robust. What about diseases such as diabetes? How and why do things break down?
+
+
+PREDIABETES IS DUE TO AN UPPER LIMIT TO
+BETA-CELL COMPENSATION
+Before full-fledged diabetes sets in, there is a stage called prediabetes (Figure 2.17). In prediabetes, blood glucose shifts to higher and higher steady-state values, rising above 5 mM. Prediabetes is clinically defined by fasting glucose between 5.6 mM and the diabetes threshold of 6.9 mM. Prediabetes has no symptoms and occurs in 1 of 3 Americans, though 80% don’t know that they have it. It is dangerous because people with prediabetes transit to type-2 diabetes at a rate of about 10% per year.
+FIGURE 2.17 Prediabetes occurs when compensation for insulin resistance breaks down, due to a limit to beta cell mass growth, causing
+
+
+a rise in glucose. If glucose rise is unchecked, diabetes occurs and eventually beta-cell mass and insulin secretion drops.
+Prediabetes is often associated with insulin resistance. When insulin resistance is strong, beta cells must grow in functional mass by a large factor to compensate. But there is, in biology, always a limit to such compensation processes. This is our second law:
+Law 2: Biological Processes Saturate
+In adulthood beta cells stop dividing. They can compensate by increasing their insulin secretion per unit biomass and the size of each beta cell. When functional beta-cell mass approaches its carrying capacity – determined by the maximal insulin secretion per unit biomass time the maximal possible size of a beta cell compensation stops working. Beta cells hit a ceiling, and effectively the model returns to the minimal model of Chapter 1 with a constant beta-cell mass. Recall that the minimal model is not robust. Any further rise in insulin resistance causes glucose levels to rise above 5 mM. The stronger the insulin resistance, the higher the glucose. One insight from the model is that prediabetes can result not only from low s but also from other parameter changes. As seen in Eq. 2.5, beta-cell mass goes as
+a specific combination of model parameters, B~ mγ
+qs . Thus, a decrease in beta-cell
+insulin production capacity q or insulin sensitivity s, or an increase in liver glucose production m or insulin removal rate γ, or a combination of these changes, can cause beta cells to hit their carrying capacity and compensation to saturate. Having such a “parameter group” simplifies the understanding for the onset of disease. It also points to the way drugs or interventions work; for example, the diabetes drug metformin lowers liver production of glucose and thus lowers m, whereas exercise raises s. Both interventions prevent prediabetes but in different ways. Another pathway to diabetes is a rapid rise in insulin resistance that is too fast for beta cells to grow and catch up. This happens in some cases in pregnancy, when insulin resistance rises due to signals secreted from the placenta in order to direct glucose toward the fetus rather than mom’s cells. This is one cause of gestational diabetes.
+Eventually, if untreated, prediabetes can lead to full-fledged type-2 diabetes. This disease shows a loss of beta cells and insulin, with a dramatic rise in glucose levels (Figure 2.17). At late stages, beta cells are gone, and the patient becomes dependent on insulin injections. We will next see that the transition to insulin
+
+
+dependent type-2 diabetes is due to a dynamic instability that is built into the feedback loop.
+TYPE-2 DIABETES IS LINKED WITH INSTABILITY
+DUE TO A U-SHAPED REMOVAL CURVE
+Type-2 diabetes occurs when production of insulin does not meet the demand. Glucose levels go too high, damaging blood vessels. The disease is linked with the phenomenon of glucotoxicity that we mentioned above: glucose at high levels disables and kills beta cells. Patients lose their beta cells and are not able to make enough insulin. Glucotoxicity was quantified in an experiment by (Efanova et al. 1998) on rodent beta-cell islets. Islets were incubated for 40 hours in different concentrations of glucose. The fraction of dead islet cells dropped sharply at 5 mM glucose but then rose again above 10 mM glucose (Figure 2.18).
+
+
+FIGURE 2.18 In glucotoxicity, beta cells are killed by high glucose levels as measured in rodent islets. Adapted from Efanova et al. (1998).
+The rate plot can help us see why glucotoxicity is so dangerous. It adds an unstable fixed point, the point at which proliferation rate crosses removal rate a second time (white circle in Figure 2.19). As long as glucose concentration lies below the unstable point, glucose safely returns to the stable 5 mM point. However, if glucose (averaged over weeks) crosses the unstable fixed point, betacell removal rate exceeds growth rate. Beta cells die, there is less insulin and hence glucose rises even more. This is a vicious cycle, in which glucose disables or kills the cells that control it. It resembles end-stage type-2 diabetes.
+FIGURE 2.19 Glucotoxicity adds an unstable fixed point at high glucose levels, which leads to loss of beta cells when crossed.
+This rate plot can explain several risk factors for type-2 diabetes. The first risk factor is a diet high in fat and sugars. Such a diet makes it more likely that glucose fluctuates to high levels, crossing into the unstable region. A lean diet can move the system back into the stable region. In fact, type-2 diabetes is often curable if addressed at early stages, by changing diet and exercising. This can bring average glucose G back into the stable region even if the unstable fixed point was crossed. G then flows back to normal 5 mM. Unfortunately, it is difficult for many people to stick with such lifestyle changes. The second major risk factor is aging. With age, the growth rate of cells drops in all tissues including beta cells. This means that the unstable fixed point moves to lower levels of G (Figure 2.20), making it easier to cross into the unstable
+
+
+region. Note that the stable fixed point also creeps up slightly. Indeed, with age the glucose set point mildly increases in healthy people.
+FIGURE 2.20 With age beta cell growth rate drops, bringing the unstable fixed point dangerously closer to the normal glucose set point.
+A final risk factor is genetics. A shifted glucotoxicity curve can make the unstable fixed point come closer to 5 mM (Figure 2.21).
+FIGURE 2.21 Factors which shift glucotoxicity also shift the unstable fixed point.
+Why does glucotoxicity occur? Much is known about how it occurs, which is different from why it occurs. Glucotoxicity is caused by programmed cell death that is regulated by the same processes that control beta cell growth and insulin secretion – glycolysis, ATP production and calcium influx. A contributing factor
+
+
+for cell death is reactive oxygen species (ROS) generated by the accelerated glycolysis in beta-cells presented with high glucose. Beta cells seem designed to die at high glucose – they are among the cells most sensitive to ROS, lacking the protective mechanisms found in other cell types. Thus, it is intriguing to find a functional explanation for glucotoxicity – why is this dangerous effect not removed by natural selection? Mainstream views are that glucotoxicity is a mistake or accident, exposed perhaps only recently due to our lifestyle and longevity. In this book, we take the point of view that such processes have an important physiological role. They are crucial in the young reproductive organism. Their benefit outweighs the cost of diseases in the old.
+THE CIRCUIT IS FRAGILE TO INVASION BY
+MUTANTS THAT MISREAD THE SIGNAL
+In 2017, Karin and Alon (2017) provided an explanation for glucotoxicity by considering a fundamental fragility of the organ size-control circuit motif. The fragility is to take-over by mutant cells that misread the input signal. Mutant cells arise when dividing cells make errors in DNA replication, leading to mutations. Mutations also arise passively over time, even in non-dividing cells. Rarely but surely, given the number of beta cells and the number of cell divisions
+in a lifetime,1 a mutation will arise that affects the way that the cell reads the input signal. This is our third and final law:
+Law 3: Cells Mutate
+Let’s examine such a mutation in beta cells. Beta cells sense glucose by breaking it down in a process called glycolysis, leading to ATP production, which activates insulin release through a cascade of events. The first step in glycolysis is to modify glucose chemically. This is done by the enzyme glucokinase. Most cell types express a glucokinase variant that binds even tiny (micromolar) amounts of glucose, with a halfway-binding constant to glucose of K = 40μM. But beta cells express a special variant with K = 8 mM. This half-way point is perfect for sensing the 5 mM range of glucose in normal conditions. A mutation that affects the binding constant K of glucokinase, reducing it, say, by a factor of five, causes the mutant beta cell to mis-sense glucose concentration as if it were five times higher than it really is. The mutant beta cell therefore does
+
+
+glycolysis as if there was much more glucose around. It’s as if the mutant “thinks” that glucose concentration G is actually 5G. If our feedback design did not include glucotoxicity, such a mutant cell that interprets 5 mM glucose as 25 mM would have a higher proliferation rate (black curve) than removal rate (blue curve). It would think “Oh, we need more insulin!” and proliferate (Figure 2.22). The mutant cell therefore has a growth advantage over other beta cells, which sense 5 mM correctly. The mutant cell will multiply exponentially, particularly if this mutation occurs during embryonic development or early childhood when beta cells proliferate rapidly. This will eventually produce a substantial population of mutant beta cells. This is dangerous because such a population of mutant cells produces a lot of insulin, attempting to push glucose down to a set-point level that they think is 5 mM, but in reality is 1 mM, causing lethally low glucose.
+FIGURE 2.22 Without glucotoxicity, a mutant beta cell which misreads 5 mM glucose as 25 mM would grow.
+Mutant expansion has a second, devious property: as the mutant cell population starts to push glucose below 5 mM, normal cells begin to be removed because their removal exceeds proliferation (they die to try to reduce insulin and increase glucose). The mutant’s advantage is enhanced by killing off the normal cells. Thus, biology has a challenge not usually seen in engineering. Suppose you want to control temperature; you use a thermostat. You can count on the thermostat being precise. It will not start dividing and mutating. Biology, in contrast, needs special designs to prevent takeover by mutant cells.
+BIPHASIC (U-SHAPED) RESPONSE CURVES CAN
+
+
+PROTECT AGAINST MUTANT TAKEOVER
+To resist such mutant cells, we must give them a growth disadvantage. This is what glucotoxicity does. The mutant cell misreads glucose as very high. As a result, its removal rate exceeds proliferation. The mutant kills itself (Figure 2.23). Mutants are removed. Isn’t that neat?
+FIGURE 2.23 Glucotoxicity causes mutant beta cells that strongly hyper-sense glucose to kill themselves. This strategy has a loophole because mutant beta cells that only mildly hyper-sense glucose, in the range indicated by the hatched region, can still expand.
+The downside of this strategy is that it creates an unstable fixed point, with its vicious cycle. There is thus a tradeoff between resisting mutants and resisting disease.
+In our evolutionary past, nutrition and activity probably prevented average glucose from being very high for weeks. The unstable fixed point was rarely crossed. Our modern lifestyle makes it more likely for glucose to exceed the unstable point, exposing a fragility to disease. Glucotoxicity is a cell-autonomous strategy that eliminates mutants that strongly misread glucose. However, this strategy is still vulnerable to certain mutations of smaller effect – mutant cells that misread 5 mM glucose as a slightly higher level that lies between the two fixed points (hatched region in Figure 2.23). Such mutant cells still have a growth advantage, because they are too weak to be killed by glucotoxicity, and have higher proliferation rate than removal rate. Designs that can help against intermediate mutants are found in this system: beta cells are arranged in the pancreas in isolated islets of ~1000 cells. A mutant might take over one islet, but not the entire organ. Relatively slow growth rates for beta cells also help keep such mutants in check. And, as we will see in
+
+
+Chapter 4, there are additional safeguards against these mutants, whose failure provides a mechanism for why the immune system attacks beta cells in type-1 diabetes. The glucotoxicity mutant-resistance mechanism can be generalized to other organs: to resist mutant takeover of a tissue-level feedback loop, the feedback signal must be toxic at both low and high levels. Such U-shaped phenomena are known as biphasic responses, because their curves have a rising and falling phase. Biphasic responses occur across physiology. Examples include neurotoxicity, in which both under-excited and over-excited neurons die, and immune-cell toxicity at very low and very high antigen levels. These toxicity phenomena are linked with diseases, for example Parkinson’s disease in the case of neurons. Not all endocrine systems have such biphasic responses, however, requiring other mutant resistance strategies as we will study in Chapter 4.
+SUMMARY
+By modeling the glucose regulation system, we came upon new questions that reveal challenges shared by many organ-level circuits. First, organs have a fundamental instability due to exponential cell growth dynamics. They therefore require feedback to maintain a proper size. This is the problem of organ size control.
+The feedback loops use a signal related to the tissue function – blood glucose in the case of beta cells – to make organ size and function arrive at a proper stable fixed-point. A second fact of life for hormone circuits is that they operate on distant target tissues by secreting hormones into the bloodstream. The challenge is that the target tissues have variation in their parameters, such as insulin resistance. Hormone circuits thus need to be robust to such distant parameters in order to maintain good steady-state values (homeostasis) and dynamic responses (rheostasis) of the metabolites they control. We saw how hormone circuits can achieve this robustness by means of dynamic compensation. In dynamic compensation, tissue size grows and shrinks to precisely buffer the variation in parameters. As shown in the solved exercise below, dynamic compensation arises due to a symmetry of the equations. Finally, organ-level feedback loops need to be protected from the unavoidable production of mutant cells that misread the signal and can take over the tissue. This problem of mutant resistance leads to a third principle: biphasic responses
+
+
+(2.6)
+(2.7)
+(2.8)
+found across physiological systems, in which the signal is toxic at both high and low levels. Biphasic responses protect against strong mis-sensing mutant cells by giving them a growth disadvantage. This comes at the cost of fragility to dynamic instability and disease. Thus, all three constraints – organ size control, robustness, and mutantresistance – are addressed by a single integrated circuit design – the secrete-andgrow circuit. This circuit design is also found in numerous other hormone circuits.
+EXERCISES
+Solved Exercise 2.1: Show that the BIG model has dynamic
+compensation (DC)
+To establish DC, we need to show that when starting at steady state, glucose output G (t) in response to a given input m (t) is the same regardless of the value of s. To do so, we will derive scaled equations that do not depend on s. To get rid
+of s in the equations, we rescale insulin to I ̃ = sI, and beta-cell mass to B ̃ = sB.
+Hence s vanishes from the glucose equation dG/dt = m − I ̃G Multiplying the insulin and beta-cell equations (Eqs. 2.5 and 2.6) by s leads to scaled equations with no s
+dI ̃
+dt = qB ̃f (G) − γI ̃
+dB ̃
+dt = B ̃μ (G)withμ (Go) = 0
+Now that none of the equations depends on s, we only need to show that the initial conditions of these scaled equations also do not depend on s. If both the equations and initial conditions are independent of s, so is the entire dynamics.
+There are three initial condition values that we need to check, for G, I ̃, and B ̃, which we assume begin at steady state at time t = 0. Note that if the system begins away from steady state, there is no DC generally. The first initial condition, G (t = 0) = Gst, is independent on s because Gst = G0 is the only
+way for B ̃ to be at steady state in Eq. 2.9. This means that the second initial
+condition, from Eq. 2.6, I ̃st = m0/G0 is independent of s, which we can use in
+Eq. 2.7 to find that the third initial condition Bst = γI ̃st/G0f (Go) is also
+
+
+independent of s. Because the dynamic equations and initial conditions do not depend on s, the output G(t) for any input m(t) is invariant to s, and we have DC. Although G(t) is independent on s, insulin and beta cells do depend on it, as
+we can see by returning to original variables B = B ̃/s and I = I ̃/s. The lower s, the higher the steady-state insulin, as well as beta-cell mass, which rises to precisely compensate for the decreases in s. Similar considerations show that the model has DC with respect to the parameter q, the rate of insulin secretion per beta cell, and hence to the total blood volume. There is no DC, however, to the insulin removal rate parameter, γ. Dynamic compensation arises from the structure of the equations: the parameter s cancels out due to the linearity of the dB/dt equation with B, which is a natural consequence of cells arising from cells. s also cancels out from the dI/dt equation because the insulin production term, q B f(G), is also linear in B, a natural outcome of the fact that beta cells secrete insulin.
+Exercise 2.2. Brain uptake of glucose, BIG model
+The brain takes up glucose from the blood at an insulin-independent rate.
+a. Write a BIG model with a term describing this effect. b. Write a formula for the steady states of glucose, insulin, and beta cells, Gst,
+Ist and Bst.
+c. Is the steady-state blood glucose level Gst affected by the brain’s uptake
+rate? Compare this to the minimal model. d. Discuss why the BIG model design might be biologically useful when organs like the brain have varying fuel demands (50 words).
+Exercise 2.3. The BIG model – numerical simulation
+Write a computer code to numerically solve the BIG model equations. Set all
+parameter values to 1, f(G) = G2 and beta-cell growth rate dB/dt = 0.01 (G − 5). Note that due to the “0.01,” the rate of change of B(t) is much slower than the rate of change of G(t) and I(t). This represents the slow rate of beta-cell turnover compared to the fast hormone reactions.
+a. Plot G(t), B(t), and I(t) when at time t = 100, there is a drop of insulin sensitivity from s = 1 to s = 0.2. The plot should show the transition of B(t) from one steady state to a new one. (Hint: The initial steady state of B is determined by setting all the time derivatives in the BIG model to zero.) Explain in 50 words.
+
+
+b. Plot G(t) and I(t) in response to a meal, in the situation of (a). Model a meal by a pulse of glucose input. Thus, m(t) goes from an initial value m0 = 1 to a
+higher value m1 = 2 for 1 time unit then back down to m0. Let the meal begin
+at three different times, before, right after, and long after the drop of insulin sensitivity: tmeal = 90, 110, and 300. Plot a comparison of the response in the
+three meals in terms of how high and how quickly glucose rises and falls. Make sure the plots zoom in around the region of interest where glucose changes. Interpret using the concept of dynamical compensation (100 words).
+Exercise 2.4. A model for prediabetes
+In this exercise, we add to the BIG model a carrying capacity to beta cells and study the consequences of their loss of ability to compensate for parameter changes. The BIG model with carrying capacity is:
+dG
+dt = m − sIG
+dI
+dt = qBf (G) − γI
+dB
+dt = B (p (G) (1 − B
+C ) − r (G))
+where p(G) is beta-cell biomass growth rate, r(G) is biomass removal rate, and the carrying capacity is C. The shapes of p(G) and r(G) are given schematically in Figure 2.19.
+a. Since insulin has the fastest removal time, assume that I is at steady state and tracks the slower changes in B and G. Write the equation for Ist as a function
+of B and G. b. Plug Ist into the other two equations. This reduces the model from three to
+two differential equations. Sketch the two nullclines for B and G. Note that the B nullcline has a shape of an inverted U (Figure 2.24).
+
+
+FIGURE 2.24 Phase plot of the slow variables B and G in a model with beta cell carrying capacity. The glucose steady state rises continuously with insulin resistance, until a critical value of insulin resistance where the stable and unstable fixed points collide and annihilate. Thereafter, beta-cell mass goes to zero and glucose rises. c. How many fixed points are there? Interpret these fixed points in terms of healthy and diseased states. d. Find steady-state glucose as a function of insulin sensitivity s. What happens to the 5 mM glucose set point when insulin resistance rises? What do changes in the other parameters do to the fixed points? Relate this to prediabetes. e. When does the transition to late-stage type-2 diabetes occur, in which beta function is lost?
+
+
+NOTE
+1. Mutant cells that misread glucose are inevitable. Humans have about 109
+beta cells. To generate, these cells required at least 109 cell divisions starting
+from the fertilized egg. The mutation rate is about 10–9/base-pair/division. That means that every possible point mutation (single letter change in the genome) will be found in about 1 beta cell on average. Glucose mis-sensing can be caused by many different mutations, as exemplified by dominant activating glucokinase mutations (Christesen et al. 2008) so there should be multiple such mutant cells in everyone at birth. Human cells accumulate several tens of additional mutations per year even without dividing.
+FURTHER READING
+The BIG Model
+Topp et al. (2000) “A model of β-cell mass, insulin, and glucose kinetics: Pathways to diabetes.”
+Dynamical Compensation
+El-Samad et al. (2002) Calcium homeostasis and parturient hypocalcemia: an integral feedback perspective.
+Karin et al. (2016) “Dynamical compensation in physiological circuits.”
+Resistance to Mis-sensing Mutants
+Karin and Alon (2017) “Biphasic response as a mechanism against mutant takeover in tissue homeostasis circuits.”
+A General Resource for Models in Physiology
+Keener and Sneyd, 2008 “Mathematical Physiology II: Systems Physiology”
+REFERENCES
+Christesen, Henrik B. T., Nicholas D. Tribble, Anders Molven, Juveria Siddiqui, Tone Sandal, Klaus Brusgaard, Sian Ellard, et al. 2008.
+
+
+“Activating Glucokinase (GCK) Mutations as a Cause of Medically Responsive Congenital Hyperinsulinism: Prevalence in Children and Characterisation of a Novel GCK Mutation.” European Journal of Endocrinology 159 (1): 27–34. https://doi.org/10.1530/EJE-08-0203.
+Efanova, Ioulia B., Sergei V. Zaitsev, Boris Zhivotovsky, Martin Köhler, Suad Efendić, Sten Orrenius, and Per Olof Berggren. 1998. “Glucose and Tolbutamide Induce Apoptosis in Pancreatic β-Cells: A Process Dependent on Intracellular Ca2+ Concentration.” Journal of Biological Chemistry 273 (50): 33501–7. https://doi.org/10.1074/JBC.273.50.33501.
+El-Samad, H., J. P. Goff, and M. Khammash. 2002. “Calcium Homeostasis and Parturient Hypocalcemia: An Integral Feedback Perspective.” Journal of Theoretical Biology 214 (1): 17–29. https://doi.org/10.1006/JTBI.2001.2422.
+Kahn, S. E., R. L. Prigeon, D. K. McCulloch, E. J. Boyko, R. N. Bergman, M. W. Schwartz, J. L. Neifing, et al. 1993. “Quantification of the Relationship between Insulin Sensitivity and β-Cell Function in Human Subjects: Evidence for a Hyperbolic Function.” Diabetes. https://doi.org/10.2337/diabetes.42.11.1663.
+Karin, Omer, and Uri Alon. 2017. “Biphasic Response as a Mechanism against Mutant Takeover in Tissue Homeostasis Circuits.” Molecular Systems Biology. https://doi.org/10.15252/msb.20177599.
+Karin, Omer, Avital Swisa, Benjamin Glaser, Yuval Dor, and Uri Alon. 2016. “Dynamical Compensation in Physiological Circuits.” Molecular Systems Biology 12 (11): 886. https://doi.org/10.15252/msb.20167216.
+Keener and Sneyd (2008) “Mathematical Physiology II: Systems Physiology.”
+Polonsky, K. S., B. D. Given, and E. Van Cauter. 1988. “Twenty-Four-Hour Profiles and Pulsatile Patterns of Insulin Secretion in Normal and Obese Subjects.” The Journal of Clinical Investigation 81 (2): 442–48. https://doi.org/10.1172/JCI113339.
+Sender, Ron, and Ron Milo. 2021. “The Distribution of Cellular Turnover in the Human Body.” Nature Medicine 27 (1): 45–48. https://doi.org/10.1038/s41591-020-01182-9.
+Topp, Brian, Keith Promislow, Gerda Devries, Robert M. Miura, and Diane T. Finegood. 2000. “A Model of β-Cell Mass, Insulin, and Glucose Kinetics: Pathways to Diabetes.” Journal of Theoretical Biology. https://doi.org/10.1006/jtbi.2000.2150.
+
+
+CHAPTER 2.5
+Three Laws of Physiology
+DOI: 10.1201/9781003356929-5
+I
+N CHAPTER 2, WE encountered three fundamental laws that we will use
+throughout the book:
+1. All cells come from cells 2. Biological processes saturate 3. Cells mutate
+Law 1 leads to exponential cell growth and the problem of organ size control. Law 2 limits compensation by organ size and opens a fragility to prediabetes. Law 3 requires mutant resistance strategies such as glucotoxicity, creating a fragility to type-2 diabetes. To these three laws, we can add the force of natural selection. Physiology was selected to maximize transmission of genes to the next generation, not to optimize health or happiness. And since physiology was tuned by natural selection in the prehistoric environment, modern conditions can trigger mismatches that lead to disease. We will see how these laws apply also to autoimmunity, aging, and agerelated diseases in the upcoming sections of this book.
+
+
+CHAPTER 3
+The Stress Hormone Axis as a Two
+Gland Oscillator
+DOI: 10.1201/9781003356929-6
+INTRODUCTION
+So far, we discussed an endocrine gland that controls its own size, with beta cells as our main example. We now explore what happens when two glands control each other’s sizes. We will see that they create a feedback loop with a timescale of months, which can produce noise-driven oscillations. We will explore such feedback in the human stress-response pathway whose output is the hormone cortisol.
+Cortisol is a hormone that prepares our body for physical and psychological stress. It is the main hormone in the stress-response circuit called the HPA pathway, involved in problems of chronic stress such as high blood pressure and heart disease, and in mood disorders such as major depression and bipolar disorder. Cortisol analogs are important drugs, used to suppress inflammation, and prevent tissue swelling. These drugs are glucocorticoid steroids, often simply called steroids.
+We will see how the textbook model for the HPA system works well for stresses on the timescale of minutes to hours. However, it cannot explain the aftermath of prolonged stress that lasts for months. For this longer timescale, we need to consider how the hormone glands change in size, affecting each other in a feedback loop. This will shed light on clinical phenomena on the scale of months, such as the side-effects of steroid withdrawal and the complex process of recovery from prolonged stress. The feedback loop also can act as a seasonal oscillator, providing a hormonal set-point for each season. Finally, we will explore this two
+
+
+gland oscillator as a possible origin for the timescale of mood fluctuations in bipolar disorder.
+THE HPA AXIS RESPONDS TO PHYSICAL AND
+PSYCHOLOGICAL STRESS
+Let’s begin with the classic description of the stress axis. When we wake up, we get a boost of energy (for some of us, including the author, this takes a bit of time), thanks in part to a morning surge of the hormone cortisol. We get a similar surge of cortisol if we see a threat, such as a truck hurtling toward us. Cortisol increases blood pressure, releases sugar into the blood, focuses the mind, and gets us ready for fight or flight. We get a cortisol surge even if we predict that a threat is coming. This is psychological stress. Cortisol takes minutes to act. Stresses also activate faster responses within seconds. These act through the sympathetic nervous system and secretion of adrenalin that makes our hearts beat fast and the liver secrete glucose. Without cortisol and adrenaline, we wouldn’t have the energy to stand up. The hormone circuit that controls cortisol is composed of a series of three glands, which we will denote H, P, and A, explaining its name, the HPA axis (Figure 3.1). The H gland is the hypothalamus, a brain region midway between our ears that receives neural inputs from other brain regions and uses this information to regulate hormones that act on the rest of the body. H is activated by emergencies and stresses, including pain, low glucose, low blood pressure, inflammation, and psychological stresses. It is also regulated by the brain’s circadian clock which keeps track of the time of day, to generate the morning surge of cortisol and to keep cortisol low at night.
+
+
+FIGURE 3.1 The HPA axis controls the production of the human stress hormone cortisol. In response to physical and psychological stressors the hypothalamus H secretes hormone x1 (CRH) which induces the pituitary
+to secrete hormone x2 (ACTH), along with beta-endorphins. x2 induces
+the adrenal cortex to secrete cortisol. Cortisol inhibits the production of x1 and x2 in a feedback loop.
+All these inputs are processed and combined into the output of H: secretion of the hormone CRH (corticotropin-releasing hormone) which we will call x1. This hormone is secreted into a private blood vessel, called the portal system, which flows into the next gland P, a pea-sized organ at the bottom of the skull called the pituitary.
+In P, the hormone x1 stimulates cells to secrete the hormone x2 (ACTH, adrenal cortex trophic hormone) into the circulation. Together with x2, P also secretes beta-endorphin, which is a painkiller and causes euphoria. Endorphin means “endogenous morphine.” The messenger hormone x2 flows with the circulation and reaches the third gland of the axis, A, the adrenal cortex. The word “cortex” refers to the outer layer
+of the adrenal gland.1 We consider A as a single gland, although there are two adrenal glands, pyramid-shaped tips on top of the two kidneys. The cells in A
+
+
+secrete the final hormone, cortisol, denoted x3 . Cortisol closes a negative feedback loop by inhibiting the rate of production and secretion of its two upstream hormones, x1 and x2 (Figure 3.1). Cortisol is a small fat-like molecule, a steroid hormone. Because it is fatty, it can penetrate the membranes of all the cells in the body and bind to cortisol receptors inside the cell. When these receptors bind cortisol, they attach to the DNA at specific sites, and cause the expression of genes that respond to stress. Cortisol has many effects in addition to increasing glucose and blood pressure, such as suppressing inflammation and affecting attention and memory. Cortisol diverts resources from projects like reproduction and growth toward immediate action. It gets the body ready to respond to the stress and to prepare for more stress. Sudden stresses cause an acute response, in which cortisol levels rise from their normal range of 100–300 nM to nearly 1000 nM. These pulses last about 90 minutes, the half-life of cortisol. If the stress lasts for weeks or more, as in psychological anxiety, cortisol can cause the symptoms of chronic stress: weight gain, high blood pressure, risk of heart disease, diabetes, bone loss, and depression. Chronic high cortisol also causes cognitive changes, including increased sensitivity to negative stimuli and heightened anxiety, as well as decreased learning (technically, issues include decreased inhibition of the amygdala by the prefrontal cortex and damage to the hippocampus). The HPA axis is in fact implicated in mood disorders, as we will discuss later in this chapter. That is one reason that when I teach a class, we take nice deep sighs of relief. Deep breaths relax the fast sympathetic nervous system for fight and flight and activate its countersystem called the parasympathetic nervous system for rest and digest. They cause a nice perception of the class as a pleasant place, which reduces stress. So let’s all together take a nice deep sigh of relief. Cortisol for optimal functioning needs to be in a middle range of concentration. Insufficient levels result in low energy and dangerously low blood pressure, whereas excessive levels over long times cause the symptoms of chronic stress (Figure 3.2). The mid-range of inputs to the HPA axis can be thought of as healthy stimulation, as in sports and challenging activities that interest us.
+
+
+(3.1)
+FIGURE 3.2 The physiological effect of cortisol is optimal at an intermediate level.
+THE CLASSIC MODEL FOR THE HPA AXIS
+EXPLAINS RESPONSES ON THE TIMESCALE OF
+HOURS, BUT NOT ON THE TIMESCALE OF
+MONTHS
+This is the description of the HPA axis that you find in textbooks. It’s the HPA version of the minimal model we saw for glucose and insulin. Let’s write it down mathematically so that we can explore its properties (Vinther, Andersen, and Ottesen 2011). The main conclusion will be that the model shows the expected response to acute stress over hours but cannot explain phenomena on the scale of weeks-months. We will then expand the model by adding control of gland sizes and explain a world of phenomena on the month timescale. Let’s lump together all the stress inputs from the brain into a single quantity u(t). This input u causes H to secrete the hormone x1, which is degraded with a timescale of minutes at rate α1. This can be described as follows, using the same logic as the glucose minimal model of Chapter 1, namely production minus removal:
+dx1
+dt = q1 Hu
+x3 − α1x1.
+the inhibitory effect of x3 on the secretion of x1 is described by x3 in the
+denominator of the production term2 so that the more cortisol x3, the lower the production rate of x1. The hormone x1 acts on pituitary cells (called corticotrophs), whose total mass is P, to induce secretion of the second hormone x2. Its secretion is also inhibited by x3. The hormone x2 has a lifetime of 1/α2 = 10 minutes, and so
+
+
+(3.2)
+(3.3)
+(3.4)
+(3.5)
+(3.6)
+dx2
+dt = q2 P x1
+x3 – α2x2
+The hormone x2 in turn induces the cells of the adrenal cortex A to secrete x3, whose lifetime is 1/α3 = 90 minutes:
+dx3
+dt = q3Ax2 − α3x3
+To solve for the steady-state hormone levels, we set all temporal derivatives to zero as in the previous chapters, and do the algebra. The cortisol steady state depends on all the model parameters and rises with the input u and with the sizes of the two glands A and P
+xs3t = ( q1q2q3
+α1α2α3 uHP A)
+1
+3u1
+3P 1
+3A1
+3
+the 1/3 powers come from the three steps in the HPA axis. Similarly, the steady states of the other two hormones also depend on all parameters. x2 rises with the size of P but drops with the size of A, because A inhibits its upstream hormone x1
+xs2t ∼ u 1
+3 A− 2
+3P 1
+3
+xst
+1 ∼ u2
+3 P −1
+3 A− 1
+3
+where the ~ sign signifies an expression that highlights the dependence on the variables we care about, without the other parameters. These equations correctly show that the hormone levels rise when stress input u increases and drop back when the stress is removed, within minutes-hours (Figure 3.3).
+
+
+FIGURE 3.3 The HPA model in textbooks explains the rise of cortisol over hours in acute stress.
+The equations, however, cannot explain phenomena on the scale of weeks-months mentioned in the introduction to this chapter. They predict that cortisol returns to normal within hours of the end of the stress input. This cannot explain the months required for hormone levels to return to baseline after prolonged HPA activation due to stress, pregnancy, anorexia, drug abuse, or long-term use of steroids in clinical situations. To explain these phenomena, we will need the slow timescale of months associated with the growth and shrinkage of the glands in the HPA axis. The fact that the adrenal grows upon prolonged stress has been known for decades. Enlarged adrenals in stressed rats and in human suicide victims were one of the first clues for the existence of entire pathway as discovered by Hans Selye. But the dynamical consequences of these gland-mass changes have not been considered mathematically until recently. We will therefore study the effect of adding equations for the gland masses. As in the case of beta cells, the glands A and P are made of cells that divide and are removed (the H gland is in the brain, and like most neuronal tissues, it does not show sizable turnover of cells). To maintain proper organ size control, the A and P glands must have feedback control. It turns out that the glands control each other’s growth using their series of hormone secretions. This circuit is described next.
+THE HPA AXIS SHOWS A FEEDBACK LOOP IN
+WHICH TWO GLANDS CONTROL EACH OTHER’S
+SIZE
+The cells of the A and P glands proliferate and are removed with a typical turnover time of about 1–2 months. They balance their cell proliferation and removal with feedback loops. The inputs to these loops are the HPA hormones themselves. The hormone x1 acts not only to induce secretion of x2 by P cells; it also increases the P cell proliferation rate. Similarly, x2 acts to induce x3 secretion and also to induce adrenal cortex A cell proliferation (Figure 3.4).
+
+
+(3.7)
+(3.8)
+FIGURE 3.4 The HPA axis is built of two secrete-and-grow circuits in series. The hormone x1 is the growth factor of the pituitary cells P that
+secrete x2, the growth factor for the adrenal cortex A.
+Thus, the HPA axis shows two occurrences of the secrete-and-grow circuit motif we saw for the insulin-glucose system, in which a signal controls both secretion and growth (Figure 3.4). In the HPA axis, the two motifs are stacked on top of each other. To reflect for a moment, we have learned quite a lot: before reading this book, it probably would have been difficult for you to make sense of such a complex circuit, but in about 10 minutes, you will understand much of its behavior. The equations for P and A cell mass are, just as in the case of beta cells, the difference between cell proliferation and removal. The proliferation of P depends on x1, and proliferation of A on x2, and thus
+dP
+dt = P (bP x1 − aP )
+dA
+dt = A (bAx2 − aA)
+where aP , aA are the cell removal rates (with turnover times of 1/aA, 1/aP ∼ 1 − 2 months), and bP , bA are the hormone-dependent growth rates. These two equations have important consequences for the system on the scale of months. Here we again use the concept of separation of timescales between the month-timescale of changes in gland mass and the hour-timescale of the hormones. Therefore, the steady states of Eqs. 3.4–3.6 correctly describe what happens if the stress input u is present for a few hours. But if stress input u is present for weeks, the masses of the glands A and P increase gradually, and the system finds its full steady state with an enlarged adrenal cortex and high cortisol (Figure 3.5). The fast-timescale solutions for the hormones in Eqs. 3.4–3.6 are more accurately described as quasi-steady-states.
+
+
+(3.9)
+FIGURE 3.5 Separation of timescales in the HPA model with gland-mass changes. The HPA axis has a fast timescale of hours and a slow timescale of weeks over which gland masses change. A prolonged stress input causes the adrenal cortex to grow and cortisol levels to rise over the course of weeks toward an elevated steady-state level.
+When we solve the steady-states of the slow equations Eqs. 3.7 and 3.8, we find that the steady-state hormone levels become much less sensitive to the physiological parameters of the HPA axis. In particular, the only way to get to a steady state (with A, P > 0) is to have cell proliferation equal removal. This locks the hormone x1 to obey bpx1 = aP , and thus x1,st = aP /bP . Similarly,
+x2,st = aA/bA. Elegant! Only cell growth and removal parameters determine
+hormone levels, making them robust to all the fast-timescale parameters such as production rates q1, q2, q3, removal rates α1, α2, α3, etc. Cortisol similarly turns out to have a simple steady-state level that is robust to almost all model parameters (by plugging in xst
+1 to Eq. 3.1):
+xs3t = q1bP H
+α1aP u
+Nicely, cortisol rises linearly with the stress input u – a proportional response to stress inputs from the brain. Cortisol steady-state concentration does not, however, depend on production parameters q2, q3 which vary, for example, with metabolism. It also does not depend on the hormone removal parameters α2, α3. As in the case of glucose, the circuit protects cortisol baseline levels from variations in many physiological parameters, compensating for these changes by means of slow growth and shrinkage of the glands. The ability of gland masses to change also provides robustness to the response dynamics to an acute stress, the phenomenon called rheostasis. Cortisol rise and fall dynamics after an acute stress input are independent of the production rates
+
+
+(3.10)
+(3.11)
+q2, q3, an example of dynamical compensation that we saw in the previous chapter for glucose. We can derive equations for the gland masses on the timescale of months by using the quasi-steady-state approximation for the hormones. Plugging x1 and x2 into Eqs. 3.7 and 3.8, shows a negative feedback loop between P and A:
+dP
+dt = P (cP u 2
+3 P −1
+3 A− 1
+3 − aP )
+dA
+dt = A (cAu 1
+3P 1
+3 A− 2
+3 − aA)
+where cP and cA are combinations of the fast-timescale equation parameters. P acts to increase the size of A, by the action of x2 the growth factor for the adrenal cortex (Figure 3.6). In contrast A prevents the growth of P, because the hormone it secretes, cortisol, reduces the secretion of x1, which is the growth factor for P.
+FIGURE 3.6 The adrenal and pituitary form a negative feedback loop that acts on the timescales of months.
+THE PITUITARY AND ADRENAL GLANDS FORM A
+NEGATIVE FEEDBACK LOOP THAT CAN
+OSCILLATE WITH A SEASONAL TIMESCALE
+For the remainder of this chapter, we focus on the timescale of months. This is the timescale of the negative feedback loop between the two glands. Like many negative feedback loops in which both arms have similar timescales, the HPA circuit can show damped oscillations. To see how the oscillations go, follow Figure 3.7 from the top and go with the arrows clockwise. When A is large, it reduces P. Smaller P reduces A. Smaller A makes P grow back. Large P makes A grow, closing the cycle (Figure 3.7). Each of these steps has a delay due to the tissue turnover time, about 2 months. The overall time for a full cycle is on the order of a year.
+
+
+FIGURE 3.7 Schematic of the oscillatory nature of the adrenal-pituitary feedback loop. A large adrenal A secretes cortisol that inhibits x1, the
+growth factor of the pituitary P, making it shrink. Small P produces less x2, the growth factor for A, so that A shrinks. Small A releases the
+inhibition of P growth, and a large P makes A grow again. Each step takes months.
+When Avichai Tendler during his PhD with me found this timescale of a year, we got goosebumps (Tendler et al. 2021). A year is important for organisms because of the changes in seasons. It is useful to have an internal oscillator that can keep track of seasons, as we will discuss below. To understand this oscillator, it helps to make an analogy of the A-P feedback loop to a mass on a spring. Suppose the mass is at rest at its equilibrium point (Figure 3.8). If you pull the mass down, the spring will stretch and exert a force pointing back to the equilibrium point. If you let go of the mass, it will return to equilibrium but with high velocity v, so it will overshoot and compress the spring. The compressed spring pushes the mass back down, and so on, to obtain sustained oscillations (Figure 3.8).
+FIGURE 3.8 The adrenal-pituitary feedback loop can be compared to a mass on a spring.
+
+
+To describe this motion, we can use Hooke’s law of the spring: the force grows with the extension of the spring, F = −kx. This force, according to Newton’s law, F = ma, changes the acceleration a, which is the rate of change of velocity a = dv/dt. Thus, spring extension x “inhibits” velocity, dv/dt = − k
+m x.
+Conversely, velocity “activates” spring extension because velocity is the rate of change of position, dx/dt = v. This is a negative feedback loop in which v enhances x but x inhibits v (Figure 3.9). Thus, x and v are like A and P, and the negative feedback can act as an oscillator.
+FIGURE 3.9 In the mass-on-a-spring analogy there is a negative feedback loop between velocity v and position x.
+When you simulate the slow equations for A and P, you don’t get sustained oscillations; instead, you see damped oscillations that decay away. To get damped oscillations in the spring analogy, we can submerge the spring in a container with a viscous fluid like honey. The honey causes a drag force which is proportional to velocity: dv/dt = −kx − bv (Figure 3.10). The spring does not oscillate forever but instead settles down to its equilibrium point.
+FIGURE 3.10 A better analogy for the adrenal-pituitary feedback loop is a mass on a spring in a viscous fluid, which exhibits damped oscillations.
+There is also a drag-like force in the equations for A and P. For example, large A makes more cortisol, which inhibits x2, the growth factor of A. Thus, large A acts
+to reduce its own growth, similar to a large velocity v which enhances drag and slows itself down (thanks to Z. Tan in the 2020 Systems Medicine class for this comment).
+DAMPED OSCILLATIONS IN STEROID
+
+
+WITHDRAWAL OVER MONTHS
+When you pull the damped spring and let it go, it oscillates and relaxes to its steady state. This suggests a way to study the HPA oscillator, by seeing what happens when you pull it away from equilibrium and watch it recover. Let us therefore consider situations that perturb the HPA axis, reasoning that the twogland feedback loop should show months-scale recovery dynamics from perturbations. One situation occurs when cortisol levels are forced to be high for weeks or more, and then are suddenly lowered. This is a common medical situation in which people take cortisol analogues called glucocorticoid steroids, such as dexamethasone or prednisone, for extended periods and then go off the drugs (Dixon and Christy 1980; Byyny 2009). Millions of people take glucocorticoid steroids to reduce inflammation or suppress immune responses, as in asthma, autoimmune diseases, and after transplants. High doses of steroids for a few days cause no problems. But if they are given for 2 weeks or more, it is important not to stop steroid treatment all at once. A sudden stop can make the patient show dangerously low cortisol. The adrenals can’t make enough cortisol, causing serious symptoms: blood pressure drops to potentially fatal levels. This is called steroid withdrawal. Thus, one must gradually reduce the dose over months – one protocol is to reduce the dose by 25% every 2 weeks. Steroid treatment can be modeled by adding external cortisol D to the equations, by replacing x3 by x3 + D in Eqs. 3.1 and 3.2. In this case, both pituitary and adrenal gland sizes shrink, due to inhibition of their growth factors x1 and x2 by D. It’s as if the glands “think” there is too much cortisol and shrink in an attempt to return it to baseline. This causes the atrophied and involuted adrenal gland observed in extended glucocorticoid treatment (Nicolaides et al. 2010). We can use our mathematical model to simulate steroid withdrawal. The computer simulation begins with small gland sizes A and P, after a long period of high exogenous cortisol D. A sudden withdrawal from the drug is modeled by setting D to zero. This is like pulling hard on the spring, and then letting it go. You can see this in Figure 3.11, starting at the bottom (small A and P), and following the arrows. The dynamics show that P recovers first, and A follows it. As a result, x2 overshoots after 3 months and goes back to normal after 9 months, whereas cortisol is abnormally low and recovers after 9 months (Figure 3.11a). The overshoot of x2 is due to the release of x1 inhibition, which causes P to grow. Only when P returns to normal size is x2 sufficient to allow A to grow and recover.
+
+
+FIGURE 3.11 Cortisol and x2 (ACTH) dynamics following sudden
+steroid withdrawal. (a) The model shows cortisol recovery after 9 months with an overshoot in x2. (b) Data from 14 patients which stopped
+prolonged steroid treatment or had a cortisol-secreting tumor removed shows similar dynamics. Adapted from Graber et al. (1965).
+Such overshoot dynamics were found by Graber et al. in an example of a “small data” study which followed n = 14 patients who went off prolonged steroid treatment or had a cortisol-secreting tumor removed (Graber et al. 1965). Patients showed a 10-fold overshoot in x2 after a few months, and a slower recovery of cortisol over 10 months (Figure 3.11b), in agreement with the model. We can further understand this overshoot by using the phase portrait approach we introduced in Chapters 1 and 2 (Figure 3.12). The two nullclines decompose the feedback loop of A and P into two arms. One arm (dA/dt = 0) is a rising curve in which P enlarges A, and the other arm (dP/dt = 0) is a dropping curve in which A reduces P. The arrows in the phase portrait show how the two glands “flow” back to their fixed point at the intersection of the nullclines. The flow spirals into the fixed point.
+
+
+FIGURE 3.12 Phase portrait for the HPA axis gland masses. The blue trajectory corresponds to recovery from prolonged steroid treatment and shows a strong overshoot of the pituitary. The orange trajectory corresponds to recovery from prolonged stress and shows an undershoot of the pituitary. Black curves are nullclines that cross at the fixed point.
+I love the look of this phase portrait. See how steroid withdrawal is easy to read out (blue trajectory) by following the arrows: first P grows, then A, and then a spiral back to the fixed point.
+RECOVERY FROM PROLONGED STRESS TAKES
+WEEKS AND SHOWS AN ENDORPHIN
+
+
+UNDERSHOOT
+Another situation that pulls hard on the spring is prolonged stress, namely an input u that is high for weeks or more (Karin et al. 2020). This occurs in periods of severe disease, starvation, psychological anxiety or depression. Prolonged activation also occurs in periods of alcoholism or drug abuse, because alcohol and many drugs activate the HPA axis (Karin, Raz, and Alon 2021). Simulating the model with prolonged high input u shows that the adrenal mass A grows over weeks, and cortisol rises. Note that this is the opposite of steroid treatment in which the adrenal shrinks; here we increase the input u, rather than a steroid that mimics cortisol. Unlike cortisol, the hormones x1 and x2 first rise during the stressful period but then return to their original level, despite the ongoing stress – recall the integral feedback equations Eqs. 3.7 and 3.8 that make their steady-state independent on input u. This is called exact adaptation – return to a baseline despite continued strong input. Ok, we pulled the spring, now let’s release it. Stress, illness or starvation is over; addiction stops cold turkey. Our phase portrait shows that it takes weeks for the adrenal to return to normal, and the pituitary shows an undershoot (Figure 3.12 orange trajectory that starts from an enlarged adrenal). As a result, it takes a month or so for cortisol to go back to normal. Importantly, there is a longer period of low x2, which as you recall also means low levels of the natural painkiller and euphoric beta-endorphin. Thus, the model reveals two periods of post-stress adaptation (Figure 3.13). There is high cortisol and low beta-endorphin for a few weeks, and then a few more months of normal cortisol in which beta-endorphins remain low (Karin, Raz, and Alon 2021). Low beta-endorphins can cause dysphoria – a reduced ability to enjoy pleasurable stimuli. And in some people, it can also increase sensitivity to pain. We need care and compassion in the months when people recover from prolonged stressors.
+
+
+FIGURE 3.13 HPA dynamics during and after a prolonged stress input. The adrenal A and cortisol x3 both grow during the stress and then
+decline when it ends. Hormones x1 and x2 shows a pulse-like overshoot
+at stress onset with exact adaptation, and an undershoot at stress end. There is a period of months in which x2 and beta-endorphins remain low
+after cortisol has normalized. Adapted from Karin et al. (2021).
+SEASONALITY IN HORMONES
+With the mass-on-a-spring analogy, we can also understand what happens to the HPA axis when it gets inputs that change over a year, like the changes of the seasons. These can entrain the oscillator to a period of one year. It’s like putting the spring-in-honey container on a platform that oscillates up and down: the spring picks up the platform’s frequency (one year) and begins to oscillate with the same frequency. Even if the oscillator’s natural frequency is a bit different, perhaps 10 months, it can still entrain effectively to a yearly input. Many animals exhibit striking physiological changes across the year – they migrate, hibernate, and mate in certain seasons, all due to hormonal changes. The

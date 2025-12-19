@@ -1,0 +1,23 @@
+TY  - JOUR
+AU  - Kim, Hyunwoong
+AU  - Park, Seongbeom
+AU  - Seo, Sang Won
+AU  - Na, Duk L.
+AU  - Jang, Hyemin
+AU  - Kim, Jun Pyo
+AU  - Kim, Hee Jin
+AU  - Kang, Sung Hoon
+AU  - Kwak, Kichang
+PY  - 2025
+DA  - 2025/07/29
+TI  - A novel deep learning-based brain age prediction framework for routine clinical MRI scans
+JO  - npj Aging
+SP  - 70
+VL  - 11
+IS  - 1
+AB  - Physiological brain aging is associated with cognitive impairment and neuroanatomical changes. Brain age prediction of routine clinical 2D brain MRI scans were understudied and often unsuccessful. We developed a novel brain age prediction framework for clinical 2D T1-weighted MRI scans using a deep learning-based model trained with research grade 3D MRI scans mostly from publicly available datasets (N = 8681; age = 51.76 ± 21.74). Our model showed accurate and fast brain age prediction on clinical 2D MRI scans from cognitively unimpaired (CU) subjects (N = 175) with MAE of 2.73 years after age bias correction (Pearson’s r = 0.918). Brain age gap of Alzheimer’s disease (AD) subjects was significantly greater than CU subjects (p < 0.001) and increase in brain age gap was associated with disease progression in both AD (p < 0.05) and Parkinson’s disease (p < 0.01). Our framework can be extended to other MRI modalities and potentially applied to routine clinical examinations, enabling early detection of structural anomalies and improve patient outcome.
+SN  - 2731-6068
+UR  - https://doi.org/10.1038/s41514-025-00260-x
+DO  - 10.1038/s41514-025-00260-x
+ID  - Kim2025
+ER  - 

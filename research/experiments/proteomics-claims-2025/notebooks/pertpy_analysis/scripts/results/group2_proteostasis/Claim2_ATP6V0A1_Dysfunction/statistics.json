@@ -1,0 +1,13 @@
+{
+  "claim": "ATP6V0A1 subunit dysfunction leads to lysosomal alkalinization",
+  "verdict": "\u274c REFUTED",
+  "n_proteins": 20,
+  "n_significant": 0,
+  "n_upregulated": 0,
+  "n_downregulated": 0,
+  "mean_log2fc": -0.02361405910691742,
+  "figures": [
+    "/Users/byron/project_plan/pertpy_analysis/scripts/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/volcano_plot.png",
+    "/Users/byron/project_plan/pertpy_analysis/scripts/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/bar_plot.png"
+  ]
+}

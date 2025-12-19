@@ -1,0 +1,2637 @@
+I dedicate this to Ola, for all your love.
+i
+
+
+Acknowledgements
+I would not have been able to complete this thesis without help and sup
+port from everyone around me. Firstly, my team of supervisors: Amanda,
+Fernando, Claire, Alan and Matt. Each has provided unique insight and
+support throughout; Amanda, you have guided and helped me in seeing the
+importance of finishing things instead of answering every possible question;
+Claire, your advice “find a method that works and then get as many results
+as possible with it” was instrumental in my experimental approaches. To
+Sal and everyone in SIOS for helping me with myriad questions: remember
+there are no stupid questions, just inquisitive idiots. To Francesca, for a
+series of inspiring conversations about Brillouin scattering in hydrated ma
+terials which were instrumental in the discussion and future work presented
+here. To Nico Sturman and the Micro-Manager community at image.sc,
+thanks for helping make my data acquisition possible. To my family and
+friends, I thank you for kind words of encouragement, and engagement in
+conversations about my work. Although you might not have understood
+everything, explaining it to you helped me reframe and contextualize so
+that a wider audience may understand what I have done. To Pact Coffee
+and Des Rˆeves et Du Pain, for nourishing and inspiring me whenever I
+turned to you. To Hercules, for reminding me that even when I’m working
+I have to take care of myself and those around me. And also for countless
+mice. To Mum, for enabling everything I have done and encouraging me
+throughout whilst reminding me to eat well. And lastly to Ola, who has
+been here for me throughout, inspiring me to do my best work and be my
+best self. The ideas you have provided me with cannot be quantified or
+summarised and neither can your love or support.
+ii
+
+
+Abstract
+Single cell biomechanics is concerned with the viscoelastic properties of
+biological organisms on the length scales of whole cells and the macro
+molecules that comprise them (tens of microns to nanometres). This is
+an area of increasing research interest, with biomechanics being found to
+affect many healthy and diseased states of the cell. Many cell types are
+sensitive to the mechanical properties of their surroundings, which affects
+not only their own mechanical properties, but also such diverse things as
+mitotic cell division and stem cell differentiation. In probing cell mechan
+ics, the cytoskeleton is of particular interest due to its multifaceted role; it
+is a prestressed network of proteinaceous filaments and cross-linkers which
+has been described as the source of order in the cell. The cytoskeleton is
+crucial to mechanosensing, force transduction, cell motility and division,
+and to regulation of the mechanical properties of cells. Many diseases are
+pathologies of the cytoskeleton, and it is a common target for anti-cancer
+drugs.
+Here are included novel measurements using Brillouin light scattering in
+cluding those of live cells demonstrating the potential for live cell study.
+Finally, the results from different techniques are compared, contrasted and
+discussed. Actin disruption in live cells by 1➭M latrunculin B was found
+by external passive microrheology to reduce geometric stiffness by 4 N/m
+iii
+
+
+after 40 minutes (median from 11 cells); a time course experiment with
+phonon microscopy found longitudinal elasticity reduced by 3.6% after 26
+minutes with continued slow softening over 2 hours. To my knowledge, no
+prior publications report a time course of cell elasticity during cytoskeletal
+disruption. Microrheology experiments without drug treatment revealed
+cells stiffening 2 N/m and while cytoskeletal active strain rate decreased,
+the stress rate increased; this is the first such observation of changes in cell
+stress rate.
+This thesis is concerned with the measurement of cellular viscoelasticity,
+and bringing together information from two measurement techniques which
+probe vastly different aspects of cell mechanics. The bulk of the thesis fo
+cusses on microrheology of living cells, with an analogy developed between
+a bead bound to the cell and an optically trapped bead: first a theoretical
+framework is built for data interpretation; next microrheological analyses
+are developed for measurements with optical tweezers; then results obtained
+from non-invasive measurements of live cells are presented and discussed.
+Phonon microscopy, based upon picosecond laser ultrasound, is detailed
+and applied to cell measurements; study of cytoskeletal dynamics within
+live cells is demonstrated.
+iv
+
+
+Research Outputs
+The work presented in this thesis contains aspects which have been pub
+lished in peer-reviewed journals and presented orally at both national and
+international conferences. Additionally, I was a finalist for the Faculty of
+Engineering Three Minute Thesis (3MT) competition in 2022. Here fol
+lows a complete list of publications I have contributed to and conference
+presentations I have made.
+Publications:
+Picosecond Ultrasonics For Elasticity-Based Imaging And Char
+acterization Of Biological Cells. Pe ́rez-Cota, F., Fuentes-Domı ́nguez,
+R., La Cavera, S., Hardiman, W., Yao, M., Setchfield, K., Moradi, E.,
+Naznin, S., Wright, A., Webb, K.F. and Huett, A., 2020. Journal of Ap
+plied Physics, 128(16), p.160902.
+Living Cells as a Biological Analog of Optical Tweezers – a Non
+Invasive Microrheology Approach. Hardiman, W., Clark, M., Friel,
+C., Huett, A., P ́erez-Cota, F., Setchfield, K., Wright, A.J., and Tassieri,
+M., 2023. Acta Biomaterialia.
+Parallel Imaging with Phonon Microscopy. Fuentes-Domı ́nguez, R.,
+Yao, M., Hardiman, W., La Cavera, S., Setchfield, K., Pe ́rez-Cota, F.,
+Smith, R.J., Clark, M., 2023. Photoacoustics.
+v
+
+
+Classification Of Cancer Cells At Sub-Cellular Level By Phonon
+Microscopy And Deep Learning: Towards Phonon-Based Diag
+nostics. Pe ́rez-Cota, F., Martinez-Arellano, H., Hardiman, W., La Cav
+era, S., Thornton, L., Fuentes-Domı ́nguez, R., Smith, R.J., McIntyre, A.,
+Clark, M., 2023 Scientific Reports.
+Label-Free 3D Phononic Endo-Microscopy and Elastography of
+Sub-Micron Biology. La Cavera, S., Hardiman, W., Yao, M., P ́erez
+Cota, F., Fuentes-Domı ́nguez, R., Chauhan, V., Smith, R.J., Clark, M.,
+2024. Communications Biology
+Conference Presentations:
+Living Cells as a Biological Analog of Optical Tweezers – a Non
+Invasive Microrheology Approach. Hardiman, W., Clark, M., Friel,
+C., Huett, A., P ́erez-Cota, F., Setchfield, K., Wright, A.J., and Tassieri,
+M., 2024. Poster at Annual European Rheology Conference, Leeds, UK.
+Awarded poster prize by Royal Society of Chemistry journal, Soft Matter.
+Advances in Phonon Microscopy of Live Cells. Hardiman, W. Pe ́rez
+Cota, F., Fuentes-Domı ́nguez, R., La Cavera, S., Setchfield, K., Friel, C.,
+Smith, R., Clark, M., Wright, A.J.. 2023. Oral presentation at BioBrillouin
+2023, Dublin, Ireland.
+Non-invasive Microrheology of Living Cells. Hardiman, W. Clark,
+M., Friel, C., Huett, A., P ́erez-Cota, F., Setchfield, K., Tassieri, M. and
+Wright, A.J.. 2022. Oral presentation at Photon 2022, Nottingham, UK.
+Non-invasive Microrheology of Living Cells. Hardiman, W. Clark,
+M., Friel, C., Huett, A., P ́erez-Cota, F., Setchfield, K., Tassieri, M. and
+Wright, A.J.. 2022. Oral presentation at Photon 2022, Nottingham, UK.
+vi
+
+
+Non-invasive Microrheology of Living Cells. Hardiman, W. Clark,
+M., Friel, C., Huett, A., P ́erez-Cota, F., Setchfield, K., Tassieri, M. and
+Wright, A.J.. 2022. Oral presentation at Oxford Biomedical Imaging Fes
+tival, Oxford, UK.
+Phonon Microscopy of Live Cells. Hardiman, W. P ́erez-Cota, F.,
+Fuentes-Domı ́nguez, R., La Cavera, S., Setchfield, K., Friel, C., Smith, R.,
+Clark, M., Wright, A.J.. 2022. Oral presentation at 1st Conference on
+Brillouin Light Scattering for Life Science and Biomedical Applications,
+Lyon, France.
+vii
+
+
+Statement of Contribution
+The optical trapping microscope detailed in Chapter 3 was already built
+at the time I started this work. Due to changes in laser safety rules, I had
+to redesign, rebuild, and realign the optical system. Removing a lens from
+the beam path to change the focal position of the bead was my idea. Data
+acquisition for particle tracking experiments was performed using custom
+software designed and developed by myself and run within Micro-Manager.
+Confocal images in Chapter 4 were from cells cultured and stained by my
+self with the guidance of Kerry Setchfield and Alan Huett, and imaging
+was performed by me using the Zeiss Airyscan 2 Confocal Laser Scanning
+Microscope at the Nanoscale and Microscale Research Centre in Notting
+ham.
+Passively measuring cell rheology using optical trapping and functionalised
+beads was first suggested by Manlio Tassieri and the optical trapping anal
+ogy was demonstrated by Rebecca Warren[1]. This prior work did not
+include observations of active strain generation, nor did it include the de
+tailed quantitative analysis that I developed and demonstrate in Chapter
+4. Interpretation of the results in the context of cellular response to bead
+binding is my own. Numerical methods for quantification of microrheology
+measurements were designed and developed by myself under the guidance
+of Manlio Tassieri. Elements of the work in Chapters 3 and 4 has been
+viii
+
+
+published under the title “Living Cells as a Biological Analog of Optical
+Tweezers – a Non-Invasive Microrheology Approach” and presented at sev
+eral conferences.
+The phonon microscope was built by Fernando P ́erez-Cota circa 2016[2],
+and I helped to deconstruct and rebuild it during the course of this work,
+including redesigning the optical paths to allow multiple experiments using
+the same laser system and integration of fluorescent imaging used during
+live cell experiments. I automated the fluorescent imaging with control of
+illumination LEDs and software to integrate image acquisition into the ex
+periment. Use of an infra-red probe beam to study live cells had not been
+demonstrated prior to this work and the experiments performed to probe
+the contribution of the actin cytoskeleton were of my design. Aspects of
+the cell death study in Chapter 5 have been published under the title “Pi
+cosecond Ultrasonics For Elasticity-Based Imaging And Characterization
+Of Biological Cells” and presented at BioBrillouin conference.
+ix
+
+
+Contents
+Chapter 1 Introduction 1
+1.1 Introduction to Mechanobiology . . . . . . . . . . . . . . . . 1
+1.2 The Cytoskeleton . . . . . . . . . . . . . . . . . . . . . . . . 3
+1.3 Cell Lines . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+1.4 Objectives of the Thesis . . . . . . . . . . . . . . . . . . . . 7
+Chapter 2 Background 10
+2.1 Single-Cell Biomechanics . . . . . . . . . . . . . . . . . . . . 11
+2.1.1 Active Techniques . . . . . . . . . . . . . . . . . . . . 15
+2.1.2 Passive Techniques . . . . . . . . . . . . . . . . . . . 19
+2.2 Rheology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+2.2.1 Constitutive Relations . . . . . . . . . . . . . . . . . 25
+2.2.2 Microrheology . . . . . . . . . . . . . . . . . . . . . . 27
+2.2.3 Numerical Methods . . . . . . . . . . . . . . . . . . . 32
+2.2.4 Mechanics Beyond LVE and GSER . . . . . . . . . . 34
+2.2.5 Cell Rheology . . . . . . . . . . . . . . . . . . . . . . 36
+2.3 Light Scattering . . . . . . . . . . . . . . . . . . . . . . . . . 37
+2.3.1 Elastic Scattering . . . . . . . . . . . . . . . . . . . . 37
+2.3.2 Inelastic Scattering . . . . . . . . . . . . . . . . . . . 42
+2.4 Context of this work . . . . . . . . . . . . . . . . . . . . . . 45
+Chapter 3 Microrheology Methods Development 48
+3.1 Background . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+3.1.1 Measuring Trap Stiffness . . . . . . . . . . . . . . . . 49
+3.1.2 Optical Trap as Ideal Viscoelastic Material . . . . . . 51
+x
+
+
+3.2 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+3.2.1 Optical Setup . . . . . . . . . . . . . . . . . . . . . . 53
+3.2.2 Data Acquisition . . . . . . . . . . . . . . . . . . . . 56
+3.2.3 Post-Processing . . . . . . . . . . . . . . . . . . . . . 58
+3.2.4 Quantifying Viscoelastic Properties . . . . . . . . . . 67
+3.3 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . 75
+3.3.1 Systematic Errors . . . . . . . . . . . . . . . . . . . . 75
+3.3.2 Random Errors . . . . . . . . . . . . . . . . . . . . . 82
+3.3.3 Optimising SNR for Complex Moduli . . . . . . . . . 85
+Chapter 4 External Passive Microrheology of Cellular
+Adhesion 91
+4.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . 91
+4.2 Experimental Methods . . . . . . . . . . . . . . . . . . . . . 92
+4.2.1 Cell Preparation . . . . . . . . . . . . . . . . . . . . 93
+4.2.2 Microrheology Measurements . . . . . . . . . . . . . 94
+4.3 Analytical Framework . . . . . . . . . . . . . . . . . . . . . 98
+4.4 Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 100
+4.4.1 MSD Interpretation . . . . . . . . . . . . . . . . . . . 101
+4.4.2 Viscosity and Elasticity . . . . . . . . . . . . . . . . . 103
+4.4.3 Equilibrium Nature of Bead Motion . . . . . . . . . . 105
+4.4.4 Active Strain Fluctuations . . . . . . . . . . . . . . . 108
+4.5 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . 109
+4.5.1 Cellular Adhesion to Beads . . . . . . . . . . . . . . 110
+4.5.2 Analytical Framework . . . . . . . . . . . . . . . . . 113
+4.5.3 Cell Viscosity . . . . . . . . . . . . . . . . . . . . . . 114
+4.5.4 Cell Elasticity . . . . . . . . . . . . . . . . . . . . . . 115
+4.6 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . 117
+Chapter 5 Phonon Microscopy 120
+5.1 Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . 120
+xi
+
+
+5.2 Methods . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 121
+5.2.1 Setup . . . . . . . . . . . . . . . . . . . . . . . . . . 121
+5.2.2 Time-Resolved Brillouin Scattering . . . . . . . . . . 126
+5.2.3 Signal Processing . . . . . . . . . . . . . . . . . . . . 129
+5.2.4 Interpretation of Brillouin Frequency . . . . . . . . . 133
+5.2.5 Gaussian Mixture Model . . . . . . . . . . . . . . . . 136
+5.2.6 Lethal Dose Study Design . . . . . . . . . . . . . . . 136
+5.3 Results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 139
+5.3.1 Fixed Cell Results . . . . . . . . . . . . . . . . . . . 139
+5.3.2 Lethal Dose Study . . . . . . . . . . . . . . . . . . . 143
+5.3.3 Cytoskeletal Disruption in Live Cells . . . . . . . . . 149
+5.4 Discussion . . . . . . . . . . . . . . . . . . . . . . . . . . . . 153
+5.4.1 Actin Disruption . . . . . . . . . . . . . . . . . . . . 153
+5.4.2 Thermal Effects . . . . . . . . . . . . . . . . . . . . . 154
+5.4.3 Signal Processing . . . . . . . . . . . . . . . . . . . . 156
+5.4.4 Applications of Phonon Microscopy . . . . . . . . . . 157
+5.5 Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . 158
+Chapter 6 Conclusions 161
+6.1 Objectives of the Thesis . . . . . . . . . . . . . . . . . . . . 162
+6.2 Microrheology of Live Cells . . . . . . . . . . . . . . . . . . 163
+6.3 Phonon microscopy . . . . . . . . . . . . . . . . . . . . . . . 165
+Bibliography 169
+Appendices 198
+Appendix A Github Repository 199
+A.1 Microrheology Data Acquisition . . . . . . . . . . . . . . . . 200
+Appendix B Cell Culture and Preparation 203
+B.1 Phonon Microscopy Experiments . . . . . . . . . . . . . . . 203
+B.1.1 Fixed Cells . . . . . . . . . . . . . . . . . . . . . . . 203
+xii
+
+
+B.1.2 Live Cells . . . . . . . . . . . . . . . . . . . . . . . . 204
+B.2 Confocal Imaging . . . . . . . . . . . . . . . . . . . . . . . . 204
+Appendix C OAT fabrication 206
+xiii
+
+
+Chapter 1
+Introduction
+1.1 Introduction to Mechanobiology
+To define mechanobiology I turn to the words of revered mechanobiologist,
+Donald Ingber[3]:
+“The recent convergence between physics and biology has led many physi
+cists to enter the fields of cell and developmental biology. One of the most
+exciting areas of interest has been the emerging field of mechanobiology that
+centres on how cells control their mechanical properties, and how physical
+forces regulate cellular biochemical responses, a process that is known as
+mechanotransduction”
+Current understanding of mechanobiology highlights the importance of
+length scales and time scales. Starting at the top, an organism is made
+up of organs, organs are made up of tissues, tissues are made up of cells
+and extra-cellular matrix, both of which are made up of molecules[4]. At
+every scale, there is order and organisation which contribute to the func
+tion of that “component”. Order is characterised by molecules within liv
+1
+
+
+1.1. INTRODUCTION TO MECHANOBIOLOGY
+ing systems being far from thermal equilibrium - proteins are folded and
+not aggregated, and information is stored not dissipated. Organisation is
+characterised by the concentration gradients maintained across different
+membranes within a living system. The primary interest of this thesis is
+at the interface of the cellular and molecular scales; at this scale there are
+many questions in the fundamental science that are unanswered.
+We know that mechanics are implicated in diseases at the cellular scale:
+there are many diseases of mechanotransduction[3], meaning a dysfunc
+tional cellular response to forces and mechanical properties is at the core
+of the disease. Other diseases are caused by cytoskeletal dysfunction[5–7].
+Many of each are characterised by a change in the mechanical properties
+of the cells in question[5, 8, 9]. During metastases, cancer cells will spend
+some time in an adherent state when invading tissues and some time in
+a suspension state when circulating in the blood supply; throughout this,
+they are able to regulate their mechanical properties and apply forces upon
+their environment, enabling them to travel through the body where they
+sustain wide ranges of hydrostatic pressure and shear stresses[10, 11].
+Mechanics are not just relevant to disease. The mechanical properties
+of a cell’s milieu affects its behaviour[12, 13], morphology[14], and fate
+(resultant cell type after differentiation of stem cells)[15, 16]. I consider
+this adequate justification for why further interdisciplinary research into
+mechanobiology has great potential, not just as an interesting research
+question but also to develop medicines and improve lives.
+2
+
+
+1.2. THE CYTOSKELETON
+1.2 The Cytoskeleton
+Scaling down from cells and tissues to biomolecules, the concept of the
+cytoskeleton has been especially useful. Present in almost all known cells[4,
+17], the cytoskeleton is a network of filamentous proteins[18], regulated by
+a suite of accessory proteins which can modulate the stability of fibres and
+polarity of cells, or generate forces required for both cell movement and for
+intracellular transport[19].
+Taking guidance from the words of Paul Weiss;
+“Lest our necessary and highly successful preoccupation with cell fragments
+and fractions obscure the fact that the cell is not just an inert playground
+for a few almighty masterminding molecules, but is a system, a hierar
+chically ordered system, of mutually interdependent species of molecules,
+molecular groupings, and supramolecular entities; and that life, through
+cell life, depends on the order of their interactions” [20]
+I note that the cytoskeleton is regulated by a large number of proteins,
+many of which have received little study[21]. Thus a bottom-up study of
+cellular mechanobiology (i.e. in-vitro mechano-biochemistry such as rheol
+ogy measurements of actin solutions) can only capture a tiny snapshot of
+what happens inside live cells. Equally, the regulation of the cytoskeleton
+by the environment of the cell (both chemical and mechanical) means it is
+hard to translate experiments at the cellular scale to in-vivo understanding.
+The two cytoskeletal filaments which have received the most attention are
+actin filaments and microtubules, which are conserved across all eukaryotic
+cells and some prokaryotes[4, 17]. Intermediate filaments are a broader
+class with 6 types expressed in different tissues[22], including alpha-keratin
+which makes hair and nails. Greater in number, however, are the proteins
+3
+
+
+1.2. THE CYTOSKELETON
+Figure 1.1: The Cytoskeleton of an Adherent Cell Schematic of an adherent cell, showing focal adhesions binding to a substrate via fibronectin coated onto the substrate. The actin cytoskeleton is connected to fibronectin coated on the substrate via focal adhesions, and to the microtubule organising centre (MOC) via microtubules. Two types of motor protein are shown: myosin cross-links actin fibres, and kinesin transports vesicles along the microtubules.
+which interact with either of these filaments[18], including motor proteins
+such as myosin which generates stress by cross-linking actin filaments[23].
+Actin filaments have a diameter of 7 nm and 0.3-10 ➭m in length, while mi
+crotubules are 25 nm in diameter and 1-100 ➭m in length[24]. The key dif
+ference to their function, however, is not the dimensions but the mechanics
+and organisation. Actin is a semi-flexible polymer, with persistence length
+(a measure of stiffness) of around 10 ➭m[25, 26], while microtubules are
+stiffer with a persistence length of up to millimetres[27, 28]. Actin mostly
+localises to a cortical layer around 200 nm thick, while microtubules radiate
+from microtubule organizing centres within the cell. This organisation is
+shown in Figure 1.1 along with motor proteins and focal adhesions where
+the cytoskeleton links to the extracellular matrix.
+The actin cortex is reported to provide the cell with the majority of its
+resistance to deformation. Constant turnover of filaments drives contrac
+tility and motility[29, 30], and is crucial to force balance between the cell
+and its surroundings[31] (either extra-cellular matrix or other cells). The
+4
+
+
+1.3. CELL LINES
+microtubule network is less dynamic[32], and aside from acting as transport
+routes for kinesin, the rigid struts are somewhat analogous to tent poles[33].
+Compression in microtubules balances tension in the actin cortex[34], and
+they also act as mechanotransducers, transmitting forces to the interior of
+the cell[33].
+In the tent analogy of cell mechanics, the pegs which anchor the cell and
+transmit forces to its surroundings are focal adhesions. In vivo, focal ad
+hesions facilitate cell motility and support prestress by integrin receptors
+binding to extracellular matrix proteins[35]. A variety of signalling path
+ways, both biochemical and mechanical, accompany focal adhesion matura
+tion after integrin binding and lead to recruitment of cytoskeletal proteins
+such as actin, vimentin and talin[36, 37]. The mechanical coupling of the
+extracellular matrix to the cytoskeleton allows cells to sense forces from
+and mechanical properties of their surroundings[38].
+1.3 Cell Lines
+Immortalised cell lines are a key tool for biological research, with most in
+vitro study using stable cell lines rather than primary cells directly from a
+donor. The first immortalised human cells and now the most common cell
+line, HeLa cells, have been widely used over the last 70 years and much
+of what we know about both physiological and pathological processes in
+human cells comes from study of HeLa cells[39]. As a rough metric for
+their ubiquity, a PubMed search for articles in the last 20 years mentioning
+“HeLa cells” returns almost 80,000 articles, while similar searches for the
+next two most common human cell lines, “HEK cells” and “MCF-7 cells”,
+returned around 10,000 and 40,000 articles respectively.
+5
+
+
+1.3. CELL LINES
+HeLa cells, named after their donor Henrietta Lacks, are the subject of an
+ethical debate because Henrietta Lacks (the tissue donor) did not consent
+for her biopsy to be used in research. Public opinions on this case have lead
+to regulatory changes, including the requirement of informed consent for
+participation in studies. While HEK cells, an acronym for Human Embry
+onic Kidney, are not subject to this debate, bioethics in the Netherlands
+in 1977 were in their infancy with the legalisation of abortion in 1984[40],
+making it unlikely that consent was obtained for the use of aborted fetal
+tissue.
+As they are the most studied and characterised cell line, cessation of the
+use of HeLa cells would necessitate huge repetition of scientific endeavours.
+Furthermore, the ethical issues around consent are not unique to HeLa
+cells as there was little call for regulation regarding the use of tissues from
+live patients until the 1970s[41]; this means the next two most common
+human cell lines are likely subject to similar ethical issues surrounding their
+origin. Phasing out the use of cells with ethical qualms about their origins
+would necessitate researchers discarding decades of research performed on
+numerous cell lines, making it inpractical and wasteful.
+In this work, HeLa cells are used to study the mechanics of cellular adhesion
+and cytoskeletal disassembly. The cytoskeleton is highly conserved across
+eukaryotic cells[4], with actin expression being ubiquitious. The interac
+tion being studied here is that triggered by the binding of streptavidin to
+integrin receptors, an interaction where HeLa cells are believed to behave
+similarly to other cell lines[42, 43]. HeLa cells are the most widely used
+cellular model system and have been studied in great detail[39]. Despite
+this, it is worth acknowledging that HeLa cells are not always “typical”
+cells. The techniques/methods developed on HeLa cells can, however, be
+transferred to a system of specific relevance to a future biological question.
+6
+
+
+1.4. OBJECTIVES OF THE THESIS
+1.4 Objectives of the Thesis
+The objective of this thesis is to develop non-invasive biomechanical mea
+surements which are compatible with live cell study, and to compare results
+from different techniques probing different length and time scales. The two
+techniques I have chosen, microrheology and phonon microscopy, each have
+unique strengths and challenges in implementation. The aims for each dif
+fer due to the various challenges presented by the two techniques. Herein I
+present External Passive Microrheology (EPM), a method and novel anal
+ysis for measuring the viscoelastic properties and active stress generation of
+single live cells, and development of phonon microscopy for live cell study.
+External Passive Microrheology will be applied to study the mechanical
+effects of cytoskeletal processes in live cells without deforming cells by ap
+plying external forces. To this end, data acquisition needs to be developed
+and optimised to allow thousands of images per second to be acquired,
+and processed to track the position of a microsphere which will be stored
+for further processing. Development of analysis methods is needed to in
+terpret particle tracking experiments to find the mechanical properties of
+the sample; this includes a new theoretical framework based upon conven
+tional analysis of optical trapping data and improved to account for the
+complexities of live cell study. Concerned with these goals are Chapters 3
+and 4.
+Phonon microscopy will be used to measure the change in mechanical
+properties of cells with higher spatio-temporal resolution than offered by
+microrheology. First, the sensitivity will be confirmed by study of the
+effect of cytoskeletal targetting drugs applied before fixing cells. Transi
+tioning to live cell work, biocompatibility will be the biggest challenge.
+Previous phonon microscopy has used ultraviolet pump beams, however
+7
+
+
+1.4. OBJECTIVES OF THE THESIS
+infrared wavelengths are expected to be more biocompatible. To make
+this change, opto-acoustic transducer designs need to be trialled with the
+aim of enabling longer experiments; experimental protocols for live cells
+also need consideration. Sample heating during the creation of coherent
+acoustic pulses introduces a systematic error on measurements of Brillouin
+frequency, necessitating internal controls in experimental design for live cell
+work. The effect of cytoskeletal disruption on live cells will be investigated,
+including a spatially resolved time course of cell elasticity during disruption
+of actin. All work towards these aims is contained within Chapter 5.
+The goals stated above are written in a numbered list on the next page.
+8
+
+
+1.4. OBJECTIVES OF THE THESIS
+1. Passive Microrheology measurements of live cells:
+1.1. Develop software to perform video microrheology data
+acquisition on an existing optical trapping microscope.
+1.2. Develop analyis software to process microrheology data:
+1.2.1. Implement methods to perform numerical inversion from
+time to frequency domains.
+1.2.2. Create methods to measure characteristic relaxation times
+and frequencies.
+1.3. Perform live cell experiments:
+1.3.1. Develop analytical framework to quantify cell stiffness and
+viscosity.
+1.3.2. Measure changes in cell mechanical properties and active
+force generation over time.
+1.3.3. Elucidate the effect of actin disruption on cell stiffness,
+viscosity and active force generation.
+2. Phonon microscopy measurements of live cells:
+2.1. Demonstrate sensitivity of phonon microscopy to the effects of
+cytoskeletal disruption using fixed cells.
+2.2. Develop biocompatibility of the technique:
+2.2.1. Fabricate transducers for both pump and probe at infrared
+wavelengths.
+2.2.2. Implement fluorescence imaging including hardware control
+and image processing to determine cell death time.
+2.2.3. Investigate factors contributing to biocompatibility
+including heating and laser light exposure.
+2.3. Measure the effect of actin disruption in live cells:
+2.3.1. Design experiment with an internal control.
+2.3.2. Develop and test drug delivery method.
+2.3.3. Process data to yield spatiotemporally-resolved cell
+elasticity during actin disruption.
+9
+
+
+Chapter 2
+Background
+The roles that forces and mechanics play in the behaviour of tissues and
+cells has been of increasing interest in the last thirty years[3, 44–46]. A suite
+of techniques, made possible by technological advances, are now available
+for studying the mechanics of cells[6, 47–52]; this in turn has resulted in a
+suite of mechanical models for cells, in order to understand the results from
+those techniques[53–55]. Fundamental mechanobiology, i.e. how do forces
+and mechanics matter to cells, presents many interesting questions such
+as how do cells sense forces and respond[45, 56–58]. These, however, are
+little good to society without asking also “how does this affect the health
+of an organism?” thus researchers have sought to understand the interplay
+between biomechanics, mechanotransduction and disease[8, 9, 59–62].
+In this work I employ two different approaches to characterising different
+mechanical properties of single live HeLa cells. External Passive Microrhe
+ology (EPM, Chapter 4), a technique I have developed, uses optical trap
+ping to position a bead on the surface of a cell where it adheres, before the
+trap is turned off. Particle tracking microrheology is then used to infer both
+the complex shear modulus and the active stress generation of the cell as
+10
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+the adhesion site develops over tens of minutes. Phonon Microscopy (PM,
+Chapter 5) uses a femtosecond laser pulses to generate and detect coherent
+acoustic pulses within a cell, probing the longitudinal elastic modulus of
+the cell during disruption of the actin network.
+The two techniques introduced above probe different viscoelastic param
+eters of the cell and vastly different time scales. EPM reports the shear
+modulus over milliseconds to tens of seconds and stress generation of cells
+over hundreds of seconds, and cells are modelled as soft viscoelastic ma
+terials. PM measures the longitudinal modulus at timescales less than a
+nanosecond, where cells behave like compressible elastic solids. Both ap
+ply low strains to the cells, meaning effects like fluidisation can be ignored
+(more detail on this in Section 2.2.5). Crucially, PM can resolve sub-cellular
+structures with ∼ 1 s temporal resolution while EPM has no spatial reso
+lution and temporal resolution of over one minute.
+This section aims to critically compare single-cell biomechanics measure
+ment techniques, the models used to interpret the techniques, and how
+each has contributed to our understanding of the field. The relevant rheol
+ogy and microrheology theory is explained in Section 2.2, with Figure 2.2
+showing the deformation geometries for different viscoelastic moduli. The
+physics underpinning optical trapping and Brillouin scattering is explained
+in Section 2.3. Finally the impact of this work is discussed in the context
+of the field in Section 2.4.
+2.1 Single-Cell Biomechanics
+Many techniques measure subtly different parameters of the cell, at dif
+ferent length and time scales, such that their findings are not directly
+11
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+Figure 2.1: Cell mechanical models and techniques they have been applied to (green boxes). a) Fluid drop model comprising of a cortical elasticity E and a cytoplasmic viscosity μ are commonly used for whole-cell deformation of suspension cells. b) Standard linear models combining elastic (spring) and viscous (dashpot) elements can be fitted to displacement-time curves. c) Soft glassy rheology (diagram adapted from [63]), characterised by discontinuous relaxation as elements (dots) jump from one well to another, in low strain experiments. d) Tensegrity, the balance of tensile and compressile forces by different elements within the cell, has been used to explain the role of the cytoskeleton in cell mechanics and more generally cellular signalling in response to applied forces.
+comparable. To further complicate any comparison, cells do not behave
+as ideal viscoelastic materials and exhibit a yield strain which may be as
+low as a few percent[63, 64]. Thus techniques have been divided into two
+categories: active techniques in which an external force is applied to the
+cell, and passive techniques in which there is not; they are summarised in
+Tables 2.2 and 2.1 respectively. Four models of particular interest have
+been identified and summarised in Figure 2.1. References to the tables and
+figure have been omitted from the text to improve readability.
+12
+
+
+Technique Length Scales
+Probed
+Frequencies Probed
+Quantities
+Measured Schematic
+Photoacoustic Microscopy[65] >10➭m∗ <1Hz Thermal stress generated
+by optical absorption
+Scanning Acoustic
+Microscopy[66] ∼➭m† ∼100MHz† Acoustic velocity, Acoustic
+attenuation, Thickness
+Phonon Microscopy (Chapter 5)[67]
+∼ 100nm axially,
+∼ 1➭m laterally GHz
+Longitudinal elastic modulus M ′, Acoustic attenuation
+Stimulated Brillouin Scattering[68]
+∼ 2.5➭m axially,
+∼ 0.5➭m laterally GHz Longitudinal complex mod
+ulus M ∗(νB)
+Magnetic Twisting
+Cytometry[50] ∼ 1➭m 10−2 → 103Hz† Complex shear modulus
+G
+∗(ω) Magnetic Bead
+Microrheometry[69] Up to 7➭m∗ 0.1→10Hz† Shear viscosity, cortical
+elasticity
+Atomic Force Microscopy[6] Up to 20% of the cell
+by height 1 Hz → kHz† Young’s modulus E [6]
+Optical Stretching[49] Whole cell <1 Hz Shear viscosity, cortical
+elasticity or tension
+Micropipette Aspiration[70] 1➭m → Whole cell 1mHz → 1 Hz† Shear viscosity, Cortical
+elasticity or tension [70]
+Deformability Flow
+Cytometry[71] Whole cell 10Hz → 20kHz† Deformation ratio, Cortical
+elasticity or tension Optical Trapping
+Deformation[72, 73] Whole cell 1 Hz→1kHz† Shear viscosity, Cortical
+elasticity or tension [72]
+Table 2.1: Active cellular biomechanics measurement techniques. Length- and time-scales (frequencies) probed and typical quantities extracted are given for each. Frequencies marked with † indicate they are limited by the instrumentation (typically camera speed). The length scale probed by photoacoustic microscopy (marked ∗) is sample-dependent, as discussed in the text. Contradictory results have been published for the length scale probed by magnetic bead microrheometry[48, 69] (marked ∗), and are discussed in the text. Schematics with a reference are replicated from the cited publications.
+
+
+Technique Length Scales
+Probed
+Frequencies Probed
+Quantities
+Measured Schematic
+Endogenous Tracer
+Microrheology[23] 1 → 10➭m ∼0.1→100Hz†
+Complex shear modulus G
+∗(ω), Stress fluctuation spectrum ∆(ω) Elastic Resonator Interference
+Stress Microscopy[74] 2➭m → whole cell <1Hz Normal component of cell
+prestress [74]
+Traction Force Microscopy[75] 0.1➭m→ whole cell <0.1Hz In-plane component of cell
+prestress
+Fluorescence Recovery After
+Photobleaching[76] ∼ 1➭m <1Hz Nanoscale shear viscosity
+Spontaneous Brillouin
+Microscopy[77, 78] ∼1 ➭m GHz Complex longitudinal mod
+ulus M ∗(νB)
+External Passive Microrheology
+(Chapter 4)[79] Up to microns 1mHz → 1kHz† G∗(ω) for ω ≳ 1Hz, Strain
+fluctuations for ω ≲ 1Hz [79]
+Feedback Tracking Microrheol
+ogy[? ] ∼1➭m 10−2 → 105Hz † Complex shear modulus
+G
+∗(ω)
+[? ]
+Ballistic Injection
+Nanorheology[52] 1 → 10➭m 0.1→100Hz†
+Complex shear modulus G
+∗(ω), Stress fluctuation spectrum ∆(ω)
+Table 2.2: Passive cellular biomechanics measurement techniques. Length- and time-scales (frequencies) probed and typical quantities extracted are given for each. Frequencies marked with † indicate they are limited by the instrumentation (typically camera speed). Schematics with a reference are replicated from the cited publications.
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+2.1.1 Active Techniques
+Active techniques for probing single cell mechanics, that is to say methods
+where an external force is applied to cells, are listed in Table 2.2. Below I
+divide them based upon the length-scale probed.
+2.1.1.1 Whole Cell Deformations
+The first single-cell biomechanics measurements were made by deforming
+whole cells via micropipette aspiration (MA). A pipette with internal di
+ameter less than the size of a cell is pressed against the cell and hydrostatic
+pressure is used to aspirate the cell partially into the pipette[47, 70, 80]. In
+early experiments, researchers identified that small cellular deformations
+are dominated by the elasticity of a cortical layer of the cell (referred to
+as membrane tension), while larger deformations cause the cell to flow in a
+viscous manner. Thus the cell was modelled as an elastic cortex filled with
+viscous cytoplasm.
+The simple model used for micropipette aspiration is useful for analysing
+large and fast deformations of suspension cells. One application is deforma
+bility flow cytometry (DFC), in which cells are individually subjected to
+shear or extensional stress (depending on the geometry used) of up to
+kPa[71, 81]. The high throughput of DFC (hundreds of cells per second)
+means it is one of the few biomechanical techniques found in the clinic
+where it is used for cell phenotyping. The high stresses applied to cells,
+however, means that the viscosity value calculated from DFC is not neces
+sarily comparable to that which may be found by other techniques.
+Both MA and DFC are typically applied to suspension cells, as are op
+tical trapping (OT) deformation techniques and optical stretching (OS).
+15
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+Optical trapping techniques include use of beads adhered to the cell as
+“handles” which can be optically trapped, while optical stretching uses the
+forces applied to a cell by light in order to deform it. The magnitudes of
+stress applied, however, is very different to DFC or MA, with the optical
+techniques applying stresses on the order of a few Pascals[49]. As a result,
+both OT and OS probe mechanical properties closer to the unperturbed
+state of the cell, avoiding effects of rejuvenation caused by large strains.
+The optical stretcher can measure a cell in around a second, making it
+suitable for cell-population studies; this revealed the correlation between
+cancer cell deformability and malignancy (i.e. malignant cells are more
+deformable)[59]. Optical trapping measurements take longer (seconds to
+minutes per cell), but have demonstrated the importance of pre-stress and
+deformation history for suspension cells[72] and elucidated the mechanical
+properties of red blood cells in sickle cell anaemia[8] and malaria[9].
+2.1.1.2 Point-Contact Measurements
+Other techniques listed in Table 2.2 are mostly applied to adherent cells.
+While study of suspension cells allows for higher throughput and clinical
+applications, adherent cells are more widely studied. One common method
+is to use an external probe, such as a bead adhered to the cell, both for
+applying forces to the cell and tracking the resultant deformation.
+Atomic force microscopy (AFM) is often lauded as the gold standard for
+biomechanical measurements of adherent cells because it directly measures
+Young’s modulus[82, 83]. However the measurement can be influenced by
+to the tip geometry, the indentation depth and speed[84]. Furthermore,
+force-indentation curves necessitate use of preconceived models to fit data;
+commonly used are standard linear models comprising elastic springs and
+16
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+viscous dashpots.
+AFM is limited to studying the apical surface of cells but has revealed a con
+nection between mechanical and electrical activity of nerve cells[85] as well
+as finding numerous application in the study of cancer cell mechanics[86].
+Force-indentation curves are commonly analysed using standard linear mod
+els, however they may also be analysed using the soft glassy rheology or
+the poroelastic model[87]. The poroelastic model and its implications for
+microrheology are discussed in more detail in Section 2.2.4.
+Magnetic twisting cytometry (MTC) has been one of the driving forces in
+understanding the glassy (slow-relaxing) nature of cell viscoelasticity[50],
+and key to this is the soft glassy model of cell rheology[88]. Applying a
+torque to a magnetic bead adhered to the cell surface, MTC measures the
+shear modulus of the cell via the bead lateral displacement. It has been ap
+plied at length to study non-linear relaxation of cells, including rejuvenation
+and the role that macromolecular crowding plays in cell mechanics[89–91],
+as well as the role of cytoskeletal remodelling in the abnormal behaviour of
+airway smooth muscle cells in asthma[89, 92]. The rejuvenation (recovery of
+unperturbed mechanical properties after deformation) of cells was revealed
+to follow a power-law form, also indicative of glassy rheology[88, 90].
+Magnetic bead microrheometry (MBM) is conceptually similar to MTC,
+applying a pulling force instead of a torque, and allows for much larger
+force magnitudes (nN instead of pN)[69]. This may alter the compliance
+of the cell, which exhibits viscoelastic response with a relaxation time of
+∼0.1 s and a viscous response at long times, both well described by a sin
+gle standard linear model[48]. By using both magnetic and non-magnetic
+beads, MBM can be used to study the propagation of stress across a cell
+as any deflection of the non-magnetic bead is caused by cellular strain.
+17
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+Such experiments revealed that the viscoelastic screening length varies be
+tween different cell lines with 3T3 fibroblasts having a screening length
+of around 7 ➭m and J774 macrophages exhibiting no induced deflections of
+non-magnetic beads[48, 69]. This suggests that the true length scale probed
+by biomechanical measurements depends on the viscoelastic properties and
+possibly cytoskeletal organisation of the cell under study.
+2.1.1.3 Acoustic Measurements
+The remaining active measurement techniques all utilise acoustic waves on
+some level. Scanning acoustic microscopy (SAM) is the microscopic ana
+logue of a clinical ultrasound scanner, using a piezo transducer to generate
+and detect acoustic waves. Applications to single-cell study are few because
+the resolution is limited by the frequencies achievable by piezo transducers,
+however it should have excellent biocompatibility due to the low frequen
+cies of the acoustic waves. Despite having low resolution it has been used
+to demonstrate differences in the speed and attenuation of sound waves
+between benign and malignant tissues[66].
+Photoacoustic microscopy (PAM) uses a pulsed laser to generate a sound
+wave by localised heating, and a piezo transducer to measure the wave out
+side of the sample. Again, resolution is limited by the acoustic wavelength
+probed making it ill suited to single-cell applications, however the gener
+ation method allows for in vivo study of small animals[65]. While SAM
+directly measures acoustic parameters at MHz frequencies, PAM actually
+measures the optical absorption coefficient which is a quasi-static property
+of the sample.
+Low resolution is a barrier to sub-cellular study for all-acoustic techniques
+such as SAM, PAM and acoustic micrometers. To perform acoustic mea
+18
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+surements at higher frequencies, generation and detection of ultrasound
+needs technologies other than piezo transducers. Phonon microscopy (PM,
+Chapter 5) uses a femtosecond pulsed laser and a multilayer opto-acoustic
+transducer to launch a coherent acoustic pulse into a cell, where it can be
+interrogated by a second laser pulse[93]. This allows axial resolution of
+a few hundred nanometres, however the acoustic pulse attenuates quickly
+and measurements are limited to within a few microns of the basal plane
+of the cell. It has provided insight into the mechanical behaviour of Acan
+thamoeba Castellanii during the encystation process that makes the single
+celled organism so robust[94]. Further applications of PM have been limited
+so far by biocompatibility, however in this work I demonstrate protracted
+measurements of single live mamallian cells without killing them.
+Stimulated Brillouin scattering (StBS) uses the interference pattern from
+two counter-propagating lasers to generate a sound wave via electrostriction
+and probe it by Brillouin scattering, achieving a resolution limited by the
+optical system. Applications thus far have been limited by high optical
+powers required due to the non-linear scaling of scattered light intensity
+and peak power[95], however recent advances using pulsed lasers to increase
+peak power while reducing average power have allowed for StBS study of
+single mammalian cells[68]. Even still, biological applications of stimulated
+Brillouin scattering are in their infancy.
+2.1.2 Passive Techniques
+Passive measurements of cell mechanics, listed in Table 2.1, occur at lower
+stresses and strain rates than active measurements. As a result, cellular
+prestress is lower but cells appear stiffer and more solid as they are not
+subject to fluidisation due to lower strains; additionally techniques based
+19
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+upon passive microrheology also allow study of the active force generation
+within cells. Thus passive measurement techniques have the potential to
+reveal insights which are not accessible to active techniques. Additionally, a
+variety of different probes may be used, including synthetic micronspheres,
+sound waves, and fluorescent molecules, each probing different length-scales
+and quantities. Included in Table 2.1 is external passive microrheology
+(EPM), which is discussed in the context of the field in Section 2.4.
+At the scale of molecules, fluorescence recovery after photobleaching (FRAP)
+probes cellular viscosity by photobleaching a spot within the cell and then
+monitoring the fluorescence intensity recovering as fluorophores diffuse into
+the bleached spot[76, 96]. Diffusion for particles smaller than the mesh size
+(hundreds of nanometres) is less hampered by macromolecular crowding
+and FRAP reports a nanoscale viscosity 20× lower than the microscale
+viscosity[96]. This should be interpreted carefully, however, as the dif
+fusivity measured may not be directly related to the viscosity. That is,
+the Stokes-Einstein relation (η ∝ 1/D) may not hold true; in fact, cel
+lular activity can increase the diffusivity of fluorophores[97]. While the
+phenomenon is not well understood, a possible explanation is that it is ad
+vantageous to the cell to have non-specific transport faster than diffusion
+alone would achieve.
+Each of the techniques mentioned thus far have probed cellular compli
+ance, be it viscosity or elasticity, however the force generation of cells is
+also of interest. Techniques such as traction force microscopy (TFM) and
+elastic resonator interference stress microscopy (ERISM) can measure the
+transverse and normal components, respectively, of the stress tensor at the
+cell surface. Each measures deformations of an elastic layer below the cell,
+limiting the time scale probed to the relaxation time of the elastic layer,
+typically on the order of a second. These techniques can quantify both
+20
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+intercellular forces, with TFM finding forces of up to 200nN[98], and cell
+substrate forces, with ERISM resolving the relation between fluctuations
+in the force applied by migrating cells and their speed[74, 99]. TFM can
+also measure the time evolution of the strain energy within cells, show
+ing differences in force-time and strain energy-time response to contractile
+agonists[100], demonstrating the variability in cellular mechanical response
+to different chemical signals.
+2.1.2.1 Passive Microrheology Techniques
+Endogenous tracer microrheology (ETM) is the simplest cell microrheol
+ogy experiment, in which motion of endogenous particles is tracked and
+analysed[23]. While the fluctuations of single particles can reveal the shear
+modulus of its milieu, correlations between nearby particles can reveal both
+the active stress fluctuation spectrum of the cytoskeleton and the shear
+modulus of the unperturbed cytoplasm (recall that colloidal particles alter
+the rheology of their surroundings, Section 2.2.4). This was able to con
+firm that the soft glassy rheology model can be applied to the cytoplasm
+as well as giving the first insight into the frequency distribution of cells’
+active stress fluctuations. Despite its simplicity, ETM has not found a
+wealth of applications due to its non-specificity: different subcellular com
+ponents exhibit different diffusive behaviours, determined by their specific
+interactions and transport mechanisms.
+Overcoming the problems presented by use of endogenous probes, ballistic
+injection nanorheology (BIN) uses compressed gas to fire probes into the
+cell. Again single probes can be studied as can the correlations between
+multiple probes. This enables study of more varied cellular systems and
+BIN has revealed cell stiffness in both 2D and 3D cultures[101, 102] as well
+21
+
+
+2.1. SINGLE-CELL BIOMECHANICS
+as revealing the role of the Rho signalling pathway in cellular response to
+shear flow[102].
+To perform widefield particle tracking experiments, a fast camera is re
+quired, limiting the shortest timescale which can be probed. For single
+particle tracking experiments, laser interferometry with a quadrant pho
+todiode at the back focal plane can be used to achieve higher temporal
+resolution; this comes at the cost of only being able to track particle po
+sition if it is within ∼ 200[nm] of the probe laser focus. To overcome
+this, feedback tracking microrheology (FTM) uses the position of probe
+particle to guide stage movements, hence keeping the probe within the
+linear response region of the quadrant photodiode[? ]. Reporting over a
+wider frequency range than any other cell microrheology technique, FTM
+has demonstrated that soft glassy rheology is inherent to the cytosol and
+increases with macromolecular crowding[103? ].
+2.1.2.2 Spontaneous Brillouin Scattering
+Microrheology experiments probe a length scale which is determined by
+the size of the probe particle, typically on the order of microns. Scaling
+down, thermally generated acoustic phonons with wavelengths of hundreds
+of nanometres can be probed by spontaneous Brillouin microscopy (SpBM).
+This allows for measurement of longitudinal viscosity and elasticity at the
+Brillouin frequency, typically GHz, where cells and even water are pre
+dominantly elastic (i.e. M ′′(νB) ≫ M ′(νB)). The length scale probed by
+Brillouin-scattering techniques is determined by the largest of the optical
+point spread function and the acoustic mode being probed; while higher
+numerical aperture lenses would increase the resolution of Brillouin scat
+tering, it would also result in spectral broadening for StBS and SpBM[104]
+22
+
+
+2.2. RHEOLOGY
+and increased attenuation of phonon microscopy signals[67].
+Brillouin scattering for single cell study is still in its infancy however recent
+advances in instrumentation have enabled a range of applications. A key
+challenge to studying biological samples, especially tissues, is isolating the
+Brillouin scattered light from the Rayleigh line, typically achieved with
+notch filters. As a non-invasive all-optical technique it is possible to make
+in vivo measurements such as studying the formation of the gastrointestinal
+tract in Drosophila embryos[105]. Studies on spinal cord repair in zebrafish
+have not only shown that an injury is accompanied by tissue stiffening, but
+also that excising tissues alters their mechanical properties, making it all
+the more important to develop in vivo biomechanical techniques[106].
+The role of heterogeneity and interpretation of Brillouin frequency from
+biological specimens is a subject of contemporary debate in the bioBrillouin
+community, with some claiming Brillouin scattering merely probes water
+content[107]. Studying the dehydration of gelatine gels[108] enabled Bailey
+et. al. to disprove this, showing that Brillouin scattering probes stress
+relaxation and demonstrating a glassy transition at low hydration.
+2.2 Rheology
+Rheology, from Greek “rheos”, meaning flow, is the study of deformations
+and flows of matter. Rheology experiments involve measuring the strain (in
+1D this is change in length over original length ε = ∆x/x), and the stress,
+or force per unit cross-sectional area σ = F/A. This is commonly either
+measuring the time-dependent strain, ε(t) = x(t)/x0, within a sample in
+response to a step stress, σ0; or measuring the time-dependent stress, σ(t),
+in response to a time-varying strain, ε(t). In the latter case, analysis is
+23
+
+
+2.2. RHEOLOGY
+Figure 2.2: a) Bulk modulus determines material response to an isotropic stress. b) Shear modulus for “slippage” type deformations. c) Poisson’s ratio, ν, describes compressibility of a material. d) Young’s modulus determines response to uniaxial stress with unconstrained lateral dimension. e) Longitudinal modulus determines response to uniaxial stress with zero lateral strain.
+typically carried out in the frequency domain.
+Materials’ response to deformations are often described in terms of the
+shear modulus, G, the Young’s modulus, E , and Poisson’s ratio, ν. Other
+common quantities are bulk modulus, K, and longitudinal modulus, M.
+For the case of an isotropic material, any two of these are adequate to fully
+describe any deformation. Figure 2.2 shows deformations which depend
+only on one of the moduli. Having demonstrated these four moduli, I will
+continue this section concerning myself only with the shear modulus as it is
+the modulus probed by microrheology, although much of the below theory
+can equally be applied to any of these moduli.
+24
+
+
+2.2. RHEOLOGY
+2.2.1 Constitutive Relations
+The relation between stress, σ, and strain, ε, for a step-stress or an oscilla
+tory strain can respectively be summarised by the relations:
+ε(t) = σ0J(t),
+σˆ(ω) = εˆ(ω)G∗(ω)
+(2.1)
+with shear creep compliance, J(t), defining the time-dependent relation and
+the complex shear modulus, G∗(ω), describing the frequency-dependent
+relation between stress and strain. In the more general case
+Material response can equivalently be expressed in the frequency domain
+as complex modulus, G∗(ω), or in the time domain as creep compliance,
+J(t), or shear relaxation modulus, G(t). These equivalent quantities are
+related by [109]
+∫τ
+0
+G(t)J(τ − t)dt = τ, (2.2)
+Gr = dG(t)
+dt = Gˆ∗(t), (2.3)
+G
+∗(ω) = iωGˆ(ω), (2.4)
+G
+∗(ω) = G′(ω) + iG′′(ω), (2.5)
+with imaginary unit i = √−1, time t, lag time τ , and angular frequency
+ω = f/2π. Clearly the modulus and the compliance are inverse - a stiffer
+material has higher modulus and lower compliance. The complex modulus
+has a real part, the elastic (or storage) modulus G′, and an imaginary part,
+the viscous (or loss) modulus G′′.
+Using the complex modulus to describe a material response has the primary
+advantage that the elastic and viscous components can be easily separated
+25
+
+
+2.2. RHEOLOGY
+Figure 2.3: Mechanical circuits for three model materials (first column), the time-dependent strain (ε) in response to a step stress (σ0) (second column), and the time-dependent stress (σ) in response to oscillatory strain (ε) (third column). Materials shown and their complex moduli are a) ideal elastic, Equation 2.6 b) ideal viscous, Equation 2.7 and c) Kelvin-Voigt viscoelastic, Equation 2.8.
+and inspected. Using the three materials in Figure 2.3 as an example, the
+complex moduli for each could be written as
+G
+∗
+a(ω) = G0 (2.6)
+G
+∗
+b(ω) = iηω (2.7)
+G
+∗
+c(ω) = G0 + iηω, (2.8)
+where G0 is the elastic modulus, η is the viscosity and ω is angular fre
+quency.
+Note that while the model materials here have frequency-independent elas
+ticity (a and c) and viscosity linear with frequency (b and c), viscoelastic
+materials may exhibit power-law behaviours for both. Furthermore, many
+materials exhibit a non-linear response for strain with increasing stress.
+Despite this, linear viscoelastic theory is relevant in this thesis as it forms
+the basis for microrheology theory and the Generalised Stokes-Einstein Re
+26
+
+
+2.2. RHEOLOGY
+lation. The measurements performed here using passive microrheology and
+phonon microscopy are within the low strain regime, where living cells can
+be considered linear viscoelastic materials.
+2.2.2 Microrheology
+Particle tracking microrheology arguably began with Robert Brown’s ex
+periments observing pollen diffusing on the surface of water; these exper
+iments lead to the discovery of Brownian motion. Before this, Fick was
+the first to predict the mean squared displacement (MSD) of a particle
+undergoing free diffusion[110],
+M SD = 〈∆r2(τ )〉 = 〈(r(t) − r(t + τ ))2〉
+t = 2nDτ, (2.9)
+where n is the number of dimensions the particle is diffusing in, τ is known
+as the lag time, with particle position r(t) at time t and the time average
+denoted by ⟨⟩t. (Strictly this would be an average over the independent
+observations of the displacement for a given lag time, i.e.: t = mτ for
+integer m, but using all values of t gives better SNR[111].)
+To understand Brownian motion, we consider the forces acting upon a
+particle, via the Langevin equation:
+ma⃗ (t) = ⃗fG(t) +
+∫t
+0
+v⃗ (τ )ζ(t − τ )dτ (2.10)
+where a particle of mass m has instantaneous accelerationa⃗ driven by a
+random (Gaussian) noise ⃗fG(t) and damped by the integral term. The
+integrand consists of the particle velocityv⃗ (τ ) and a microscopic memory
+function, ζ(t − τ ), representing viscous drag in the suspension fluid.
+27
+
+
+2.2. RHEOLOGY
+Starting with the Langevin equation, Mason and Weitz[112] bridged the
+gap between microscopic behaviour and macroscopic properties. They note
+that the microscopic memory function, ζ(t) in Equation 2.10 is related to
+the velocity autocorrelation function by the correlations in the driving force
+fG. For over-damped motion the velocity autocorrelation function can be
+used to determine the MSD. This can be seen by first recognising that
+the MSD is related to the position (x) autocorrelation function ⟨x(t0 +
+τ )x(t0)⟩t0:
+M SD(τ ) = 2 (⟨r2⟩ − ⟨x(t0 + τ ) x(t0)⟩t0
+) ; (2.11)
+and then considering that for over-damped motion the mean force, velocity
+and displacement for a given time interval are all proportional. Thus the
+bulk viscosity of the fluid in Laplace space, η ̃(s) with Laplace frequency s,
+relates to the microscopic memory function by a constant of proportionality
+ζ ̃(s) = 6πaη ̃(s), (2.12)
+depending only on the particle radius, a. Thus the Laplace transformed
+MSD, ⟨∆r ̃2(s)⟩, is related to the Laplace transformed shear relaxation mod
+ulus
+G ̃(s) = sη ̃(s) = s
+6πa
+[ 6kBT
+s2⟨∆r ̃2(s)⟩ − ms
+]
+, (2.13)
+where G ̃(s) is the Laplace transform of the gradient of the relaxation mod
+ulus Gr(t), also known as the relaxation spectrum. The ms term which
+represents particle inertia can be neglected at frequencies much less than
+the reciprocal of the velocity relaxation time of the particle. For typical
+microrheology experimental conditions, the frequency where particle iner
+tia becomes relevant is on the order of MHz. By analytical continuation
+between the Fourier and Laplace domains, a simplified form can be written
+28
+
+
+2.2. RHEOLOGY
+in terms of the complex modulus:
+G
+∗(ω) = kBT
+iωπa
+1
+⟨∆rˆ2(ω)⟩ . (2.14)
+This is known to microrheologists as the generalised Stokes-Einstein rela
+tion (GSER) and is seminal in the study of diffusion to understand the
+mechanics of viscoelastic materials. Interpretation of the MSD is further
+aided by the equivalence of MSD and creep compliance in a step-stress
+experiment[113].
+J(τ ) = πa
+kBT ⟨∆r2(ω)⟩. (2.15)
+Further work has examined the circumstances under which assumptions
+behind the GSER are valid, which is discussed in Section 2.2.4.
+The analyses above were first applied to Diffusing Wave Spectroscopy[112],
+a microrheological technique where the autocorrelation of multiply scat
+tered light probes the MSD of an ensemble of probe particles. Mason later
+extended the analyses to particle tracking microrheology[114], measuring
+displacements of a probe particle via forward-scattered laser light. Later,
+particle tracking microrheology using widefield microscopy was demon
+strated with video cameras. Modern cameras make this trivial with high
+speeds, high resolutions, high bit-depths and dynamic ranges, and digital
+data streamed directly to a PC for storage or analysis.
+Figure 2.4 demonstrates optical trapping video microrheology of water us
+ing an optically trapped polystyrene microsphere (typical image shown in
+set to d). The strong intensity gradient near the focus confines the diffusion
+of the bead ensuring the bead remains in the field of view and allowing it
+to be recorded over many minutes. Optical trapping is commonly used
+in microrheology when looking at solutions or weak gels where the bead
+would otherwise diffuse out of the field of view before sufficient data is
+29
+
+
+2.2. RHEOLOGY
+recorded[115]. Measurements of 200,000 images each were taken on the
+same bead using increasing laser powers to increase the trap stiffness κ =
+0.12pN/μm, 0.51pN/μm, and 1.4pN/μm for black, blue and red respec
+tively. At short times (shown in b) the bead diffuses freely, unaffected
+by the trap, and Brownian motion is observed giving MSD ∝ Dτ in c)
+and G′′ ≫ G′ in d). At times much greater than the trap relaxation time
+(shown in c), the bead is confined within the trap and subdiffuse motion is
+observed, giving constant MSD ∝ κ−1 and G′′ ≪ G′′. More detail on the
+data processing shown is in Chapter 3.
+30
+
+
+2.2. RHEOLOGY
+Figure 2.4: a) X and Y Position over 2 seconds of a 5μm diameter bead in water is recorded via video microscopy as described in Chapter 3. Typical image of bead shown inset to d with 10 ➭m scale bar. Trap stiffness was varied by adjusting laser power, resulting in κ = 0.12pN/μm, 0.51pN/μm, and 1.4pN/μm for black, blue and red respectively. At short lag times, visible in b), the bead is free to diffuse while at longer lag times, visible in c), the bead diffusion is limited by the trap. c) Corresponding meansquared displacements with the trap relaxation times circled (Equation 3.4). d) Elastic and viscous moduli (crosses and circles, respectively) calculated using Equation 2.14.
+31
+
+
+2.2. RHEOLOGY
+Ch. 3
+Sec. 2.2.2
+Sec. 2.2.3
+Sec. 2.2.2 Sec. 2.2
+Sec. 3.2.3.3 Sec. 3.1.1
+Figure 2.5: Flowchart of data analysis methods to understand experimental (position-time) data. Boxes are coloured according to which section of thesis they relate to: particle tracking and associated errors (purple); analysis methods relying on the GSER (blue); particle tracking statistics and the GSER itself (red); equivalent forms of mechanical moduli (yellow); agnostic data analyses (orange); analyses for trapping only (green).
+2.2.3 Numerical Methods
+Figure 2.5 summarises approaches used described within the text to use
+particle tracking data in order to understand the particle’s motion. These
+are primarily to quantify the viscoelasticity of the material being probed.
+The methods to quantify trap stiffness in optical trapping can be gener
+alised to any elastic confinement. Agnostic data analyses fall outside of
+the generalised Stokes-Einstein relation, where particle motion may not be
+indicative of the viscoelasticity.
+The numerical inversion of time-domain particle tracking data to the fre
+quency domain is, in general, non-trivial. This is because the Fourier trans
+form integral,
+⟨∆rˆ2(ω)⟩ =
+∫∞
+−∞
+⟨∆r2(τ )⟩eiωτ dτ, (2.16)
+does not converge as the MSD ⟨∆r2(τ )⟩ does not tend to zero at long times.
+32
+
+
+2.2. RHEOLOGY
+There are several methods to overcome this which I have implemented and
+compared however the following method produces the lowest errors over a
+wide range of frequencies[116].
+Evans et. al.[109] developed a technique to perform the inversion with
+minimal numerical errors by considering the experimental MSD as a piece
+wise function consisting of the discrete observations connected by linear
+sections. Thus the gradient of the MSD is a discontinuous series of piece
+wise functions, and the second derivative of the MSD is a series of delta
+functions. By analytically finding the Fourier transform of this series of
+delta functions, Evans arrives at the following: for a function gk discretely
+sampled at times tk for k = 1, ...N , the Fourier transform gˆ(ω) obeys
+−ω2gˆ(ω) =iωg(0) + (1 − e−iωt1) g1 − g(0)
+t1
++ g∞e−iωtN
+N
+∑
+k=2
+( gk − gk−1
+tk − tk−1
+)(e−iωtk−1 − e−iωtk ),
+(2.17)
+where g(0) is the value of g extrapolated to t = 0 from above, and ginf ty
+is the gradient of g extrapolated to infinite time. More details of my im
+plementation of the rheological Fourier transform are in Section 3.3.3, in
+cluding considerations of data processing to improve SNR. In implementing
+Equation 2.17, the recommendations of Tassieri et. al.[117] were followed
+including data interpolation.
+There exist other methods for performing the above numerical inversion[118].
+Particularly noteworthy is Yanagishima’s[119] real-time method for cal
+culating rheological moduli during particle tracking experiments. Other
+methods, however, give higher errors on the resulting viscoelastic modulus[116].
+33
+
+
+2.2. RHEOLOGY
+2.2.4 Mechanics Beyond LVE and GSER
+So far, discussion has considered situations where the sample viscoelastic
+properties probed by microrheology are the same as would be probed by
+bulk rheology. The systems have been assumed to be ergodic, meaning
+an average over an ensemble of particles will yield the same result as an
+average for one particle over a span of time. This is the case for simple
+fluids such as water or glycerol, but not for colloidal systems such as found
+inside living cells and tissues[120].
+In many colloidal systems, a characteristic length scale known as the mesh
+size can be defined or empirically determined. The diffusion of a particle
+then depends on its size relative to the mesh size. A larger particle will
+probe the colloidal ensemble in the same way bulk rheology would, while
+a smaller particle will undergo caged diffusion, probing the viscosity of the
+interstitial fluid. In such cases, the asymptotic behaviours of the system
+can be described as nanoscale and microscale viscosities[96]. The nanoscale
+viscosity will determine the diffusive transport of small molecules within
+the cell, while the diffusion of macromolecules as well as stress relaxation
+in the cytoplasm depend on the microscale viscosity.
+Consider now a single probe particle suspended within a model complex
+fluid, consisting of an elastic network embedded in an incompressible vis
+cous fluid. This is the poroelastic model for cells, in which we consider the
+stress both within the elastic network and the viscous suspension medium.
+The response function (displacement for a given applied force) of the probe
+particle provides insights into what microrheology is probing[121]. Within
+this model several effects cause one particle microrheology measurements
+to depart from bulk rheology[121–124].
+34
+
+
+2.2. RHEOLOGY
+Figure 2.6: Poroelastic model in which the one particle microrheology response function differs from the shear modulus probed by bulk rheology. a) At frequencies above a cut-off, ωc, or equivalently for strain wavelengths below a cut-off λc, viscous stress (red) remains within the interstitial fluid when the complex fluid undergoes deformation. At frequencies below the cut-off, the fluid drains through the network and the viscous stress is uniform. b) Perturbations to fluid (shown as darker colour) by probe particle, causing radial concentration gradient of elastic elements. Figures made to demonstrate key findings from [121, 122].
+At low frequencies the model exhibits a lock-in, or cut-off, frequency (termed
+ωc), below which the fluid can drain freely while the elastic network under
+goes longitudinal deformations. See Figure 2.6a for visualisation. Thus, at
+low frequencies, microrheology probes the longitudinal modes of the elastic
+network. At intermediate frequencies the GSER is found to hold true only
+if the bead size is much larger than the mesh size of the elastic network, and
+at high frequencies fluid inertial effects influence the response of the bead.
+For a 1μm bead in a 2 mg/ml actin solution, the intermediate frequency
+range is 1 MHz > ω > 10 Hz[124].
+Furthermore, the presence of probe particles causes local perturbations to
+the complex fluid[125]. The elastic network is displaced, leading to a con
+centration gradient in the milieu of the probe particle (shown in Figure
+2.6b). Surface chemistry of both the probe particle and the elastic network
+will affect the perturbation and hence the Brownian motion of the probe.
+Hence, one-particle microrheology only probes the perturbed fluid, not the
+“bulk phase”; and changing the probe coating will give different apparent
+35
+
+
+2.2. RHEOLOGY
+mechanical properties. Studying the correlation between displacements
+of nearby particles overcomes the local perturbations and inherent inho
+mogeneities, hence achieving better agreement with the bulk mechanical
+properties of complex fluids [125, 126].
+2.2.5 Cell Rheology
+Considering how the response function for a single particle is affected by
+both the mesh size and “free draining” modes, the length and time scale
+over which a measurement probes cell mechanics can be seen to affect
+the result. High strains (more than a few percent) such as found in de
+formability flow cytometry and magnetic bead microrheometry, cause cell
+fluidisation[64]. Thus these techniques are expected to report cells being
+softer than if they were measured with techniques such as external passive
+microrheology or intracellular microrheology.
+In addition to fluidisation, live adherent cells exhibit aging effects known as
+rejuvenation whereby cell stiffness is reduced after deformation and recovers
+slowly following a power-law behaviour[64, 90]. Time-evolving mechanical
+properties leads to non-ergodicity, meaning a particle tracking experiment
+considering the ensemble average will yield different results to one consid
+ering the time average of a single particle[120]. The strain fluctuations
+present in living cells may also cause the system to be non-ergodic, and the
+implications for this in the measurements made are discussed in Chapters
+4 and 5.
+36
+
+
+2.3. LIGHT SCATTERING
+2.3 Light Scattering
+Light scattering is an interaction between light and matter which changes
+the direction of the propagating light, broadly categorised as either elastic
+or inelastic. In this thesis, elastic light scattering is used to apply forces in
+optical trapping (Chapters 3 and 4), enabling microrheology measurements
+of G∗ in water and of live cells. Inelastic scattering is used to probe acoustic
+fields in phonon microscopy (Chapter 5), allowing measurements of M ′ in
+live cells.
+Elastic scattering does not change the wavelength of the scattered light
+(except possible Doppler shift for moving scatterers). Two types of elas
+tic light scattering are particularly important for optical trapping, namely
+Rayleigh and Mie scattering[127]. These are explained in Section 2.3.1.
+To contrast, inelastic light scattering is an interaction where both the di
+rection and wavelength of the incident light may change. Two inelastic
+light scattering techniques used for study of biological specimens are Ra
+man scattering and Brillouin (or Brillouin-Mandelstam) scattering which
+are explained in Section 2.3.2.
+2.3.1 Elastic Scattering
+Rayleigh scattering arises when light interacts with a dielectric particle
+much smaller than the optical wavelength. Considering a dielectric sphere
+such a polystyrene microsphere, Rayleigh scattering arises from the dipole
+induced within the particle by the incident electric field[128]. The scattered
+field intensity as a function of angle and distance to particle, Is(θ, R) can
+37
+
+
+2.3. LIGHT SCATTERING
+be calculated as
+Is(θ, R) = I0
+1 + cos2 θ 2R2
+( 2π λ
+)4 ( m2 − 1
+m2 + 2
+)2
+a6, (2.18)
+where m = np/nm is the ratio of refractive index of the particle to that of
+the medium, a is the radius of the particle, and λ the optical wavelength.
+Mie scattering, on the other hand, applies to particles with sizes compa
+rable to the wavelength, and has a scattering spectrum determined by the
+particle size and dielectric properties[128]. Calculation of Mie scattering
+is beyond the scope of this thesis, however its application is essential to
+optical trapping of micron-sized spheres. Considering polystyrene spheres
+illuminated by a monochromatic source, the angular dependence of the
+scattered light depends on the ratio 2πd/λ, with larger particles scattering a
+greater proportion of the light in the forward direction, leading to weaker
+scattering forces.
+2.3.1.1 Optical Trapping
+The gradient force optical trap was first proposed by Arthur Ashkin in
+1986[129] while researching radiation forces on the micro-scale. Hereafter
+when I refer to an optical trap, I mean gradient force optical trap unless
+otherwise stated. Optical trapping has found extensive applications in life
+sciences and microrheology, for example as a force transducer[8, 127, 130]
+and to control the position of cells or particles[131–133]. When charac
+terising weak gels or viscous fluids, optical trapping prevents the probe
+particle from diffusing out of the field of view, allowing faster and longer
+measurements[115].
+An optical trap can be as simple as a tightly focussed laser beam. In mi
+38
+
+
+2.3. LIGHT SCATTERING
+croscopy this is commonly achieved using a high numerical aperture (NA)
+objective lens, and a continuous wave laser beam collimated at the back
+focal plane. Overfilling the back focal plane increases the laser power inci
+dent at high spatial frequencies which increases the trapping efficiency. To
+achieve the high NA needed, water or oil immersion objectives are com
+monplace. A detailed description of how a focussed laser beam exerts a
+force is in Section 2.3.1.2
+In optical trapping, laser powers from a few milliwatts up to hundreds of
+milliwatts at the sample[134] may be used. The powers used in Chapter 4
+are typically less than thirty milliwatts, and exposure to cells is minimal
+because the trapping laser is turned off for most of the experiment. Despite
+this, it is worth considering damage to the cells under study. When study
+ing delicate biological systems, damage to the sample is avoided by reduc
+tion of laser power and careful selection of wavelength, using a “therapeutic
+window of transparency” in the near-infrared (∼700 nm - 1200 nm)[127], be
+tween absorption bands from proteins in the visible range and from water
+in the far infra-red. Thus using Nd:YAG trapping lasers at 1064 nm (as I
+do here) is a common way to avoid unnecessary heating or damage to one’s
+sample, and it has previously been shown that optically trapping T-cells
+with tens of milliwatts of laser power at 1064 nm for up to an hour has no
+significant effect on their viability[133].
+2.3.1.2 Optical Trapping Forces
+The forces applied in optical trapping are generally described as a gradient
+force and a scattering force, and while these can be rigourously calculated
+for special cases such as the Rayleigh scattering regime or for weakly fo
+cussed beams (beam waist w0 ≫ λ), they are in general difficult to derive
+39
+
+
+2.3. LIGHT SCATTERING
+for micron-sized particles in a tightly focussed beam[127, 135]. Here I will
+introduce approximations for the trapping forces in the Rayleigh regime,
+neglecting a full derivation or application of Mie scattering theory as it is
+beyond the scope of the thesis. The Rayleigh regime is quantitively differ
+ent to the Mie regime, however gradient and scattering forces arise in both
+so individual trapped particles behave in a qualitatively similar manner for
+either regime.
+The gradient force arises from the effect of an electric field on the induced
+dipole of the trapped particle. In the general case of a point dipole within
+an electromagnetic field, the instantaneous force can be written as
+⃗F = p(⃗ · ∇) ⃗E +p⃗  ̇ × ⃗B +r⃗  ̇ × p(⃗ · ∇) ⃗B, (2.19)
+wherep⃗ is the dipole moment, ∇ the gradient operator. Here the electric
+( ⃗E) and magnetic ( ⃗B) fields are assumed to be unperturbed by the particle.
+The first and last terms of Equation 2.19 account for the spatial inhomo
+geneity of the electric field while the second term comes from the magnetic
+Lorentz force.
+Clearly the total force depends strongly on the spatial distribution of the
+electromagnetic field, and in the case of a weakly focussed Gaussian beam
+(such that the zeroth order paraxial Gaussian beam approximation is valid)
+the gradient force for a small displacement of the particle in the +x direc
+tion can be written as[135]
+⃗Fg = − xˆ 2πnma3
+c
+( m2 − 1 m2 + 2
+) 4 (x/w02)
+1 + 4 (z/w0)2
+(P
+πw02
+)1
+1 + 4 (z/w0)2 exp
+[ 2x2
+w2
+0 + 4z2
+]
+, (2.20)
+which (for small displacements) scales linearly with the beam power P and
+40
+
+
+2.3. LIGHT SCATTERING
+distance from trap centre x. Here nm and np are the refractive indices of
+the medium and particle, m is the ratio = np/nm, a is the particle radius,
+w0 is the beam waist, and x and z are the radial and axial co-ordinates
+respectively.
+Note that the direction of the gradient force is opposite to that of the
+displacement, enabling us to draw analogy to a Hookean spring, or ideal
+elastic element. Writing the stiffness κ = ∂Fg/∂x|x=0, the complex modulus
+for an optically trapped bead in water can be written simply as
+G
+∗(ω) = κ/6πa + i6πaηwω, (2.21)
+where a is the bead radius and ηw is the dynamic viscosity of water. Note
+that this is the same as the Kelvin-Voigt model solid in Equation 2.8 with
+G
+′ = κ/6πa and G′′ = 6πaηwω.
+The scattering force for the same particle can also be derived, and takes
+the form
+⃗Fs =zˆnm
+c
+8
+3 πk4a6
+( m2 − 1 m2 + 2
+)2
+( 2P πw2
+0
+)1
+1 + 4 (z/w02) exp
+[ 2x2
+w2
+0 + 4z2
+]
+, (2.22)
+where I have introduced the wavenumber k = nmω/c.
+To form a stable optical trap, the gradient force must be dominant, ex
+ceeding both the scattering force and the thermal energy of the particle
+(∼ kBT ). To aid in assessing this, it is helpful to consider the potential
+well that arises from the gradient force which can be written
+Ug = 2πnma3
+c
+( m2 − 1 m2 + 2
+)P
+πw02 , (2.23)
+41
+
+
+2.3. LIGHT SCATTERING
+using beam power P , refractive indices nm and np of the medium and
+particle, m is the ratio = np/nm, a is the particle radius and w0 is the beam
+waist.
+In practical terms, the stability of the trap is ensured by using a tightly
+focussed beam from a high numerical aperture objective lens to create a
+strong gradient force in the z direction such that Fs,z < Fg,z. The approx
+imations used to derive the prior equations thus do not strictly hold true
+as the approximations assume a meak focus. They do, however, serve to
+demonstrate how optical trapping forces arise and what is required for a
+stable optical trap.
+2.3.2 Inelastic Scattering
+Inelastic scattering may be used to probe high frequency vibrations within
+biological samples. In Brillouin scattering, acoustic phonons typically at
+GHz frequencies can be used to measure the longitudinal modulus of a
+sample. Raman scattering probes optical phonons with THz frequencies to
+determine the chemical composition of a sample. In each, photons of light
+interact with phonons in the sample and may be re-radiated with longer
+wavelength (Stokes’ shift) or shorter (anti-Stokes’ shift). The frequency
+shift of the scattered light is commonly analysed using a spectrometer.
+The first experimental observations were published by Brillouin in 1922[136]
+and Mandelstam in 1926[137]. Acoustic phonons, the result of inhomo
+geneities (e.g. density fluctuations) within a material, may be of thermal
+origin (i.e. spontaneous Brillouin scattering), or generated in a coherent
+manner such as in Phonon microscopy or stimulated Brillouin scattering.
+Raman scattering is the result of the interaction between photons and
+42
+
+
+2.3. LIGHT SCATTERING
+the internal vibrations of a molecule[138]. The first published experimen
+tal measurements of Raman scattering were by Raman and Krishnan in
+1928[139], although Landsberg and Mandelstam also published measure
+ments of the same in 1928[140] along with a more complete theoretical
+explanation for their measurements. Thus while Raman was awarded the
+Nobel Prize in 1930, the technique was commonly referred to as
+“combinatory scattering” within the Soviet Union[138].
+2.3.2.1 Brillouin Scattering
+Consider a photon incident upon a phonon, whilst maintaining generality
+in 2D as shown in Figure 2.7a. The phonon acts like a Bragg grating (via
+the photo-elastic effect); that is to say a periodic variation in the optical
+properties which gives strong reflectance at certain angles via constructive
+interference. For incident photon wavelength λk1 and material refractive in
+dex n, the Bragg reflection condition requires incident phonon wavelengths
+λq1 which satisfy
+2λq1 cos
+(θ
+2
+)
+= λk1
+n , (2.24)
+where θ
+2 is the incidence angle, or half the angle between the incident and
+scattered photon wavevectors. The cosine term arises from the geometry
+of the incident wavevectors (shown in Figure 2.7a).
+An inelastic scattering event gives rise to either a Stokes shift in the case
+of the photon losing momentum to a phonon or an anti-Stokes shift in the
+case of a photon gaining momentum from a phonon. For Stokes scattered
+light, the wavevectors may be drawn as in Figure 2.7. Consider first the
+wavevectors of the two interacting particles, followed by the frequency shift
+43
+
+
+2.3. LIGHT SCATTERING
+Figure 2.7: Geometry (a) and momentum conservation (b) of a density wave (phonon) Stokes scattering a photon (red). Incident wavevectors are shown as solid lines, and scattered wavevectors are shown as dotted lines. Basis vectors used in the text are defined in (a), thus a wavevector with wavenumber |k| at an arbitrary angle φ from the incident photon can be written
+( cos φ sin φ
+) |k|.
+and conservation of momentum. The incident photon wavevectors are
+⃗k1 = ( 1
+0 ) 2π
+λk1
+, (2.25)
+q⃗ 1 =
+(
+cos( θ
+2)
+sin( θ
+2)
+) 2π
+λq1
+=
+(1
+tan( θ
+2)
+) 2π
+λk1
+, (2.26)
+where the final equality demonstrates that the x component of the incident
+phonon wavevector is equal to that of the incident photon wavevector. The
+relations written thus far can be derived from simple geometric arguments
+when considering Figure 2.7a.
+The frequency shift of the scattered photon (relative to the incident photon)
+is given by the phonon frequency
+νB = V
+λq1
+= 2n cos ( θ
+2
+)
+λ1
+√
+M
+′
+ρ , (2.27)
+where V is the speed of sound, determined by square root of the ratio of
+the longitudinal elastic modulus, M ′ (see Figure 2.2e), to the density, ρ,
+of the material. Across the second equality I have substituted the phonon
+wavelength for the incident photon (vacuum) wavelength and refractive
+index n using Equation 2.24. Note that the scattered and incident optical
+44
+
+
+2.4. CONTEXT OF THIS WORK
+wavelengths, respectively, are related by
+λk2 = λk1 ± c
+νB
+, (2.28)
+so to a first-order approximation λk2 = λk1 as νB ≪ c
+λk1 (GHz shifts applied
+to THz optical frequencies). Here the ± arises from the possibility of Stokes
+or anti-Stokes scattering events.
+A key difference between phonon microscopy (and other time-resolved Bril
+louin scattering techniques, discussed later in Section 5.2.2) and stimulated
+Brillouin scattering (and most Brillouin scattering techniques) is the acous
+tic wavenumber probed. For spontaneous Brillouin the acoustic wavenum
+ber is half the optical wavenumber (Equation 2.24). This is not the case
+for phonon microscopy as the acoustic pulse generated is much shorter
+(∼80 nm) than the optical wavelength (780 nm), and the scattering interac
+tion is dominated by the higher wavenumber Fourier components. Because
+the interaction length, la, is shorter than the acoustic wavelength PLU
+based techniques theoretically probe optoacoustic properties with higher
+axial resolution than a spontaneous Brillouin scattering experiment. In
+practice, signal processing limits the axial resolution of phonon microscopy
+to ∼780 nm, while the optical point-spread function limits spontaneous
+Brillouin microscopy to ∼2 ➭m.
+2.4 Context of this work
+Decades of study into mechanobiology have revealed that both the elastic
+properties of cells, and the forces they generate bear studying in order to
+understand behaviour of single cells. Techniques such as magnetic twisting
+cytometry and magnetic bead microrheometry exist which can probe the
+45
+
+
+2.4. CONTEXT OF THIS WORK
+complex shear modulus of single cells, and the strain due to forces generated
+within the cell[64, 141], however they cannot make these measurements
+simultaneously. Additionally these active techniques cause fluidisation and
+rejuvenation which lead changes in the cell mecahanical properties. Passive
+techniques such as endogenous tracer microrheology or ballistic injection
+nanorheology can measure the shear modulus, but are either non-specific
+or invasive.
+Studies using beads adhered to cells using liands which target different
+receptors, such as integrin or scavenger receptors, have shown that the
+apparent shear modulus of cells depends on the adhesion target[44]. Despite
+this, few techniques have studied the time evolution of the mechanics of the
+binding site, instead choosing to allow cells to reach an equilibrium before
+starting measurements[50, 64, 69, 90].
+In Chapter 4 I demonstrate that by using optical trapping to control the
+location on the cell surface that a microsphere is bound, and high spa
+tiotemporal resolution video microscopy to perform particle tracking, ex
+ternal passive microrheology can simultaneously determine both the com
+plex shear modulus and the stress generation of individual live cells. This
+is applied to probe the initial stages of focal adhesion formation after a
+functionalised bead is bound to the surface ofa cell.
+It is revealed that while the strain rate decreases over time (which could
+have been observed using prior techniques), the stress rate actually in
+creases. Such an experiment would not be possible with other techniques
+as they are unable to simultaneously measure the elastic modulus and ac
+tive stress generation of cells. Furthermore, application of external forces
+would perturb the mechanical properties of the binding site and possibly
+alter the cell’s physiological response to the bead.
+46
+
+
+2.4. CONTEXT OF THIS WORK
+Ultrasound has found clinical applications for decades, however the resolu
+tion is limited by the frequencies (and hence acoustic wavelengths) that
+piezo transducers can probe. Brillouin light scattering offers a way to
+probe gigahertz acoustic waves and biological applications are developing
+fast, with different techniques suited to different applications. Phonon
+microscopy offers better axial resolution than other Brillouin scattering
+techniques due to the short axial length of the coherent acoustic pulse.
+Previous studies using phonon microscopy have, however, demonstrated
+limited biocompatibility due to use of ultraviolet pump lasers[2].
+Many biomechanical techniques, such as microrheology, may take many
+seconds to make each measurement; this limits the temporal resolution
+and hence the rate at which changes to a system can be resolved. While
+cytoskeletal structure has been studied in cells using fluorescence and me
+chanical techniques, the changing mechanical properties of single cells has
+not been resolved during treatment with cytoskeletal targetting drugs. In
+Chapter 5 I demonstrate phonon microscopy measurements of actin dis
+ruption in live cells, reporting the first time-course measurement of single
+cells’ mechanical properties during this process by any technique. Using
+the superior axial resolution of phonon microscopy compared to other Bril
+louin and acoustic techniques, the longitudinal modulus of the basal actin
+cortex is studied and found to not change significantly compared to that
+of the cytoplasm.
+47
+
+
+Chapter 3
+Microrheology Methods
+Development
+In this chapter, I will detail the practical aspects of my work on microrheol
+ogy. Much of what is introduced in this chapter will be applied in Chapter
+4, in which I demonstrate microrheology measurements of live cells. This
+will include the experimental setup, both the hardware I used and the soft
+ware I used and developed. It will also cover the post-processing which I
+applied to my data, and present experimental results to demonstrate both
+the capabilities of the system and points of consideration for a microrheol
+ogist. Relevant errors are discussed including particle tracking errors and
+numerical errors and how these affect quantities calculated in microrheol
+ogy.
+Data analyses presented have been implemented in MATLAB and are
+openly available via a GitHub repository[142]. The rationale guiding this
+software design can be summarised by two main goals: suitability for ex
+ploratory data analysis, and for creation of pipelines for reproducible pro
+cessing of multiple data sets. The former is to allow examination of data
+48
+
+
+3.1. BACKGROUND
+with minimal preconceptions or expectations for what one will find, while
+the latter means that once one knows what is probed by given data set,
+the analysis can be reapplied to many similar datasets such as different
+experimental samples.
+To achieve these two goals, two characteristics were implemented as far as
+possible: modularity and generalisability of analysis – many different func
+tions which act on the same data structures to homogenise the data analysis
+experience while reusing code as much as possible; and optimised analysis
+code – reduce execution times allowing rapid prototyping and exploratory
+data analysis.
+3.1 Background
+3.1.1 Measuring Trap Stiffness
+When a particle is close to the trap centre, the optical trap acts as a simple,
+or Hookean, spring. Equivalently it could be called a linear elastic element
+due to the force applied to the trapped particle,
+⃗Ftrap = −riκieˆi ∀ i ∈ {x, y, z}, (3.1)
+being linear with respect to ri, the displacement from trap centre in the
+i direction, and κi, the trap stiffness in a given direction, where eˆi is the
+unit vector in the i direction. Subscripts indicate the total trapping force
+is a vector summed over all three spatial dimensions. This linear relation
+makes optical traps ideal force transducers on the nanoscale.
+Application of calibrated forces first requires calibration of trap stiffness.
+49
+
+
+3.1. BACKGROUND
+There are several different methods for calibrating trap stiffness, however
+only one is sample-independent: by appealing to the principle of equipar
+tition of energy, it can be shown that a particle diffusing within the trap
+will have position variance[115]
+1 2
+〈r2
+i
+〉 κi = 1
+2 kBT, (3.2)
+where 1
+2 kBT , Boltzmann’s constant times absolute temperature, is the
+thermal energy per degree of freedom and κ is the trap stiffness defined
+above. This method is commonly used and requires only the ability to trap
+and track a particle. The sample-independent nature has lead to it being
+adopted as a calibration step for some active microrheology experiments[143,
+144]. The equipartition method is subject to systematic errors as explained
+in Section 3.3.1, which limits the maximum trap stiffness to which it can
+be applied.
+One alternative method is the drag force method, in which either the sample
+is moved relative to a stationary trap, or the trap is moved relative to a
+stationary sample. The displacement from the trap centre r(⃗ ) is measured,
+and for low velocities where the linear approximation is valid, the trapping
+force is calculated by[145]
+⃗Ftrap = ⃗Fdrag → −κr⃗⃗ = −ν⃗β = −6πaην⃗, (3.3)
+whereν⃗ is the velocity of the particle relative to the fluid, and β = 6πaη
+is the drag coefficient for a particle of radius a in a medium with dynamic
+viscosity η.
+The drag force method has the principle flaw of the prerequisite knowledge
+of the medium viscosity and bead size. Secondly, when moving the medium,
+50
+
+
+3.1. BACKGROUND
+inertial effects may mean that the local fluid velocity differs from the stage
+velocity[146]. Finally, if the medium is a complex fluid, the drag time
+must be longer than the longest relaxation time of the fluid otherwise the
+response will not be purely viscous. For these reasons, I do not use the
+drag force method to calibrate trap stiffness in the work presented herein.
+One major advantage of the drag force method is that it can measure the
+total trapping force, i.e. the force required to escape the trap. A simple
+experiment to find this is to slowly increase the stage speed until the bead
+leaves the trap, and to note the speed at which this happens. The total
+trapping force is not the same as the trap stiffness because the trapping
+force is only linear with displacement for small displacements.
+Another method for calibrating trap stiffness is to measure the characteris
+tic relaxation time of the trap, or its reciprocal, the corner frequency. This
+method also requires the medium viscosity to be known. If the viscosity
+is unknown, the relaxation time and trap stiffness can be used to quantify
+the viscosity, as will be explained in Section 3.2.4.
+3.1.2 Optical Trap as Ideal Viscoelastic Material
+The system of an optical trap and a viscous fluid can be considered an ideal
+viscoelastic material. Consider that MSD, and thus also compliance, J(t),
+monotonically increase for diffuse motion. Hence the longest relaxation
+time that can be probed using a static optical trap is determined by the
+time scale at which the trap elasticity dominates the probe motion. This is
+exemplified in Figure 3.1 where varying the trap stiffness affects only the
+plateau and the relaxation time, not the short-time diffuse behaviour.
+If the suspension fluid can be approximated as Newtonian over the fre
+51
+
+
+3.1. BACKGROUND
+Figure 3.1: Example mean squared displacement for an optically trapped bead measured with three different trap stiffnesses. The short lag time behaviour of each is identical because it is determined solely by free diffusion of the bead. The plateau height decreases with increasing trap stiffness. Characteristic relaxation times are marked with circles.
+quency range probed, the compliance can be modelled as a Kelvin-Voigt
+material (i.e.: the model viscoelastic material in Figure 2.3c). The charac
+teristic relaxation time, tc, is therefore the time at which the compliance
+of the trap equals the compliance of the fluid:
+tc = 6πaη
+κ , (3.4)
+with η, the dynamic viscosity of the fluid, bead radius a, and trap stiff
+ness κ. This relaxation time is also known as the corner time, hence
+the subscript. For 2.5 ➭m-radius sphere in water, held with trap stiffness
+κ =0.1 pN/➭m, the trap relaxation sets the low-frequency limit of the band
+width to 2 Hz.
+Here I have neglected the Fax ́en’s law correction to translational viscosity[145],
+ηe = η
+1− 9
+16
+a
+h+1
+8
+a h
+3 − 45
+256
+a h
+4− 1
+16
+a h
+5 (3.5)
+which describes the change in effective viscosity, ηe, when the particle is at a
+52
+
+
+3.2. METHODS
+height h above a no-slip boundary (e.g. the coverslip). As a guide for when
+this is needed, the effective viscosity is 5% higher than the actual viscosity
+when the radius is one twelfth of the height. By performing all viscosity
+measurements with the trapped particle at least 12 radii (i.e. 60 ➭m) from
+the nearest surface, the Fax ́en’s law correction is negligible.
+3.2 Methods
+3.2.1 Optical Setup
+Optical trapping and microrheology measurements were performed on the
+same instrument, based around a Nikon Eclipse ti inverted microscope
+body with a brightfield illumination module fitted. The optics are shown in
+Figure 3.2. For optical trapping, a 3 W 1064 nm Nd:YAG laser is expanded
+to fill the working face of a spatial light modulator. The reflected light is
+then imaged via a periscope onto the back focal plane of the microscope.
+Overfilling the back focal plane of the microscope approximates uniform
+illumination at all spatial frequencies, creating the brightest focal spot and
+hence greatest trap stiffness for a given power. The high numerical aperture
+(NA) needed for optical trapping is provided by a Nikon Plan Fluor 100 x
+(1.30 NA) oil immersion objective lens.
+Illumination for brightfield imaging was via a Nikon dia illumination unit
+containing both a halogen lamp and condenser optics housed above the
+sample plane, making it trivial to perform imaging with transmitted light.
+The condenser was set up in K ̈ohler illumination to maximise contrast
+and hence minimize localisation, or static, error in microrheology exper
+iments. Fluorescent imaging during microrheology and optical trapping
+53
+
+
+3.2. METHODS
+Figure 3.2: Optics diagram for optical trapping and microrheology measurements. L1/L2: Beam expander to overfill SLM. L3/L4: Telescope to image SLM onto back focal plane of objective. M1-4: Steering mirrors. SLM: Spatial light modulator. λ/2: Half-wave plate. LED: CoolLED fluorescence illumination unit. DCM: Dichroic mirror.
+experiments used a CoolLED LED illumination unit and dichroic mirrors
+mounted within the microscope filter wheel.
+For microrheology experiments, I adjusted beam collimation by removing
+lens L1 from the system. To do this, first the system was fully aligned using
+a pair of apertures to align each optical element, and then L1 was removed
+and the alignment of two steering mirrors (M4 and the second mirror in the
+periscope) was fine-tuned to produce a symmetric focal spot in the sample
+plane.
+The divergent beam was coupled into the objective less efficiently, but
+the maximum power available at the sample was still more than enough
+for optical trapping. The advantage it brought was that the equilibrium
+position for a trapped bead was a couple of microns above the imaging
+plane, i.e.: the focal plane of the lens was not coincident with the centre
+of the bead. I attempted to move L1 axially to produce the same effect,
+54
+
+
+3.2. METHODS
+Figure 3.3: Images of bead trapped without (top, blue line) and with (bottom, red line) lens L1 in place, and line plots across the centre of the beads as indicated. The shift in the bead equilibrium position relative to the focal plane of the objective causes the bead image to change as seen.
+but was not able to achieve the same image contrast while L1 was in the
+system.
+The defocus, coupled with lensing effects from the bead, meant that the
+image of an optically trapped bead had a bright centre with a Gaussian
+profile as shown by the inset to Figure 3.3. This meant trapped beads
+could be tracked with ease using thresholding and a centroid algorithm
+(Equation 3.6). Otherwise the low contrast would increase static error as
+will be demonstrated in Section 3.3.1.
+Microrheology experiments presented here used an OptiMOS sCMOS cam
+era (QImaging, Canada). This sCMOS sensor has two features particularly
+well suited for microrheology. Firstly the pixel values are read out at 16-bit
+resolution, meaning they fall between 0 and 65,535 analogue-digital units
+(ADU). Secondly the acquisition frame rate can be increased by select
+ing a small region of interest (ROI) as shown in Figure 3.4, in which case
+only part of the full field of view image is collected. Higher frame rates
+increase the maximum frequency probed in microrheology as expected by
+Nyquist-Shannon sampling theory.
+The optical system also includes a spatial light modulator (SLM) and half
+55
+
+
+3.2. METHODS
+Figure 3.4: Acquisition frame rate for OptiMOS sCMOS camera depends on the number of rows in the ROI (e.g. rectangle selected in inset image of trapped bead) selected for acquisition. Faster acquisition can be achieved with a smaller ROI.
+wave plate. These are present for experiments using holographic optical
+trapping, which was not performed in this thesis. I will explain it nonethe
+less for curiosity value: A hologram, analogous to a diffraction grating, is
+calculated and displayed on the SLM, which selectively retards the phase
+of the reflected light. The SLM pattern is imaged onto the back focal plane
+using lenses 3 and 4, and hence the Fourier transform of the SLM pattern
+is projected onto the sample plane. The half-wave plate allows rotation of
+the beam polarisation, supporting experiments which require a particular
+polarisation such as exciting nanoplasmonic structures.
+3.2.2 Data Acquisition
+To perform the particle tracking microrheology experiments reported here, I
+have developed an acquisition and processing script in Micro-Manager[147]
+using the built-in scripting interface and written in Beanshell, a language
+based on Java. The script, explained in Appendix A, handles control of
+the hardware, collecting images via a sequence acquisition on the camera.
+Position time data is saved to disk along with a small portion of the ROI
+images and two full field-of-view images (before and after the acquisition).
+56
+
+
+3.2. METHODS
+During the sequence acquisition, the camera runs on its own internal clock,
+so the time between each image is consistent and can be calculated using
+the time between the first and Nth images. This section describes the
+rationale behind this data acquisition methodology.
+The first practical challenge of microrheology is the large amounts and
+rates of data that need handling: the OptiMOS sCMOS camera I used for
+microrheology experiments runs at up to 1500 frames per second with ROI
+dimensions of 200 pixels × 100 pixels and 16-bit depth. These parameters,
+typical for a single particle tracking experiment, generate 60 MB/s of image
+data; this is comparable to the maximum data write speed one can expect
+from a hard disk drive, assuming raw data is written to disk.
+A short experiment may run for 5 minutes and result in 18 GB of im
+age data, which is enough that (unless you write to disk while collecting
+the data) memory management is a challenge even for modern computers.
+Thus, a day of experiments may easily require hundreds of GBs of stor
+age. Processing this data after the fact will require reading it back from
+the hard drive, substantially increasing the time required to perform said
+processing.
+To overcome this, image data can be processed on-the-fly and only the
+result needs saving. In this case, the challenge is to process the image
+quickly enough not to create a backlog. In the scenario described above,
+each image must be processed in only 0.6 ms, thus limiting the complexity
+of any processing algorithms. The resultant data rate, around 6 kB/s, can
+easily be written to PC storage while the acquisition is running allowing
+arbitrarily long measurements to be performed.
+Due to the nature of Beanshell as an interpreted language, steps such as
+indexing into arrays are slow; this led to me adapting the ImageJ source
+57
+
+
+3.2. METHODS
+code[148] for centroid calculations in Java:
+Cx =
+∑Nx x=1
+∑Ny
+y=1(Ixy − T )x
+∑Nx x=1
+∑Ny
+y=1(Ixy − T ) , (3.6)
+with the X centroid Cx given by a sum of the pixel intensities, Ixy, after
+subtracting threshold value, T , weighted by their co-ordinates (x, y) across
+the width and height of the image Nx and Ny, respectively. Pixel values
+Ixy < T are considered background and are not included in the centroid
+calculation. A second significant speed-up to the experimental workflow
+was to develop Java code for saving the output position-time data in binary
+formats. In both cases, the Java code is pre-compiled by installing it as an
+ImageJ plug-in, thus substantially reducing the processing time required.
+3.2.3 Post-Processing
+Data saved from experiments mostly consists of position-time data which
+is processed after the acquisition has concluded; the different processing
+steps and outcomes have been summarised in Figure 3.5 to help the reader
+understand how the different processing steps are related. Methods I have
+implemented include co-ordinate transforms, digital filters to de-noise, and
+calculation of the increment distributions. To elucidate mechanical com
+pliance, the Mean-Squared Displacement (MSD) is calculated, and post
+processing I have implemented for the MSD includes finding corner times,
+measuring pseudo-diffusion parameters, sample viscosity and trap stiffness,
+and numerical Fourier transforms to estimate viscoelastic moduli. With the
+exception of the MATLAB msdanalyzer class[149], all processing has been
+implemented in MATLAB by me, and all code (including my modifications
+to the msdanalyzer code) are available on GitHub[142] under the GNU
+GPL v3 license.
+58
+
+
+3.2. METHODS
+Figure 3.5: Flowchart to guide the reader through data processing implemented for microrheology analyses. Boxes are coloured according to the classification of the step. Raw data is acquired as described in Section 3.2.2. The processes from boxes 1 to 4, 4-5, 4-6-17 and 4-7-11 (NGP: non-Gaussian parameter, Equation 3.14) are described in Section 3.2.3. The flows through boxes 8-12-15-18, and 10-14-16-18/19, and using either power-law parameters (boxes 10 and 20) or stiffness and corner time τc (box 21) to measure viscosity is discussed in Section 3.2.4.1. The flow through boxes 9-13/14-16 is explained in Section 3.2.4.2. Box 18 can be seen as the inset to Figure 3.11a), while box 21 can be seen as the inset to Figure 3.11b)
+59
+
+
+3.2. METHODS
+3.2.3.1 Noise Filtering
+Experimental noise is inevitable. Overhead lights introduce optical noise
+at frequencies determined by the harmonics of the mains electricity, and to
+avoid this experiments were performed in the dark. In a lab environment
+with many electrical devices, there is electronic noise which is less easy to
+isolate. For this reason, it is useful to be able to identify and remove noise
+from position-time data.
+Several recurrent sources of noise were identified in position-time data,
+and a digital bandstop filter was used to remove this noise when han
+dling position-time data in MATLAB. The filter was applied directly to
+the position-time data with up to three narrow-band (<1 Hz) stop filters.
+Figure 3.6 shows the Fourier spectrum of a position-time trace obtained
+using the FFT algorithm. Clearly visible are noise peaks at 92, 124 and
+151 Hz. The peaks at 93 and 124 Hz are inherent to all experiments on the
+optical trapping rig, suggesting they arise from an electrical device in the
+lab. The noise peak at 151 Hz is only present when the laser power supply
+is turned on.
+After applying the bandstop filter, the Fourier spectrum can be seen to
+be broadly the same except for “gaps” at the stop band. The effect on
+the MSD is readily apparent in Figure 3.6b: the raw MSD is higher at
+all delay times and exhibits a characteristic “ripple” which is not present
+in the filtered MSD. The inset shows that the raw MSD is roughly 1.2×
+greater than the filtered MSD.
+60
+
+
+3.2. METHODS
+Figure 3.6: a) Fourier spectrum of trapped bead position, comparing raw and filtered spectra. Noise peaks visible in the raw spectrum at 92, 124 and 151 Hz have been removed by a bandstop filter. Insets show the spectra close to the peaks. b) MSD curves comparing raw and filtered. Note that in addition to the increase in MSD at all times, there is also a “ripple” effect at short times caused by the noise. Inset shows the ratio of raw to filtered MSD where the “ripple” is more prominent.
+3.2.3.2 Co-ordinate Transforms
+After de-noising, position-time data may be subjected to a co-ordinate
+transform. Two transforms were implemented for different purposes. For
+optical trapping data, a weaker trap allows broader bandwidth passive
+microrheology measurements. As laser alignment is never perfect, the
+trap strength is anisotropic leading to an elliptical position distribution.
+Position-time data may therefore be transformed to place the major axis of
+the position distribution (hence weak trap direction) along the X direction,
+giving the broadest measurement bandwidth possible.
+To measure trap anisotropy, a histogram-based method was developed and
+tested using manually transformed experimental data. The transform used
+was to scale the Y data by a factor of 0.75 before rotating the data by
+45◦ to simulate a highly anisotropic trap. The histogram-based method
+is as follows: first, the 2D position-time data is binned. Next, an ellipse
+is fitted to the 2D probability distribution using the MATLAB function
+61
+
+
+3.2. METHODS
+Figure 3.7: a) Heatmap of bead position for optically trapped bead in anisotropic trap. Fitted ellipse and major (X’) and minor (Y’) axes shown as dashed lines. b) MSD curves for original data (X and Y) and transformed data (X’ and Y’).
+regionprops. Both steps are shown in Figure 3.7a where image colours
+map to bin counts and fitted ellipse is shown with transformed axes. Note
+that the shape of the distribution is more important than the centre - the
+centre of the ellipse need not be at the point where the probability density is
+highest. The orientation of the ellipse major axis relative to the X direction
+is extracted and finally, the data is transformed using
+X
+′ = X cos(θ) − Y sin(θ) (3.7)
+Y
+′ = X sin(θ) + Y cos(θ) (3.8)
+where θ is the orientation of the major axis relative to the X direction.
+The transformed data is then used for further analyses such as calculating
+the MSD as shown in Figure 3.7b. Comparing the two, it can be seen that
+despite almost equal trap stiffnesses in X and Y, the trap stiffnesses are
+quite different in X’ and Y’.
+For data taken from beads affixed to cells, the direction normal to the cell
+surface (henceforth referred to as radial) encodes the mechanical informa
+tion of the cell. Thus it is desirable to view the motion in radial and tangen
+tial directions, rather than X and Y. In the transformed co-ordinates, the
+62
+
+
+3.2. METHODS
+cell is modelled as a tall cylinder, such that vertical displacements (which
+are not measured but can sometimes be seen from before and after images)
+are independent of radial displacements. A more complete 3D model of the
+cell would require 3D imaging of each cell before microrheology measure
+ments, and 3D particle tracking (e.g.: Matheson et. al.[150]). The model
+assumptions are discussed in detail in Chapter 4.
+The transformation used is
+(x, y) → (r, r · θ) : (3.9)
+r=
+√
+(ρx + Cx − Rx)2 + (ρy + Cy − Ry)2, (3.10)
+θ = tan−1
+( ρy + Cy − Ry ρx + Cx − Rx
+)
+. (3.11)
+where the tangential co-ordinate is r · θ in order to have dimensions of
+length. This is shown schematically in Figure 3.8. The centroid calculation
+(Equation 3.6) uses co-ordinates within the ROI, denoted ρxy, which can
+be related to the co-ordinates of the full field of view image using the ROI
+position, Rxy, from the image metadata. Determining the cell position, Cxy,
+is somewhat more complicated. For many of the cells, there is sufficient
+contrast that a circle finding algorithm could be employed. Not all cells,
+however, are perfectly round. Instead, I visually inspected the images of
+the bead bound to the cell and drew a circle which approximates the edge
+of the cell where the bead contacts the cell.
+3.2.3.3 Increment Distributions
+A characteristic of Brownian motion is the increment series,
+∆r(t)τ = r(t + τ ) − r(t), (3.12)
+63
+
+
+3.2. METHODS
+Figure 3.8: Geometry definitions used to convert from Cartesian coordinates to cylindrical polar (Equation 3.11). The ROI is shown in yellow, the co-ordinates saved during acquisition are shown in cyan, and the cell is circled in orange.
+for a position-time series r(t) and delay time τ . The increments are drawn
+from a normal distribution with mean 0, and autocorrelation given by a
+Dirac delta function ⟨∆r(t)∆r(t′)⟩ = δ(t − t′).
+To determine whether a given position-time series, r(t), is driven by an
+equilibrium process or not, I first consider the normalised increment series,
+z(t)τ = ∆r(t)τ − ∆r(t)τ
+ST D(∆r(t)τ ) , (3.13)
+with ∆r(t)τ denoting the mean and ST D(∆r(t)τ ) the standard deviation.
+An example normalised increment distribution from an optically trapped
+bead is shown in Figure 3.9a, along with a normal distribution. The ex
+perimental data shows good agreement with the normal distribution out to
+|z| ≃ 4. There are observations of larger increments, appearing as broad
+tails, but it is worth noting that the number of observations of each in
+crement |z| > 4 is less than 10, compared to hundreds of thousands at
+z = 0.
+I now consider the effects of static and dynamic error on the increment dis
+tributions. An example of each is also shown in Figure 3.9 (using the same
+64
+
+
+3.2. METHODS
+data as Figures 3.14 and 3.15), where the respective datasets are labelled
+“2350 ADU” and “100 ms”. Both static and dynamic errors cause the cen
+tral peak of the distribution to be sharper and the tails to be broader than
+the normal distribution. Notably, the static error causes a noisier incre
+ment distribution, while dynamic error affects the shape of the distribution
+without adding noise. Further discussion of these particle tracking errors
+can be found in Section 3.3.1.
+To characterise the closeness of z to a normal distribution, I have used
+the non-Gaussian parameter introduced by Rahman[151] and since applied
+to studies of colloidal systems[152] and cytoskeletal rearrangements[90].
+Rahman defined a series of parameters, however I have only used the second
+order parameter,
+N GP (τ ) = ⟨zτ 4⟩
+3⟨zτ 2⟩2 − 1, (3.14)
+where ⟨z4
+τ ⟩ = ∑z=∞
+z=−∞ z4p(z) denotes the mean of the z4 distribution and
+similarly for z2
+τ.
+Now I will examine the statistics of diffusion and whether there are enough
+observations of a given delay time for the MSD to accurately represent the
+motion. Figure 3.9b shows the NGP as a function of lag time for increasing
+observation duration, T . Examining a given lag time (say τ = 10−3 s), it
+can be seen that for T > 100τ , the NGP is close to 0 and hence the
+observation duration is adequate to say that the motion is Brownian on
+that time scale.
+This has implications for determining observation duration in microrheol
+ogy studies: if the experimenter wishes to measure the creep compliance,
+J(t), at a given maximum time, they will need the experimental observa
+tion to be 100 times that time. In other words, if you wish to measure the
+stiffness of a gel at t = 1 s, an observation of 100 s is required to have good
+65
+
+
+3.2. METHODS
+Figure 3.9: a) Increment distributions at the shortest delay time (around 1ms) for optically trapped beads in water, comparing “good” data with 400s of observations to data with extreme dynamic or static errors. A normal distribution is shown to guide the eye. b) NGP as a function of lag time showing the effects of observation duration, T , and tracking errors.
+Gaussian statistics. This is considered in terms of random errors in Section
+3.3.2.
+Figure 3.9 also shows the effects of static and dynamic error on the non
+Gaussian parameter. As may be expected, the static error only affects the
+NGP on timescales where the actual motion is less than the static error, i.e.:
+the shortest times where the apparent MSD exhibits an up-tick. Dynamic
+error, on the other hand, causes the increment distribution to depart from
+normality at all time scales, with increasing NGP at longer times.
+3.2.3.4 MSD Calculation
+Here is a short explanation of the code I use to calculate Mean-Squared
+Displacement (MSD, introduced in Section 2.2.2), which is defined as
+M SD = 〈∆r2(τ )〉 = 〈(r(t) − r(t + τ ))2〉
+t = 2nDτ. (3.15)
+Post-processing large volumes of data can also be challenging, especially
+if you want the processing to occur in reasonable timescales. Most of my
+66
+
+
+3.2. METHODS
+analysis of particle tracking microrheology data is via the MSD statistic;
+this was calculated using code adapted from Tarantino’s[149] msdanalyser
+class in MATLAB. Tarantino’s original code is both elegant and robust to
+position-time tracks of varying durations where observations may be irreg
+ularly spaced or missing, but these features mean it is inefficient for exper
+imental data consisting of long tracks of observations spaced uniformly in
+time.
+Several important modifications were made to suit my purposes: Instead
+of calculating all possible delay times within each track, I check that each
+track in a batch of processing has the same uniform time spacing and
+then select logarithmically spaced delay times. This dramatically reduces
+the processing required as the MSD is then only calculated at these delay
+times; while I would like to give a measurement of the speed-up achieved,
+the original code would take days to calculate the MSD for a track of 1
+million observations while my modified version runs in a few seconds.
+3.2.4 Quantifying Viscoelastic Properties
+Following the Generalised Stokes-Einstein Relation (GSER), if the motion
+of a particle is dominated by thermal driving forces, the MSD is equiv
+alent to the creep compliance of the particle’s environment. The MSD
+can be analysed in the time domain, or it can be used to calculate the
+complex modulus of the material and further analysed in the frequency
+domain. First it was calculated using code adapted from Tarantino’s[149]
+msdanalyser class in MATLAB. Tarantino’s original code is both elegant
+and robust to position-time tracks of varying durations where observations
+may be irregularly spaced or missing, but these features mean it is ineffi
+cient for experimental data consisting of long tracks of observations spaced
+67
+
+
+3.2. METHODS
+uniformly in time.
+Several important modifications were made to suit my purposes: Instead
+of calculating all possible delay times within each track, I check that each
+track in a batch of processing has the same uniform time spacing and
+then select logarithmically spaced delay times. This dramatically reduces
+the processing required as the MSD is then only calculated at these delay
+times; while I would like to give a measurement of the speed-up achieved,
+the original code would take days to calculate the MSD for a track of 1
+million observations while my modified version runs in a few seconds.
+For an optically trapped bead in a fluid such as water, the creep com
+pliance can be approximated using Kelvin-Voigt ideal viscoelastic model
+(henceforth referred to as K-V model) as discussed in Section 3.1.2. The
+two parameters of the K-V model are the stiffness and the characteristic
+relaxation time. The stiffness is the optical trap stiffness, measured using
+either the position variance or the MSD plateau. The characteristic re
+laxation time is measured using two methods I have developed, one time
+domain method and one frequency domain method, both of which will be
+described below.
+3.2.4.1 Time Domain Analysis
+Least-squares fitting was used qualitatively and quantitatively, with inter
+pretation by inspection of MSD curves aided by estimation of the gradient
+using a “rolling fit” method: applying a least-squares fit to a small number
+of points in the curve (normally 5 or 10) to reduce the noise in the estimated
+gradient. To speed this up, an algebraic least-squares estimator [111] was
+used, resulting in a 300-fold speed-up compared to using MATLAB’s curve
+fitting toolbox. The result can be seen in Figure 3.10i, where the rolling-fit
+68
+
+
+3.2. METHODS
+method has been used to estimate local power-law exponents (equivalent
+to gradient on a log-log plot).
+Different regions on the MSD curve indicate the compliance of different
+physical processes. In the ideal case, the MSD of an optically trapped
+bead exhibits an extended plateau where the power-law exponent is 0.
+Experimental data, on the other hand, typically has a noisy plateau and
+may also exhibit an up-tick at long times due to drift in the system. The
+noisy plateau can be seen in Figure 3.10Bi, while both the noise and the
+up-tick can be seen in Figure 3.6b.
+To calculate the trap stiffness, the variance could be used, but this is sen
+sitive to any long-time up-tick caused by drift, in which case it will under
+estimate the trap stiffness. Instead, the power-law exponent can be used
+to identify a time range for the plateau, and the mean MSD over this time
+range can be taken to be the plateau MSD.
+The characteristic relaxation time for an optically trapped bead is the time
+at which the short-time (viscous dominated) compliance is equal to the
+long-time (elastic dominated) compliance. Measured and predicted relax
+ation times are shown for both simulated data (column A) and experimen
+tal data (column B) in Figure 3.10. The time domain method is explained
+below, while the frequency domain method is explained in the next section.
+The time domain method is demonstrated in Figure 3.10ii: Two time ranges
+are chosen manually, and a linear fit is performed to data from each range
+in the form log(τ ) against log(MSD). The intercept time of the fits is cal
+culated algebraically and taken to be the characteristic relaxation time.
+In the situation of a trapped bead in a Newtonian fluid, the time domain
+method is exact. For experimental situations such as a bead trapped in
+69
+
+
+3.2. METHODS
+Figure 3.10: Validating corner time finding for (a) simulated NMSD data from a Kelvin-Voigt model and (b) real NMSD data from an optically trapped bead in water. i) MSD curves (black) with MSD power-law exponent (blue). Theoretical corner time (red), measured corner times from the time-domain method (grey dashed), frequency-domain method (grey dotted), and the mean of the two (grey dash-dot). The overlap demonstrates good agreement between the methods. ii) Time domain method showing two fits and τc, the corner time (intercept of fits).
+water, the fluid is sufficiently close to being a Newtonian fluid over the
+experimentally accessible time range that it can be approximated as such.
+The time domain method is based upon the observation that the short
+time MSD is given by the time-invariant viscosity and the long-time MSD
+is given by the trap stiffness:
+M SD(τ ≪ τc) = kBT
+3πa
+τ
+η , (3.16)
+M SD(τ ≫ τc) = 2kBT
+κ , (3.17)
+where kBT is the thermal energy, a the bead radius, τc the corner time, η
+the Newtonian viscosity, and κ the trap stiffness. As long as the experi
+mental systems is well described by the K-V model, extrapolation beyond
+the fitting range is valid and the intercept time of the two fits gives the
+characteristic relaxation time.
+70
+
+
+3.2. METHODS
+From the two equations above, the viscosity of the fluid can be inferred
+by using the corner time and the trap stiffness as per Equation 3.4. This
+follows from the viscous compliance at the corner time being equal to the
+time-invariant compliance of the trap. Thus the viscosity of a sample can
+be measured with minimal assumptions and sensitivity to noise. I refer to
+this method as the Kelvin-Voigt (K-V) method as it is derived from the
+optical trap acting as a Kelvin-Voigt viscoelastic solid.
+Alternatively, viscosity could be calculated using the Stokes-Einstein rela
+tion, Equation 2.14. The experimental MSD curve can be analysed to find
+the diffusion coefficient, D, and hence the solvent viscosity, η. I refer to
+this method as the Stokes-Einstein Relation (SER) method.
+To measure the diffusion coefficient, I have investigated two possibilities.
+The first is least-squares fitting to a power-law equation,
+log(M SD) = log(2D) + αlog(τ ), (3.18)
+with power-law exponent α. Fitting has the advantage that the power-law
+exponent can reveal rheological properties of the system such as the loss
+tangent, indicating whether the behaviour of the system is viscous, elastic,
+or viscoelastic at a given timescale.
+Alternatively, the diffusion coefficient can be defined as a function of lag
+time,
+D(τ ) = M SD(τ )/τ, (3.19)
+which has two advantages: firstly, it is less sensitive to errors affecting
+the power-law exponent; secondly it is insensitive to the lag time being
+analysed. The second point is important as power-law fitting finds D using
+the y-intercept of the best-fit line. Clearly if the time range being analysed
+71
+
+
+3.2. METHODS
+is far from 1s, a small change in α will lead to a large change in D.
+It is also possible to calculate the viscosity using the Fourier Transform
+(FT) of the MSD. Recall that the loss modulus G′′(ω) = ηω, and thus the
+imaginary part of the complex modulus can be used to calculate η. Several
+methods for optimising the SNR on the FT are discussed in Section 3.3.3,
+and the viscosity calculated by two of these has been included here.
+For comparison, I present the results of each method when applied to the
+same data of an optically trapped bead. Figure 3.11 shows a set of MSD
+curves taken with different trap stiffnesses controlled by varying the laser
+power, and the viscosities calculated by each method. As can be seen, the
+K-V method provides substantially better agreement with theory than the
+SER method. The non-fitting SER method is less noisy, but both SER
+methods systematically overestimate the viscosity relative to the expected
+value and the K-V method. Each of the Fourier transform methods over
+estimates η by approximated a factor of π; the possibility of a numerical
+error in the Fourier transform has been ruled out as my implementation
+and one from Smith et. al.[153] have been compared and give exactly the
+same results.
+The K-V method also has another conceptual advantage: By plotting
+κ/6πa against ηwater/τc, the viscosity of a multiple measurements in a sam
+ple can be quickly compared, both to each other and to the viscosity of
+water. This is shown as the inset to Figure 3.11b. The data agrees well
+with the predicted viscosity of water over a wide range of trap strengths,
+while an increase in viscosity would place data points below the dashed
+line.
+72
+
+
+3.2. METHODS
+Figure 3.11: a) Experimental MSD curves for an optically trapped bead in water, varying trap stiffness. Inset: Curves normalised spatiotemporally using the empirically measured trap stiffness and corner time. b) Viscosities calculated for each set, using K-V, SER and FT methods. Theoretical viscosity for water at 298 K (0.97 mPa·s) also shown. Inset: Inverse stiffness against inverse corner time plot, with viscosity of water shown as dashed line.
+3.2.4.2 Frequency Domain Analysis
+Performing a Fourier transform on rheological data is non-trivial due to
+non-convergence of the Fourier transform integral and truncation errors in
+troduced by numerical transforms. To this end, I implemented the method
+proposed by Evans et. al.[109] and the improvements proposed by Tassieri
+et. al. [117, 153], as discussed in Section 2.2.3. Key to this method is ac
+curate numerical inversion over a wide range of frequencies. Characterising
+and minimising the numerical error in the inversion process is discussed
+later in Section 3.3.3.
+Equivalent to the characteristic relaxation time, the characteristic relax
+ation frequency, or corner frequency, of an optical trap can be used to find
+the viscosity of the suspension fluid. This is the frequency at which the
+elastic and viscous moduli are equal, shown with a dashed line in Figure
+3.12 A and B i). To simplify the numerical approach, I considered the loss
+73
+
+
+3.2. METHODS
+Figure 3.12: Validating characteristic relaxation frequency measurement for (a) simulated NMSD data from a Kelvin-Voigt model and (b) real NMSD data from an optically trapped bead in water, both shown in Figure 3.10. i) Complex modulus with intercept frequency, ωc, marked. ii) Frequency domain method showing fit to tan(δ) and ωc, the frequency where fit intercepts tan(δ) = 1.
+tangent,
+tan(δ(ω)) = G′′(ω)
+G
+′(ω) , (3.20)
+tan(δ(ωc)) = 1, (3.21)
+and use least-squares fitting to a power-law,
+log (tan (δ(ω))) = A log(ω) + log(B), (3.22)
+where A and B are free parameters for the fit. Thus the frequency where
+tan(δ) = 1 can be found by
+ωc = exp
+( log(B ) A
+)
+. (3.23)
+The fitting and result in the frequency domain are shown in Figure 3.12 for
+simulated and real MSD. The fit results are compared to prediction and
+the time domain method in Figure 3.10i, where they are found to be in
+excellent agreement.
+74
+
+
+3.3. DISCUSSION
+3.3 Discussion
+Clearly no experimental system is ideal however simple models can still
+aid in understanding them. For example, the model of the optical trap as
+a Newtonian fluid in parallel with a Hookean spring allows for easy and
+accurate quantification of fluid viscosity, and this approach maintains its
+validity when applied to more complex systems. The experimental system
+exhibits small departures from ideal behaviour however these are negligible
+compared to either the random errors associated with observing stochastic
+processes for finite time durations, or the numerical errors introduced in
+data processing as shown in Figure 3.17.
+3.3.1 Systematic Errors
+There are three main sources of systematic error in particle tracking experi
+ments: external noise and the two particle tracking-specific errors identified
+by Savin and Doyle[154, 155] as static and dynamic error. External noise
+comes from various lab sources, which have been eliminated where possible
+such as by turning off the overhead fluorescent lights in the lab. Interference
+from other electronic devices, such as the power supply for the trapping
+laser, cannot be avoided but has been characterised as shown in Figure
+3.6. These noise sources systematically increase the MSD at all lag times
+but can be removed with a narrowband stop filter as described in Section
+3.2.3.1.
+75
+
+
+3.3. DISCUSSION
+3.3.1.1 Static Error
+Static error is caused by the contrast to noise ratio of the images, placing
+a limit on the smallest displacement it is possible to track. This has the
+consequence of limiting the minimum compliance that can be accurately
+measured by passive microrheology. It can be modelled by relating true
+position, x, to apparent position xˆ = x + N (ε2), using N (ε2) to denote a
+random variable drawn from a normal distribution with variance ε2. Ac
+counting for static error, the apparent MSD can be written as
+⟨∆rˆ2(τ )⟩ = ⟨∆r2(τ )⟩ + ε2, (3.24)
+where ε2 is the magnitude of the static error. While static error introduces
+a random error on the apparent position, it causes a systematic increase in
+the apparent MSD. Hence if the true MSD is not much greater than the
+static error there will be significant overestimation of the MSD.
+I characterised this error in the optical trapping system when imaging 5 ➭m
+diameter polystyrene beads in transmission by drying polystyrene beads
+onto a 170 ➭m thick coverslip and then attaching the coverslip to a 2 mm
+microscope slide for imaging such that the beads were sandwiched between
+the coverslip and microscope slide.
+To separate the displacement due to vibrations in the system from the ap
+parent displacement due to static error, I imaged two beads simultaneously
+and calculate the difference between the bead co-ordinates. While the mea
+sured position of each bead individually is affected by both vibrations and
+static noise, the vibrations are the same for both beads and the apparent
+difference is given by δxˆ = δx + √2N (ε2). Thus the difference between the
+measured bead positions allows a direct estimation of the magnitude of the
+76
+
+
+3.3. DISCUSSION
+Figure 3.13: Static error for beads attached to coverslip measured for different focal positions. Inset are images of a bead from three different focal positions showing a 9 ➭m field of view. Note that saturation in the central image is due to the display contrast, not camera saturation.
+static error.
+Figure 3.13 shows how static error varies with focal position. This vari
+ation comes from the differing contrast at different focal positions. With
+this imaging setup, it is possible to obtain static error as low as 1 nm2.
+During microrheology measurements using with optical tweezers, however,
+the bead will be free to move in z, and thus static error will be higher. For
+this reason, when considering experimental data, MSDs below 100 nm2 are
+treated cautiously.
+The effect of static error on the MSD of an optically trapped bead can
+be seen in Figure 3.14, where I artificially reduced the spatial resolution
+by increasing the threshold value in the image processing. At the shortest
+delay times, high threshold values cause the apparent MSD to depart from
+the true value. At lag times such that the bead displacements are much
+greater than the static error, the experimental MSD is almost unaffected.
+77
+
+
+3.3. DISCUSSION
+Figure 3.14: MSD curves taken from a single trapped bead (shown in inset i) with different acquisition parameters demonstrating the effect of static error on MSD with varying contrast (artificially induced here by changing the threshold level, shown as dashed lines on inset ii). Background subtracted images are shown in inset iii, along with line plots through the background subtracted images. Scale bars are 4 ➭m.
+This can be verified using the non-Gaussian parameter as shown in Figure
+3.9: static error only affects the increment distribution at short lag times,
+allowing a cutoff lag time to be determined above which the MSD has
+insignificant influence of static error.
+In optical trapping experiments, static error is minimised by changing the
+axial position of the trap equilibrium via removal of lens L1 (Figure 3.3)
+along with use of a bright halogen lamp configured in K ̈ohler illumination.
+For cell and bead experiments, the z-position of the bead is determined by
+the cell, allowing a focal position to be chosen to minimise static error.
+78
+
+
+3.3. DISCUSSION
+3.3.1.2 Dynamic Error
+Dynamic error is caused by bead motion during the exposure time, and
+limits the shortest timescale over which it is possible to accurately track
+the bead position; in general this is difficult to quantify and depends on
+both the exposure time and the rheology of the sample (see [155] for more
+detail). The exact time-scale over which dynamic error has significant
+effect depends on the power-law exponent of the MSD at time equal to
+the exposure time, with a lower exponent (to a minimum of 0) causing
+dynamic error to have an effect at longer time-scales relative to the exposure
+time[155]. In all cases, dynamic error causes underestimation of the MSD.
+For a micron-sized bead optically trapped in water, the timescales affected
+by dynamic error will depend on the stiffness of the trap. If the trap
+relaxation time is much longer than the exposure time, dynamic error will
+have an effect at lag times up to a few times the exposure time, hence
+causing an overestimation of the viscosity; if the trap relaxation time is
+similar or shorter than the exposure time, the dynamic error will cause
+underestimation of the MSD at all lag times, causing an overestimation of
+trap stiffness. These effects are seen clearly in Figure 3.15, where it presents
+on MSD curves as super-diffuse motion in the shortest delay times. That
+is to say, power-law exponent α > 1 as demonstrated by the dashed lines.
+Here, dynamic error is causing an underestimation of the mean-squared
+displacement of the particle being tracked.
+As the exposure time approaches the trap relaxation time, the effect of
+dynamic error increases at the shortest lag times. In the case of the 10 ms
+exposure time, there is no time scale where the diffuse motion of the bead
+is accurately measured. When the exposure time exceeds the trap relax
+ation time, the apparent plateau height (elastic compliance) is significantly
+79
+
+
+3.3. DISCUSSION
+Figure 3.15: MSD of an optically trapped bead in water showing the effect of dynamic error on MSD (solid lines) and power-law scaling (dashed lines) with varying exposure time. Inset i: representative images and line plots. Scale bars in insets are 4 ➭m.
+reduced and no diffuse motion is seen. This can be seen with the 100 ms
+exposure time. To understand the effect, consider the diffusion of the bead
+within the trap. During the 100 ms exposure time, the bead has diffused
+across the entire length scale of the trap, and the image acquired is an av
+erage of all positions the bead occupies. Thus the MSD between sequential
+frames (100 ms apart) will be much lower than expected.
+While estimating dynamic error is non-trivial, minimising it is not. As
+dynamic error is the effect of motion blur on particle tracking, it can be
+simply seen that minimising the exposure time will minimise dynamic error.
+I have used exposures times of 100 to 250 ➭s even when increasing exposure
+time would not slow down acquisition, whilst ensuring there is plenty of
+light to keep static error low. In other words, if the ROI is such that the
+camera would run at 1,000 fps, an exposure time of up to 1 ms would not
+slow the acquisition. In this case, I would still use an exposure of 100 ➭s
+because this minimises dynamic error.
+80
+
+
+3.3. DISCUSSION
+I also disregard the first few points of the MSD from quantitative analysis,
+based on the MSD power-law exponent. This is justified by Figure 3.15,
+where the power-law exponents have an increase at the shortest times which
+is caused by dynamic error. While the effect of dynamic error while probing
+water (with sensible image acquisition parameters) is small, the effect of
+dynamic error when probing cells or other viscoelastic materials can be
+much larger. Thus I chose to err on the side of caution and if there is
+an increase in power-law exponent at the beginning of an MSD curve, I
+exclude those time points.
+The reader may notice that the bead image from the 100 ms exposure time
+is saturated (Figure 3.15 inset bottom row). By a simple geometric ar
+gument it can be seen that image saturation has no effect on the centroid
+calculation: The centroid for a discretely sampled distribution (e.g. a Gaus
+sian image of a bead) is the same as the first moment of that distribution,
+and equal to the integral of the distribution multiplied by the position
+co-ordinate, normalised to the area under the peak. Or, in 1 dimension,
+Cx ≡
+∫∞
+0 xp(x)dx
+∫∞
+0 p(x)dx , (3.25)
+where Cx is the centroid (or first moment) and p(x) is the distribution in
+question. Note that the first moment, centroid, and centre of area are all
+equivalent.
+Consider now a Gaussian distribution and a truncated Gaussian distribu
+tion, where values above some truncation value are instead set equal to that
+truncation value. These are good approximations of the bead image and
+saturated bead image. The symmetry of the distribution suffices to show
+that image saturation has no bearing on dynamic error. It will, however,
+have an effect on static error: the precision of the first moment calculation
+81
+
+
+3.3. DISCUSSION
+is proportional to the area between the threshold and the truncation value
+so increasing illumination brightness beyond saturation will increase static
+error.
+3.3.2 Random Errors
+A practical challenge of microrheology is one shared by all studies of stochas
+tic processes: How long do you need to watch a sequence of random events
+for the time-average to accurately represent the process behind the events?
+In passive microrheology, one could consider the number of independent
+observations of the MSD for a given delay time. If the experimenter wishes
+to probe the MSD with at a delay time of up to 10 s, consider that 100 s
+of experimental data will have only 10 independent samples at this delay
+time.
+To demonstrate the importance of adequate sampling, a single position
+time recording, consisting of 500,000 samples collected at 1.214 kHz, was
+truncated to varying durations. Figure 3.16 shows MSD curves, trap stiff
+ness, κ, and diffusion coefficient, D, calculated using between 10 and
+500,000 samples. When viewing the MSD curves, especially notice the
+change at the highest τ of each one, where statistics are poorest. Diffusion
+coefficients were calculated by fitting the short lag-time MSD to
+M SD = 2Dτ α, (3.26)
+where D is the diffusion coefficient and α is the power-law exponent.
+To assess random error with varying sample number, trap stiffness and
+diffusion coefficient were compared to the values found using all 500,000
+samples. Brownian dynamics simulations were performed following the
+82
+
+
+3.3. DISCUSSION
+Figure 3.16: a) MSD estimate improving with increasing number of samples. b) and c) Trap stiffness calculated using Equation 3.2 and diffusion coefficient D by fitting to Equation 3.26, for increasing number of samples, N. Error bars indicate random error estimates frp, Brownian dynamics.
+method of Volpe[156], using the same parameters as the experiment. For
+each number of samples plotted in Figure 3.16, 1,000 trajectories of that
+length were generated and the trap stiffness and diffusion coefficient were
+quantified. The standard deviation of these 1,000 simulated measurements
+was used to estimate the random error for the experiment, shown as error
+bars on panels b) and c).
+To achieve an accurate measure of trap stiffness, using 160 s or 200,000
+samples will give a relative error of 7%, however this will depend on the
+trap stiffness as a less stiff trap will have a longer relaxation time and 160 s
+will contain fewer independent observations at lag time equal to the trap
+relaxation time. Diffusion coefficient, on the other hand, requires fewer
+samples and reaches 9% relative error for 24 s or 30,000 samples. This is
+because the analysis used here (Equation 3.18, log(M SD) = log(2D) +
+αlog(τ )) utilises MSD data from the shortest lag times to calculate the
+viscosity, and the shortest lag times have the best statistics as there are
+more independent observations.
+83
+
+
+3.3. DISCUSSION
+3.3.2.1 Image Analysis
+Position-time data has thus far been acquired using video microscopy and
+centre-of-mass tracking, with real-time image acquisition and processing
+enabling longer observation durations. The centre-of-mass particle tracking
+relies upon the bead image having a bright centre, and no other features
+brighter than the threshold in the region of interest (ROI) used for image
+acquisition. It is easy to ensure this in the case of optically trapped beads
+in transparent solutions, or beads attached to cells, because there are few
+features visible and a small ROI is used. In samples where this is not the
+case, a more advanced image analysis may improve ease of use and reduce
+errors on particle tracking.
+One possibility is to use the cross-correlations of subsequent image frames in
+order to calculate the displacement between subsequent frames, or between
+the first and Nth frames. In either, an image kernel containing the bead
+is convolved with a subsequent image to find the position of the bead
+within the image, and hence the displacement between the two images.
+Considering the image and the kernel as matrices Mij and kij of pixel
+intensities, the cross-correlation can be written
+Cxy =
+x+w
+∑
+i=x
+y+h
+∑
+j=y
+Mijkij, (3.27)
+where w and h are the width and height of the image kernel, respectively.
+The greatest value in the cross-correlation matrix corresponds to the kernel
+position closest to the bead position in that image, i.e. the bead position
+to the nearest pixel. The bead position can be found with greater precision
+by calculating the centroid of the cross-correlation.
+The cross-correlation analysis could be implemented using MATLAB’s xcorr
+84
+
+
+3.3. DISCUSSION
+function, however this would require every image acquired to be saved and
+processed after the experiment. To avoid the additional challenges brought
+by storing such volumes of data, this could be implemented in Java and
+run by Micro-Manager during data acquisition. The implementation would
+need to be tested for performance, both in terms of computation time and
+static error. Using image cross-correlations would reduce static error when
+tracking particles against noisy backgrounds, allowing accurate microrhe
+ology study of samples such as tissues. It would also allow particles to be
+tracked over a wider axial range as the analysis would no longer rely on a
+central bright spot.
+3.3.3 Optimising SNR for Complex Moduli
+Firstly, the MSD data must be as clean as possible - experimental noise
+should be removed as described in Section 3.2.3.1. Optimal SNR could be
+achieved by fitting MSD data to an analytical equation such as the K-V
+model (N M SD = 1 − e−λτ ), from which an analytical expression exists for
+the Fourier Transform. Use of fitting models, however, is limited to data
+for which a preconceived fit exists; perhaps more importantly, it does not
+distinguish between the noise which one wishes to remove and the system’s
+departure from model behaviour.
+For example, one may fit the K-V model to data from a bead suspended
+inside a gel, expecting a viscous short-time response and an elastic long
+time response. If the gel actually exhibits sub-diffusion on short times, or
+a time-dependent elasticity on long times, the model will not reflect this
+and the resulting Fourier transform and complex modulus will be incor
+rect. Hence I have avoided fitting models to my experimental data, instead
+focussing on how to optimise the processing for best SNR.
+85
+
+
+3.3. DISCUSSION
+In Figure 3.17 I demonstrate different methods to improve the SNR of the
+resulting viscoelastic modulus for an optically trapped bead in water. Since
+water can be approximated as a Newtonian fluid over the relevant time
+scales, the viscoelastic modulus should be well described by the Kelvin
+Voigt model, with a constant storage modulus given by the trap strength
+and a loss modulus depending on frequency, G′′(ω) = 0.97ω mPa. The 6
+methods have been denoted by Roman numerals, and the raw MSD data
+is shown as an inset. At long lag times, the MSD exhibits an up-tick
+due to pointing instability of the laser. For all methods, as described in
+Section 2.2.3, the MSD is interpolated before using the Fourier transform
+as described by Evans et. al.[109]. This interpolation pushes the high
+frequency truncation errors beyond the bandwidth of the experiment.
+Method i) is to simply use the entire MSD curve. This gives good SNR for
+frequencies where the viscous behaviour dominates, but poor SNR for the
+elastic plateau due to the slight gradient, as can be seen by the non-smooth
+behaviour on the loss modulus at frequencies below 100 Hz. At the lowest
+frequencies, the up-tick in MSD causes both storage and loss moduli to
+depart from expected behaviour.
+Method ii) is to truncate the data at the gradient minima. This causes a
+large improvement to the SNR at low frequencies, however it also reduces
+the lowest frequency represented in the moduli. Method iii) is to truncate
+at the gradient minima, and replace the truncated data with a linear fit of
+the same gradient. Because the long-time behaviour of the experimental
+MSD is non-smooth, replacing with a smooth fit improves the SNR, but
+because the fit has a non-zero gradient, the loss modulus departs from
+expected behaviour at low frequencies.
+Method iv) is to truncate the data, and replace with a smooth line of
+86

@@ -1,0 +1,14 @@
+{
+  "claim": "Cristae organization proteins are disrupted in tau pathology",
+  "verdict": "\u274c REFUTED",
+  "n_proteins": 4,
+  "n_significant": 0,
+  "n_upregulated": 0,
+  "n_downregulated": 0,
+  "mean_log2fc": 0.04310744854076111,
+  "figures": [
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim5_Cristae_Organization/volcano_plot.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim5_Cristae_Organization/heatmap.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim5_Cristae_Organization/bar_plot.png"
+  ]
+}
