@@ -554,4 +554,364 @@ def register_routes(app, socketio):
             return api_response(success=False, error=str(e)), 500
 
 
+    # ========================================================================
+    # MODEL MANAGEMENT API (NEW - for dashboard)
+    # ========================================================================
+
+    # Import new modules
+    try:
+        from immunos_model_manager import OllamaModelManager as ModelManager
+        from immunos_token_tracker import TokenTracker
+        from immunos_routing import ModelRouter
+    except ImportError as e:
+        print(f"⚠ Warning: Could not import new model management modules: {e}")
+        ModelManager = None
+        TokenTracker = None
+        ModelRouter = None
+
+    @app.route('/api/models/list')
+    def api_models_list():
+        """GET - List all available Ollama models (enhanced)"""
+        try:
+            if ModelManager:
+                manager = ModelManager()
+                models = manager.list_models()
+                return jsonify(models)
+            else:
+                # Fallback to basic check
+                return api_ollama_status()
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/models/<model_name>/load', methods=['POST'])
+    def api_model_load(model_name):
+        """POST - Load model into memory"""
+        try:
+            if not ModelManager:
+                return jsonify({'error': 'Model manager not available'}), 503
+
+            manager = ModelManager()
+            success = manager.load_model(model_name)
+
+            if success:
+                # Emit WebSocket event
+                socketio.emit('model_loaded', {
+                    'model': model_name,
+                    'timestamp': datetime.now().isoformat()
+                })
+                return jsonify({'success': True, 'model': model_name})
+
+            return jsonify({'success': False, 'error': 'Failed to load model'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/models/<model_name>/unload', methods=['POST'])
+    def api_model_unload(model_name):
+        """POST - Unload model from memory"""
+        try:
+            if not ModelManager:
+                return jsonify({'error': 'Model manager not available'}), 503
+
+            manager = ModelManager()
+            success = manager.unload_model(model_name)
+
+            if success:
+                socketio.emit('model_unloaded', {
+                    'model': model_name,
+                    'timestamp': datetime.now().isoformat()
+                })
+                return jsonify({'success': True, 'model': model_name})
+
+            return jsonify({'success': False, 'error': 'Failed to unload model'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/models/status')
+    def api_models_status():
+        """GET - Get status of all models"""
+        try:
+            if not ModelManager:
+                return jsonify({'error': 'Model manager not available'}), 503
+
+            manager = ModelManager()
+            status = manager.get_all_status()
+            return jsonify(status)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/ollama/start', methods=['POST'])
+    def api_ollama_start():
+        """POST - Start Ollama server"""
+        try:
+            if not ModelManager:
+                return jsonify({'error': 'Model manager not available'}), 503
+
+            manager = ModelManager()
+            success = manager.start_ollama_server()
+
+            if success:
+                socketio.emit('ollama_server_started', {
+                    'timestamp': datetime.now().isoformat()
+                })
+                return jsonify({'success': True})
+
+            return jsonify({'success': False, 'error': 'Failed to start server'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/ollama/stop', methods=['POST'])
+    def api_ollama_stop():
+        """POST - Stop Ollama server"""
+        try:
+            if not ModelManager:
+                return jsonify({'error': 'Model manager not available'}), 503
+
+            manager = ModelManager()
+            success = manager.stop_ollama_server()
+
+            if success:
+                socketio.emit('ollama_server_stopped', {
+                    'timestamp': datetime.now().isoformat()
+                })
+                return jsonify({'success': True})
+
+            return jsonify({'success': False, 'error': 'Failed to stop server'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    # ========================================================================
+    # TOKEN TRACKING API
+    # ========================================================================
+
+    @app.route('/api/tokens/session/<session_id>')
+    def api_tokens_session(session_id):
+        """GET - Token usage for specific Claude session"""
+        try:
+            if not TokenTracker:
+                return jsonify({'error': 'Token tracker not available'}), 503
+
+            tracker = TokenTracker()
+            usage = tracker.get_session_usage(session_id)
+            return jsonify(usage)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/tokens/session/current')
+    def api_tokens_session_current():
+        """GET - Token usage for current session"""
+        try:
+            if not TokenTracker:
+                return jsonify({'error': 'Token tracker not available'}), 503
+
+            tracker = TokenTracker()
+            session_id = tracker.get_or_create_session()
+            usage = tracker.get_session_usage(session_id)
+            return jsonify(usage)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/tokens/comparison')
+    def api_tokens_comparison():
+        """GET - Claude vs Ollama comparison (Query param: ?hours=24)"""
+        try:
+            if not TokenTracker:
+                return jsonify({'error': 'Token tracker not available'}), 503
+
+            hours = request.args.get('hours', 24, type=int)
+            tracker = TokenTracker()
+            data = tracker.get_provider_comparison(hours=hours)
+            return jsonify(data)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/tokens/models')
+    def api_tokens_models():
+        """GET - Per-model token breakdown"""
+        try:
+            if not TokenTracker:
+                return jsonify({'error': 'Token tracker not available'}), 503
+
+            tracker = TokenTracker()
+            models = tracker.get_model_breakdown()
+            return jsonify(models)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/tokens/routing')
+    def api_tokens_routing():
+        """GET - Model routing statistics"""
+        try:
+            if not TokenTracker:
+                return jsonify({'error': 'Token tracker not available'}), 503
+
+            tracker = TokenTracker()
+            stats = tracker.get_routing_stats()
+            return jsonify(stats)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    # ========================================================================
+    # ROUTING API
+    # ========================================================================
+
+    @app.route('/api/routing/config')
+    def api_routing_config():
+        """GET - Current routing configuration"""
+        try:
+            if not ModelRouter:
+                return jsonify({'error': 'Model router not available'}), 503
+
+            router = ModelRouter()
+            config = router.get_routing_config()
+            return jsonify(config)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/routing/config/update', methods=['POST'])
+    def api_routing_config_update():
+        """POST - Update routing configuration"""
+        try:
+            if not ModelRouter:
+                return jsonify({'error': 'Model router not available'}), 503
+
+            router = ModelRouter()
+            config = request.get_json()
+            success = router.update_routing_config(config)
+
+            if success:
+                return jsonify({'success': True})
+
+            return jsonify({'success': False, 'error': 'Failed to update config'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/routing/decide', methods=['POST'])
+    def api_routing_decide():
+        """POST - Get routing decision for a task"""
+        try:
+            if not ModelRouter:
+                return jsonify({'error': 'Model router not available'}), 503
+
+            router = ModelRouter()
+            data = request.get_json()
+
+            model, reason = router.route_task(
+                task_type=data.get('task_type', 'unknown'),
+                task_classification=data.get('task_classification', 'routine'),
+                estimated_tokens=data.get('estimated_tokens')
+            )
+
+            return jsonify({'model': model, 'reason': reason})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/routing/status')
+    def api_routing_status():
+        """GET - Current routing status with recommendations"""
+        try:
+            if not ModelRouter:
+                return jsonify({'error': 'Model router not available'}), 503
+
+            router = ModelRouter()
+            status = router.get_session_status()
+            return jsonify(status)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    # ========================================================================
+    # CHAT API
+    # ========================================================================
+
+    @app.route('/api/chat', methods=['POST'])
+    def api_chat():
+        """POST - Chat with IMMUNOS models"""
+        try:
+            from immunos_chat import ImmunosChat
+            data = request.json
+            user_input = data.get('message', '')
+            task_type = data.get('task_type', 'analysis')
+            task_classification = data.get('task_classification', 'routine')
+
+            chat = ImmunosChat()
+            result = chat.chat(user_input, task_type, task_classification)
+            return jsonify(result)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    # ========================================================================
+    # HANDOFF API
+    # ========================================================================
+
+    @app.route('/api/handoff/check')
+    def api_handoff_check():
+        """GET - Check if handoff needed"""
+        try:
+            from immunos_handoff import ContextHandoff
+            handoff = ContextHandoff()
+            should_handoff, reason = handoff.should_handoff()
+            session = handoff.tracker.get_session_usage(handoff.current_session_id)
+
+            return jsonify({
+                'should_handoff': should_handoff,
+                'reason': reason,
+                'token_usage': session.get('total_tokens', 0),
+                'threshold_warning': 150000,
+                'threshold_critical': 180000
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/handoff/create', methods=['POST'])
+    def api_handoff_create():
+        """POST - Create context handoff"""
+        try:
+            from immunos_handoff import ContextHandoff
+            data = request.json
+            handoff = ContextHandoff()
+
+            filepath = handoff.save_handoff(
+                conversation_history=data.get('conversation', []),
+                current_task=data.get('current_task', 'Unknown'),
+                files_being_worked_on=data.get('files', []),
+                next_steps=data.get('next_steps', []),
+                context=data.get('context', {}),
+                reason=data.get('reason', 'manual')
+            )
+
+            return jsonify({'success': True, 'filepath': filepath})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    # ========================================================================
+    # DASHBOARD ROUTES
+    # ========================================================================
+
+    @app.route('/monitor')
+    def monitor_dashboard():
+        """Real-time monitoring dashboard"""
+        try:
+            return app.send_static_file('monitor.html')
+        except:
+            from flask import render_template
+            try:
+                return render_template('monitor.html')
+            except:
+                return "Monitor dashboard under construction.", 404
+
+    @app.route('/docs')
+    def docs_page():
+        """IMMUNOS Documentation and Knowledge Base"""
+        from flask import render_template
+        try:
+            return render_template('docs.html')
+        except:
+            return "Documentation under construction.", 404
+
     print("✓ API routes registered successfully")
+    print("  - Model Management: /api/models/* (7 endpoints)")
+    print("  - Token Tracking: /api/tokens/* (5 endpoints)")
+    print("  - Routing: /api/routing/* (4 endpoints)")
+    print("  - Chat: /api/chat (1 endpoint)")
+    print("  - Handoff: /api/handoff/* (2 endpoints)")
+    print("  - Monitor: /monitor (dashboard)")
+    print("  - Docs: /docs (knowledge base)")

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMUNOS Documentation - Universal Artificial Immune System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- Header -->
+    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold text-blue-400">🧬 IMMUNOS Documentation</h1>
+                <span class="text-sm text-gray-400">Universal Artificial Immune System</span>
+            </div>
+            <div class="flex space-x-4">
+                <a href="/monitor" class="text-blue-400 hover:text-blue-300">← Back to Dashboard</a>
+                <a href="https://github.com/biobitworks/immunos" target="_blank" class="text-blue-400 hover:text-blue-300">GitHub →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="max-w-5xl mx-auto px-6 py-8">
+
+        <!-- Overview Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Overview</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-lg mb-4">
+                    <strong>IMMUNOS</strong> is a Universal Artificial Immune System that operates as a <strong>negative selection model</strong> to large language models like Claude. It provides scientific validation, hallucination detection, and multi-modal analysis for rigorous research pursuits.
+                </p>
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-sm text-gray-400">Primary Function</div>
+                        <div class="text-lg font-semibold text-blue-400">Negative Selection to Claude</div>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-sm text-gray-400">Purpose</div>
+                        <div class="text-lg font-semibold text-green-400">Scientific Validation & Security</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RAIT Principles -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">RAIT Principles</h2>
+            <p class="text-gray-300 mb-6">
+                IMMUNOS adheres to <strong>RAIT</strong> principles to maintain credibility and respect in the scientific community:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-gray-800 rounded-lg p-6 border border-blue-700">
+                    <h3 class="text-xl font-bold mb-2 text-blue-400">🔬 Rigorous</h3>
+                    <p class="text-gray-300">
+                        Thorough validation processes that meet high standards of scientific rigor. Every claim is verified against primary sources, citations are validated, and anomalies are flagged.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 border border-green-700">
+                    <h3 class="text-xl font-bold mb-2 text-green-400">🎯 Accurate</h3>
+                    <p class="text-gray-300">
+                        Precise and dependable results through multi-detector consensus. IMMUNOS uses biological-inspired negative selection to detect both known and novel patterns of errors.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 border border-purple-700">
+                    <h3 class="text-xl font-bold mb-2 text-purple-400">📊 Interpretable</h3>
+                    <p class="text-gray-300">
+                        All detections include confidence scores, reasoning, and specific evidence. Complex AI outputs are made understandable for human researchers.
+                    </p>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 border border-yellow-700">
+                    <h3 class="text-xl font-bold mb-2 text-yellow-400">🔍 Transparent</h3>
+                    <p class="text-gray-300">
+                        Full provenance tracking of all decisions. Every validation, model routing choice, and detection is logged and auditable. Open-source implementation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Negative Selection Model -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Negative Selection Model</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-4">
+                    IMMUNOS implements biological immune system principles through <strong>negative selection</strong>:
+                </p>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">🦠</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">T-Cell Maturation</h4>
+                            <p class="text-gray-400">Detectors are trained on "self" (validated data) and learn to recognize "non-self" (anomalies, hallucinations, errors)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">🎯</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Continuous Validation</h4>
+                            <p class="text-gray-400">IMMUNOS validates Claude's outputs in real-time, catching errors before they propagate to research conclusions</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-3xl">🔐</div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-1">Security Layer</h4>
+                            <p class="text-gray-400">Prevents hallucinations, validates citations, checks code for vulnerabilities, and verifies scientific claims</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Multi-Modal Analysis -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Multi-Modal Analysis</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-6">
+                    IMMUNOS analyzes multiple data modalities for comprehensive research validation:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-4xl mb-2">📄</div>
+                        <h4 class="font-bold mb-2">Text Analysis</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Hallucination detection</li>
+                            <li>• Citation verification</li>
+                            <li>• Scientific claim validation</li>
+                            <li>• Sentiment analysis</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-4xl mb-2">🖼️</div>
+                        <h4 class="font-bold mb-2">Image Analysis</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Figure validation</li>
+                            <li>• Data integrity checks</li>
+                            <li>• Manipulation detection</li>
+                            <li>• Quality assessment</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-4xl mb-2">🎬</div>
+                        <h4 class="font-bold mb-2">Video Analysis (Future)</h4>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Temporal anomaly detection</li>
+                            <li>• Experimental validation</li>
+                            <li>• Protocol verification</li>
+                            <li>• Reproducibility checks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terminal Usage -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Terminal Usage</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <h3 class="text-xl font-bold mb-4 text-green-400">Quick Start</h3>
+
+                <div class="space-y-6">
+                    <!-- Chat with IMMUNOS -->
+                    <div>
+                        <h4 class="font-mono text-sm text-gray-400 mb-2"># Interactive Chat</h4>
+                        <pre class="bg-black p-4 rounded text-sm"><code>python3 scripts/immunos_chat.py</code></pre>
+                        <p class="text-sm text-gray-400 mt-2">Start interactive chat with automatic model routing</p>
+                    </div>
+
+                    <!-- Code Review -->
+                    <div>
+                        <h4 class="font-mono text-sm text-gray-400 mb-2"># Code Review (FREE via Ollama)</h4>
+                        <pre class="bg-black p-4 rounded text-sm"><code>python3 scripts/immunos_assist.py review myfile.py</code></pre>
+                        <p class="text-sm text-gray-400 mt-2">Review code for bugs, style, security issues using qwen2.5-coder</p>
+                    </div>
+
+                    <!-- Code Generation -->
+                    <div>
+                        <h4 class="font-mono text-sm text-gray-400 mb-2"># Code Generation (FREE via Ollama)</h4>
+                        <pre class="bg-black p-4 rounded text-sm"><code>python3 scripts/immunos_assist.py code "sort a list in Python"</code></pre>
+                        <p class="text-sm text-gray-400 mt-2">Generate code snippets using local models</p>
+                    </div>
+
+                    <!-- Reasoning -->
+                    <div>
+                        <h4 class="font-mono text-sm text-gray-400 mb-2"># Reasoning (FREE via DeepSeek)</h4>
+                        <pre class="bg-black p-4 rounded text-sm"><code>python3 scripts/immunos_assist.py reason "explain quantum entanglement"</code></pre>
+                        <p class="text-sm text-gray-400 mt-2">Deep reasoning tasks using deepseek-r1:14b</p>
+                    </div>
+
+                    <!-- Context Handoff -->
+                    <div>
+                        <h4 class="font-mono text-sm text-gray-400 mb-2"># Check Handoff Status</h4>
+                        <pre class="bg-black p-4 rounded text-sm"><code>python3 scripts/immunos_handoff.py check</code></pre>
+                        <p class="text-sm text-gray-400 mt-2">Monitor token usage and handoff requirements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Usage -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Dashboard Usage</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <h3 class="text-xl font-bold mb-4 text-green-400">Real-Time Monitoring</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold mb-2">🌐 Access Dashboard</h4>
+                        <pre class="bg-black p-3 rounded text-sm mb-2"><code>http://localhost:5001/monitor</code></pre>
+                        <p class="text-sm text-gray-400">Real-time monitoring of all IMMUNOS activities</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold mb-2">📚 Documentation</h4>
+                        <pre class="bg-black p-3 rounded text-sm mb-2"><code>http://localhost:5001/docs</code></pre>
+                        <p class="text-sm text-gray-400">This page (knowledge base)</p>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="font-bold mb-3">Dashboard Features:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>• <strong>Token Savings Tracking:</strong> Real-time Claude vs Ollama comparison</li>
+                            <li>• <strong>Model Status:</strong> See which models are loaded and their performance</li>
+                            <li>• <strong>Live Chat:</strong> Interact with IMMUNOS models directly</li>
+                            <li>• <strong>Training Progress:</strong> Monitor detector training across domains</li>
+                            <li>• <strong>Detection Events:</strong> Real-time anomaly detection feed</li>
+                            <li>• <strong>Handoff Management:</strong> Track context handoffs between Claude and IMMUNOS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scientific Credibility -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Scientific Credibility</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-4">
+                    IMMUNOS is designed to earn and maintain <strong>respect in the scientific community</strong> through:
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <div>
+                            <strong>100% Citation Verification:</strong> All scientific claims verified against primary sources
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <div>
+                            <strong>Open Source:</strong> Full transparency - code available at <a href="https://github.com/biobitworks/immunos" class="text-blue-400 hover:underline">github.com/biobitworks/immunos</a>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <div>
+                            <strong>Auditable Decisions:</strong> Every detection, routing, and validation logged
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <div>
+                            <strong>Reproducible Results:</strong> Deterministic validation processes
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <div class="text-green-400 text-xl">✓</div>
+                        <div>
+                            <strong>Multi-Modal Validation:</strong> Text, images, and (future) video analysis
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Token Savings -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Token Savings & Model Routing</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-4">
+                    IMMUNOS automatically routes tasks to save costs while maintaining quality:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <h4 class="font-bold mb-2 text-yellow-400">Ollama Models (FREE)</h4>
+                        <ul class="space-y-1 text-sm text-gray-400">
+                            <li>• qwen2.5-coder:7b → Code tasks</li>
+                            <li>• deepseek-r1:14b → Reasoning</li>
+                            <li>• qwen2.5:1.5b → Simple queries</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold mb-2 text-blue-400">Claude (When Needed)</h4>
+                        <ul class="space-y-1 text-sm text-gray-400">
+                            <li>• Creative tasks</li>
+                            <li>• Complex reasoning</li>
+                            <li>• Critical decisions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 bg-green-900/30 border border-green-700 rounded p-4">
+                    <div class="text-sm text-gray-300">
+                        <strong>Estimated Savings:</strong> 70-80% reduction in API costs through intelligent routing
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-gray-500 text-sm py-8 border-t border-gray-700">
+            <p>IMMUNOS - Universal Artificial Immune System</p>
+            <p class="mt-2">Developed by Byron P. Lee | <a href="https://github.com/biobitworks/immunos" class="text-blue-400 hover:underline">GitHub</a> | Licensed under MIT</p>
+            <p class="mt-2 text-xs">Last Updated: December 19, 2025</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
