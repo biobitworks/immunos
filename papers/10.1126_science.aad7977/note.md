@@ -23,5 +23,6 @@ Increasing evidence indicates that metabolic disorders in offspring can result f
 ---
 
 **Date Added:** 2025-12-19
-**Verified:** Yes (IMMUNOS DeepSeek + PubMed)
+**Verified:** Yes (IMMUNOS Multi-Source Verification)
 **Abstract Source:** PubMed E-utilities
+**DOI Source:** crossref

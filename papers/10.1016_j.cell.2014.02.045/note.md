@@ -23,5 +23,6 @@ Since the human genome was sequenced, the term "epigenetics" is increasingly bei
 ---
 
 **Date Added:** 2025-12-19
-**Verified:** Yes (IMMUNOS DeepSeek + PubMed)
+**Verified:** Yes (IMMUNOS Multi-Source Verification)
 **Abstract Source:** PubMed E-utilities
+**DOI Source:** crossref

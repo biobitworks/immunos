@@ -1,0 +1,28 @@
+# Enrichment of longevity phenotype in mtDNA haplogroups D4b2b, D4a, and D5 in the Japanese population.
+
+**Authors:** Gabriela Alexe, Noriyuki Fuku, Erhan Bilal, Hitomi Ueno, Yutaka Nishigaki, Yasunori Fujita, Masafumi Ito, Yasumichi Arai, Nobuyoshi Hirose, Gyan Bhanot, Masashi Tanaka
+
+**Journal:** Human genetics
+**Year:** 2007
+**PMID:** 17308896
+**DOI:** 10.1007/s00439-007-0330-6
+
+---
+
+## Abstract
+
+We report new results from the re-analysis of 672 complete mitochondrial (mtDNA) genomes of unrelated Japanese individuals stratified into seven equal sized groups by the phenotypes: diabetic patients, diabetic patients with severe angiopathy, healthy non-obese young males, obese young males, patients with Alzheimer's disease, patients with Parkinson's disease and centenarians. Each phenotype had 96 samples over 27 known haplogroups: A, B4a, B4b, B4c, B*, B5, D*, F1, F2, M*, M7a, M7b, M8, M9, D4a, D4b1, D4b2, D4d, D4e, D4g, D4h, D5, G, Z, M*, N9a, and N9b. A t-test comparing the fraction of samples in a haplogroup to healthy young males showed a significant enrichment of haplogroups D4a, D5, and D4b2 in centenarians. The D4b2 enrichment was limited to a subgroup of 40 of 61 samples which had the synonymous mutation 9296C > T. We identified this cluster as a distinct haplogroup and labeled it as D4b2b. Using an exhaustive procedure, we constructed the complete list of "mutation patterns" for centenarians and showed that the most significant patterns were in D4a, D5, and D4b2b. We argue that if a selection for longevity appeared only once, it was probably an autosomal event which could be dated to after the appearance of the D mega-group but before the coalescent time of D4a, D5, and D4b2b. Using a simple procedure, we estimated that this event occurred 24.4 +/- 0.9 kYBP.
+
+---
+
+## Links
+
+- PubMed: https://pubmed.ncbi.nlm.nih.gov/17308896/
+- DOI: https://doi.org/10.1007/s00439-007-0330-6
+
+---
+
+**Date Added:** 2025-12-19
+**Verified:** Yes (IMMUNOS Multi-Source Verification)
+**Abstract Source:** PubMed E-utilities
+**DOI Source:** crossref
