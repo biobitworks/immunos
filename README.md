@@ -10,6 +10,8 @@ This workspace consolidates multiple Python and full-stack projects into a singl
 
 **Quick Access**: Open [[HOME|HOME.md]] for project dashboards and navigation.
 
+**AI Collaboration**: ChatGPT (Codex CLI) is the current primary agent, with Claude Code and local models used for handoffs.
+
 ## 📁 Projects
 
 ### 🧬 Aging Biology Research (NEW!)
