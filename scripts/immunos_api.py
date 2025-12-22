@@ -13,6 +13,7 @@ import requests
 import random
 import subprocess
 import time
+import sqlite3
 from pathlib import Path
 from datetime import datetime, timedelta
 from flask import request, jsonify, g, current_app
@@ -50,7 +51,15 @@ def generate_anomaly_hash(file_path: str, line_number: int, pattern: str) -> str
 
 def get_db():
     """Get database connection"""
-    return g.get('db')
+    db = g.get('db')
+    if db is None:
+        db = sqlite3.connect(
+            current_app.config['DATABASE'],
+            detect_types=sqlite3.PARSE_DECLTYPES
+        )
+        db.row_factory = sqlite3.Row
+        g.db = db
+    return db
 
 
 def load_json_file(path: Path) -> dict:
@@ -1514,27 +1523,32 @@ def register_routes(app, socketio):
             issues_summary = summarize_issues(index, project=project)
 
             db = get_db()
-            unresolved = db.execute('''
-                SELECT COUNT(*) as total,
-                       SUM(CASE WHEN severity = 'HIGH' THEN 1 ELSE 0 END) as high,
-                       SUM(CASE WHEN severity = 'MEDIUM' THEN 1 ELSE 0 END) as medium,
-                       SUM(CASE WHEN severity = 'LOW' THEN 1 ELSE 0 END) as low
-                FROM anomaly_actions
-                WHERE action NOT IN ('fixed', 'false_positive')
-            ''').fetchone()
+            try:
+                unresolved = db.execute('''
+                    SELECT COUNT(*) as total,
+                           SUM(CASE WHEN severity = 'HIGH' THEN 1 ELSE 0 END) as high,
+                           SUM(CASE WHEN severity = 'MEDIUM' THEN 1 ELSE 0 END) as medium,
+                           SUM(CASE WHEN severity = 'LOW' THEN 1 ELSE 0 END) as low
+                    FROM anomaly_actions
+                    WHERE action NOT IN ('fixed', 'false_positive')
+                ''').fetchone()
 
-            resolved = db.execute('''
-                SELECT COUNT(*) as total
-                FROM anomaly_actions
-                WHERE action IN ('fixed', 'false_positive')
-            ''').fetchone()
+                resolved = db.execute('''
+                    SELECT COUNT(*) as total
+                    FROM anomaly_actions
+                    WHERE action IN ('fixed', 'false_positive')
+                ''').fetchone()
 
-            last_scan = db.execute('''
-                SELECT completed_at
-                FROM scan_history
-                WHERE status = 'completed'
-                ORDER BY completed_at DESC LIMIT 1
-            ''').fetchone()
+                last_scan = db.execute('''
+                    SELECT completed_at
+                    FROM scan_history
+                    WHERE status = 'completed'
+                    ORDER BY completed_at DESC LIMIT 1
+                ''').fetchone()
+            except sqlite3.OperationalError:
+                unresolved = None
+                resolved = None
+                last_scan = None
 
             summary = {
                 "anomalies": {
