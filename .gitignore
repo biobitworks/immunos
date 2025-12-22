@@ -132,6 +132,7 @@ experiments/output/
 experiments/results/
 data/generated/
 models/checkpoints/
+immunos-mcp/
 
 # Claude AI
 .claude_history

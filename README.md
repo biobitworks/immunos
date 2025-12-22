@@ -56,37 +56,27 @@ python examples/simple_demo.py
 
 ---
 
-### 🤖 immunos-mcp
-**Multi-Agent LLM System with Immune Cell Roles**
+### 🤖 IMMUNOS
+**Artificial Immune System Orchestrator (Local + Airgapped)**
 
-MCP (Model Context Protocol) server where AI agents play biological immune system roles for adaptive pattern recognition and anomaly detection.
+Multi-agent AIS system where agents play biological immune system roles for adaptive pattern recognition and anomaly detection.
 
-- **Type**: MCP Server
-- **Purpose**: Code security, content moderation, zero-shot anomaly detection
-- **Architecture**: B Cells (pattern matching), NK Cells (anomaly detection), T Cells (coordination)
+- **Type**: Orchestrator + Dashboard
+- **Purpose**: Code security, content moderation, anomaly detection, local AI routing
+- **Architecture**: B Cells (pattern matching), NK Cells (anomaly detection), dendritic + memory + T-cell roles
 - **Features**:
-  - Supervised + unsupervised learning
-  - Hybrid affinity (traditional + LLM embeddings)
+  - Online/offline routing across multiple model providers
   - NegSl-AIS methodology with adaptive thresholds
-  - One-vs-rest classification
-
-**Agents**:
-- ✅ **B Cell**: Pattern matching with learned antibodies
-- ✅ **NK Cell**: Negative selection for anomaly detection
-- ✅ **Enhanced NK Cell**: Adaptive thresholds, per-class detectors
-- ⏳ **Dendritic Cell**: Feature extraction (TODO)
-- ⏳ **Memory Cell**: Vector database caching (TODO)
-- ⏳ **T Killer/Regulatory**: Validation and calibration (TODO)
+  - Thymus training queue + Spleen Summary
+  - Agent Foundry (Bone Marrow) for new agent stubs
 
 **Quick Start**:
 ```bash
-cd immunos-mcp
-uv pip install -e ".[dev]"
-python examples/simple_demo.py
-python examples/nk_comparison_demo.py
+python3 scripts/immunos_dashboard.py --port 5001 --host 127.0.0.1
+python3 scripts/immunos_chat.py
 ```
 
-**Documentation**: [immunos-mcp/README.md](immunos-mcp/README.md), [immunos-mcp/GETTING_STARTED.md](immunos-mcp/GETTING_STARTED.md)
+**Documentation**: [IMMUNOS_QUICKSTART.md](IMMUNOS_QUICKSTART.md), [docs/kb/README.md](docs/kb/README.md)
 
 ---
 

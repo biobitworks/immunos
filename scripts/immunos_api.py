@@ -5,14 +5,18 @@ IMMUNOS API Routes
 RESTful API endpoints for all IMMUNOS cell types and components.
 """
 
+import os
 import sys
 import json
 import hashlib
 import requests
+import random
+import subprocess
+import time
 from pathlib import Path
 from datetime import datetime, timedelta
 from flask import request, jsonify, g, current_app
-from threading import Thread
+from threading import Thread, Lock
 
 # Import IMMUNOS modules
 sys.path.insert(0, str(Path(__file__).parent))
@@ -49,11 +53,547 @@ def get_db():
     return g.get('db')
 
 
+def load_json_file(path: Path) -> dict:
+    """Load JSON file if present."""
+    if not path.exists():
+        return {}
+    with path.open(encoding='utf-8') as handle:
+        return json.load(handle)
+
+
+def load_orchestrator_config(base_path: Path) -> dict:
+    """Load orchestrator config, creating defaults if missing."""
+    config_dir = base_path / ".immunos" / "config"
+    config_path = config_dir / "orchestrator.json"
+    default_config = {
+        "connectivity": "online",
+        "online_backend": {
+            "provider": "claude_code",
+            "model": "",
+            "base_url": "",
+            "api_key_env": "ANTHROPIC_AUTH_TOKEN"
+        },
+        "offline_backend": {
+            "provider": "ollama",
+            "model": "qwen2.5-coder:7b",
+            "base_url": "http://localhost:11434",
+            "api_key_env": ""
+        }
+    }
+
+    if not config_path.exists():
+        config_dir.mkdir(parents=True, exist_ok=True)
+        with config_path.open("w", encoding="utf-8") as handle:
+            json.dump(default_config, handle, indent=2)
+        return default_config
+
+    try:
+        with config_path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+    except json.JSONDecodeError:
+        data = {}
+
+    merged = default_config.copy()
+    merged.update(data)
+    merged["online_backend"].update(data.get("online_backend", {}))
+    merged["offline_backend"].update(data.get("offline_backend", {}))
+    return merged
+
+
+def save_orchestrator_config(base_path: Path, config: dict) -> dict:
+    """Persist orchestrator config and return merged config."""
+    config_dir = base_path / ".immunos" / "config"
+    config_dir.mkdir(parents=True, exist_ok=True)
+    merged = load_orchestrator_config(base_path)
+
+    merged.update({k: v for k, v in config.items() if k in {"connectivity", "online_backend", "offline_backend"}})
+    if "online_backend" in config:
+        merged["online_backend"].update(config["online_backend"])
+    if "offline_backend" in config:
+        merged["offline_backend"].update(config["offline_backend"])
+
+    with (config_dir / "orchestrator.json").open("w", encoding="utf-8") as handle:
+        json.dump(merged, handle, indent=2)
+    return merged
+
+
+def resolve_orchestrator_backend(config: dict) -> dict:
+    """Select active backend based on connectivity."""
+    connectivity = config.get("connectivity", "online")
+    online_backend = config.get("online_backend") or {}
+    offline_backend = config.get("offline_backend") or {}
+
+    def backend_available(backend: dict) -> tuple[bool, str]:
+        provider = backend.get("provider")
+        if provider == "ollama":
+            return True, ""
+
+        if provider == "claude_code":
+            api_key_env = backend.get("api_key_env") or "ANTHROPIC_AUTH_TOKEN"
+            if not os.getenv(api_key_env):
+                return False, "missing_api_key"
+            model = backend.get("model") or os.getenv("ANTHROPIC_MODEL")
+            if not model:
+                return False, "missing_model"
+            return True, ""
+
+        if provider == "chatgpt":
+            api_key_env = backend.get("api_key_env") or "OPENAI_API_KEY"
+            if not os.getenv(api_key_env):
+                return False, "missing_api_key"
+            model = backend.get("model") or os.getenv("OPENAI_MODEL")
+            if not model:
+                return False, "missing_model"
+            return True, ""
+
+        if provider == "openrouter":
+            api_key_env = backend.get("api_key_env") or "OPENROUTER_API_KEY"
+            if not os.getenv(api_key_env):
+                return False, "missing_api_key"
+            model = backend.get("model") or os.getenv("OPENROUTER_MODEL")
+            if not model:
+                return False, "missing_model"
+            return True, ""
+
+        if provider == "local_server":
+            if not backend.get("base_url"):
+                return False, "missing_base_url"
+            if not backend.get("model"):
+                return False, "missing_model"
+            return True, ""
+
+        return False, "unknown_provider"
+
+    selected = online_backend if connectivity == "online" else offline_backend
+    fallback_reason = ""
+
+    if connectivity == "online":
+        ok, reason = backend_available(selected)
+        if not ok:
+            selected = offline_backend
+            connectivity = "offline"
+            fallback_reason = reason
+
+    return {
+        "connectivity": connectivity,
+        "provider": selected.get("provider"),
+        "model": selected.get("model"),
+        "base_url": selected.get("base_url"),
+        "api_key_env": selected.get("api_key_env"),
+        "fallback_reason": fallback_reason
+    }
+
+
+def summarize_agent_state(agents_dir: Path) -> dict:
+    """Summarize tracked agent artifacts for dashboard display."""
+    domains = {
+        "emotion": {},
+        "hallucination": {
+            "bcell": agents_dir / "hallucination_bcell.json",
+            "nk": agents_dir / "hallucination_nk.json"
+        },
+        "network": {
+            "nk_enhanced": agents_dir / "network_nk_enhanced.json"
+        },
+        "code": {},
+        "research": {
+            "bcell": agents_dir / "research_bcell.json",
+            "nk": agents_dir / "research_nk.json"
+        }
+    }
+
+    summary = {}
+    for domain, paths in domains.items():
+        stats = {
+            "bcell_patterns": 0,
+            "nk_detectors": 0,
+            "nk_self_patterns": 0,
+            "trained": False,
+            "last_trained": None
+        }
+        latest_mtime = 0.0
+
+        bcell_path = paths.get("bcell")
+        if bcell_path and bcell_path.exists():
+            data = load_json_file(bcell_path)
+            stats["bcell_patterns"] = len(data.get("patterns", []))
+            stats["trained"] = True
+            latest_mtime = max(latest_mtime, bcell_path.stat().st_mtime)
+
+        nk_path = paths.get("nk")
+        if nk_path and nk_path.exists():
+            data = load_json_file(nk_path)
+            stats["nk_detectors"] = len(data.get("detectors", []))
+            stats["nk_self_patterns"] = len(data.get("self_patterns", []))
+            stats["trained"] = True
+            latest_mtime = max(latest_mtime, nk_path.stat().st_mtime)
+
+        nk_enhanced_path = paths.get("nk_enhanced")
+        if nk_enhanced_path and nk_enhanced_path.exists():
+            data = load_json_file(nk_enhanced_path)
+            detector_sets = data.get("detector_sets", {})
+            stats["nk_detectors"] = sum(len(item.get("detectors", [])) for item in detector_sets.values())
+            self_patterns = data.get("self_patterns_by_class", {})
+            stats["nk_self_patterns"] = sum(len(items) for items in self_patterns.values())
+            stats["trained"] = True
+            latest_mtime = max(latest_mtime, nk_enhanced_path.stat().st_mtime)
+
+        if latest_mtime:
+            stats["last_trained"] = datetime.fromtimestamp(latest_mtime).strftime("%Y-%m-%d %H:%M")
+
+        summary[domain] = stats
+
+    return summary
+
+
+def load_todos_index(base_path: Path) -> dict:
+    """Load the todo index file if present."""
+    todo_index = base_path / "todo" / ".index" / "todos.json"
+    if not todo_index.exists():
+        return {}
+    try:
+        with todo_index.open(encoding="utf-8") as handle:
+            return json.load(handle)
+    except json.JSONDecodeError:
+        return {}
+
+
+def load_thymus_intake(path: Path) -> list:
+    """Load thymus intake queue from disk."""
+    if not path.exists():
+        return []
+    try:
+        with path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+            if isinstance(data, list):
+                return data
+    except json.JSONDecodeError:
+        return []
+    return []
+
+
+def save_thymus_intake(path: Path, items: list) -> None:
+    """Save thymus intake queue to disk."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(items, handle, indent=2)
+
+
+def load_agent_templates(base_path: Path) -> dict:
+    """Load agent templates for the Agent Foundry."""
+    template_path = base_path / "immunos-mcp" / "src" / "immunos_mcp" / "config" / "agent_templates.json"
+    if not template_path.exists():
+        return {"version": "1.0", "templates": []}
+    try:
+        with template_path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+            if isinstance(data, dict):
+                return data
+    except json.JSONDecodeError:
+        pass
+    return {"version": "1.0", "templates": []}
+
+
+def list_foundry_agents(foundry_dir: Path, limit: int = 25) -> list:
+    """List recent Agent Foundry stubs."""
+    if not foundry_dir.exists():
+        return []
+    files = sorted(foundry_dir.glob("agent_*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
+    agents = []
+    for path in files[:limit]:
+        try:
+            with path.open(encoding="utf-8") as handle:
+                data = json.load(handle)
+                if isinstance(data, dict):
+                    data["path"] = str(path)
+                    agents.append(data)
+        except (OSError, json.JSONDecodeError):
+            continue
+    return agents
+
+
+def save_foundry_agent(foundry_dir: Path, payload: dict) -> dict:
+    """Save a foundry agent stub to disk."""
+    foundry_dir.mkdir(parents=True, exist_ok=True)
+    agent_id = payload.get("id") or f"agent_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    payload["id"] = agent_id
+    path = foundry_dir / f"{agent_id}.json"
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2)
+    payload["path"] = str(path)
+    return payload
+
+
+def add_thymus_intake(path: Path, entry: dict) -> dict:
+    """Append an entry to the thymus intake queue."""
+    items = load_thymus_intake(path)
+    items.insert(0, entry)
+    save_thymus_intake(path, items)
+    return entry
+
+
+def update_thymus_entry(path: Path, entry_id: str, updates: dict) -> dict:
+    """Update a thymus intake entry by id."""
+    items = load_thymus_intake(path)
+    updated = None
+    for item in items:
+        if item.get("id") == entry_id:
+            item.update(updates)
+            updated = item
+            break
+    save_thymus_intake(path, items)
+    return updated or {}
+
+
+def next_thymus_entry(path: Path) -> dict:
+    """Return the next queued thymus entry."""
+    items = load_thymus_intake(path)
+    for item in items:
+        if item.get("status") == "queued":
+            return item
+    return {}
+
+
+def summarize_issues(index: dict, project: str = None) -> dict:
+    """Summarize issues from the todo index."""
+    todos = index.get("todos", {})
+    stats = {
+        "total": 0,
+        "active": 0,
+        "by_status": {},
+        "by_priority": {},
+        "overdue": 0,
+        "due_today": 0,
+        "due_this_week": 0
+    }
+
+    today = datetime.now().date()
+    week_from_now = today + timedelta(days=7)
+
+    for todo in todos.values():
+        if project:
+            tags = todo.get("tags", []) or []
+            if todo.get("project") != project and project not in tags:
+                continue
+        stats["total"] += 1
+
+        status = todo.get("status", "unknown")
+        priority = todo.get("priority", "medium")
+        stats["by_status"][status] = stats["by_status"].get(status, 0) + 1
+        stats["by_priority"][priority] = stats["by_priority"].get(priority, 0) + 1
+
+        if status != "done":
+            stats["active"] += 1
+
+        due_str = todo.get("due")
+        if status != "done" and due_str:
+            try:
+                due_date = datetime.fromisoformat(due_str).date()
+            except ValueError:
+                continue
+
+            if due_date < today:
+                stats["overdue"] += 1
+            elif due_date == today:
+                stats["due_today"] += 1
+            elif due_date <= week_from_now:
+                stats["due_this_week"] += 1
+
+    return stats
+
+
+def list_issues(index: dict, status: str = None, limit: int = 25, project: str = None) -> list:
+    """Return a sorted list of issues."""
+    todos = list(index.get("todos", {}).values())
+    if project:
+        filtered = []
+        for todo in todos:
+            tags = todo.get("tags", []) or []
+            if todo.get("project") == project or project in tags:
+                filtered.append(todo)
+        todos = filtered
+    if status:
+        todos = [todo for todo in todos if todo.get("status") == status]
+
+    todos.sort(key=lambda item: item.get("created", ""), reverse=True)
+    return todos[:limit]
+
+
 # System Health & Status Endpoints
 # =================================
 
 def register_routes(app, socketio):
     """Register all API routes with the Flask app"""
+    thymus_lock = Lock()
+    thymus_state = {"running": False, "current_id": None, "paused": False}
+
+    def build_training_command(entry: dict, base_path: Path, agents_dir: Path) -> dict:
+        """Build training command based on thymus entry."""
+        domain = entry.get("domain")
+        dataset_path = entry.get("dataset_path") or None
+        sample_count = entry.get("sample_count")
+        max_samples = str(int(sample_count)) if sample_count else None
+
+        env = os.environ.copy()
+        env["PYTHONPATH"] = f"{base_path / 'immunos-mcp' / 'src'}{os.pathsep}{env.get('PYTHONPATH', '')}"
+
+        if domain == "hallucination":
+            cmd = [sys.executable, "-m", "immunos_mcp.training.hallucination_trainer"]
+            if dataset_path:
+                cmd += ["--truthfulqa", dataset_path]
+            if max_samples:
+                cmd += ["--max-samples", max_samples]
+            cmd += ["--save-bcell", str(agents_dir / "hallucination_bcell.json")]
+            cmd += ["--save-nk", str(agents_dir / "hallucination_nk.json")]
+            return {"cmd": cmd, "env": env, "dataset": dataset_path or "TruthfulQA", "domain": domain}
+
+        if domain == "network":
+            cmd = [sys.executable, "-m", "immunos_mcp.training.network_trainer"]
+            if dataset_path:
+                cmd += ["--kdd", dataset_path]
+            if max_samples:
+                cmd += ["--max-samples", max_samples]
+            cmd += ["--save-nk", str(agents_dir / "network_nk_enhanced.json")]
+            return {"cmd": cmd, "env": env, "dataset": dataset_path or "KDDTrain+", "domain": domain}
+
+        if domain == "research":
+            cmd = [sys.executable, "-m", "immunos_mcp.training.research_trainer"]
+            if dataset_path:
+                cmd += ["--claims", dataset_path]
+            if max_samples:
+                cmd += ["--max-samples", max_samples]
+            cmd += ["--save-bcell", str(agents_dir / "research_bcell.json")]
+            cmd += ["--save-nk", str(agents_dir / "research_nk.json")]
+            return {"cmd": cmd, "env": env, "dataset": dataset_path or "SciFact", "domain": domain}
+
+        if domain == "code":
+            cmd = [sys.executable, "-m", "immunos_mcp.training.code_trainer"]
+            if dataset_path:
+                cmd += ["--code-dir", dataset_path]
+            if max_samples:
+                cmd += ["--max-samples", max_samples]
+            cmd += ["--save-bcell", str(agents_dir / "code_bcell.json")]
+            cmd += ["--save-nk", str(agents_dir / "code_nk.json")]
+            return {"cmd": cmd, "env": env, "dataset": dataset_path or "Code Samples", "domain": domain}
+
+        if domain == "emotion":
+            cmd = [sys.executable, "-m", "immunos_mcp.training.emotion_trainer"]
+            if dataset_path:
+                cmd += ["--features", dataset_path]
+            if max_samples:
+                cmd += ["--max-samples", max_samples]
+            cmd += ["--save-bcell", str(agents_dir / "emotion_bcell.json")]
+            cmd += ["--save-nk", str(agents_dir / "emotion_nk.json")]
+            return {"cmd": cmd, "env": env, "dataset": dataset_path or "Emotion Features", "domain": domain}
+
+        return {"cmd": None, "env": env, "dataset": dataset_path or "manual", "domain": domain}
+
+    def run_thymus_job(entry: dict, base_path: Path):
+        intake_path = base_path / ".immunos" / "thymus" / "intake.json"
+        agents_dir = base_path / "immunos-mcp" / ".immunos" / "agents"
+        agents_dir.mkdir(parents=True, exist_ok=True)
+
+        command_info = build_training_command(entry, base_path, agents_dir)
+        cmd = command_info["cmd"]
+
+        update_thymus_entry(intake_path, entry["id"], {
+            "status": "running" if cmd else "manual",
+            "started_at": datetime.now().isoformat(),
+            "dataset_label": command_info["dataset"]
+        })
+
+        socketio.emit('training_started', {
+            'domain': entry.get("domain", "unknown"),
+            'dataset': command_info["dataset"],
+            'num_samples': entry.get("sample_count") or 0,
+            'timestamp': datetime.now().isoformat()
+        })
+
+        if not cmd:
+            update_thymus_entry(intake_path, entry["id"], {
+                "status": "manual",
+                "completed_at": datetime.now().isoformat(),
+                "error": "No training pipeline available"
+            })
+            socketio.emit('training_complete', {
+                'domain': entry.get("domain", "unknown"),
+                'detectors_created': 0,
+                'final_accuracy': 0.0,
+                'duration_seconds': 0,
+                'timestamp': datetime.now().isoformat()
+            })
+            with thymus_lock:
+                thymus_state["running"] = False
+                thymus_state["current_id"] = None
+            return
+
+        start_time = time.time()
+        progress = 0
+        try:
+            process = subprocess.Popen(
+                cmd,
+                cwd=str(base_path),
+                env=command_info["env"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+
+            while process.poll() is None:
+                time.sleep(2)
+                progress = min(95, progress + 5)
+                socketio.emit('training_progress', {
+                    'domain': entry.get("domain", "unknown"),
+                    'current': progress,
+                    'total': 100,
+                    'percent': progress,
+                    'detectors_created': 0,
+                    'current_accuracy': 0.0,
+                    'timestamp': datetime.now().isoformat()
+                })
+
+            stdout, stderr = process.communicate()
+            duration = int(time.time() - start_time)
+            status = "completed" if process.returncode == 0 else "failed"
+
+            domain_stats = summarize_agent_state(agents_dir)
+            domain_entry = domain_stats.get(entry.get("domain", ""), {})
+
+            update_thymus_entry(intake_path, entry["id"], {
+                "status": status,
+                "completed_at": datetime.now().isoformat(),
+                "output": stdout[-2000:] if stdout else "",
+                "error": stderr[-2000:] if stderr else "",
+                "detectors": domain_entry.get("nk_detectors", 0),
+                "bcell_patterns": domain_entry.get("bcell_patterns", 0),
+                "nk_self_patterns": domain_entry.get("nk_self_patterns", 0)
+            })
+
+            socketio.emit('training_complete', {
+                'domain': entry.get("domain", "unknown"),
+                'detectors_created': 0,
+                'final_accuracy': 0.0,
+                'duration_seconds': duration,
+                'timestamp': datetime.now().isoformat()
+            })
+        finally:
+            with thymus_lock:
+                thymus_state["running"] = False
+                thymus_state["current_id"] = None
+
+    def maybe_start_thymus_queue(base_path: Path):
+        intake_path = base_path / ".immunos" / "thymus" / "intake.json"
+        with thymus_lock:
+            if thymus_state["running"] or thymus_state.get("paused"):
+                return
+            next_entry = next_thymus_entry(intake_path)
+            if not next_entry:
+                return
+            thymus_state["running"] = True
+            thymus_state["current_id"] = next_entry.get("id")
+
+        thread = Thread(target=run_thymus_job, args=(next_entry, base_path), daemon=True)
+        thread.start()
 
     @app.route('/api/health')
     def api_health():
@@ -818,6 +1358,336 @@ def register_routes(app, socketio):
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
+    @app.route('/api/domains/status')
+    def api_domains_status():
+        """GET - Summary of tracked agent artifacts per domain"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            agents_dir = base_path / "immunos-mcp" / ".immunos" / "agents"
+            domains = summarize_agent_state(agents_dir)
+            return jsonify({'domains': domains})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/orchestrator/status')
+    def api_orchestrator_status():
+        """GET - Current orchestrator backend configuration"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            config = load_orchestrator_config(base_path)
+            active = resolve_orchestrator_backend(config)
+            return jsonify({'config': config, 'active_backend': active})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/orchestrator/config', methods=['POST'])
+    def api_orchestrator_config():
+        """POST - Update orchestrator configuration"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            payload = request.get_json() or {}
+            config = save_orchestrator_config(base_path, payload)
+            active = resolve_orchestrator_backend(config)
+            return jsonify({'success': True, 'config': config, 'active_backend': active})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/thymus/intake')
+    def api_thymus_intake_list():
+        """GET - Thymus intake queue"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            intake_path = base_path / ".immunos" / "thymus" / "intake.json"
+            limit = request.args.get("limit", 20, type=int)
+            items = load_thymus_intake(intake_path)
+            return jsonify({'items': items[:limit]})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/thymus/intake', methods=['POST'])
+    def api_thymus_intake_create():
+        """POST - Add entry to thymus intake queue"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            intake_path = base_path / ".immunos" / "thymus" / "intake.json"
+            payload = request.get_json() or {}
+            domain = payload.get("domain", "unknown")
+            dataset_path = payload.get("dataset_path", "")
+            sample_count = payload.get("sample_count")
+            if not isinstance(sample_count, (int, float)):
+                sample_count = None
+            notes = payload.get("notes", "")
+
+            entry = {
+                "id": hashlib.sha256(f"{domain}:{dataset_path}:{datetime.now().isoformat()}".encode()).hexdigest()[:12],
+                "domain": domain,
+                "dataset_path": dataset_path,
+                "sample_count": sample_count,
+                "notes": notes,
+                "status": "queued",
+                "created_at": datetime.now().isoformat()
+            }
+            add_thymus_intake(intake_path, entry)
+            maybe_start_thymus_queue(base_path)
+            return jsonify({'success': True, 'entry': entry})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/thymus/status')
+    def api_thymus_status():
+        """GET - Thymus queue status"""
+        try:
+            with thymus_lock:
+                status = {
+                    "running": thymus_state.get("running", False),
+                    "paused": thymus_state.get("paused", False),
+                    "current_id": thymus_state.get("current_id")
+                }
+            return jsonify(status)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/thymus/control', methods=['POST'])
+    def api_thymus_control():
+        """POST - Control thymus queue (pause/resume/run_next)"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            payload = request.get_json() or {}
+            action = payload.get("action")
+
+            with thymus_lock:
+                if action == "pause":
+                    thymus_state["paused"] = True
+                elif action == "resume":
+                    thymus_state["paused"] = False
+                elif action == "run_next":
+                    thymus_state["paused"] = False
+                else:
+                    return jsonify({'error': 'Unknown action'}), 400
+
+            if action in {"resume", "run_next"}:
+                maybe_start_thymus_queue(base_path)
+
+            return jsonify({
+                "success": True,
+                "running": thymus_state.get("running", False),
+                "paused": thymus_state.get("paused", False),
+                "current_id": thymus_state.get("current_id")
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/issues/summary')
+    def api_issues_summary():
+        """GET - Summary of IMMUNOS issues from todo system"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            index = load_todos_index(base_path)
+            project = request.args.get("project")
+            summary = summarize_issues(index, project=project)
+            return jsonify({'summary': summary})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/issues/list')
+    def api_issues_list():
+        """GET - Recent IMMUNOS issues from todo system"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            index = load_todos_index(base_path)
+            status = request.args.get("status")
+            limit = request.args.get("limit", 25, type=int)
+            project = request.args.get("project")
+            items = list_issues(index, status=status, limit=limit, project=project)
+            return jsonify({'items': items})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/spleen/summary')
+    def api_spleen_summary():
+        """GET - Global anomaly and issue summary."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            project = request.args.get("project")
+
+            index = load_todos_index(base_path)
+            issues_summary = summarize_issues(index, project=project)
+
+            db = get_db()
+            unresolved = db.execute('''
+                SELECT COUNT(*) as total,
+                       SUM(CASE WHEN severity = 'HIGH' THEN 1 ELSE 0 END) as high,
+                       SUM(CASE WHEN severity = 'MEDIUM' THEN 1 ELSE 0 END) as medium,
+                       SUM(CASE WHEN severity = 'LOW' THEN 1 ELSE 0 END) as low
+                FROM anomaly_actions
+                WHERE action NOT IN ('fixed', 'false_positive')
+            ''').fetchone()
+
+            resolved = db.execute('''
+                SELECT COUNT(*) as total
+                FROM anomaly_actions
+                WHERE action IN ('fixed', 'false_positive')
+            ''').fetchone()
+
+            last_scan = db.execute('''
+                SELECT completed_at
+                FROM scan_history
+                WHERE status = 'completed'
+                ORDER BY completed_at DESC LIMIT 1
+            ''').fetchone()
+
+            summary = {
+                "anomalies": {
+                    "unresolved_total": unresolved["total"] if unresolved else 0,
+                    "high": unresolved["high"] if unresolved else 0,
+                    "medium": unresolved["medium"] if unresolved else 0,
+                    "low": unresolved["low"] if unresolved else 0,
+                    "resolved_total": resolved["total"] if resolved else 0
+                },
+                "issues": issues_summary,
+                "last_scan": last_scan["completed_at"] if last_scan else None
+            }
+
+            return jsonify(summary)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/agents/templates')
+    def api_agents_templates():
+        """GET - List Agent Foundry templates."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            data = load_agent_templates(base_path)
+            return jsonify({'version': data.get('version'), 'templates': data.get('templates', [])})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/agents/foundry', methods=['GET', 'POST'])
+    def api_agents_foundry():
+        """GET - List Agent Foundry stubs. POST - Create a new stub."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            foundry_dir = base_path / ".immunos" / "foundry"
+
+            if request.method == 'GET':
+                limit = request.args.get("limit", 25, type=int)
+                items = list_foundry_agents(foundry_dir, limit=limit)
+                return jsonify({'items': items})
+
+            payload = request.get_json() or {}
+            template_id = payload.get("template_id")
+            name = payload.get("name") or "Agent Stub"
+            domain = payload.get("domain") or "generic"
+            notes = payload.get("notes") or ""
+
+            templates = load_agent_templates(base_path).get("templates", [])
+            template = next((item for item in templates if item.get("id") == template_id), None)
+            if not template:
+                return jsonify({'error': 'Template not found'}), 400
+
+            stub = {
+                "id": f"agent_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                "template_id": template_id,
+                "name": name,
+                "domain": domain,
+                "role": template.get("role", "unknown"),
+                "description": template.get("description", ""),
+                "defaults": template.get("defaults", {}),
+                "notes": notes,
+                "created_at": datetime.now().isoformat()
+            }
+            saved = save_foundry_agent(foundry_dir, stub)
+            return jsonify({'item': saved})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/kb/index')
+    def api_kb_index():
+        """GET - List available KB pages."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            kb_path = base_path / "docs" / "kb"
+            if not kb_path.exists():
+                return jsonify({'pages': []})
+
+            pages = []
+            for path in sorted(kb_path.glob("*.md")):
+                name = path.stem
+                title = name.replace("-", " ").title()
+                try:
+                    with path.open(encoding="utf-8") as handle:
+                        for line in handle:
+                            line = line.strip()
+                            if line.startswith("# "):
+                                title = line[2:].strip()
+                                break
+                except OSError:
+                    pass
+                pages.append({"name": name, "title": title})
+
+            return jsonify({'pages': pages})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/kb/page')
+    def api_kb_page():
+        """GET - Return KB page content."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            kb_path = base_path / "docs" / "kb"
+            name = request.args.get("name", "")
+            if not name.isidentifier() and "-" in name:
+                name = name.replace("/", "").replace("..", "")
+
+            path = (kb_path / f"{name}.md").resolve()
+            if kb_path not in path.parents or not path.exists():
+                return jsonify({'error': 'KB page not found'}), 404
+
+            content = path.read_text(encoding="utf-8")
+            title = name.replace("-", " ").title()
+            for line in content.splitlines():
+                if line.startswith("# "):
+                    title = line[2:].strip()
+                    break
+
+            return jsonify({'name': name, 'title': title, 'content': content})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/events/detection', methods=['POST'])
+    def api_events_detection():
+        """POST - Emit detection event to dashboard"""
+        try:
+            payload = request.get_json() or {}
+            payload.setdefault('timestamp', datetime.now().isoformat())
+            socketio.emit('detection_event', payload)
+            return jsonify({'success': True, 'event': payload})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/events/simulate', methods=['POST'])
+    def api_events_simulate():
+        """POST - Simulate a detection event for the dashboard map"""
+        try:
+            payload = request.get_json() or {}
+            domain = payload.get('domain') or random.choice(['hallucination', 'network', 'research'])
+            result = payload.get('result') or random.choice(['self', 'non_self', 'danger', 'uncertain'])
+            confidence = round(random.uniform(0.45, 0.95), 2)
+            danger_signal = round(random.uniform(0.0, 1.0), 2)
+
+            event = {
+                'domain': domain,
+                'result': result,
+                'confidence': confidence,
+                'matched_detectors': payload.get('matched_detectors', []),
+                'danger_signal': danger_signal,
+                'timestamp': datetime.now().isoformat()
+            }
+            socketio.emit('detection_event', event)
+            return jsonify({'success': True, 'event': event})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
     # ========================================================================
     # CHAT API
     # ========================================================================
@@ -831,9 +1701,19 @@ def register_routes(app, socketio):
             user_input = data.get('message', '')
             task_type = data.get('task_type', 'analysis')
             task_classification = data.get('task_classification', 'routine')
+            mode = data.get('mode', 'orchestrator')
+            domain = data.get('domain')
+            connectivity = data.get('connectivity')
 
             chat = ImmunosChat()
-            result = chat.chat(user_input, task_type, task_classification)
+            result = chat.chat(
+                user_input,
+                task_type=task_type,
+                task_classification=task_classification,
+                mode=mode,
+                domain=domain,
+                connectivity=connectivity
+            )
             return jsonify(result)
         except Exception as e:
             return jsonify({'error': str(e)}), 500
