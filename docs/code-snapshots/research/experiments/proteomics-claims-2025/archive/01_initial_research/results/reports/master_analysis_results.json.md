@@ -1,0 +1,132 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/archive/01_initial_research/results/reports/master_analysis_results.json
+relative: research/experiments/proteomics-claims-2025/archive/01_initial_research/results/reports/master_analysis_results.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "metadata": {
+    "data_file": "/Users/byron/project_plan/data/pool_processed_v2.h5ad",
+    "analysis_date": "2025-09-28T08:49:16.470708",
+    "n_samples": 44,
+    "n_proteins": 5853,
+    "n_tau_positive": 22,
+    "n_tau_negative": 22
+  },
+  "results": {
+    "sqstm1": {
+      "mean_tau_pos": 14.158506393636362,
+      "mean_tau_neg": 10.745565241045453,
+      "log2_fold_change": 0.3979277071619609,
+      "fold_change": 1.3176139250036194,
+      "p_value": 9.293505048467219e-08,
+      "claimed_fold_change": 10.7,
+      "observed_fold_change": 1.3176139250036194,
+      "discrepancy_ratio": 8.120739920057089,
+      "validated": "False"
+    },
+    "autophagy_ups": {
+      "autophagy": {
+        "total_analyzed": 15,
+        "found": 14,
+        "significant": 8,
+        "percent_significant": 57.14285714285714,
+        "significant_proteins": [
+          "SQSTM1",
+          "NBR1",
+          "GABARAP",
+          "GABARAPL1",
+          "GABARAPL2",
+          "BECN1",
+          "ATG12",
+          "ULK1"
+        ]
+      },
+      "ups": {
+        "total_analyzed": 25,
+        "found": 14,
+        "significant": 4,
+        "percent_significant": 28.57142857142857,
+        "significant_proteins": [
+          "UBC",
+          "UBA6",
+          "UCHL1",
+          "UCHL3"
+        ]
+      },
+      "autophagy_specific": true
+    },
+    "proteasome_vatpase": {
+      "proteasome": {
+        "count": 24
+      },
+      "vatpase": {
+        "count": 9
+      },
+      "pseudotime_available": true,
+      "pseudotime_range": [
+        0.0,
+        1.0
+      ]
+    },
+    "mitochondrial": {
+      "VDAC1": {
+        "found": true,
+        "p_value": 0.17711992932034815,
+        "significant": "False"
+      },
+      "CYCS": {
+        "found": true,
+        "p_value": 0.06203104181536414,
+        "significant": "False"
+      },
+      "COX4I1": {
+        "found": true,
+        "p_value": 0.01613072833729563,
+        "significant": "True"
+      },
+      "ATP5A1": {
+        "found": false
+      },
+      "PINK1": {
+        "found": false
+      },
+      "TOMM20": {
+        "found": true,
+        "p_value": 0.6303822918095695,
+        "significant": "False"
+      }
+    }
+  },
+  "key_findings": {
+    "sqstm1_validated": "False",
+    "sqstm1_discrepancy": 8.120739920057089,
+    "autophagy_specific": true,
+    "proteasome_count": 24,
+    "vatpase_count": 9
+  },
+  "known_issues": {
+    "SQSTM1_fold_change": {
+      "claimed": 10.7,
+      "observed": 1.3,
+      "note": "Significant discrepancy - needs investigation",
+      "possible_causes": [
+        "Different normalization method",
+        "Subset analysis in paper",
+        "Log transformation differences",
+        "Statistical model differences"
+      ]
+    },
+    "semicolon_proteins": {
+      "affected": 56,
+      "percentage": 1.0,
+      "note": "Proteins with multiple UniProt IDs (isoforms)",
+      "examples": [
+        "UBB;UBC",
+        "MAP1LC3B;MAP1LC3B2"
+      ]
+    }
+  }
+}
+```

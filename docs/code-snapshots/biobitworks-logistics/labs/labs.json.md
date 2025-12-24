@@ -1,0 +1,131 @@
+---
+source: /Users/byron/projects/biobitworks-logistics/labs/labs.json
+relative: biobitworks-logistics/labs/labs.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "network_name": "Biobitworks Community Lab Network",
+  "region": "San Francisco Bay Area",
+  "updated": "2025-12-10",
+  "labs": [
+    {
+      "id": "counter-culture-labs",
+      "name": "Counter Culture Labs",
+      "location": {
+        "city": "Oakland",
+        "address": "",
+        "coordinates": null
+      },
+      "status": "active",
+      "website": "",
+      "contact": {
+        "email": "",
+        "phone": ""
+      },
+      "specializations": [],
+      "equipment": [],
+      "membership": {
+        "type": "",
+        "cost": null
+      },
+      "hours": {},
+      "notes": "Existing community lab in Oakland"
+    },
+    {
+      "id": "biopunk-lab",
+      "name": "Biopunk Lab",
+      "location": {
+        "city": "San Francisco",
+        "address": "",
+        "coordinates": null
+      },
+      "status": "active",
+      "website": "",
+      "contact": {
+        "email": "",
+        "phone": ""
+      },
+      "specializations": [],
+      "equipment": [],
+      "membership": {
+        "type": "",
+        "cost": null
+      },
+      "hours": {},
+      "notes": "Existing community lab in SF"
+    },
+    {
+      "id": "biocurious",
+      "name": "BioCurious",
+      "location": {
+        "city": "Santa Clara",
+        "address": "",
+        "coordinates": null
+      },
+      "status": "active",
+      "website": "https://biocurious.org",
+      "contact": {
+        "email": "",
+        "phone": ""
+      },
+      "specializations": [],
+      "equipment": [],
+      "membership": {
+        "type": "",
+        "cost": null
+      },
+      "hours": {},
+      "notes": "Established community lab in South Bay"
+    },
+    {
+      "id": "oakland-biolab",
+      "name": "Oakland BioLab (New)",
+      "location": {
+        "city": "Oakland",
+        "address": "TBD",
+        "coordinates": null
+      },
+      "status": "planned",
+      "website": "",
+      "contact": {
+        "email": "",
+        "phone": ""
+      },
+      "specializations": [],
+      "equipment": [],
+      "membership": {
+        "type": "",
+        "cost": null
+      },
+      "hours": {},
+      "notes": "New lab in development"
+    },
+    {
+      "id": "berkeley-lab",
+      "name": "Berkeley BioLab (Potential)",
+      "location": {
+        "city": "Berkeley",
+        "address": "TBD",
+        "coordinates": null
+      },
+      "status": "potential",
+      "website": "",
+      "contact": {
+        "email": "",
+        "phone": ""
+      },
+      "specializations": [],
+      "equipment": [],
+      "membership": {
+        "type": "",
+        "cost": null
+      },
+      "hours": {},
+      "notes": "Potential future location"
+    }
+  ]
+}
+
+```

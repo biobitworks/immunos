@@ -69,7 +69,8 @@
       "*.yml": "yaml"
     },
     "markdown.preview.breaks": true,
-    "markdown.preview.linkify": true
+    "markdown.preview.linkify": true,
+    "chatgpt.openOnStartup": true
   },
   "extensions": {
     "recommendations": [

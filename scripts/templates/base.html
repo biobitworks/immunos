@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
     <!-- Chart.js for visualizations -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
 
     <!-- Socket.IO for real-time updates -->
-    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='vendor/socket.io/socket.io.min.js') }}"></script>
 
     {% block head %}{% endblock %}
 </head>
@@ -42,7 +42,7 @@
                 <li><a href="/llm" class="nav-link {% if request.path == '/llm' %}active{% endif %}">
                     <span class="nav-icon">🤖</span> LLM
                 </a></li>
-                <li><a href="http://localhost:5001" class="nav-link" target="_blank">
+                <li><a href="http://localhost:5001" class="nav-link" target="_blank" rel="noopener noreferrer">
                     <span class="nav-icon">✅</span> Todos
                 </a></li>
             </ul>

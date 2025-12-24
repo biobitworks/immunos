@@ -1,0 +1,30 @@
+---
+source: /Users/byron/projects/papers/10.1002_path.4104/metadata.json
+relative: papers/10.1002_path.4104/metadata.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "doi": "10.1002/path.4104",
+  "title": "The myofibroblast matrix: implications for tissue repair and fibrosis",
+  "authors": [
+    "Franco Klingberg",
+    "Boris Hinz",
+    "Eric S White"
+  ],
+  "journal": "The Journal of Pathology",
+  "year": 2013,
+  "url": "https://pathsocjournals.onlinelibrary.wiley.com/doi/10.1002/path.4104",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "Myofibroblasts, and the extracellular matrix (ECM) in which they reside, are critical components of wound healing and fibrosis. The ECM, traditionally viewed as the structural elements within which cells reside, is actually a functional tissue whose components possess not only scaffolding characteristics, but also growth factor, mitogenic, and other bioactive properties. Although it has been suggested that tissue fibrosis simply reflects an \u2018exuberant\u2019 wound-healing response, examination of the ECM and the roles of myofibroblasts during fibrogenesis instead suggest that the organism may be attempting to recapitulate developmental programmes designed to regenerate functional tissue. Evidence of this is provided by the temporospatial re-emergence of embryonic ECM proteins by fibroblasts and myofibroblasts that induce cellular programmatic responses intended to produce a functional tissue. In the setting of wound healing (or physiological fibrosis), this occurs in a highly regulated and exquisitely choreographed fashion which results in cessation of haemorrhage, restoration of barrier integrity, and re-establishment of tissue function. However, pathological tissue fibrosis, which oftentimes causes organ dysfunction and significant morbidity or mortality, likely results from dysregulation of normal wound-healing processes or abnormalities of the process itself. This review will focus on the myofibroblast ECM and its role in both physiological and pathological fibrosis, and will discuss the potential for therapeutically targeting ECM proteins for treatment of fibrotic disorders.",
+  "volume": "229",
+  "issue": "2",
+  "pages": "298-309",
+  "citation_key": "klingbergMyofibroblastMatrixImplications2013",
+  "issn": "0022-3417, 1096-9896"
+}
+```

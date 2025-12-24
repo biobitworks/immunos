@@ -1,0 +1,53 @@
+---
+source: /Users/byron/projects/papers/10.1038_s43587-025-01016-8/metadata.json
+relative: papers/10.1038_s43587-025-01016-8/metadata.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "doi": "10.1038/s43587-025-01016-8",
+  "title": "Organ-specific proteomic aging clocks predict disease and longevity across diverse populations",
+  "authors": [
+    "Yunhe Wang",
+    "Sihao Xiao",
+    "Bowen Liu",
+    "Rongtao Jiang",
+    "Yuxi Liu",
+    "Yian Hang",
+    "Li Chen",
+    "Runsen Chen",
+    "Michael V. Vitiello",
+    "Derrick Bennett",
+    "Baihan Wang",
+    "Jun Lv",
+    "Canqing Yu",
+    "Danielle E. Haslam",
+    "Qianyan Zheng",
+    "Robert E. Gerszten",
+    "Yanping Bao",
+    "Jie Shi",
+    "Junqing Xie",
+    "Lin Lu",
+    "Liming Li",
+    "Cornelia M. van Duijn",
+    "Dong D. Wang",
+    "Zhengming Chen",
+    "Andrew T. Chan"
+  ],
+  "journal": "Nature Aging",
+  "year": 2025,
+  "url": "https://doi.org/10.1038/s43587-025-01016-8",
+  "downloaded": "2025-12-03",
+  "pdf_path": "paper.pdf",
+  "figures": [
+    "figure_1.png",
+    "figure_2.png",
+    "figure_3.png",
+    "figure_4.png",
+    "figure_5.png"
+  ],
+  "note_path": "note.md",
+  "license": "CC-BY-4.0"
+}
+```

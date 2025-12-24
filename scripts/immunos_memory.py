@@ -6,10 +6,12 @@ Adaptive memory system for Claude Code persistence. Stores conversations,
 decisions, and context with priority-based decay.
 
 Usage:
-    python immunos_memory.py create --content "..." --priority high
-    python immunos_memory.py list --priority high
-    python immunos_memory.py decay --dry-run
-    python immunos_memory.py consolidate --days 7
+    python3 immunos_memory.py create --content "..." --priority high
+    python3 immunos_memory.py store --content "..." --priority high
+    python3 immunos_memory.py list --priority high
+    python3 immunos_memory.py search "keyword" --type conversation
+    python3 immunos_memory.py export --type conversation --output memories.json
+    python3 immunos_memory.py decay --dry-run
 """
 
 import os
@@ -278,6 +280,62 @@ class MemoryStore:
 
         return memories
 
+    def search_memories(self,
+                        query: str,
+                        priority: Optional[str] = None,
+                        memory_type: Optional[str] = None,
+                        tags: Optional[List[str]] = None,
+                        min_relevance: float = 0.0,
+                        limit: Optional[int] = None) -> List[Memory]:
+        """Search memories by keyword across content, tags, and references"""
+        query_lower = query.lower()
+        memories = self.list_memories(
+            priority=priority,
+            memory_type=memory_type,
+            tags=tags,
+            min_relevance=min_relevance,
+            limit=None,
+        )
+
+        matched = []
+        for memory in memories:
+            content_text = json.dumps(memory.content, sort_keys=True).lower()
+            tags_text = " ".join(memory.tags).lower()
+            refs_text = " ".join(memory.references).lower()
+            if (query_lower in content_text or
+                    query_lower in tags_text or
+                    query_lower in refs_text or
+                    query_lower in memory.memory_id.lower()):
+                matched.append(memory)
+
+        if limit:
+            matched = matched[:limit]
+
+        return matched
+
+    def export_memories(self,
+                        output_path: str,
+                        priority: Optional[str] = None,
+                        memory_type: Optional[str] = None,
+                        tags: Optional[List[str]] = None,
+                        min_relevance: float = 0.0,
+                        limit: Optional[int] = None) -> int:
+        """Export memories to a JSON file and return count"""
+        memories = self.list_memories(
+            priority=priority,
+            memory_type=memory_type,
+            tags=tags,
+            min_relevance=min_relevance,
+            limit=limit,
+        )
+
+        output_file = Path(output_path)
+        output_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, 'w') as f:
+            json.dump([memory.to_dict() for memory in memories], f, indent=2)
+
+        return len(memories)
+
     def decay_memories(self, dry_run: bool = False) -> Dict:
         """Apply decay to all memories"""
         now = datetime.now()
@@ -390,6 +448,14 @@ def main():
     create_parser.add_argument('--tags', nargs='*', help='Tags for memory')
     create_parser.add_argument('--references', nargs='*', help='File references')
 
+    # Store memory (alias for create)
+    store_parser = subparsers.add_parser('store', help='Alias for create')
+    store_parser.add_argument('--content', type=str, required=True, help='Memory content (JSON string)')
+    store_parser.add_argument('--priority', choices=['high', 'medium', 'low'], default='medium')
+    store_parser.add_argument('--type', type=str, default='conversation', help='Memory type')
+    store_parser.add_argument('--tags', nargs='*', help='Tags for memory')
+    store_parser.add_argument('--references', nargs='*', help='File references')
+
     # List memories
     list_parser = subparsers.add_parser('list', help='List memories')
     list_parser.add_argument('--priority', choices=['high', 'medium', 'low'])
@@ -397,6 +463,24 @@ def main():
     list_parser.add_argument('--tags', nargs='*')
     list_parser.add_argument('--min-relevance', type=float, default=0.0)
     list_parser.add_argument('--limit', type=int)
+
+    # Search memories
+    search_parser = subparsers.add_parser('search', help='Search memories by keyword')
+    search_parser.add_argument('query', type=str, help='Search term')
+    search_parser.add_argument('--priority', choices=['high', 'medium', 'low'])
+    search_parser.add_argument('--type', type=str)
+    search_parser.add_argument('--tags', nargs='*')
+    search_parser.add_argument('--min-relevance', type=float, default=0.0)
+    search_parser.add_argument('--limit', type=int)
+
+    # Export memories
+    export_parser = subparsers.add_parser('export', help='Export memories to JSON')
+    export_parser.add_argument('--output', type=str, required=True, help='Output JSON file')
+    export_parser.add_argument('--priority', choices=['high', 'medium', 'low'])
+    export_parser.add_argument('--type', type=str)
+    export_parser.add_argument('--tags', nargs='*')
+    export_parser.add_argument('--min-relevance', type=float, default=0.0)
+    export_parser.add_argument('--limit', type=int)
 
     # Decay memories
     decay_parser = subparsers.add_parser('decay', help='Apply decay to memories')
@@ -413,10 +497,16 @@ def main():
 
     store = MemoryStore()
 
-    if args.command == 'create':
+    def parse_content(content_str: str) -> Dict:
         try:
-            content = json.loads(args.content)
+            return json.loads(content_str)
         except json.JSONDecodeError:
+            return {'text': content_str}
+
+    if args.command in ('create', 'store'):
+        try:
+            content = parse_content(args.content)
+        except Exception:
             content = {'text': args.content}
 
         memory = Memory(
@@ -455,6 +545,42 @@ def main():
                 print(f"   Tags: {', '.join(mem.tags)}")
             print(f"   Content: {json.dumps(mem.content, indent=2)[:200]}...")
             print()
+
+    elif args.command == 'search':
+        memories = store.search_memories(
+            query=args.query,
+            priority=args.priority,
+            memory_type=args.type,
+            tags=args.tags,
+            min_relevance=args.min_relevance,
+            limit=args.limit,
+        )
+
+        print(f"\n{'='*70}")
+        print(f"MEMORY SEARCH ({len(memories)} found)")
+        print(f"{'='*70}\n")
+
+        for i, mem in enumerate(memories, 1):
+            print(f"{i}. {mem.memory_id}")
+            print(f"   Priority: {mem.priority} | Type: {mem.memory_type} | Relevance: {mem.relevance_score:.2f}")
+            print(f"   Created: {mem.timestamp}")
+            print(f"   Accessed: {mem.access_count} times | Last: {mem.last_accessed}")
+            if mem.tags:
+                print(f"   Tags: {', '.join(mem.tags)}")
+            print(f"   Content: {json.dumps(mem.content, indent=2)[:200]}...")
+            print()
+
+    elif args.command == 'export':
+        count = store.export_memories(
+            output_path=args.output,
+            priority=args.priority,
+            memory_type=args.type,
+            tags=args.tags,
+            min_relevance=args.min_relevance,
+            limit=args.limit,
+        )
+
+        print(f"✓ Exported {count} memories to {args.output}")
 
     elif args.command == 'decay':
         print("Applying memory decay...")

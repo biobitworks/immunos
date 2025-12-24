@@ -116,6 +116,19 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 ---
 
+## 📄 immunOS Replication Preprint
+
+**Focus**: SciFact baseline replication + NegSl-AIS framing (preprint)
+
+[[immunos-replication-preprint/README|→ **Open immunOS Replication Preprint**]]
+
+**Status**: Draft v1
+- SciFact dev metrics logged
+- Related work curated via PubMed
+- Obsidian-friendly links to data and code snapshots
+
+---
+
 ## 📄 Papers Archive
 
 **Focus**: Open-access academic papers with figures, organized by DOI

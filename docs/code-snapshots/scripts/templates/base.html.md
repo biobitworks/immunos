@@ -1,0 +1,102 @@
+---
+source: /Users/byron/projects/scripts/templates/base.html
+relative: scripts/templates/base.html
+generated_at: 2025-12-23 10:28
+---
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}IMMUNOS Dashboard{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <!-- Chart.js for visualizations -->
+    <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
+
+    <!-- Socket.IO for real-time updates -->
+    <script src="{{ url_for('static', filename='vendor/socket.io/socket.io.min.js') }}"></script>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🧬</span>
+                <span class="brand-text">IMMUNOS</span>
+                <span class="brand-subtitle">Security Dashboard</span>
+            </div>
+
+            <ul class="nav-menu">
+                <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    <span class="nav-icon">📊</span> Dashboard
+                </a></li>
+                <li><a href="/scans" class="nav-link {% if request.path == '/scans' %}active{% endif %}">
+                    <span class="nav-icon">🔍</span> Scans
+                </a></li>
+                <li><a href="/memory" class="nav-link {% if request.path == '/memory' %}active{% endif %}">
+                    <span class="nav-icon">🧠</span> Memory
+                </a></li>
+                <li><a href="/llm" class="nav-link {% if request.path == '/llm' %}active{% endif %}">
+                    <span class="nav-icon">🤖</span> LLM
+                </a></li>
+                <li><a href="http://localhost:5001" class="nav-link" target="_blank" rel="noopener noreferrer">
+                    <span class="nav-icon">✅</span> Todos
+                </a></li>
+            </ul>
+
+            <div class="nav-status">
+                <div class="status-indicator" id="ws-status">
+                    <span class="status-dot offline"></span>
+                    <span class="status-text">Connecting...</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Common JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <!-- Page-specific JavaScript -->
+    {% block scripts %}{% endblock %}
+
+    <!-- Initialize WebSocket and App -->
+    <script>
+        // Initialize app on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize WebSocket connection
+            if (typeof ImmunosApp !== 'undefined') {
+                window.app = new ImmunosApp();
+                window.app.init();
+            }
+        });
+    </script>
+</body>
+</html>
+
+```

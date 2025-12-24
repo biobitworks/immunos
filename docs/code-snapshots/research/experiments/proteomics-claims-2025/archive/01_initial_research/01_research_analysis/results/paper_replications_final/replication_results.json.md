@@ -1,0 +1,23 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/archive/01_initial_research/01_research_analysis/results/paper_replications_final/replication_results.json
+relative: research/experiments/proteomics-claims-2025/archive/01_initial_research/01_research_analysis/results/paper_replications_final/replication_results.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "total_proteins": 5853,
+  "significant_proteins": 1518,
+  "percent_significant": 25.935417734495132,
+  "down_regulated": 1014,
+  "up_regulated": 504,
+  "mean_effect_size": -0.4001996612802133,
+  "proteasome_breakpoint": 0.372,
+  "vatpase_breakpoint": 0.654,
+  "mc1_threshold": 2.831,
+  "sqstm1_fold_change": 10.65117843635957,
+  "autophagy_proteins_found": 8,
+  "ups_proteins_found": 8,
+  "vatpase_subunits_found": 10
+}
+```

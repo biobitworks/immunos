@@ -1,5 +1,5 @@
 {
-  "last_updated": "2025-12-13T13:28:47.519895",
+  "last_updated": "2025-12-23T09:40:50.152521",
   "todos": {
     "TODO-20251213-001": {
       "id": "TODO-20251213-001",
@@ -670,21 +670,38 @@
       ],
       "description": null,
       "file": "daily/2025-12-13.md"
+    },
+    "TODO-20251223-001": {
+      "id": "TODO-20251223-001",
+      "title": "Replicate baseline results from related AIS/SciFact papers (download data, run published scripts, capture metrics + compare to IMMUNOS)",
+      "status": "inbox",
+      "created": "2025-12-23T09:40:50.152455",
+      "due": null,
+      "completed": null,
+      "priority": "high",
+      "project": "immunos",
+      "tags": [
+        "papers",
+        "baselines",
+        "repro"
+      ],
+      "description": "Collect DOI links + code/data repos for AIS/NegSel and SciFact/VeriSci/MultiVerS baselines; run their scripts where available and record metrics for comparison.",
+      "file": "daily/2025-12-23.md"
     }
   },
   "stats": {
-    "total": 42,
+    "total": 43,
     "by_status": {
       "done": 37,
-      "inbox": 1,
+      "inbox": 2,
       "someday": 4
     },
     "by_priority": {
-      "high": 3,
+      "high": 4,
       "medium": 39
     },
-    "overdue": 0,
+    "overdue": 1,
     "due_today": 0,
-    "due_this_week": 1
+    "due_this_week": 0
   }
 }

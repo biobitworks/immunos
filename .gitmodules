@@ -1,0 +1,30 @@
+[submodule "data/immunos_data/code/diversevul"]
+	path = data/immunos_data/code/diversevul
+	url = https://github.com/wagner-group/diversevul
+[submodule "data/immunos_data/hallucination/halueval"]
+	path = data/immunos_data/hallucination/halueval
+	url = https://github.com/RUCAIBox/HaluEval
+[submodule "data/immunos_data/hallucination/truthfulqa"]
+	path = data/immunos_data/hallucination/truthfulqa
+	url = https://github.com/sylinrl/TruthfulQA
+[submodule "data/immunos_data/research/scifact"]
+	path = data/immunos_data/research/scifact
+	url = https://github.com/allenai/scifact
+[submodule "experiments"]
+	path = experiments
+	url = https://github.com/biobitworks/experiments.git
+[submodule "immunos-mcp"]
+	path = immunos-mcp
+	url = https://github.com/biobitworks/immunos-mcp.git
+[submodule "immunos81"]
+	path = immunos81
+	url = https://github.com/biobitworks/immunos81.git
+[submodule "prion-clock"]
+	path = prion-clock
+	url = https://github.com/biobitworks/prion-clock.git
+[submodule "research/projects/bioviztech"]
+	path = research/projects/bioviztech
+	url = https://github.com/biobitworks/bioviztech.git
+[submodule "rockbeatspaper"]
+	path = rockbeatspaper
+	url = https://github.com/biobitworks/rockbeatspaper.git

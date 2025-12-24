@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMMUNOS Documentation - Universal Artificial Immune System</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ url_for('static', filename='vendor/tailwindcss/tailwindcss.min.js') }}"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -30,7 +30,7 @@
             </div>
             <div class="flex space-x-4">
                 <a href="/monitor" class="text-blue-400 hover:text-blue-300">← Back to Dashboard</a>
-                <a href="https://github.com/biobitworks/immunos" target="_blank" class="text-blue-400 hover:text-blue-300">GitHub →</a>
+                <a href="https://github.com/biobitworks/immunos" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-300">GitHub →</a>
             </div>
         </div>
     </nav>
@@ -66,9 +66,9 @@
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="bg-gray-800 rounded-lg p-6 border border-blue-700">
-                    <h3 class="text-xl font-bold mb-2 text-blue-400">🔬 Rigorous</h3>
+                    <h3 class="text-xl font-bold mb-2 text-blue-400">✅ Right (Highly Accurate)</h3>
                     <p class="text-gray-300">
-                        Thorough validation processes that meet high standards of scientific rigor. Every claim is verified against primary sources, citations are validated, and anomalies are flagged.
+                        Outputs are highly accurate and correct. Statistical rigor assessed with p-values, confidence intervals, and validation rates. Every claim is verified against primary sources with quantified confidence.
                     </p>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-6 border border-green-700">

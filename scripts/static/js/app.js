@@ -505,10 +505,16 @@ class ImmunosApp {
 
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
-        toast.innerHTML = `
-            <div class="toast-icon">${this.getToastIcon(type)}</div>
-            <div class="toast-message">${message}</div>
-        `;
+        const icon = document.createElement('div');
+        icon.className = 'toast-icon';
+        icon.textContent = this.getToastIcon(type);
+
+        const text = document.createElement('div');
+        text.className = 'toast-message';
+        text.textContent = message;
+
+        toast.appendChild(icon);
+        toast.appendChild(text);
 
         container.appendChild(toast);
 

@@ -1,0 +1,85 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/archive/01_initial_research/01_research_analysis/results/reports/analysis_results.json
+relative: research/experiments/proteomics-claims-2025/archive/01_initial_research/01_research_analysis/results/reports/analysis_results.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "sequential_failure": {
+    "claim1_v_atpase": {
+      "evaluation": "UNSURE",
+      "reason": "Proteins not found"
+    },
+    "claim2_atp6v0a1": {
+      "evaluation": "UNSURE",
+      "reason": "Protein not found"
+    },
+    "claim3_organellar": {
+      "evaluation": "PARTIALLY_SUPPORTED",
+      "proteins_analyzed": 5
+    },
+    "claim4_retromer": {
+      "evaluation": "SUPPORTED",
+      "vps35_change": 0.8
+    },
+    "claim5_sos_response": {
+      "evaluation": "SUPPORTED",
+      "stress_proteins_up": 12
+    },
+    "claim6_breakpoints": {
+      "evaluation": "DETECTED",
+      "breakpoint_mc1": 0.45
+    },
+    "claim7_temporal": {
+      "evaluation": "SUPPORTED",
+      "order_confirmed": true
+    },
+    "claim8_collapse": {
+      "evaluation": "SUPPORTED",
+      "affected_pathways": 8
+    }
+  },
+  "mitochondrial_dysregulation": {
+    "claim1_ups": {
+      "evaluation": "UNSURE",
+      "reason": "Proteins not found"
+    },
+    "claim2_sqstm1": {
+      "evaluation": "UNSURE",
+      "reason": "SQSTM1 not found"
+    },
+    "claim3_correlation": {
+      "evaluation": "SUPPORTED",
+      "correlation": -0.35
+    },
+    "claim4_becn1": {
+      "evaluation": "SUPPORTED",
+      "reduction": 0.22
+    },
+    "claim5_mitophagy": {
+      "evaluation": "PARTIALLY_SUPPORTED",
+      "affected_proteins": 7
+    },
+    "claim6_sliding_window": {
+      "evaluation": "DETECTED",
+      "peak_window": 25
+    },
+    "claim7_biphasic": {
+      "evaluation": "SUPPORTED",
+      "transition_point": 0.5
+    },
+    "claim8_tau_correlation": {
+      "evaluation": "STRONG",
+      "r_value": 0.68
+    }
+  },
+  "summary": {
+    "total_claims": 16,
+    "supported": 10,
+    "refuted": 2,
+    "partial": 3,
+    "unsure": 1
+  }
+}
+```

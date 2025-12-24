@@ -2,6 +2,17 @@
 // IMMUNOS Real-Time Monitor - Main JavaScript
 // ============================================================================
 
+const escapeHtml = (value) => {
+    const text = value === null || value === undefined ? '' : String(value);
+    return text.replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[char]);
+};
+
 const Monitor = {
     // WebSocket connection
     socket: null,
@@ -33,6 +44,7 @@ const Monitor = {
     agentGraphCanvas: null,
     agentGraphCtx: null,
     agentGraphConfig: { showLabels: true },
+    agentGraphAnimating: false,
     lastDetection: null,
 
     // Event history for activity chart (last 20 minutes)
@@ -539,39 +551,54 @@ const Monitor = {
         const statusClass = status.loaded ? 'text-green-400' : 'text-gray-500';
         const statusText = status.loaded ? '● Loaded' : '○ Unloaded';
         const lastUsed = status.last_used ? new Date(status.last_used).toLocaleString() : 'Never';
+        const safeName = escapeHtml(name);
+        const ramMb = escapeHtml(status.ram_mb ?? 0);
+        const totalRequests = escapeHtml(status.total_requests ?? 0);
+        const avgLatency = escapeHtml((status.avg_latency_ms || 0).toFixed(0));
+        const safeLastUsed = escapeHtml(lastUsed);
 
         card.innerHTML = `
             <div class="flex justify-between items-start mb-4">
                 <div>
-                    <h3 class="font-bold text-lg">${name}</h3>
+                    <h3 class="font-bold text-lg">${safeName}</h3>
                 </div>
                 <span class="${statusClass} text-sm">${statusText}</span>
             </div>
             <div class="grid grid-cols-2 gap-3 text-sm mb-4">
                 <div>
                     <span class="text-gray-400">RAM:</span>
-                    <span class="ml-2 font-mono">${status.ram_mb || 0} MB</span>
+                    <span class="ml-2 font-mono">${ramMb} MB</span>
                 </div>
                 <div>
                     <span class="text-gray-400">Requests:</span>
-                    <span class="ml-2 font-mono">${status.total_requests || 0}</span>
+                    <span class="ml-2 font-mono">${totalRequests}</span>
                 </div>
                 <div class="col-span-2">
                     <span class="text-gray-400">Latency:</span>
-                    <span class="ml-2 font-mono">${(status.avg_latency_ms || 0).toFixed(0)} ms</span>
+                    <span class="ml-2 font-mono">${avgLatency} ms</span>
                 </div>
                 <div class="col-span-2">
                     <span class="text-gray-400">Last Used:</span>
-                    <span class="ml-2 font-mono text-xs">${lastUsed}</span>
+                    <span class="ml-2 font-mono text-xs">${safeLastUsed}</span>
                 </div>
             </div>
-            <div class="flex gap-2">
-                ${status.loaded ?
-                    `<button onclick="Monitor.unloadModel('${name}')" class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm font-medium transition-colors">Unload</button>` :
-                    `<button onclick="Monitor.loadModel('${name}')" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors">Load</button>`
-                }
-            </div>
         `;
+
+        const actions = document.createElement('div');
+        actions.className = 'flex gap-2';
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `flex-1 px-4 py-2 ${status.loaded ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'} rounded-lg text-sm font-medium transition-colors`;
+        button.textContent = status.loaded ? 'Unload' : 'Load';
+        button.addEventListener('click', () => {
+            if (status.loaded) {
+                this.unloadModel(name);
+            } else {
+                this.loadModel(name);
+            }
+        });
+        actions.appendChild(button);
+        card.appendChild(actions);
 
         return card;
     },
@@ -605,37 +632,42 @@ const Monitor = {
         let icon = '●';
         let color = 'text-blue-400';
         let message = '';
+        const safeDomain = escapeHtml(data?.domain || 'unknown');
+        const safeFrom = escapeHtml(data?.from_model || 'unknown');
+        const safeTo = escapeHtml(data?.to_model || 'unknown');
+        const safeReason = escapeHtml(data?.reason || '');
+        const safeModel = escapeHtml(data?.model || 'unknown');
 
         switch (eventType) {
             case 'training_started':
                 icon = '🎯';
                 color = 'text-blue-400';
-                message = `Training started: ${data.domain} (${data.num_samples} samples)`;
+                message = `Training started: ${safeDomain} (${data.num_samples ?? 0} samples)`;
                 break;
             case 'training_complete':
                 icon = '✅';
                 color = 'text-green-400';
-                message = `Training complete: ${data.domain} (${data.detectors_created} detectors, ${(data.final_accuracy * 100).toFixed(1)}% accuracy)`;
+                message = `Training complete: ${safeDomain} (${data.detectors_created ?? 0} detectors, ${((data.final_accuracy || 0) * 100).toFixed(1)}% accuracy)`;
                 break;
             case 'model_switched':
                 icon = '🔄';
                 color = 'text-yellow-400';
-                message = `Model switched: ${data.from_model} → ${data.to_model} (${data.reason})`;
+                message = `Model switched: ${safeFrom} → ${safeTo} (${safeReason || 'unknown'})`;
                 break;
             case 'detection_event':
                 icon = '🔍';
                 color = data.result === 'non_self' ? 'text-red-400' : 'text-green-400';
-                message = `Detection: ${data.domain} - ${data.result} (${(data.confidence * 100).toFixed(1)}%)`;
+                message = `Detection: ${safeDomain} - ${escapeHtml(data.result || 'unknown')} (${((data.confidence || 0) * 100).toFixed(1)}%)`;
                 break;
             case 'model_loaded':
                 icon = '⬆️';
                 color = 'text-green-400';
-                message = `Model loaded: ${data.model}`;
+                message = `Model loaded: ${safeModel}`;
                 break;
             case 'model_unloaded':
                 icon = '⬇️';
                 color = 'text-gray-400';
-                message = `Model unloaded: ${data.model}`;
+                message = `Model unloaded: ${safeModel}`;
                 break;
             case 'ollama_server_started':
                 icon = '🚀';
@@ -658,7 +690,7 @@ const Monitor = {
                 message = 'Orchestrator configuration updated';
                 break;
             default:
-                message = JSON.stringify(data);
+                message = escapeHtml(JSON.stringify(data));
         }
 
         const timestamp = new Date(data.timestamp || Date.now()).toLocaleTimeString();
@@ -821,12 +853,14 @@ const Monitor = {
         jobCard.className = 'bg-gray-800 rounded-lg p-6 border border-gray-700';
 
         const percent = job.total > 0 ? (job.current / job.total) * 100 : 0;
+        const safeDomain = escapeHtml(domain);
+        const safeDataset = escapeHtml(job.dataset || '');
 
         jobCard.innerHTML = `
             <div class="flex justify-between items-start mb-4">
                 <div>
-                    <h4 class="font-bold text-lg">${domain}</h4>
-                    <p class="text-sm text-gray-400">${job.dataset}</p>
+                    <h4 class="font-bold text-lg">${safeDomain}</h4>
+                    <p class="text-sm text-gray-400">${safeDataset}</p>
                 </div>
                 <div class="text-right">
                     <div class="text-sm text-gray-400">Progress</div>
@@ -1146,9 +1180,9 @@ const Monitor = {
         const cards = domainKeys.map((key) => {
             const info = this.domainInfo[key];
             const domainStats = stats[key] || {};
-            const name = info?.name || key;
+            const name = escapeHtml(info?.name || key);
             const trained = domainStats.trained ? 'Trained' : 'Untrained';
-            const lastTrained = domainStats.last_trained || 'Never';
+            const lastTrained = escapeHtml(domainStats.last_trained || 'Never');
 
             return `
                 <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
@@ -1209,7 +1243,10 @@ const Monitor = {
         }
 
         if (tabName === 'orchestrator') {
+            this.startAgentGraph();
             setTimeout(() => this.resizeAgentGraph(), 50);
+        } else {
+            this.agentGraphAnimating = false;
         }
 
         if (tabName === 'thymus' && this.thymusChart) {
@@ -1244,7 +1281,9 @@ const Monitor = {
             resetBtn.addEventListener('click', () => this.clearAgentHighlights());
         }
 
-        this.renderAgentGraph();
+        if (this.currentTab === 'orchestrator') {
+            this.startAgentGraph();
+        }
     },
 
     buildAgentGraph() {
@@ -1301,7 +1340,14 @@ const Monitor = {
         this.agentGraphCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
     },
 
+    startAgentGraph() {
+        if (this.agentGraphAnimating) return;
+        this.agentGraphAnimating = true;
+        this.renderAgentGraph();
+    },
+
     renderAgentGraph() {
+        if (!this.agentGraphAnimating) return;
         if (!this.agentGraphCanvas || !this.agentGraphCtx || !this.agentGraph) return;
         this.drawAgentGraph();
         requestAnimationFrame(() => this.renderAgentGraph());
@@ -1625,18 +1671,23 @@ const Monitor = {
         }
 
         if (listElem) {
-            listElem.innerHTML = this.foundryTemplates.map((template) => `
-                <div class="bg-gray-700/40 rounded-lg p-3 border border-gray-700">
-                    <div class="font-semibold text-gray-200">${template.name}</div>
-                    <div class="text-xs text-gray-400 mt-1">${template.description || 'No description'}</div>
-                    <div class="text-xs text-gray-500 mt-2">Role: ${template.role || 'unknown'}</div>
-                </div>
-            `).join('');
+            listElem.innerHTML = this.foundryTemplates.map((template) => {
+                const name = escapeHtml(template.name || 'Untitled');
+                const description = escapeHtml(template.description || 'No description');
+                const role = escapeHtml(template.role || 'unknown');
+                return `
+                    <div class="bg-gray-700/40 rounded-lg p-3 border border-gray-700">
+                        <div class="font-semibold text-gray-200">${name}</div>
+                        <div class="text-xs text-gray-400 mt-1">${description}</div>
+                        <div class="text-xs text-gray-500 mt-2">Role: ${role}</div>
+                    </div>
+                `;
+            }).join('');
         }
 
         if (selectElem) {
             selectElem.innerHTML = this.foundryTemplates.map((template) => `
-                <option value="${template.id}">${template.name}</option>
+                <option value="${escapeHtml(template.id)}">${escapeHtml(template.name || 'Template')}</option>
             `).join('');
         }
     },
@@ -1664,15 +1715,19 @@ const Monitor = {
 
         historyElem.innerHTML = this.foundryAgents.map((agent) => {
             const created = agent.created_at ? new Date(agent.created_at).toLocaleString() : '—';
-            const notes = agent.notes ? agent.notes : 'No notes';
+            const name = escapeHtml(agent.name || agent.id || 'Agent');
+            const description = escapeHtml(agent.description || 'No description');
+            const role = escapeHtml(agent.role || 'unknown');
+            const domain = escapeHtml(agent.domain || 'generic');
+            const notes = escapeHtml(agent.notes || 'No notes');
             return `
                 <div class="bg-gray-700/40 rounded-lg p-3 border border-gray-700">
                     <div class="flex justify-between items-center">
-                        <div class="font-semibold text-gray-200">${agent.name || agent.id}</div>
-                        <div class="text-xs text-gray-500">${created}</div>
+                        <div class="font-semibold text-gray-200">${name}</div>
+                        <div class="text-xs text-gray-500">${escapeHtml(created)}</div>
                     </div>
-                    <div class="text-xs text-gray-400 mt-1">${agent.description || 'No description'}</div>
-                    <div class="text-xs text-gray-500 mt-2">Role: ${agent.role || 'unknown'} | Domain: ${agent.domain || 'generic'}</div>
+                    <div class="text-xs text-gray-400 mt-1">${description}</div>
+                    <div class="text-xs text-gray-500 mt-2">Role: ${role} | Domain: ${domain}</div>
                     <div class="text-xs text-gray-500 mt-1">${notes}</div>
                 </div>
             `;
@@ -1779,21 +1834,22 @@ const Monitor = {
         }
 
         container.innerHTML = this.thymusQueue.map(item => {
-            const domain = item.domain || 'unknown';
-            const dataset = item.dataset_path || 'N/A';
-            const samples = item.sample_count ? `Samples: ${item.sample_count}` : 'Samples: —';
-            const notes = item.notes ? item.notes : 'No notes';
+            const domain = escapeHtml(item.domain || 'unknown');
+            const dataset = escapeHtml(item.dataset_path || 'N/A');
+            const samplesValue = item.sample_count;
+            const samples = samplesValue === 0 || samplesValue ? `Samples: ${samplesValue}` : 'Samples: —';
+            const notes = escapeHtml(item.notes || 'No notes');
             const created = item.created_at ? new Date(item.created_at).toLocaleString() : '';
-            const status = item.status || 'queued';
+            const status = escapeHtml(item.status || 'queued');
 
             return `
                 <div class="bg-gray-700/40 rounded-lg p-3 border border-gray-700">
                     <div class="flex justify-between items-center mb-1">
                         <span class="text-sm font-semibold">${domain}</span>
-                        <span class="text-xs text-gray-400">${created}</span>
+                        <span class="text-xs text-gray-400">${escapeHtml(created)}</span>
                     </div>
                     <div class="text-xs text-gray-300">Path: <span class="font-mono">${dataset}</span></div>
-                    <div class="text-xs text-gray-400 mt-1">${samples}</div>
+                    <div class="text-xs text-gray-400 mt-1">${escapeHtml(samples)}</div>
                     <div class="text-xs text-gray-500 mt-1">Status: ${status}</div>
                     <div class="text-xs text-gray-500 mt-1">${notes}</div>
                 </div>
@@ -1814,10 +1870,10 @@ const Monitor = {
         }
 
         tbody.innerHTML = history.map(item => {
-            const domain = item.domain || 'unknown';
-            const dataset = item.dataset_label || item.dataset_path || 'N/A';
-            const detectors = item.detectors || '—';
-            const accuracy = item.accuracy ? `${item.accuracy}%` : '—';
+            const domain = escapeHtml(item.domain || 'unknown');
+            const dataset = escapeHtml(item.dataset_label || item.dataset_path || 'N/A');
+            const detectors = escapeHtml(item.detectors ?? '—');
+            const accuracy = typeof item.accuracy === 'number' ? `${item.accuracy}%` : '—';
             const started = item.started_at ? new Date(item.started_at) : null;
             const completed = item.completed_at ? new Date(item.completed_at) : null;
             const duration = started && completed ? `${Math.max(1, Math.round((completed - started) / 1000))}s` : '—';
@@ -1828,9 +1884,9 @@ const Monitor = {
                     <td class="py-2">${domain}</td>
                     <td class="py-2">${dataset}</td>
                     <td class="py-2">${detectors}</td>
-                    <td class="py-2">${accuracy}</td>
-                    <td class="py-2">${duration}</td>
-                    <td class="py-2">${dateLabel}</td>
+                    <td class="py-2">${escapeHtml(accuracy)}</td>
+                    <td class="py-2">${escapeHtml(duration)}</td>
+                    <td class="py-2">${escapeHtml(dateLabel)}</td>
                 </tr>
             `;
         }).join('');
@@ -1846,9 +1902,11 @@ const Monitor = {
         }
 
         list.innerHTML = this.kbPages.map(page => {
+            const name = escapeHtml(page.name || '');
+            const title = escapeHtml(page.title || page.name || 'Untitled');
             return `
-                <button class="w-full text-left px-3 py-2 rounded bg-gray-700/40 hover:bg-gray-700 text-sm" data-kb="${page.name}">
-                    ${page.title}
+                <button class="w-full text-left px-3 py-2 rounded bg-gray-700/40 hover:bg-gray-700 text-sm" data-kb="${name}">
+                    ${title}
                 </button>
             `;
         }).join('');
@@ -1906,24 +1964,25 @@ const Monitor = {
         }
 
         list.innerHTML = this.issuesList.map(item => {
-            const title = item.title || 'Untitled';
-            const status = item.status || 'unknown';
-            const priority = item.priority || 'medium';
+            const title = escapeHtml(item.title || 'Untitled');
+            const status = escapeHtml(item.status || 'unknown');
+            const priority = escapeHtml(item.priority || 'medium');
             const due = item.due ? new Date(item.due).toLocaleDateString() : '—';
-            const tags = (item.tags || []).slice(0, 3).map(tag => `#${tag}`).join(' ');
+            const tags = (item.tags || []).slice(0, 3).map(tag => `#${escapeHtml(tag)}`).join(' ');
+            const itemId = escapeHtml(item.id || '');
 
             return `
                 <div class="bg-gray-700/40 rounded-lg p-4 border border-gray-700">
                     <div class="flex justify-between items-center mb-2">
                         <div class="font-semibold text-sm">${title}</div>
-                        <span class="text-xs text-gray-400">${item.id || ''}</span>
+                        <span class="text-xs text-gray-400">${itemId}</span>
                     </div>
                     <div class="flex justify-between text-xs text-gray-400 mb-2">
                         <span>Status: <span class="text-gray-200">${status}</span></span>
                         <span>Priority: <span class="text-gray-200">${priority}</span></span>
                     </div>
                     <div class="flex justify-between text-xs text-gray-500">
-                        <span>Due: ${due}</span>
+                        <span>Due: ${escapeHtml(due)}</span>
                         <span>${tags}</span>
                     </div>
                 </div>
@@ -1978,13 +2037,17 @@ const Monitor = {
         const bubble = document.createElement('div');
         const isUser = role === 'user';
         bubble.className = `rounded-lg p-3 ${isUser ? 'bg-blue-600/20 border border-blue-600/40' : 'bg-gray-700/50 border border-gray-700'}`;
-
-        const metaLine = meta.model ? `<div class="text-xs text-gray-400 mb-1">${meta.model}${meta.reason ? ` • ${meta.reason}` : ''}</div>` : '';
-
-        bubble.innerHTML = `
-            ${metaLine}
-            <div class="text-sm text-gray-100 whitespace-pre-wrap">${content}</div>
-        `;
+        const metaText = meta.model ? `${meta.model}${meta.reason ? ` • ${meta.reason}` : ''}` : '';
+        if (metaText) {
+            const metaLine = document.createElement('div');
+            metaLine.className = 'text-xs text-gray-400 mb-1';
+            metaLine.textContent = metaText;
+            bubble.appendChild(metaLine);
+        }
+        const contentEl = document.createElement('div');
+        contentEl.className = 'text-sm text-gray-100 whitespace-pre-wrap';
+        contentEl.textContent = content;
+        bubble.appendChild(contentEl);
 
         container.appendChild(bubble);
         container.scrollTop = container.scrollHeight;

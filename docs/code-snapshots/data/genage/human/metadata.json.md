@@ -1,0 +1,38 @@
+---
+source: /Users/byron/projects/data/genage/human/metadata.json
+relative: data/genage/human/metadata.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "dataset": "GenAge Human Genes",
+  "source": "Human Ageing Genomic Resources (HAGR)",
+  "source_url": "https://genomics.senescence.info/",
+  "download_url": "https://genomics.senescence.info/genes/human_genes.zip",
+  "downloaded_date": "2025-12-02T17:21:58.947408",
+  "build": "21",
+  "build_date": "2023-08-28",
+  "license": "Creative Commons Attribution 3.0 Unported License",
+  "files": [
+    {
+      "name": "human_genes.zip",
+      "path": "data/genage/human/human_genes.zip",
+      "size_bytes": 9465,
+      "format": "zip"
+    },
+    {
+      "name": "genage_human.csv",
+      "path": "data/genage/human/genage_human.csv",
+      "size_bytes": 22778,
+      "format": "csv"
+    },
+    {
+      "name": "release.html",
+      "path": "data/genage/human/release.html",
+      "size_bytes": 2545,
+      "format": "html"
+    }
+  ]
+}
+```

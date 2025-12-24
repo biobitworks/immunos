@@ -1,0 +1,913 @@
+---
+source: /Users/byron/projects/scripts/templates/monitor.html
+relative: scripts/templates/monitor.html
+generated_at: 2025-12-23 10:28
+---
+
+```html
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMUNOS Real-Time Monitor</title>
+
+    <!-- Tailwind CSS (local) -->
+    <script src="{{ url_for('static', filename='vendor/tailwindcss/tailwindcss.min.js') }}"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                        danger: '#ef4444',
+                        warning: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Socket.IO (local) -->
+    <script src="{{ url_for('static', filename='vendor/socket.io/socket.io.min.js') }}"></script>
+
+    <!-- Chart.js (local) -->
+    <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
+
+    <style>
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+
+        /* Tab styling */
+        .tab-btn {
+            color: #9ca3af;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-btn.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        .tab-btn:hover:not(.active) {
+            background-color: rgba(75, 85, 99, 0.3);
+        }
+
+        /* Tab panels */
+        .tab-panel {
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Domain buttons */
+        .domain-btn {
+            padding: 0.5rem 1rem;
+            background-color: #374151;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .domain-btn:hover {
+            background-color: #4b5563;
+        }
+        .domain-btn.active {
+            background-color: #2563eb;
+        }
+        .domain-btn.active:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Pulse animation for connection status */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-gray-800 border-b border-gray-700 px-6 py-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <h1 class="text-2xl font-bold text-blue-400">IMMUNOS Monitor</h1>
+                <span class="text-sm text-gray-400">Multi-Domain Real-Time Dashboard</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Connection Status -->
+                <div id="connection-status" class="flex items-center space-x-2">
+                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-sm text-green-400">Connected</span>
+                </div>
+
+                <!-- Current Session Tokens -->
+                <div class="bg-gray-700 px-4 py-2 rounded-lg">
+                    <span class="text-xs text-gray-400">Session Tokens:</span>
+                    <span id="session-tokens" class="ml-2 font-mono font-bold text-yellow-400">0</span>
+                    <span class="text-xs text-gray-400">/ 200k</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab Navigation -->
+    <div class="bg-gray-800 border-b border-gray-700">
+        <div class="px-6 flex space-x-1">
+            <button class="tab-btn active px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="chat">
+                Chat
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="overview">
+                Overview
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="kb">
+                KB
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="thymus">
+                Thymus
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="domains">
+                Domains
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="orchestrator">
+                Orchestrator Map
+            </button>
+            <button class="tab-btn px-6 py-3 text-sm font-medium rounded-t-lg" data-tab="system">
+                System
+            </button>
+        </div>
+    </div>
+
+    <!-- Tab Content Container -->
+    <div id="tab-content" class="p-6">
+
+        <!-- ============================================================ -->
+        <!-- OVERVIEW TAB -->
+        <!-- ============================================================ -->
+        <div id="overview-tab" class="tab-panel hidden">
+            <div class="grid grid-cols-12 gap-6">
+
+                <!-- System Status Card (3 cols) -->
+                <div class="col-span-3 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">System Status</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Ollama Server:</span>
+                            <span id="ollama-status" class="text-green-400">● Running</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Active Models:</span>
+                            <span id="active-models" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Trained Domains:</span>
+                            <span id="trained-domains" class="font-mono">0 / 5</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Thymus Jobs:</span>
+                            <span id="training-jobs" class="font-mono">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Grid (9 cols) -->
+                <div class="col-span-9 grid grid-cols-4 gap-4">
+                    <!-- Stat Card: Detections Today -->
+                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                        <div class="text-sm text-gray-400 mb-1">Detections Today</div>
+                        <div id="detections-today" class="text-3xl font-bold text-blue-400">0</div>
+                    </div>
+
+                    <!-- Stat Card: Avg Confidence -->
+                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                        <div class="text-sm text-gray-400 mb-1">Avg Confidence</div>
+                        <div id="avg-confidence" class="text-3xl font-bold text-green-400">0%</div>
+                    </div>
+
+                    <!-- Stat Card: Token Savings (24h) -->
+                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                        <div class="text-sm text-gray-400 mb-1">Savings (24h)</div>
+                        <div id="savings-24h" class="text-3xl font-bold text-yellow-400">$0.00</div>
+                    </div>
+
+                    <!-- Stat Card: Total Requests -->
+                    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                        <div class="text-sm text-gray-400 mb-1">Total Requests</div>
+                        <div id="total-requests" class="text-3xl font-bold text-purple-400">0</div>
+                    </div>
+                </div>
+
+                <!-- Recent Events Feed (6 cols) -->
+                <div class="col-span-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Recent Events</h3>
+                    <div id="events-feed" class="space-y-2 overflow-y-auto" style="max-height: 400px;">
+                        <div class="text-center text-gray-500 text-sm py-8">
+                            No events yet. Waiting for activity...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Activity Graph (6 cols) -->
+                <div class="col-span-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Activity (Events/Minute)</h3>
+                    <canvas id="activity-chart" style="height: 300px;"></canvas>
+                </div>
+
+                <!-- Spleen Summary (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">Spleen Summary</h3>
+                            <p class="text-xs text-gray-400">Global anomaly triage and issue posture</p>
+                        </div>
+                        <span class="text-xs text-gray-500">Auto-updated</span>
+                    </div>
+                    <div class="grid grid-cols-5 gap-4 text-sm">
+                        <div class="bg-gray-700/40 rounded-lg p-4">
+                            <div class="text-xs text-gray-400 mb-1">Unresolved Anomalies</div>
+                            <div id="spleen-unresolved" class="text-2xl font-bold text-yellow-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/40 rounded-lg p-4">
+                            <div class="text-xs text-gray-400 mb-1">High Severity</div>
+                            <div id="spleen-high" class="text-2xl font-bold text-red-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/40 rounded-lg p-4">
+                            <div class="text-xs text-gray-400 mb-1">Resolved</div>
+                            <div id="spleen-resolved" class="text-2xl font-bold text-green-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/40 rounded-lg p-4">
+                            <div class="text-xs text-gray-400 mb-1">Open Issues</div>
+                            <div id="spleen-open-issues" class="text-2xl font-bold text-blue-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/40 rounded-lg p-4">
+                            <div class="text-xs text-gray-400 mb-1">Last Scan</div>
+                            <div id="spleen-last-scan" class="text-sm font-mono text-gray-200">—</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Issues Overview (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">IMMUNOS Issues (Todo System)</h3>
+                            <p class="text-xs text-gray-400">Live view of open items and priorities</p>
+                        </div>
+                        <div class="flex gap-3 text-xs text-gray-400">
+                            <span>Active: <span id="issues-active" class="text-blue-400 font-mono">0</span></span>
+                            <span>Overdue: <span id="issues-overdue" class="text-red-400 font-mono">0</span></span>
+                            <span>Due Today: <span id="issues-due-today" class="text-yellow-400 font-mono">0</span></span>
+                            <span>Due This Week: <span id="issues-due-week" class="text-green-400 font-mono">0</span></span>
+                        </div>
+                    </div>
+                    <div id="issues-list" class="grid grid-cols-2 gap-4">
+                        <div class="text-center text-gray-500 text-sm py-6 col-span-2">
+                            Loading issues...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Chat (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">Quick Chat</h3>
+                            <p class="text-xs text-gray-400">Fast access to the orchestrator without switching tabs</p>
+                        </div>
+                        <span class="text-xs text-gray-400">Uses active orchestrator</span>
+                    </div>
+                    <div id="quick-chat-feed" class="space-y-3 max-h-48 overflow-y-auto mb-4">
+                        <div class="text-center text-gray-500 text-sm py-4">No quick messages yet.</div>
+                    </div>
+                    <div class="flex gap-3">
+                        <input id="quick-chat-input" class="flex-1 bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="Ask IMMUNOS..." />
+                        <button id="quick-chat-send" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium">Send</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- SYSTEM TAB -->
+        <!-- ============================================================ -->
+        <div id="system-tab" class="tab-panel hidden">
+            <div class="mb-10">
+                <h2 class="text-xl font-bold mb-4">Models</h2>
+            <!-- Ollama Server Control -->
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-lg font-bold">Ollama Server</h3>
+                        <p class="text-sm text-gray-400 mt-1">
+                            Status: <span id="ollama-server-status" class="text-green-400">Running</span>
+                            <span id="ollama-server-pid" class="ml-2 font-mono text-xs text-gray-500"></span>
+                        </p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button id="btn-ollama-start" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            Start Server
+                        </button>
+                        <button id="btn-ollama-stop" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            Stop Server
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Models Grid -->
+            <h3 class="text-xl font-bold mb-4">Available Models</h3>
+            <div id="models-container" class="grid grid-cols-3 gap-6">
+                <div class="col-span-3 text-center text-gray-500 text-sm py-8">
+                    Loading models...
+                </div>
+            </div>
+            </div>
+
+            <div class="mt-10">
+                <h2 class="text-xl font-bold mb-4">Tokens & Savings</h2>
+            <div class="grid grid-cols-12 gap-6">
+
+                <!-- Claude Session Monitor (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-xl font-bold mb-4">Claude Session Monitor</h3>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Token Usage</span>
+                            <span id="token-progress-text" class="font-mono">0 / 200,000</span>
+                        </div>
+                        <div class="h-6 bg-gray-700 rounded-full relative overflow-hidden">
+                            <div id="token-progress-bar" class="h-full bg-blue-500 transition-all duration-300" style="width: 0%"></div>
+                            <!-- Threshold markers -->
+                            <div class="absolute top-0 h-full w-0.5 bg-yellow-500" style="left: 75%"></div>
+                            <div class="absolute top-0 h-full w-0.5 bg-red-500" style="left: 90%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400 mt-1">
+                            <span>Warning: 150k</span>
+                            <span>Auto-Switch: 180k</span>
+                        </div>
+                    </div>
+                    <div id="token-alerts"></div>
+                </div>
+
+                <!-- Provider Comparison Cards (6 cols each) -->
+                <div class="col-span-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4 text-blue-400">Claude Usage (24h)</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Tokens:</span>
+                            <span id="claude-tokens" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Requests:</span>
+                            <span id="claude-requests" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Cost:</span>
+                            <span id="claude-cost" class="font-mono text-yellow-400">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Avg Latency:</span>
+                            <span id="claude-latency" class="font-mono">0 ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4 text-green-400">Ollama Usage (24h)</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Tokens:</span>
+                            <span id="ollama-tokens" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Requests:</span>
+                            <span id="ollama-requests" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Cost:</span>
+                            <span id="ollama-cost" class="font-mono text-green-400">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Avg Latency:</span>
+                            <span id="ollama-latency" class="font-mono">0 ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Savings Highlight (12 cols) -->
+                <div class="col-span-12 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-lg p-8 border border-green-700/50">
+                    <div class="text-center">
+                        <div class="text-sm text-gray-400 mb-2">Total Savings (24h)</div>
+                        <div id="total-savings" class="text-5xl font-bold text-green-400">$0.00</div>
+                        <div id="savings-percent" class="text-lg text-gray-400 mt-2">0% reduction in costs</div>
+                    </div>
+                </div>
+
+                <!-- Token Usage Graph (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Token Usage Over Time</h3>
+                    <canvas id="tokens-chart" style="height: 300px;"></canvas>
+                </div>
+
+                <!-- Per-Model Breakdown Table (12 cols) -->
+                <div class="col-span-12 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Per-Model Breakdown</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-left text-sm text-gray-400 border-b border-gray-700">
+                                    <th class="pb-3">Model</th>
+                                    <th class="pb-3">Provider</th>
+                                    <th class="pb-3">Tokens</th>
+                                    <th class="pb-3">Requests</th>
+                                    <th class="pb-3">Cost</th>
+                                    <th class="pb-3">Avg Latency</th>
+                                </tr>
+                            </thead>
+                            <tbody id="model-breakdown-tbody" class="text-sm">
+                                <tr>
+                                    <td colspan="6" class="text-center text-gray-500 py-4">No data available</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- KB TAB -->
+        <!-- ============================================================ -->
+        <div id="kb-tab" class="tab-panel hidden">
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-span-4 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">Knowledge Base</h3>
+                        <span class="text-xs text-gray-400">Docs</span>
+                    </div>
+                    <div id="kb-list" class="space-y-2 text-sm">
+                        <div class="text-center text-gray-500 text-sm py-6">Loading...</div>
+                    </div>
+                </div>
+                <div class="col-span-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 id="kb-title" class="text-lg font-bold">Select a page</h3>
+                        <span class="text-xs text-gray-400">Markdown</span>
+                    </div>
+                    <pre id="kb-content" class="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed max-h-[600px] overflow-y-auto">Choose a KB page to view its contents.</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- THYMUS TAB -->
+        <!-- ============================================================ -->
+        <div id="thymus-tab" class="tab-panel hidden">
+            <div class="grid grid-cols-12 gap-6 mb-8">
+                <div class="col-span-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">Thymus Training Overview</h3>
+                            <p class="text-xs text-gray-400">Patterns and detectors per domain</p>
+                        </div>
+                        <div class="text-xs text-gray-400">
+                            Source: <span class="font-mono">immunos-mcp/.immunos/agents</span>
+                        </div>
+                    </div>
+                    <canvas id="thymus-training-chart" style="height: 320px;"></canvas>
+                </div>
+                <div class="col-span-4 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Thymus Snapshot</h3>
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Trained Domains:</span>
+                            <span id="thymus-trained-count" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Total B Cell Patterns:</span>
+                            <span id="thymus-total-patterns" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Total NK Detectors:</span>
+                            <span id="thymus-total-detectors" class="font-mono">0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Issues Sentinel:</span>
+                            <span class="font-mono text-blue-400">Active</span>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">Issues agent monitors todo entries and surfaces priorities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-12 gap-6 mb-8">
+                <div class="col-span-5 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-lg font-bold mb-4">Thymus Intake</h3>
+                    <p class="text-xs text-gray-400 mb-4">Queue datasets or observations for training review.</p>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <label class="text-gray-400 block mb-2">Domain</label>
+                            <select id="thymus-domain" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                                <option value="hallucination">Hallucination</option>
+                                <option value="network">Network</option>
+                                <option value="research">Research</option>
+                                <option value="code">Code</option>
+                                <option value="emotion">Emotion</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-gray-400 block mb-2">Dataset Path</label>
+                            <input id="thymus-dataset" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="/path/to/data" />
+                        </div>
+                        <div>
+                            <label class="text-gray-400 block mb-2">Sample Count (optional)</label>
+                            <input id="thymus-samples" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="e.g. 500" />
+                        </div>
+                        <div>
+                            <label class="text-gray-400 block mb-2">Notes</label>
+                            <textarea id="thymus-notes" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" rows="3" placeholder="Context, source, or validation notes"></textarea>
+                        </div>
+                        <button id="thymus-submit" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium">Queue Intake</button>
+                    </div>
+                </div>
+                <div class="col-span-7 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">Intake Queue</h3>
+                        <span id="thymus-queue-count" class="text-xs text-gray-400">0 entries</span>
+                    </div>
+                    <div id="thymus-queue" class="space-y-3 text-sm">
+                        <div class="text-center text-gray-500 text-sm py-6">No queued items yet.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold">Queue Controls</h3>
+                    <span id="thymus-queue-status" class="text-xs text-gray-400">idle</span>
+                </div>
+                <div class="flex gap-3">
+                    <button id="thymus-pause" class="px-4 py-2 bg-yellow-600 hover:bg-yellow-500 rounded text-sm font-medium">Pause</button>
+                    <button id="thymus-resume" class="px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-medium">Resume</button>
+                    <button id="thymus-run-next" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium">Run Next</button>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold">Agent Foundry (Bone Marrow)</h3>
+                        <p class="text-xs text-gray-400">Seed new agents from templates and store stubs for later wiring.</p>
+                    </div>
+                    <span class="text-xs text-gray-500">Templates in immunos-mcp</span>
+                </div>
+                <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-4">
+                        <h4 class="text-sm font-semibold text-gray-300 mb-3">Templates</h4>
+                        <div id="foundry-templates" class="space-y-2 text-sm">
+                            <div class="text-center text-gray-500 text-sm py-6">Loading templates...</div>
+                        </div>
+                    </div>
+                    <div class="col-span-8">
+                        <h4 class="text-sm font-semibold text-gray-300 mb-3">Create Agent Stub</h4>
+                        <div class="space-y-3 text-sm">
+                            <div>
+                                <label class="text-gray-400 block mb-2">Template</label>
+                                <select id="foundry-template" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2"></select>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 block mb-2">Agent Name</label>
+                                <input id="foundry-name" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="e.g. code-bcell-alpha" />
+                            </div>
+                            <div>
+                                <label class="text-gray-400 block mb-2">Domain</label>
+                                <input id="foundry-domain" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="hallucination, code, research, network" />
+                            </div>
+                            <div>
+                                <label class="text-gray-400 block mb-2">Notes</label>
+                                <textarea id="foundry-notes" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" rows="3" placeholder="Context or activation notes"></textarea>
+                            </div>
+                            <button id="foundry-create" class="w-full px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium">Create Agent Stub</button>
+                            <div id="foundry-result" class="text-xs text-gray-400"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <h4 class="text-sm font-semibold text-gray-300 mb-3">Recent Stubs</h4>
+                    <div id="foundry-history" class="space-y-2 text-sm">
+                        <div class="text-center text-gray-500 text-sm py-4">No stubs yet.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700 mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold">Agent Training Status</h3>
+                    <span class="text-xs text-gray-400">Updated from domain stats</span>
+                </div>
+                <div id="thymus-domain-cards" class="grid grid-cols-3 gap-4">
+                    <div class="col-span-3 text-center text-gray-500 text-sm py-6">
+                        Loading agent training stats...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Active Training Jobs -->
+            <h3 class="text-xl font-bold mb-4">Active Thymus Jobs</h3>
+            <div id="training-jobs-container" class="space-y-4 mb-8">
+                <div class="text-center text-gray-500 text-sm py-8 bg-gray-800 rounded-lg border border-gray-700">
+                    No active training jobs
+                </div>
+            </div>
+
+            <!-- Training History -->
+            <h3 class="text-xl font-bold mb-4">Training History</h3>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-left text-sm text-gray-400 border-b border-gray-700">
+                                <th class="pb-3">Domain</th>
+                                <th class="pb-3">Dataset</th>
+                                <th class="pb-3">Detectors</th>
+                                <th class="pb-3">Accuracy</th>
+                                <th class="pb-3">Duration</th>
+                                <th class="pb-3">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="training-history-tbody" class="text-sm">
+                            <tr>
+                                <td colspan="6" class="text-center text-gray-500 py-4">No training history</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DOMAINS TAB -->
+        <!-- ============================================================ -->
+        <div id="domains-tab" class="tab-panel hidden">
+            <!-- Domain selector buttons -->
+            <div class="flex gap-3 mb-6">
+                <button class="domain-btn active" data-domain="emotion">Emotion</button>
+                <button class="domain-btn" data-domain="hallucination">Hallucination</button>
+                <button class="domain-btn" data-domain="network">Network</button>
+                <button class="domain-btn" data-domain="code">Code</button>
+                <button class="domain-btn" data-domain="research">Research</button>
+            </div>
+
+            <!-- Domain content (dynamically loaded) -->
+            <div id="domain-content">
+                <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <h3 class="text-xl font-bold mb-4" id="domain-title">Emotion Recognition</h3>
+
+                    <!-- Domain Stats -->
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm text-gray-400 mb-1">B Cell Patterns</div>
+                            <div id="domain-detections" class="text-2xl font-bold text-blue-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm text-gray-400 mb-1">NK Detectors</div>
+                            <div id="domain-confidence" class="text-2xl font-bold text-green-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm text-gray-400 mb-1">NK Self Patterns</div>
+                            <div id="domain-detectors" class="text-2xl font-bold text-purple-400">0</div>
+                        </div>
+                        <div class="bg-gray-700/50 rounded-lg p-4">
+                            <div class="text-sm text-gray-400 mb-1">Last Trained</div>
+                            <div id="domain-last-detection" class="text-sm font-mono text-gray-300">Never</div>
+                        </div>
+                    </div>
+
+                    <!-- Domain Info -->
+                    <div class="bg-gray-700/50 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Domain Information</h4>
+                        <p id="domain-description" class="text-sm text-gray-300">
+                            Select a domain to view detailed information and statistics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ORCHESTRATOR MAP TAB -->
+        <!-- ============================================================ -->
+        <div id="orchestrator-tab" class="tab-panel hidden">
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-span-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">Agent Network Map</h3>
+                            <p class="text-xs text-gray-400">Live routing, self vs non-self tagging, and agent responses</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="toggle-agent-labels" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded">Toggle Labels</button>
+                            <button id="reset-agent-map" class="px-3 py-1 text-xs bg-gray-700 hover:bg-gray-600 rounded">Reset</button>
+                            <button id="simulate-detection" class="px-3 py-1 text-xs bg-blue-600 hover:bg-blue-500 rounded">Simulate</button>
+                        </div>
+                    </div>
+                    <canvas id="orchestrator-canvas" class="w-full" style="height: 420px;"></canvas>
+                    <div class="flex flex-wrap gap-3 mt-4 text-xs text-gray-400">
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-green-400 inline-block"></span> Self</div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span> Non-Self</div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red-400 inline-block"></span> Danger</div>
+                        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-orange-400 inline-block"></span> Uncertain</div>
+                    </div>
+                </div>
+
+                <div class="col-span-4 space-y-6">
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">Last Detection</h3>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Domain:</span>
+                                <span id="last-detection-domain" class="font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Result:</span>
+                                <span id="last-detection-result" class="font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Confidence:</span>
+                                <span id="last-detection-confidence" class="font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Danger Signal:</span>
+                                <span id="last-detection-danger" class="font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Matched Detectors:</span>
+                                <span id="last-detection-detectors" class="font-mono">—</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Timestamp:</span>
+                                <span id="last-detection-time" class="font-mono">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">Routing Snapshot</h3>
+                        <div class="space-y-2 text-sm text-gray-300">
+                            <div>Hallucination → B Cell + NK + SimpleText</div>
+                            <div>Network → Enhanced NK (KDD features)</div>
+                            <div>Research → B Cell + NK + SciFact</div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">Configured in <code class="text-gray-400">agent_routes.json</code></p>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">Agent Roles</h3>
+                        <div class="space-y-2 text-sm text-gray-300">
+                            <div><span class="text-gray-400">Orchestrator:</span> routes tasks across domains</div>
+                            <div><span class="text-gray-400">Dendritic:</span> preprocesses inputs + context</div>
+                            <div><span class="text-gray-400">B Cell:</span> pattern memory + recognition</div>
+                            <div><span class="text-gray-400">NK Cell:</span> negative selection + anomaly scan</div>
+                            <div><span class="text-gray-400">Memory:</span> recall of confirmed patterns</div>
+                            <div><span class="text-gray-400">T Cell:</span> response modulation</div>
+                            <div><span class="text-gray-400">Issues Sentinel:</span> surfaces todo priorities</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- CHAT TAB -->
+        <!-- ============================================================ -->
+        <div id="chat-tab" class="tab-panel">
+            <div class="grid grid-cols-12 gap-6">
+                <div class="col-span-8 bg-gray-800 rounded-lg p-6 border border-gray-700 flex flex-col" style="min-height: 560px;">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h3 class="text-lg font-bold">IMMUNOS Orchestrator Chat</h3>
+                            <p class="text-xs text-gray-400">Central chat with orchestration + domain routing</p>
+                        </div>
+                        <div class="text-xs text-gray-400">
+                            Active: <span id="orchestrator-active" class="font-mono text-blue-400">unknown</span>
+                        </div>
+                    </div>
+                    <div id="orchestrator-fallback" class="hidden mb-4 rounded-lg border border-yellow-700/60 bg-yellow-900/30 px-4 py-2 text-xs text-yellow-200">
+                        Orchestrator fallback active. Using offline backend because online credentials are missing.
+                    </div>
+                    <div id="chat-ollama-offline" class="hidden mb-4 rounded-lg border border-red-700/60 bg-red-900/30 px-4 py-2 text-xs text-red-200">
+                        Ollama is offline. Start it to enable local chat responses.
+                        <button id="chat-ollama-offline-start" class="ml-3 px-2 py-1 bg-red-600 hover:bg-red-500 rounded text-xs font-medium">Start Ollama</button>
+                    </div>
+
+                    <div id="chat-messages" class="flex-1 overflow-y-auto space-y-4 pr-2">
+                        <div class="text-center text-gray-500 text-sm py-6">No messages yet.</div>
+                    </div>
+
+                    <div class="mt-4 bg-gray-900/60 rounded-lg p-4 border border-gray-700">
+                        <div class="flex gap-3 mb-3">
+                            <select id="chat-mode" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                                <option value="orchestrator" selected>Orchestrator (default)</option>
+                                <option value="auto">Router (task-based)</option>
+                            </select>
+                            <select id="chat-domain" class="bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm">
+                                <option value="">Domain (optional)</option>
+                                <option value="hallucination">Hallucination</option>
+                                <option value="network">Network</option>
+                                <option value="research">Research</option>
+                                <option value="code">Code</option>
+                                <option value="emotion">Emotion</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-3">
+                            <textarea id="chat-input" rows="3" class="flex-1 bg-gray-800 border border-gray-700 rounded p-3 text-sm" placeholder="Ask IMMUNOS..."></textarea>
+                            <button id="chat-send" class="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-4 space-y-6">
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-bold">Ollama Quick Control</h3>
+                            <span id="chat-ollama-status" class="text-xs text-gray-400">Unknown</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="chat-ollama-start" class="flex-1 px-3 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-medium">Start</button>
+                            <button id="chat-ollama-stop" class="flex-1 px-3 py-2 bg-red-600 hover:bg-red-500 rounded text-sm font-medium">Stop</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">Orchestrator Routing</h3>
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <label class="text-gray-400 block mb-2">Connectivity</label>
+                                <select id="orchestrator-connectivity" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                                    <option value="online">Online (Wi-Fi)</option>
+                                    <option value="offline">Offline (Airgapped)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="text-gray-400 block mb-2">Online Backend</label>
+                                <select id="orchestrator-online-provider" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                                    <option value="claude_code">Claude Code</option>
+                                    <option value="chatgpt">ChatGPT</option>
+                                    <option value="openrouter">OpenRouter</option>
+                                    <option value="local_server">Local Server</option>
+                                </select>
+                                <input id="orchestrator-online-model" class="mt-2 w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="Online model (optional)" />
+                                <input id="orchestrator-online-url" class="mt-2 w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-xs" placeholder="Online base URL (optional)" />
+                            </div>
+                            <div>
+                                <label class="text-gray-400 block mb-2">Offline Backend</label>
+                                <select id="orchestrator-offline-provider" class="w-full bg-gray-800 border border-gray-700 rounded px-3 py-2">
+                                    <option value="ollama">Ollama</option>
+                                    <option value="local_server">Local Server</option>
+                                </select>
+                                <input id="orchestrator-offline-model" class="mt-2 w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-sm" placeholder="Offline model (optional)" />
+                                <input id="orchestrator-offline-url" class="mt-2 w-full bg-gray-800 border border-gray-700 rounded px-3 py-2 text-xs" placeholder="Offline base URL (optional)" />
+                            </div>
+                            <button id="orchestrator-save" class="w-full px-4 py-2 bg-green-600 hover:bg-green-500 rounded text-sm font-medium">Save Orchestrator Settings</button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">If base URL is blank, env vars are used.</p>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                        <h3 class="text-lg font-bold mb-4">Notes</h3>
+                        <p class="text-sm text-gray-300">Orchestrator chooses the active backend based on connectivity. When offline, it defaults to local models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+    <!-- Load JavaScript -->
+    <script src="{{ url_for('static', filename='js/monitor.js') }}"></script>
+</body>
+</html>
+
+```

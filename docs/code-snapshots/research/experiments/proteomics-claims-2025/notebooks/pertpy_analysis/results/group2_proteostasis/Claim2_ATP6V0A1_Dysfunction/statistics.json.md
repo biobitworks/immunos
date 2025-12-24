@@ -1,0 +1,22 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/notebooks/pertpy_analysis/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/statistics.json
+relative: research/experiments/proteomics-claims-2025/notebooks/pertpy_analysis/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/statistics.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "claim": "ATP6V0A1 subunit dysfunction leads to lysosomal alkalinization",
+  "verdict": "\u274c REFUTED",
+  "n_proteins": 5,
+  "n_significant": 0,
+  "n_upregulated": 0,
+  "n_downregulated": 0,
+  "mean_log2fc": -0.029450985903719674,
+  "figures": [
+    "/Users/byron/project_plan/pertpy_analysis/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/volcano_plot.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/heatmap.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group2_proteostasis/Claim2_ATP6V0A1_Dysfunction/bar_plot.png"
+  ]
+}
+```

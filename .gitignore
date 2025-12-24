@@ -30,6 +30,12 @@ env/
 .env
 .python-version
 
+# Local AI context (do not commit)
+.immunos/
+.claude
+claude.private.md
+claude.local.md
+
 # IDEs
 .vscode/
 .idea/
@@ -86,13 +92,6 @@ site/
 # *.sqlite  # COMMENTED OUT - We want to track IMMUNOS databases
 # *.sqlite3  # COMMENTED OUT - We want to track IMMUNOS databases
 
-# IMPORTANT: IMMUNOS databases SHOULD be tracked
-# Exception: DO track these databases:
-!.immunos/**/*.db
-!.immunos/**/*.sqlite
-!.immunos/**/*.sqlite3
-!.immunos/**/*.json
-
 # Logs
 *.log
 logs/
@@ -133,6 +132,7 @@ experiments/results/
 data/generated/
 models/checkpoints/
 immunos-mcp/
+immunos81/
 
 # Claude AI
 .claude_history

@@ -1,0 +1,52 @@
+---
+source: /Users/byron/projects/papers/10.1038_s43587-025-01022-w/metadata.json
+relative: papers/10.1038_s43587-025-01022-w/metadata.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "doi": "10.1038/s43587-025-01022-w",
+  "title": "Anti-uPAR CAR T cells reverse and prevent aging-associated defects in intestinal regeneration and fitness",
+  "authors": [
+    "Onur Eskiocak",
+    "Joseph Gewolb",
+    "Vyom Shah",
+    "James A. Rouse",
+    "Saria Chowdhury",
+    "Erdogan O. Akyildiz",
+    "In\u00e9s Fern\u00e1ndez-Maestre",
+    "Jacob A. Boyer",
+    "Aveline Filliol",
+    "Alexander S. Harris",
+    "Raditya Utama",
+    "Guangran Guo",
+    "Carolina Castro-Hern\u00e1ndez",
+    "Emmanuella Nnuji-John",
+    "Charlie Chung",
+    "Arianna Anderson",
+    "Sara Flowers",
+    "Jill Habel",
+    "Paul B. Romesser",
+    "Ross L. Levine",
+    "Scott W. Lowe",
+    "Michel Sadelain",
+    "Semir Beyaz",
+    "Corina Amor"
+  ],
+  "journal": "Nature Aging",
+  "year": 2025,
+  "url": "https://doi.org/10.1038/s43587-025-01022-w",
+  "downloaded": "2025-12-03",
+  "pdf_path": "paper.pdf",
+  "figures": [
+    "figure_1.png",
+    "figure_2.png",
+    "figure_3.png",
+    "figure_4.png",
+    "figure_5.png"
+  ],
+  "note_path": "note.md",
+  "license": "CC-BY-4.0"
+}
+```

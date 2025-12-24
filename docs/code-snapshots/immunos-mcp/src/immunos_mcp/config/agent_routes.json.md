@@ -1,0 +1,25 @@
+---
+source: /Users/byron/projects/immunos-mcp/src/immunos_mcp/config/agent_routes.json
+relative: immunos-mcp/src/immunos_mcp/config/agent_routes.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "hallucination": {
+    "bcell_state": ".immunos/agents/hallucination_bcell.json",
+    "nk_state": ".immunos/agents/hallucination_nk.json",
+    "embedding": "simple_text"
+  },
+  "network": {
+    "nk_enhanced_state": ".immunos/agents/network_nk_enhanced.json",
+    "embedding": "features"
+  },
+  "research": {
+    "bcell_state": ".immunos/agents/research_bcell.json",
+    "nk_state": ".immunos/agents/research_nk.json",
+    "embedding": "simple_text"
+  }
+}
+
+```

@@ -20,17 +20,17 @@
 **Usage**: Any model (Claude, Ollama) can now:
 ```bash
 # Log a session
-python scripts/immunos_log_session.py \
+python3 scripts/immunos_log_session.py \
   --model "model-name" \
   --summary "Work description" \
   --tags "tag1,tag2" \
   --files "file1.py,file2.md"
 
 # View recent sessions
-python scripts/immunos_log_session.py --recent 10
+python3 scripts/immunos_log_session.py --recent 10
 
 # Search sessions
-python scripts/immunos_log_session.py --search "keyword"
+python3 scripts/immunos_log_session.py --search "keyword"
 ```
 
 ---
@@ -142,7 +142,7 @@ cat .immunos/journal/$(date +%Y-%m-%d).md
 **Shutdown Protocol** (all models):
 ```bash
 # 1. Log session
-python scripts/immunos_log_session.py --model "your-model" --summary "Work done"
+python3 scripts/immunos_log_session.py --model "your-model" --summary "Work done"
 
 # 2. Update journal
 cat >> .immunos/journal/$(date +%Y-%m-%d).md << EOF
@@ -151,7 +151,7 @@ cat >> .immunos/journal/$(date +%Y-%m-%d).md << EOF
 EOF
 
 # 3. Store important decisions
-python scripts/immunos_memory.py store --content "Decision" --priority high
+python3 scripts/immunos_memory.py store --content "Decision" --priority high
 ```
 
 **Handoff Protocol**:
@@ -234,7 +234,7 @@ EOF
 **Claude Sonnet 4.5**:
 ```bash
 # Automatic via IMMUNOS recovery
-python scripts/immunos_recover.py
+python3 scripts/immunos_recover.py
 cat .immunos/recovery/CONTEXT_RECOVERY.md
 ```
 
@@ -253,15 +253,15 @@ ollama run qwen2.5-coder:7b  # or deepseek-r1:14b or qwen2.5:1.5b
 
 All models can:
 - Read any conversation: `ls .immunos/memory/conversations/`
-- Search history: `python scripts/immunos_memory.py search "keyword"`
-- Store decisions: `python scripts/immunos_memory.py store --content "..." --priority high`
+- Search history: `python3 scripts/immunos_memory.py search "keyword"`
+- Store decisions: `python3 scripts/immunos_memory.py store --content "..." --priority high`
 - View snapshots: `ls -lt .immunos/memory/snapshots/ | head -5`
 
 ### Ending a Session
 
 ```bash
 # Log your work
-python scripts/immunos_log_session.py \
+python3 scripts/immunos_log_session.py \
   --model "your-model-name" \
   --summary "Brief description of what you did" \
   --tags "project,topic" \
@@ -327,7 +327,7 @@ git push origin main
 ### Weekly
 ```bash
 # Review conversation logs
-python scripts/immunos_log_session.py --recent 50
+python3 scripts/immunos_log_session.py --recent 50
 
 # Clean up old handoff files
 rm .immunos/model-contexts/handoff-*.md
@@ -387,4 +387,4 @@ cat ~/projects/.immunos/model-contexts/README.md | grep -A 30 "Model Startup Pro
 **Snapshot**: snap_2025-12-17_090248
 **Session**: claude-20251217-090224
 
-**Next Session**: Any model can run `python scripts/immunos_recover.py` and immediately have full context!
+**Next Session**: Any model can run `python3 scripts/immunos_recover.py` and immediately have full context!

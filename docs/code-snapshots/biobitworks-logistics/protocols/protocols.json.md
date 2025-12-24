@@ -1,0 +1,61 @@
+---
+source: /Users/byron/projects/biobitworks-logistics/protocols/protocols.json
+relative: biobitworks-logistics/protocols/protocols.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "protocol_library": "Biobitworks Community Lab Protocols",
+  "google_drive": {
+    "folder_url": "",
+    "sync_status": "pending",
+    "last_sync": null
+  },
+  "categories": {
+    "core": "Essential protocols used across all labs",
+    "shared": "Protocols shared between specific labs",
+    "lab_specific": "Protocols unique to individual labs"
+  },
+  "protocols": [
+    {
+      "id": "protocol-001",
+      "title": "Making Agar Plates (LB, YPD, Minimal Media)",
+      "category": "core",
+      "status": "complete",
+      "source": "local",
+      "google_drive_url": "",
+      "local_path": "protocols/core/agar-plates.md",
+      "applicable_labs": ["all"],
+      "version": "1.0",
+      "last_updated": "2025-12-10",
+      "tags": ["agar", "media", "plates", "yeast", "ecoli", "transformation"]
+    },
+    {
+      "id": "protocol-002",
+      "title": "Safety and Biosafety Level 1 Procedures",
+      "category": "core",
+      "status": "to_download",
+      "source": "google_drive",
+      "google_drive_url": "",
+      "local_path": null,
+      "applicable_labs": ["all"],
+      "version": "1.0",
+      "last_updated": null
+    },
+    {
+      "id": "protocol-003",
+      "title": "Equipment Maintenance and Calibration",
+      "category": "core",
+      "status": "to_download",
+      "source": "google_drive",
+      "google_drive_url": "",
+      "local_path": null,
+      "applicable_labs": ["all"],
+      "version": "1.0",
+      "last_updated": null
+    }
+  ]
+}
+
+```

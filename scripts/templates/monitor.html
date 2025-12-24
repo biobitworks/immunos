@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMMUNOS Real-Time Monitor</title>
 
-    <!-- Tailwind CSS (CDN) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS (local) -->
+    <script src="{{ url_for('static', filename='vendor/tailwindcss/tailwindcss.min.js') }}"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -23,11 +23,11 @@
         }
     </script>
 
-    <!-- Socket.IO (CDN) -->
-    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <!-- Socket.IO (local) -->
+    <script src="{{ url_for('static', filename='vendor/socket.io/socket.io.min.js') }}"></script>
 
-    <!-- Chart.js (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+    <!-- Chart.js (local) -->
+    <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
 
     <style>
         /* Custom scrollbar for dark theme */
@@ -71,10 +71,21 @@
 
         /* Domain buttons */
         .domain-btn {
-            @apply px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm font-medium transition-colors;
+            padding: 0.5rem 1rem;
+            background-color: #374151;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+        .domain-btn:hover {
+            background-color: #4b5563;
         }
         .domain-btn.active {
-            @apply bg-blue-600 hover:bg-blue-700;
+            background-color: #2563eb;
+        }
+        .domain-btn.active:hover {
+            background-color: #1d4ed8;
         }
 
         /* Pulse animation for connection status */

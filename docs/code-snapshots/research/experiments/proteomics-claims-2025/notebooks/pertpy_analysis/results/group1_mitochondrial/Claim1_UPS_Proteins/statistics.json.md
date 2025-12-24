@@ -1,0 +1,22 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/notebooks/pertpy_analysis/results/group1_mitochondrial/Claim1_UPS_Proteins/statistics.json
+relative: research/experiments/proteomics-claims-2025/notebooks/pertpy_analysis/results/group1_mitochondrial/Claim1_UPS_Proteins/statistics.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "claim": "No significant UPS protein alterations across tau-positive versus tau-negative neurons",
+  "verdict": "\u274c REFUTED",
+  "n_proteins": 6,
+  "n_significant": 0,
+  "n_upregulated": 0,
+  "n_downregulated": 0,
+  "mean_log2fc": 0.017228083588510596,
+  "figures": [
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim1_UPS_Proteins/volcano_plot.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim1_UPS_Proteins/heatmap.png",
+    "/Users/byron/project_plan/pertpy_analysis/results/group1_mitochondrial/Claim1_UPS_Proteins/bar_plot.png"
+  ]
+}
+```

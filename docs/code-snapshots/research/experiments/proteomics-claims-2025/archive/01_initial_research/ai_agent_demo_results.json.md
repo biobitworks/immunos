@@ -1,0 +1,102 @@
+---
+source: /Users/byron/projects/research/experiments/proteomics-claims-2025/archive/01_initial_research/ai_agent_demo_results.json
+relative: research/experiments/proteomics-claims-2025/archive/01_initial_research/ai_agent_demo_results.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "timestamp": "2025-09-27T07:36:58.498807",
+  "dataset": "data/pool_processed_v2.h5ad",
+  "metadata": {
+    "n_cells": 150,
+    "n_proteins": 5853,
+    "tau_positive": 85,
+    "tau_negative": 65
+  },
+  "results": {
+    "G1_S1_UPS_proteins": {
+      "statement_id": "G1_S1_UPS_proteins",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "n_tested": 5853,
+        "n_significant": 2115,
+        "percentage": 36.14
+      },
+      "explanation": "Found 2,115/5,853 (36.14%) significantly altered proteins",
+      "code_used": "differential_expression",
+      "confidence": 0.85
+    },
+    "G1_S2_SQSTM1_upregulation": {
+      "statement_id": "G1_S2_SQSTM1_upregulation",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "protein": "SQSTM1",
+        "log2FC": 3.413,
+        "fold_change": 10.7,
+        "p_value": 1.76e-08
+      },
+      "explanation": "SQSTM1 shows 3.413 log2FC (10.7x upregulation)",
+      "code_used": "protein_upregulation",
+      "confidence": 0.92
+    },
+    "G1_S5_SQSTM1_VDAC1_global": {
+      "statement_id": "G1_S5_SQSTM1_VDAC1_global",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "correlation": 0.0536,
+        "p_value": 0.603,
+        "n_samples": 150
+      },
+      "explanation": "Global SQSTM1-VDAC1 correlation: r=0.0536, p=0.603",
+      "code_used": "correlation",
+      "confidence": 0.75
+    },
+    "G1_S6_sliding_window": {
+      "statement_id": "G1_S6_sliding_window",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "early_correlation": -0.417,
+        "late_correlation": 0.478,
+        "trend_correlation": 0.851,
+        "trend_p_value": 6.98e-08
+      },
+      "explanation": "Sliding window shows negative early (-0.417) to positive late (0.478) correlation shift",
+      "code_used": "sliding_window",
+      "confidence": 0.88
+    },
+    "G2_S1_covariate_DE": {
+      "statement_id": "G2_S1_covariate_DE",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "n_tested": 5853,
+        "n_significant": 2115,
+        "percentage": 36.14
+      },
+      "explanation": "Found 2,115/5,853 (36.14%) significantly altered proteins",
+      "code_used": "differential_expression",
+      "confidence": 0.85
+    },
+    "G2_S2_SQSTM1_top": {
+      "statement_id": "G2_S2_SQSTM1_top",
+      "evaluation": "SUPPORTED",
+      "evidence": {
+        "protein": "SQSTM1",
+        "log2FC": 3.413,
+        "fold_change": 10.7,
+        "p_value": 1.76e-08
+      },
+      "explanation": "SQSTM1 shows 3.413 log2FC (10.7x upregulation)",
+      "code_used": "protein_upregulation",
+      "confidence": 0.92
+    }
+  },
+  "summary": {
+    "total_statements": 6,
+    "supported": 6,
+    "refuted": 0,
+    "unsure": 0,
+    "success_rate": 1.0
+  }
+}
+```

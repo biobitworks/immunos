@@ -80,6 +80,9 @@ Latest snapshot: snap_2025-12-17_090248
 # View your personal information and preferences
 cat ~/projects/claude.md | head -100
 
+# Optional: load private context (local-only)
+test -f ~/projects/claude.private.md && cat ~/projects/claude.private.md
+
 # View today's journal (if it exists)
 cat .immunos/journal/$(date +%Y-%m-%d).md
 ```

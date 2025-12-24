@@ -1,0 +1,35 @@
+---
+source: /Users/byron/projects/data/cellage/metadata_signatures.json
+relative: data/cellage/metadata_signatures.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "dataset": "Cell Senescence Gene Expression Signatures",
+  "source": "Human Ageing Genomic Resources (HAGR)",
+  "source_url": "https://genomics.senescence.info/cells/",
+  "download_url": "https://genomics.senescence.info/cells/cellSignatures.zip",
+  "downloaded_date": "2025-12-02T18:00:00",
+  "license": "Creative Commons Attribution 3.0 Unported License",
+  "description": "Gene expression signatures of cellular senescence from meta-analysis",
+  "files": [
+    {
+      "name": "cellSignatures.zip",
+      "path": "data/cellage/cellSignatures.zip",
+      "size_bytes": 28549,
+      "format": "zip"
+    },
+    {
+      "name": "signatures1.csv",
+      "path": "data/cellage/signatures1.csv",
+      "size_bytes": 98304,
+      "format": "csv",
+      "delimiter": "semicolon",
+      "records": 1259,
+      "columns": ["gene_symbol", "gene_name", "entrez_id", "total", "ovevrexp", "underexp", "p_value"]
+    }
+  ]
+}
+
+```

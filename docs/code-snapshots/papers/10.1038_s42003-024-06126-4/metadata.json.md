@@ -1,0 +1,37 @@
+---
+source: /Users/byron/projects/papers/10.1038_s42003-024-06126-4/metadata.json
+relative: papers/10.1038_s42003-024-06126-4/metadata.json
+generated_at: 2025-12-23 10:28
+---
+
+```json
+{
+  "doi": "10.1038/s42003-024-06126-4",
+  "title": "Label-free Brillouin endo-microscopy for the quantitative 3D imaging of sub-micrometre biology",
+  "authors": [
+    "Salvatore La Cavera",
+    "Veeren M. Chauhan",
+    "William Hardiman",
+    "Mengting Yao",
+    "Rafael Fuentes-Dom\u00ednguez",
+    "Kerry Setchfield",
+    "Sidahmed A. Abayzeed",
+    "Fernando P\u00e9rez-Cota",
+    "Richard J. Smith",
+    "Matt Clark"
+  ],
+  "journal": "Communications Biology",
+  "year": 2024,
+  "url": "https://www.nature.com/articles/s42003-024-06126-4",
+  "downloaded": "2025-12-09",
+  "pdf_path": "paper.pdf",
+  "figures": [],
+  "note_path": "note.md",
+  "abstract": "Abstract\n            \n              This report presents an optical fibre-based endo-microscopic imaging tool that simultaneously measures the topographic profile and 3D viscoelastic properties of biological specimens through the phenomenon of time-resolved Brillouin scattering. This uses the intrinsic viscoelasticity of the specimen as a contrast mechanism without fluorescent tags or photoacoustic contrast mechanisms. We demonstrate 2 \u03bcm lateral resolution and 320 nm axial resolution for the 3D imaging of biological cells and\n              Caenorhabditis elegans\n              larvae. This has enabled the first ever 3D stiffness imaging and characterisation of the\n              C. elegans\n              larva cuticle in-situ. A label-free, subcellular resolution, and endoscopic compatible technique that reveals structural biologically-relevant material properties of tissue could pave the way toward in-vivo elasticity-based diagnostics down to the single cell level.",
+  "volume": "7",
+  "issue": "1",
+  "pages": "451",
+  "citation_key": "lacaveraLabelfreeBrillouinEndomicroscopy2024",
+  "issn": "2399-3642"
+}
+```

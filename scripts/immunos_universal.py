@@ -683,7 +683,7 @@ class ImmuneSystem:
     - Research Paper Verification
     """
 
-    def __init__(self, db_path: Optional[str] = None):
+    def __init__(self, db_path: Optional[str] = None, socketio=None):
         self.domains: Dict[str, Dict] = {}
         self.algorithms = {
             'negative_selection': NegativeSelection(),
@@ -693,6 +693,7 @@ class ImmuneSystem:
         self.immune_network = ImmuneNetwork()
         self.memory = ImmuneMemory(db_path=db_path)
         self.dendritic_cells: List[DendriticCell] = []
+        self.socketio = socketio  # WebSocket support for real-time updates
 
     def add_domain(self, name: str, config,
                    feature_extractor: FeatureExtractor):
@@ -704,14 +705,24 @@ class ImmuneSystem:
         }
 
     def train(self, domain: str, self_samples: List[Any],
-              algorithms: Optional[List[str]] = None) -> int:
-        """Train detectors for a domain"""
+              algorithms: Optional[List[str]] = None,
+              dataset_name: str = "unknown") -> int:
+        """Train detectors for a domain with real-time WebSocket updates"""
         if domain not in self.domains:
             raise ValueError(f"Unknown domain: {domain}")
 
         domain_data = self.domains[domain]
         config = domain_data['config']
         extractor = domain_data['feature_extractor']
+
+        # Emit training started event
+        if self.socketio:
+            self.socketio.emit('training_started', {
+                'domain': domain,
+                'dataset': dataset_name,
+                'num_samples': len(self_samples),
+                'timestamp': datetime.now().isoformat()
+            })
 
         # Extract features from self samples
         features = np.array([extractor.extract(s) for s in self_samples])
@@ -720,12 +731,35 @@ class ImmuneSystem:
         algo_names = algorithms or config.algorithms
 
         all_detectors = []
-        for algo_name in algo_names:
+        for i, algo_name in enumerate(algo_names):
             if algo_name in self.algorithms:
                 detectors = self.algorithms[algo_name].train(features, config)
                 all_detectors.extend(detectors)
 
+                # Emit progress update
+                if self.socketio:
+                    self.socketio.emit('training_progress', {
+                        'domain': domain,
+                        'current': (i + 1) * len(self_samples),
+                        'total': len(algo_names) * len(self_samples),
+                        'percent': ((i + 1) / len(algo_names)) * 100,
+                        'detectors_created': len(all_detectors),
+                        'current_accuracy': 0.0,  # Can be computed if validation data available
+                        'timestamp': datetime.now().isoformat()
+                    })
+
         domain_data['detectors'] = all_detectors
+
+        # Emit training complete event
+        if self.socketio:
+            self.socketio.emit('training_complete', {
+                'domain': domain,
+                'detectors_created': len(all_detectors),
+                'final_accuracy': 0.0,  # Can be computed if validation data available
+                'duration_seconds': 0,  # Can track if needed
+                'timestamp': datetime.now().isoformat()
+            })
+
         return len(all_detectors)
 
     def detect(self, domain: str, sample: Any,
@@ -778,13 +812,26 @@ class ImmuneSystem:
         if is_non_self:
             self.memory.store(domain, features, result.value, max_confidence)
 
-        return DetectionResponse(
+        response = DetectionResponse(
             result=result,
             confidence=max_confidence,
             matched_detectors=matched,
             danger_signal=danger_signal,
             context=context
         )
+
+        # Emit detection event via WebSocket
+        if self.socketio:
+            self.socketio.emit('detection_event', {
+                'domain': domain,
+                'result': result.value,
+                'confidence': max_confidence,
+                'matched_detectors': matched,
+                'danger_signal': danger_signal,
+                'timestamp': datetime.now().isoformat()
+            })
+
+        return response
 
     def get_statistics(self, domain: str) -> Dict[str, Any]:
         """Get statistics for a domain"""
