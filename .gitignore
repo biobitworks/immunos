@@ -133,6 +133,7 @@ data/generated/
 models/checkpoints/
 immunos-mcp/
 immunos81/
+.obsidian/workspace.json
 
 # Claude AI
 .claude_history
