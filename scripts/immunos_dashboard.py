@@ -18,7 +18,7 @@ import sqlite3
 import argparse
 from pathlib import Path
 from datetime import datetime
-from flask import Flask, render_template, g
+from flask import Flask, render_template, g, send_from_directory
 from flask_socketio import SocketIO, emit
 from flask_cors import CORS
 
@@ -159,6 +159,12 @@ def log_activity(event_type: str, event_action: str, title: str,
 
 # Main Routes
 # ===========
+
+@app.route('/favicon.ico')
+def favicon():
+    """Serve favicon"""
+    return send_from_directory(app.static_folder, 'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route('/')
 def index():
