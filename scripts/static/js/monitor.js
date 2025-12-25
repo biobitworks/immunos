@@ -756,5 +756,101 @@ async function checkRecoveryStatus() {
     }
 }
 
+// KB Page Functions
+async function openKBPage() {
+    const modal = document.getElementById('kbModal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        await loadKBIndex();
+    }
+}
+
+function closeKBPage() {
+    const modal = document.getElementById('kbModal');
+    if (modal) modal.classList.add('hidden');
+}
+
+async function loadKBIndex() {
+    const list = document.getElementById('kbIndexList');
+    if (!list) return;
+
+    try {
+        const response = await fetch('/api/kb/index');
+        const data = await response.json();
+
+        if (data.pages && data.pages.length > 0) {
+            list.innerHTML = data.pages.map(page => `
+                <button onclick="viewKBDocument('${page.name}')"
+                        class="w-full text-left px-3 py-2 rounded hover:bg-gray-700 text-sm text-gray-300 hover:text-white transition">
+                    ${getKBIcon(page.name)} ${page.title || page.name}
+                </button>
+            `).join('');
+        } else {
+            list.innerHTML = '<p class="text-gray-500 text-sm">No KB documents found</p>';
+        }
+    } catch (error) {
+        list.innerHTML = '<p class="text-red-400 text-sm">Error loading KB index</p>';
+    }
+}
+
+async function viewKBDocument(name) {
+    const viewer = document.getElementById('kbViewer');
+    if (!viewer) return;
+
+    viewer.innerHTML = '<div class="text-gray-400 text-center py-8">Loading...</div>';
+
+    try {
+        const response = await fetch(`/api/kb/page?name=${encodeURIComponent(name)}`);
+        const data = await response.json();
+
+        if (data.content) {
+            // Simple markdown rendering
+            const html = renderMarkdown(data.content);
+            viewer.innerHTML = `
+                <div class="prose prose-invert max-w-none">
+                    <h1 class="text-2xl font-bold text-blue-400 mb-4">${data.title || name}</h1>
+                    <div class="text-gray-300 text-sm leading-relaxed">${html}</div>
+                </div>
+            `;
+        } else {
+            viewer.innerHTML = '<div class="text-red-400 text-center py-8">Document not found</div>';
+        }
+    } catch (error) {
+        viewer.innerHTML = '<div class="text-red-400 text-center py-8">Error loading document</div>';
+    }
+}
+
+function renderMarkdown(text) {
+    // Simple markdown to HTML conversion
+    return text
+        // Headers
+        .replace(/^### (.*$)/gm, '<h3 class="text-lg font-semibold text-blue-300 mt-4 mb-2">$1</h3>')
+        .replace(/^## (.*$)/gm, '<h2 class="text-xl font-semibold text-blue-300 mt-6 mb-3">$1</h2>')
+        .replace(/^# (.*$)/gm, '<h1 class="text-2xl font-bold text-blue-400 mt-6 mb-4">$1</h1>')
+        // Bold and italic
+        .replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        // Code blocks
+        .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre class="bg-gray-900 p-3 rounded text-xs overflow-x-auto my-3"><code>$2</code></pre>')
+        .replace(/`([^`]+)`/g, '<code class="bg-gray-900 px-1 rounded text-xs">$1</code>')
+        // Links
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-400 hover:underline" target="_blank">$1</a>')
+        // Tables (basic)
+        .replace(/\|(.+)\|/g, (match) => {
+            const cells = match.split('|').filter(c => c.trim());
+            if (cells.every(c => /^[-:]+$/.test(c.trim()))) return ''; // Skip separator row
+            const cellHtml = cells.map(c => `<td class="border border-gray-600 px-2 py-1">${c.trim()}</td>`).join('');
+            return `<tr>${cellHtml}</tr>`;
+        })
+        // Horizontal rules
+        .replace(/^---$/gm, '<hr class="border-gray-600 my-4">')
+        // Lists
+        .replace(/^- (.*$)/gm, '<li class="ml-4">$1</li>')
+        .replace(/^(\d+)\. (.*$)/gm, '<li class="ml-4">$2</li>')
+        // Paragraphs
+        .replace(/\n\n/g, '</p><p class="my-2">')
+        .replace(/\n/g, '<br>');
+}
+
 // Periodic status checks
 setInterval(checkOllamaStatus, 30000); // Check every 30 seconds
