@@ -1,7 +1,26 @@
+---
+title: "immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing"
+author:
+  - name: Byron
+    affiliation: BiobitWorks
+    email: byron@biobitworks.com
+date: 2025-12-24
+version: v1.0
+type: preprint
+status: draft
+license: CC-BY-4.0
+repository: https://github.com/biobitworks/immunos
+---
+
 # immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing
 
+**Author**: Byron (BiobitWorks)
+**Date**: December 2025
+**Version**: 1.0
+
 ## Abstract
-We report initial replication progress for immunOS, focusing on a SciFact baseline verification pipeline and an AIS-inspired negative selection framing. The SciFact replication currently provides dev-set metrics for sentence selection, sentence labeling, and abstract-level labeling, while the NegSl-AIS replication remains in progress due to data availability constraints. This draft captures the current experimental status, logs, and reproducibility hooks suitable for a bioRxiv/Zenodo preprint update.
+
+We present immunOS, a local-first research verification system inspired by artificial immune system (AIS) principles, specifically the negative selection algorithm for anomaly detection. This preprint documents replication progress across two tracks: (1) a SciFact baseline verification pipeline achieving sentence selection F1 of 0.477 and abstract-level label F1 of 0.510 on open-retrieval dev sets, and (2) alignment with the NegSl-AIS multimodal classification framework. The SciFact baseline provides a foundation for claim verification using retrieval-augmented pipelines, while the negative selection framing motivates detector training against trusted references for downstream hallucination and inconsistency detection. We report oracle and open-retrieval metrics, document reproducibility artifacts, and identify dataset access constraints (MAHNOB-HCI) as blocking dependencies for full NegSl-AIS replication. All code and logs are available locally with paths documented for reproducibility.
 
 ## Introduction
 immunOS is a local-first research verification system framed as an artificial immune system (AIS) that detects non-self (hallucinations, inconsistencies, and unsupported claims) against a learned self model. The negative selection paradigm motivates detector training against trusted references and subsequent anomaly detection across new inputs. This preprint documents replication progress for the SciFact baseline and the ongoing NegSl-AIS alignment work.
@@ -116,24 +135,21 @@ Sources: `/Users/byron/projects/docs/reference/publications-log.md`. BibTeX: `/U
 - Li, Z. et al. (2025). Generating detectors from anomaly samples via negative selection for network intrusion detection. DOI: https://doi.org/10.1038/s41598-025-20516-6. PubMed: https://pubmed.ncbi.nlm.nih.gov/41107399/. PMCID: TBD. Summary: Generates detectors from anomaly samples to improve coverage in low-dimensional subspaces, outperforming baselines on NSL-KDD and UNSW-NB15.
 - Karakose, M. et al. (2013). Reinforcement learning based artificial immune classifier. DOI: https://doi.org/10.1155/2013/581846. PubMed: https://pubmed.ncbi.nlm.nih.gov/23935424/. PMCID: TBD. Summary: Introduces a reinforcement learning AIS classifier and compares performance against negative selection and other AIS variants.
 
-## Zenodo Metadata (Stub)
-- Title: immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing (TBD)
-- Upload type: Publication (preprint) (TBD)
-- Publication date: YYYY-MM-DD (TBD)
-- Description: Short abstract and replication summary (TBD; reuse Abstract section)
-- Authors: Name; Affiliation; ORCID (TBD)
-- Contributors: Name; Role; Affiliation; ORCID (TBD)
-- Version: v1 (TBD)
-- DOI/related identifiers: Zenodo DOI (TBD); related identifiers (bioRxiv, GitHub, datasets) (TBD)
-- Keywords: immunOS; SciFact; claim verification; artificial immune system; negative selection (TBD)
-- License: TBD (e.g., CC-BY-4.0)
-- Grants/Funding: TBD (none if not applicable)
-- Journal/Conference: bioRxiv (TBD if applicable)
-- Subjects/Communities: TBD (Zenodo community IDs)
-- Language: en
-- Notes: Any additional notes for reviewers/readers (TBD)
-- Access rights: open/restricted/embargoed (TBD)
-- Embargo info: embargo date and reason if applicable (TBD)
+## Zenodo Metadata
+
+| Field | Value |
+|-------|-------|
+| Title | immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing |
+| Upload type | Publication (preprint) |
+| Publication date | 2025-12-24 |
+| Authors | Byron (BiobitWorks) |
+| Version | v1.0 |
+| Keywords | immunOS, SciFact, claim verification, artificial immune system, negative selection, research integrity |
+| License | CC-BY-4.0 |
+| Language | en |
+| Access rights | Open |
+| Related identifiers | GitHub: https://github.com/biobitworks/immunos |
+| DOI | Pending Zenodo reservation |
 
 ## Ethics/Compliance
 - Work is designed for local execution with a local LLM and an air-gapped intent to avoid external data exposure.
