@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMMUNOS Knowledge Base</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+        .prose h1 { @apply text-2xl font-bold text-blue-400 mt-6 mb-4; }
+        .prose h2 { @apply text-xl font-semibold text-blue-300 mt-6 mb-3; }
+        .prose h3 { @apply text-lg font-semibold text-blue-300 mt-4 mb-2; }
+        .prose p { @apply my-3; }
+        .prose ul { @apply list-disc ml-6 my-3; }
+        .prose ol { @apply list-decimal ml-6 my-3; }
+        .prose li { @apply my-1; }
+        .prose code { @apply bg-gray-900 px-1 rounded text-sm text-green-400; }
+        .prose pre { @apply bg-gray-900 p-4 rounded overflow-x-auto my-4; }
+        .prose pre code { @apply bg-transparent p-0; }
+        .prose a { @apply text-blue-400 hover:underline; }
+        .prose table { @apply w-full border-collapse my-4; }
+        .prose th { @apply border border-gray-600 bg-gray-800 px-3 py-2 text-left; }
+        .prose td { @apply border border-gray-600 px-3 py-2; }
+        .prose hr { @apply border-gray-600 my-6; }
+        .prose blockquote { @apply border-l-4 border-gray-600 pl-4 italic text-gray-400; }
+        .sidebar-link.active { @apply bg-blue-600 text-white; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-72 bg-gray-800 border-r border-gray-700 flex flex-col">
+            <!-- Header -->
+            <div class="p-4 border-b border-gray-700">
+                <a href="/monitor" class="text-blue-400 hover:text-blue-300 text-sm">&larr; Back to Dashboard</a>
+                <h1 class="text-xl font-bold text-blue-400 mt-2">Knowledge Base</h1>
+                <p class="text-gray-400 text-xs mt-1">IMMUNOS Documentation</p>
+            </div>
+
+            <!-- Search -->
+            <div class="p-4 border-b border-gray-700">
+                <input type="text" id="kbSearch" placeholder="Search..."
+                       class="w-full bg-gray-700 text-gray-100 rounded px-3 py-2 text-sm border border-gray-600 focus:border-blue-500 focus:outline-none"
+                       oninput="filterKBList(this.value)">
+            </div>
+
+            <!-- Document List -->
+            <div id="kbSidebar" class="flex-1 overflow-y-auto p-2">
+                <div class="text-gray-400 text-sm p-2">Loading...</div>
+            </div>
+
+            <!-- Actions -->
+            <div class="p-4 border-t border-gray-700">
+                <button onclick="showCreatePage()" class="w-full px-3 py-2 bg-green-600 hover:bg-green-700 rounded text-sm font-medium transition">
+                    + New Page
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-4 border-t border-gray-700 text-xs text-gray-500">
+                <div id="kbStats">0 documents</div>
+                <div class="mt-1 text-gray-600">System + User pages</div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="flex-1 flex flex-col">
+            <!-- Breadcrumb -->
+            <div class="bg-gray-800 border-b border-gray-700 px-6 py-3">
+                <div id="breadcrumb" class="text-sm text-gray-400">
+                    <span class="text-blue-400">KB</span> / <span id="currentDoc">Select a document</span>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div id="kbContent" class="flex-1 overflow-y-auto p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center py-16">
+                        <h2 class="text-2xl font-bold text-gray-400 mb-4">Welcome to the Knowledge Base</h2>
+                        <p class="text-gray-500">Select a document from the sidebar to get started.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create/Edit Modal -->
+    <div id="editorModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+        <div class="bg-gray-800 rounded-lg w-full max-w-4xl max-h-[90vh] m-4 flex flex-col">
+            <div class="flex items-center justify-between p-4 border-b border-gray-700">
+                <h2 id="editorTitle" class="text-xl font-bold text-blue-400">Create New Page</h2>
+                <button onclick="closeEditor()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
+            </div>
+            <div class="flex-1 p-4 overflow-y-auto">
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-1">Page Name (lowercase, use dashes)</label>
+                    <input type="text" id="pageName" placeholder="my-project-notes"
+                           class="w-full bg-gray-700 text-gray-100 rounded px-3 py-2 border border-gray-600 focus:border-blue-500 focus:outline-none">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-1">Title</label>
+                    <input type="text" id="pageTitle" placeholder="My Project Notes"
+                           class="w-full bg-gray-700 text-gray-100 rounded px-3 py-2 border border-gray-600 focus:border-blue-500 focus:outline-none">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-1">Content (Markdown)</label>
+                    <textarea id="pageContent" rows="15" placeholder="# My Page\n\nWrite your content here using Markdown..."
+                              class="w-full bg-gray-700 text-gray-100 rounded px-3 py-2 border border-gray-600 focus:border-blue-500 focus:outline-none font-mono text-sm"></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm text-gray-400 mb-1">Or upload a file</label>
+                    <input type="file" id="pageFile" accept=".md,.txt"
+                           class="w-full bg-gray-700 text-gray-100 rounded px-3 py-2 border border-gray-600"
+                           onchange="handleFileUpload(event)">
+                </div>
+            </div>
+            <div class="flex justify-end gap-2 p-4 border-t border-gray-700">
+                <button onclick="closeEditor()" class="px-4 py-2 bg-gray-600 hover:bg-gray-500 rounded text-sm">Cancel</button>
+                <button onclick="savePage()" class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded text-sm font-medium">Save Page</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let allPages = [];
+        let editingPage = null;
+
+        // Load KB index on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadKBSidebar();
+
+            // Check for page parameter in URL
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get('page');
+            if (page) {
+                loadDocument(page);
+            }
+        });
+
+        async function loadKBSidebar() {
+            const sidebar = document.getElementById('kbSidebar');
+            const stats = document.getElementById('kbStats');
+
+            try {
+                const response = await fetch('/api/kb/index');
+                const data = await response.json();
+
+                if (data.pages && data.pages.length > 0) {
+                    allPages = data.pages;
+                    renderSidebar(allPages);
+                    stats.textContent = `${allPages.length} documents`;
+                } else {
+                    sidebar.innerHTML = '<div class="text-gray-500 text-sm p-2">No documents found</div>';
+                }
+            } catch (error) {
+                sidebar.innerHTML = '<div class="text-red-400 text-sm p-2">Error loading documents</div>';
+            }
+        }
+
+        function renderSidebar(pages) {
+            const sidebar = document.getElementById('kbSidebar');
+
+            // Group by category (based on filename prefix)
+            const grouped = {};
+            pages.forEach(page => {
+                const parts = page.name.split('-');
+                const category = parts[0] === 'immunos' ? 'IMMUNOS' :
+                                 parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+                if (!grouped[category]) grouped[category] = [];
+                grouped[category].push(page);
+            });
+
+            let html = '';
+            Object.entries(grouped).sort().forEach(([category, items]) => {
+                html += `
+                    <div class="mb-4">
+                        <div class="text-xs font-semibold text-gray-500 uppercase px-2 mb-1">${category}</div>
+                        ${items.map(page => `
+                            <button onclick="loadDocument('${page.name}')"
+                                    id="link-${page.name}"
+                                    class="sidebar-link w-full text-left px-3 py-2 rounded text-sm text-gray-300 hover:bg-gray-700 hover:text-white transition flex items-center gap-2">
+                                <span class="text-base">${getIcon(page.name)}</span>
+                                <span class="truncate">${page.title || page.name}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            });
+
+            sidebar.innerHTML = html;
+        }
+
+        function filterKBList(query) {
+            const filtered = allPages.filter(page =>
+                page.name.toLowerCase().includes(query.toLowerCase()) ||
+                (page.title && page.title.toLowerCase().includes(query.toLowerCase()))
+            );
+            renderSidebar(filtered);
+        }
+
+        async function loadDocument(name) {
+            const content = document.getElementById('kbContent');
+            const currentDoc = document.getElementById('currentDoc');
+
+            // Update URL without reload
+            history.pushState({}, '', `/kb?page=${name}`);
+
+            // Update active state in sidebar
+            document.querySelectorAll('.sidebar-link').forEach(el => el.classList.remove('active'));
+            const activeLink = document.getElementById(`link-${name}`);
+            if (activeLink) activeLink.classList.add('active');
+
+            content.innerHTML = '<div class="text-gray-400 text-center py-16">Loading...</div>';
+
+            try {
+                const response = await fetch(`/api/kb/page?name=${encodeURIComponent(name)}`);
+                const data = await response.json();
+
+                if (data.content) {
+                    currentDoc.textContent = data.title || name;
+
+                    // Parse markdown with marked.js
+                    const html = marked.parse(data.content);
+
+                    content.innerHTML = `
+                        <div class="max-w-4xl mx-auto">
+                            <article class="prose">
+                                ${html}
+                            </article>
+                            <div class="mt-8 pt-4 border-t border-gray-700 text-xs text-gray-500">
+                                <span>File: docs/kb/${name}.md</span>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    content.innerHTML = '<div class="text-red-400 text-center py-16">Document not found</div>';
+                }
+            } catch (error) {
+                content.innerHTML = '<div class="text-red-400 text-center py-16">Error loading document</div>';
+            }
+        }
+
+        function getIcon(filename) {
+            if (filename.includes('model')) return '🧠';
+            if (filename.includes('architecture')) return '🏗️';
+            if (filename.includes('packaging')) return '📦';
+            if (filename.includes('dashboard')) return '📊';
+            if (filename.includes('publication')) return '📚';
+            if (filename.includes('index')) return '📑';
+            if (filename.includes('reference')) return '📖';
+            if (filename.includes('handoff')) return '🤝';
+            return '📄';
+        }
+
+        // Editor functions
+        function showCreatePage() {
+            editingPage = null;
+            document.getElementById('editorTitle').textContent = 'Create New Page';
+            document.getElementById('pageName').value = '';
+            document.getElementById('pageName').disabled = false;
+            document.getElementById('pageTitle').value = '';
+            document.getElementById('pageContent').value = '';
+            document.getElementById('editorModal').classList.remove('hidden');
+        }
+
+        function showEditPage(name) {
+            editingPage = name;
+            document.getElementById('editorTitle').textContent = 'Edit Page';
+            document.getElementById('pageName').value = name;
+            document.getElementById('pageName').disabled = true;
+
+            fetch(`/api/kb/page?name=${encodeURIComponent(name)}`)
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('pageTitle').value = data.title || '';
+                    document.getElementById('pageContent').value = data.content || '';
+                    document.getElementById('editorModal').classList.remove('hidden');
+                });
+        }
+
+        function closeEditor() {
+            document.getElementById('editorModal').classList.add('hidden');
+            editingPage = null;
+        }
+
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('pageContent').value = e.target.result;
+                // Auto-fill name from filename
+                if (!document.getElementById('pageName').value) {
+                    const name = file.name.replace(/\.(md|txt)$/, '').toLowerCase().replace(/\s+/g, '-');
+                    document.getElementById('pageName').value = name;
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        async function savePage() {
+            const name = document.getElementById('pageName').value.trim().toLowerCase().replace(/\s+/g, '-');
+            const title = document.getElementById('pageTitle').value.trim();
+            const content = document.getElementById('pageContent').value;
+
+            if (!name) {
+                alert('Please enter a page name');
+                return;
+            }
+
+            if (!content) {
+                alert('Please enter page content');
+                return;
+            }
+
+            // Prepend title as H1 if provided and not already in content
+            let finalContent = content;
+            if (title && !content.startsWith('# ')) {
+                finalContent = `# ${title}\n\n${content}`;
+            }
+
+            try {
+                const response = await fetch('/api/kb/page', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, content: finalContent })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    closeEditor();
+                    await loadKBSidebar();
+                    loadDocument(name);
+                } else {
+                    alert('Error saving page: ' + (data.error || 'Unknown error'));
+                }
+            } catch (error) {
+                alert('Error saving page: ' + error.message);
+            }
+        }
+
+        // Add edit button to document view
+        const originalLoadDocument = loadDocument;
+        loadDocument = async function(name) {
+            await originalLoadDocument(name);
+
+            // Add edit button for user pages
+            const content = document.getElementById('kbContent');
+            const footer = content.querySelector('.border-t');
+            if (footer) {
+                const editBtn = document.createElement('button');
+                editBtn.className = 'ml-4 text-blue-400 hover:text-blue-300';
+                editBtn.textContent = 'Edit';
+                editBtn.onclick = () => showEditPage(name);
+                footer.appendChild(editBtn);
+            }
+        };
+    </script>
+</body>
+</html>

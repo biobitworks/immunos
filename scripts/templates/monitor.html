@@ -22,16 +22,16 @@
                 <p class="text-gray-400 text-sm mt-1">Local Orchestrator Interface</p>
             </div>
             <div class="flex items-center gap-3">
-                <button id="kbBtn" onclick="openKBPage()" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm font-medium transition">
+                <a href="/kb" target="_blank" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm font-medium transition inline-block">
                     Knowledge Base
-                </button>
+                </a>
                 <button id="recoveryBtn" onclick="runRecovery()" class="px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-sm font-medium transition">
                     Recover Context
                 </button>
                 <button id="snapshotBtn" onclick="createSnapshot()" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 rounded text-sm font-medium transition">
                     Create Snapshot
                 </button>
-                <span id="versionTag" class="text-xs text-gray-500 font-mono">v20251225-kb7</span>
+                <span id="versionTag" class="text-xs text-gray-500 font-mono">v20251225-kb8</span>
             </div>
         </div>
 
@@ -159,33 +159,10 @@
         </div>
     </div>
 
-    <!-- KB Modal -->
-    <div id="kbModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
-        <div class="bg-gray-800 rounded-lg w-full max-w-4xl max-h-[80vh] m-4 flex flex-col">
-            <div class="flex items-center justify-between p-4 border-b border-gray-700">
-                <h2 class="text-xl font-bold text-blue-400">Knowledge Base</h2>
-                <button onclick="closeKBPage()" class="text-gray-400 hover:text-white text-2xl">&times;</button>
-            </div>
-            <div class="flex flex-1 overflow-hidden">
-                <!-- KB Index -->
-                <div id="kbIndex" class="w-64 border-r border-gray-700 p-4 overflow-y-auto">
-                    <h3 class="text-sm font-medium text-gray-300 mb-3">Documents</h3>
-                    <div id="kbIndexList" class="space-y-1">
-                        <!-- Loaded dynamically -->
-                    </div>
-                </div>
-                <!-- KB Content -->
-                <div id="kbViewer" class="flex-1 p-4 overflow-y-auto">
-                    <div class="text-gray-400 text-center py-8">Select a document from the left</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="/static/js/monitor.js?v=20251225-kb7"></script>
+    <script src="/static/js/monitor.js?v=20251225-kb8"></script>
     <script>
         // Version check - updates tag with JS load time
-        document.getElementById('versionTag').textContent = 'v20251225-kb7 | JS:' + new Date().toLocaleTimeString();
+        document.getElementById('versionTag').textContent = 'v20251225-kb8 | JS:' + new Date().toLocaleTimeString();
     </script>
 </body>
 </html>

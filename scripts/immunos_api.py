@@ -1615,46 +1615,54 @@ def register_routes(app, socketio):
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
-    @app.route('/api/kb/index')
-    def api_kb_index():
-        """GET - List available KB pages."""
-        try:
-            base_path = Path(current_app.config['BASE_PATH'])
-            kb_path = base_path / "docs" / "kb"
-            if not kb_path.exists():
-                return jsonify({'pages': []})
-
-            pages = []
-            for path in sorted(kb_path.glob("*.md")):
-                name = path.stem
-                title = name.replace("-", " ").title()
-                try:
-                    with path.open(encoding="utf-8") as handle:
-                        for line in handle:
-                            line = line.strip()
-                            if line.startswith("# "):
-                                title = line[2:].strip()
-                                break
-                except OSError:
-                    pass
-                pages.append({"name": name, "title": title})
-
-            return jsonify({'pages': pages})
-        except Exception as e:
-            return jsonify({'error': str(e)}), 500
-
-    @app.route('/api/kb/page')
+    @app.route('/api/kb/page', methods=['GET', 'POST'])
     def api_kb_page():
-        """GET - Return KB page content."""
-        try:
-            base_path = Path(current_app.config['BASE_PATH'])
-            kb_path = base_path / "docs" / "kb"
-            name = request.args.get("name", "")
-            if not name.isidentifier() and "-" in name:
-                name = name.replace("/", "").replace("..", "")
+        """GET - Return KB page content. POST - Save KB page."""
+        base_path = Path(current_app.config['BASE_PATH'])
+        kb_system = base_path / "docs" / "kb"
+        kb_user = base_path / ".immunos" / "kb"
 
-            path = (kb_path / f"{name}.md").resolve()
-            if kb_path not in path.parents or not path.exists():
+        if request.method == 'POST':
+            # Save user KB page
+            try:
+                data = request.get_json() or {}
+                name = data.get("name", "").strip().lower().replace(" ", "-")
+                content = data.get("content", "")
+
+                if not name or not name.replace("-", "").replace("_", "").isalnum():
+                    return jsonify({'error': 'Invalid page name'}), 400
+
+                if not content:
+                    return jsonify({'error': 'Content required'}), 400
+
+                # Save to user KB directory
+                kb_user.mkdir(parents=True, exist_ok=True)
+                user_path = kb_user / f"{name}.md"
+                user_path.write_text(content, encoding="utf-8")
+
+                return jsonify({'success': True, 'name': name, 'path': str(user_path)})
+            except Exception as e:
+                return jsonify({'error': str(e)}), 500
+
+        # GET - Return page content
+        try:
+            name = request.args.get("name", "")
+            if not name:
+                return jsonify({'error': 'Name required'}), 400
+
+            name = name.replace("/", "").replace("..", "")
+
+            # Search order: user KB, then system KB
+            user_path = kb_user / f"{name}.md"
+            system_path = kb_system / f"{name}.md"
+
+            if user_path.exists():
+                path = user_path
+                source = "user"
+            elif system_path.exists():
+                path = system_path
+                source = "system"
+            else:
                 return jsonify({'error': 'KB page not found'}), 404
 
             content = path.read_text(encoding="utf-8")
@@ -1664,7 +1672,58 @@ def register_routes(app, socketio):
                     title = line[2:].strip()
                     break
 
-            return jsonify({'name': name, 'title': title, 'content': content})
+            return jsonify({'name': name, 'title': title, 'content': content, 'source': source})
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/kb/index')
+    def api_kb_index():
+        """GET - List available KB pages from system and user directories."""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            kb_system = base_path / "docs" / "kb"
+            kb_user = base_path / ".immunos" / "kb"
+
+            pages = []
+            seen = set()
+
+            # User pages first (higher priority)
+            if kb_user.exists():
+                for path in sorted(kb_user.glob("*.md")):
+                    name = path.stem
+                    if name in seen:
+                        continue
+                    seen.add(name)
+                    title = name.replace("-", " ").title()
+                    try:
+                        with path.open(encoding="utf-8") as handle:
+                            for line in handle:
+                                if line.startswith("# "):
+                                    title = line[2:].strip()
+                                    break
+                    except OSError:
+                        pass
+                    pages.append({"name": name, "title": title, "source": "user"})
+
+            # System pages
+            if kb_system.exists():
+                for path in sorted(kb_system.glob("*.md")):
+                    name = path.stem
+                    if name in seen:
+                        continue
+                    seen.add(name)
+                    title = name.replace("-", " ").title()
+                    try:
+                        with path.open(encoding="utf-8") as handle:
+                            for line in handle:
+                                if line.startswith("# "):
+                                    title = line[2:].strip()
+                                    break
+                    except OSError:
+                        pass
+                    pages.append({"name": name, "title": title, "source": "system"})
+
+            return jsonify({'pages': pages})
         except Exception as e:
             return jsonify({'error': str(e)}), 500
 
@@ -1877,6 +1936,15 @@ def register_routes(app, socketio):
             })
         except Exception as e:
             return jsonify({'error': str(e)}), 500
+
+    @app.route('/kb')
+    def kb_wiki():
+        """Knowledge Base wiki page"""
+        from flask import render_template
+        try:
+            return render_template('kb.html')
+        except:
+            return "KB page not found", 404
 
     @app.route('/monitor')
     def monitor_dashboard():

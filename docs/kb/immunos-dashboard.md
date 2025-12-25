@@ -35,6 +35,19 @@ The IMMUNOS Dashboard is a web-based interface for managing the IMMUNOS AI-assis
 
 ---
 
+### Knowledge Base (Blue)
+**Purpose**: Browse and read all IMMUNOS documentation.
+
+**What it does**:
+1. Opens modal with sidebar document index
+2. Lists all KB pages from `docs/kb/*.md`
+3. Click document to view with markdown rendering
+4. Read-only viewer for documentation reference
+
+**Note**: This is separate from the T Cell Memory panel. The KB button is for reading documentation. The T Cell Memory panel is for selecting files to include in chat context.
+
+---
+
 ### Create Snapshot (Teal)
 **Purpose**: Save current session state for future recovery.
 
