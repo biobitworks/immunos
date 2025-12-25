@@ -16,9 +16,20 @@
 <body class="bg-gray-900 text-gray-100">
     <div class="container mx-auto max-w-6xl p-6">
         <!-- Header -->
-        <div class="mb-6">
-            <h1 class="text-3xl font-bold text-blue-400">IMMUNOS Dashboard</h1>
-            <p class="text-gray-400 text-sm mt-1">Minimal Chat Interface</p>
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h1 class="text-3xl font-bold text-blue-400">IMMUNOS Dashboard</h1>
+                <p class="text-gray-400 text-sm mt-1">Local Orchestrator Interface</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="recoveryBtn" onclick="runRecovery()" class="px-3 py-1 bg-purple-600 hover:bg-purple-700 rounded text-sm font-medium transition">
+                    Recover Context
+                </button>
+                <button id="snapshotBtn" onclick="createSnapshot()" class="px-3 py-1 bg-teal-600 hover:bg-teal-700 rounded text-sm font-medium transition">
+                    Create Snapshot
+                </button>
+                <span id="versionTag" class="text-xs text-gray-500 font-mono">v20251225-kb5</span>
+            </div>
         </div>
 
         <!-- Status Bar -->
@@ -43,14 +54,77 @@
             </div>
         </div>
 
-        <!-- Model Selection -->
+        <!-- Models Panel -->
         <div class="bg-gray-800 rounded-lg p-4 mb-6">
-            <label for="modelSelect" class="block text-sm font-medium text-gray-300 mb-2">
-                Select Model
-            </label>
-            <select id="modelSelect" class="w-full bg-gray-700 text-gray-100 rounded px-4 py-2 border border-gray-600 focus:border-blue-500 focus:outline-none">
-                <option value="">Loading models...</option>
-            </select>
+            <h2 class="text-lg font-semibold text-blue-400 mb-3">Models</h2>
+            <div id="modelsList" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <!-- Models loaded dynamically with checkboxes -->
+            </div>
+            <div class="mt-3 flex items-center gap-2">
+                <label class="text-sm text-gray-400">Active:</label>
+                <select id="modelSelect" class="bg-gray-700 text-gray-100 rounded px-3 py-1 border border-gray-600 focus:border-blue-500 focus:outline-none text-sm">
+                    <option value="">Select model for chat...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- T Cell Memory (Context) Panel -->
+        <div id="memoryPanel" class="bg-gray-800 rounded-lg p-4 mb-6">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-3">
+                    <span class="text-xl">🧬</span>
+                    <h2 class="text-lg font-semibold text-blue-400">T Cell Memory</h2>
+                    <span id="kbCount" class="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">0 files</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="kbEnabled" class="w-4 h-4" checked>
+                        <span class="text-sm text-gray-400">Include in context</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Project Save/Load -->
+            <div class="flex items-center gap-2 mb-4 pb-4 border-b border-gray-700">
+                <select id="projectSelect" class="bg-gray-700 text-gray-100 rounded px-3 py-1 text-sm border border-gray-600">
+                    <option value="">Select Project...</option>
+                </select>
+                <button onclick="saveProject()" class="px-3 py-1 bg-green-600 hover:bg-green-700 rounded text-sm">Save</button>
+                <button onclick="loadProject()" class="px-3 py-1 bg-blue-600 hover:bg-blue-700 rounded text-sm">Load</button>
+                <button onclick="newProject()" class="px-3 py-1 bg-gray-700 hover:bg-gray-600 rounded text-sm">New</button>
+            </div>
+
+            <!-- File Upload -->
+            <div class="mb-4">
+                <div id="uploadArea" class="border-2 border-dashed border-gray-600 rounded-lg p-4 text-center hover:border-blue-500 transition cursor-pointer"
+                     onclick="document.getElementById('fileInput').click()"
+                     ondrop="handleFileDrop(event)" ondragover="event.preventDefault()">
+                    <input type="file" id="fileInput" class="hidden" multiple accept=".md,.txt,.json,.py,.js" onchange="handleFileUpload(event)">
+                    <p class="text-gray-400 text-sm">Drop files here or click to upload</p>
+                    <p class="text-gray-500 text-xs mt-1">.md, .txt, .json, .py, .js</p>
+                </div>
+            </div>
+
+            <!-- Uploaded Files -->
+            <div id="uploadedFiles" class="mb-4 hidden">
+                <h3 class="text-sm font-medium text-gray-300 mb-2">Uploaded Files</h3>
+                <div id="uploadedFilesList" class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                </div>
+            </div>
+
+            <!-- KB Files -->
+            <div>
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="text-sm font-medium text-gray-300">Knowledge Base</h3>
+                    <div class="flex gap-2">
+                        <button onclick="selectAllKB()" class="text-xs text-blue-400 hover:text-blue-300">Select All</button>
+                        <button onclick="clearAllKB()" class="text-xs text-gray-400 hover:text-gray-300">Clear</button>
+                    </div>
+                </div>
+                <div id="kbContent" class="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    <!-- KB items loaded dynamically -->
+                </div>
+            </div>
         </div>
 
         <!-- Chat Area -->
@@ -82,6 +156,10 @@
         </div>
     </div>
 
-    <script src="/static/js/monitor.js"></script>
+    <script src="/static/js/monitor.js?v=20251225-kb5"></script>
+    <script>
+        // Version check - updates tag with JS load time
+        document.getElementById('versionTag').textContent = 'v20251225-kb5 | JS:' + new Date().toLocaleTimeString();
+    </script>
 </body>
 </html>

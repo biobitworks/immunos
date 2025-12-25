@@ -1780,6 +1780,104 @@ def register_routes(app, socketio):
     # DASHBOARD ROUTES
     # ========================================================================
 
+    # ========================================================================
+    # RECOVERY & SNAPSHOT API
+    # ========================================================================
+
+    @app.route('/api/recovery/run', methods=['POST'])
+    def api_recovery_run():
+        """POST - Run context recovery and return summary"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            result = subprocess.run(
+                [sys.executable, str(base_path / 'scripts' / 'immunos_recover.py')],
+                cwd=str(base_path),
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+
+            # Read the recovery file
+            recovery_path = base_path / '.immunos' / 'recovery' / 'CONTEXT_RECOVERY.md'
+            content = ""
+            if recovery_path.exists():
+                content = recovery_path.read_text(encoding='utf-8')
+
+            return jsonify({
+                'success': result.returncode == 0,
+                'output': result.stdout,
+                'error': result.stderr if result.returncode != 0 else None,
+                'recovery_content': content,
+                'timestamp': datetime.now().isoformat()
+            })
+        except subprocess.TimeoutExpired:
+            return jsonify({'error': 'Recovery script timed out'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/snapshot/create', methods=['POST'])
+    def api_snapshot_create():
+        """POST - Create a new snapshot"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            data = request.get_json() or {}
+            summary = data.get('summary', 'Dashboard snapshot')
+            trigger = data.get('trigger', 'manual')
+            # Valid triggers: manual, auto_threshold, reset_imminent, task_complete
+            if trigger not in ['manual', 'auto_threshold', 'reset_imminent', 'task_complete']:
+                trigger = 'manual'
+
+            result = subprocess.run(
+                [sys.executable, str(base_path / 'scripts' / 'immunos_snapshot.py'),
+                 'create', '--trigger', trigger, '--summary', summary],
+                cwd=str(base_path),
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+
+            return jsonify({
+                'success': result.returncode == 0,
+                'output': result.stdout,
+                'error': result.stderr if result.returncode != 0 else None,
+                'timestamp': datetime.now().isoformat()
+            })
+        except subprocess.TimeoutExpired:
+            return jsonify({'error': 'Snapshot creation timed out'}), 500
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    @app.route('/api/recovery/status')
+    def api_recovery_status():
+        """GET - Get current recovery file status"""
+        try:
+            base_path = Path(current_app.config['BASE_PATH'])
+            recovery_path = base_path / '.immunos' / 'recovery' / 'CONTEXT_RECOVERY.md'
+            snapshot_dir = base_path / '.immunos' / 'memory' / 'snapshots'
+
+            # Get latest snapshot
+            latest_snapshot = None
+            if snapshot_dir.exists():
+                snapshots = sorted(snapshot_dir.glob('snap_*.json'), key=lambda p: p.stat().st_mtime, reverse=True)
+                if snapshots:
+                    latest_snapshot = {
+                        'name': snapshots[0].stem,
+                        'modified': datetime.fromtimestamp(snapshots[0].stat().st_mtime).isoformat()
+                    }
+
+            recovery_exists = recovery_path.exists()
+            recovery_modified = None
+            if recovery_exists:
+                recovery_modified = datetime.fromtimestamp(recovery_path.stat().st_mtime).isoformat()
+
+            return jsonify({
+                'recovery_exists': recovery_exists,
+                'recovery_modified': recovery_modified,
+                'latest_snapshot': latest_snapshot
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
     @app.route('/monitor')
     def monitor_dashboard():
         """Real-time monitoring dashboard"""
