@@ -58,7 +58,7 @@ This directory contains detailed documentation for all datasets used in research
 *(To be added)*
 
 ### Benchmark Datasets
-*(To be added)*
+- [[mahnob-hci|MAHNOB-HCI]] (multimodal emotion recognition; access request required)
 
 ---
 

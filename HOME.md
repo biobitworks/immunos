@@ -116,6 +116,19 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 ---
 
+## 📄 immunOS Preprint
+
+**Focus**: Main immunOS preprint manuscript
+
+[[immunos-preprint/README|→ **Open immunOS Preprint**]]
+
+**Status**: Draft
+- Template structure with standard sections
+- Bibliography and supplementary materials support
+- Pandoc-ready for PDF/DOCX compilation
+
+---
+
 ## 📄 immunOS Replication Preprint
 
 **Focus**: SciFact baseline replication + NegSl-AIS framing (preprint)

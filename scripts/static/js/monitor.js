@@ -82,6 +82,7 @@ const Monitor = {
     init() {
         console.log('[IMMUNOS] Initializing monitor...');
         this.setupTabs();
+        this.switchTab('chat');  // Initialize default tab
         this.setupDomainButtons();
         this.setupEventListeners();
         this.setupCharts();
@@ -1221,6 +1222,7 @@ const Monitor = {
     },
 
     switchTab(tabName) {
+        console.log('[IMMUNOS] Switching to tab:', tabName);
         this.currentTab = tabName;
 
         // Update button states
@@ -1238,8 +1240,12 @@ const Monitor = {
         });
 
         const activePanel = document.getElementById(`${tabName}-tab`);
+        console.log('[IMMUNOS] Looking for panel:', `${tabName}-tab`, 'Found:', !!activePanel);
         if (activePanel) {
             activePanel.classList.remove('hidden');
+            console.log('[IMMUNOS] Panel visible, classes:', activePanel.className);
+        } else {
+            console.error('[IMMUNOS] Panel not found!');
         }
 
         if (tabName === 'orchestrator') {
