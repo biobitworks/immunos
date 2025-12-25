@@ -81,12 +81,14 @@ const Monitor = {
 
     init() {
         console.log('[IMMUNOS] Initializing monitor...');
+        // Track which charts have been initialized (lazy loading)
+        this.chartsInitialized = { activity: false, tokens: false, thymus: false };
         this.setupTabs();
         this.switchTab('chat');  // Initialize default tab
         this.setupDomainButtons();
         this.setupEventListeners();
-        this.setupCharts();
-        this.setupThymusChart();
+        // NOTE: Charts are initialized lazily when their tabs become visible
+        // This prevents "Canvas exceeds max size" errors on hidden elements
         this.setupThymusIntake();
         this.setupFoundry();
         this.setupAgentGraph();
@@ -945,112 +947,96 @@ const Monitor = {
     // CHARTS
     // ========================================================================
 
-    setupCharts() {
-        // Activity chart (events per minute)
+    // Activity chart - for Overview tab (lazy loaded)
+    setupActivityChart() {
         const activityCtx = document.getElementById('activity-chart');
-        if (activityCtx) {
-            this.activityChart = new Chart(activityCtx.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: this.timeLabels,
-                    datasets: [{
-                        label: 'Events/min',
-                        data: this.eventHistory,
+        if (!activityCtx || this.activityChart) return;
+
+        this.activityChart = new Chart(activityCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: this.timeLabels,
+                datasets: [{
+                    label: 'Events/min',
+                    data: this.eventHistory,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#374151' },
+                        ticks: { color: '#9ca3af' }
+                    },
+                    x: {
+                        grid: { color: '#374151' },
+                        ticks: { color: '#9ca3af' }
+                    }
+                }
+            }
+        });
+    },
+
+    // Tokens chart - for System tab (lazy loaded)
+    setupTokensChart() {
+        const tokensCtx = document.getElementById('tokens-chart');
+        if (!tokensCtx || this.tokensChart) return;
+
+        this.tokensChart = new Chart(tokensCtx.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Claude',
+                        data: [],
                         borderColor: '#3b82f6',
                         backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         tension: 0.4,
                         fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        }
+                    {
+                        label: 'Ollama',
+                        data: [],
+                        borderColor: '#10b981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#9ca3af' }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: '#374151' },
+                        ticks: { color: '#9ca3af' }
+                    },
+                    x: {
+                        grid: { color: '#374151' },
+                        ticks: { color: '#9ca3af' }
                     }
                 }
-            });
-        }
-
-        // Tokens chart
-        const tokensCtx = document.getElementById('tokens-chart');
-        if (tokensCtx) {
-            this.tokensChart = new Chart(tokensCtx.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [
-                        {
-                            label: 'Claude',
-                            data: [],
-                            borderColor: '#3b82f6',
-                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'Ollama',
-                            data: [],
-                            borderColor: '#10b981',
-                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            labels: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        },
-                        x: {
-                            grid: {
-                                color: '#374151'
-                            },
-                            ticks: {
-                                color: '#9ca3af'
-                            }
-                        }
-                    }
-                }
-            });
-        }
+            }
+        });
     },
 
     setupThymusChart() {
@@ -1255,8 +1241,29 @@ const Monitor = {
             this.agentGraphAnimating = false;
         }
 
-        if (tabName === 'thymus' && this.thymusChart) {
-            setTimeout(() => this.thymusChart.resize(), 50);
+        // Lazy initialize charts when their tabs become visible
+        // This prevents "Canvas exceeds max size" errors
+        if (tabName === 'overview' && !this.chartsInitialized.activity) {
+            setTimeout(() => {
+                this.setupActivityChart();
+                this.chartsInitialized.activity = true;
+            }, 100);
+        }
+        if (tabName === 'system' && !this.chartsInitialized.tokens) {
+            setTimeout(() => {
+                this.setupTokensChart();
+                this.chartsInitialized.tokens = true;
+            }, 100);
+        }
+        if (tabName === 'thymus') {
+            if (!this.chartsInitialized.thymus) {
+                setTimeout(() => {
+                    this.setupThymusChart();
+                    this.chartsInitialized.thymus = true;
+                }, 100);
+            } else if (this.thymusChart) {
+                setTimeout(() => this.thymusChart.resize(), 50);
+            }
         }
     },
 
