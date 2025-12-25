@@ -12,6 +12,7 @@ The IMMUNOS Knowledge Base contains documentation for the AI-assisted research s
 
 | Document | Description |
 |----------|-------------|
+| [immunos-architecture](immunos-architecture.md) | Installation structure, system vs user separation |
 | [immunos-dashboard](immunos-dashboard.md) | Dashboard buttons, panels, and features |
 | [immunos-models](immunos-models.md) | Model architecture and cell type mappings |
 | [immunos-publications](immunos-publications.md) | Publications, datasets, and references (IEEE format) |
