@@ -438,10 +438,22 @@ function loadProjectList() {
     if (!select) return;
 
     select.innerHTML = '<option value="">Select Project...</option>';
-    Object.keys(projects).forEach(name => {
+
+    // Sort by last used (most recent first)
+    const sortedProjects = Object.entries(projects).sort((a, b) => {
+        const aTime = a[1].lastUsed ? new Date(a[1].lastUsed) : new Date(0);
+        const bTime = b[1].lastUsed ? new Date(b[1].lastUsed) : new Date(0);
+        return bTime - aTime;
+    });
+
+    sortedProjects.forEach(([name, project]) => {
         const opt = document.createElement('option');
         opt.value = name;
-        opt.textContent = name;
+        // Show project name and abbreviated working directory
+        const workDir = project.workingDirectory || '';
+        const shortDir = workDir.length > 30 ? '...' + workDir.slice(-27) : workDir;
+        opt.textContent = shortDir ? `${name} (${shortDir})` : name;
+        opt.title = workDir; // Full path on hover
         select.appendChild(opt);
     });
 }
@@ -449,6 +461,9 @@ function loadProjectList() {
 function saveProject() {
     const name = prompt('Project name:');
     if (!name) return;
+
+    const workingDir = prompt('Working directory (local path or server URL):', '/Users/byron/projects');
+    if (workingDir === null) return; // Cancelled
 
     const selectedModels = Array.from(document.querySelectorAll('.model-checkbox:checked')).map(cb => cb.dataset.model);
     const selectedKB = Array.from(document.querySelectorAll('.kb-checkbox:checked')).map(cb => cb.dataset.name);
@@ -458,13 +473,16 @@ function saveProject() {
         models: selectedModels,
         kb: selectedKB,
         activeModel: activeModel,
-        uploadedFiles: uploadedFiles.map(f => ({ name: f.name, content: f.content }))
+        uploadedFiles: uploadedFiles.map(f => ({ name: f.name, content: f.content })),
+        workingDirectory: workingDir,
+        createdAt: new Date().toISOString(),
+        lastUsed: new Date().toISOString()
     };
 
     localStorage.setItem('immunos_projects', JSON.stringify(projects));
     loadProjectList();
     document.getElementById('projectSelect').value = name;
-    addMessage('assistant', `Project "${name}" saved`, 'System');
+    addMessage('assistant', `Project "${name}" saved\nWorking Directory: ${workingDir}`, 'System');
 }
 
 function loadProject() {
@@ -498,7 +516,14 @@ function loadProject() {
     renderUploadedFiles();
     updateKBCount();
 
-    addMessage('assistant', `Project "${name}" loaded`, 'System');
+    // Update last used
+    projects[name].lastUsed = new Date().toISOString();
+    localStorage.setItem('immunos_projects', JSON.stringify(projects));
+
+    // Show project info
+    const workDir = project.workingDirectory || 'Not set';
+    const lastUsed = project.lastUsed ? new Date(project.lastUsed).toLocaleString() : 'Unknown';
+    addMessage('assistant', `Project "${name}" loaded\nWorking Directory: ${workDir}\nLast Used: ${lastUsed}`, 'System');
 }
 
 function newProject() {
