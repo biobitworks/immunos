@@ -9,13 +9,12 @@ ai_contributors:
     role: Codebase exploration, MCP integration
   - name: Claude Opus 4.5
     role: Documentation, analysis, coordination
+  - name: ChatGPT Codex 5.2
+    role: Code generation, research assistance
 software:
   - name: Claude Code
     provider: Anthropic
     role: AI-assisted development environment
-  - name: ChatGPT Codex
-    provider: OpenAI
-    role: Code generation assistance
   - name: VS Code
     provider: Microsoft
     role: Primary IDE
@@ -36,8 +35,8 @@ repository: https://github.com/biobitworks/immunos
 # immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing
 
 **Author**: Byron (BiobitWorks)
-**AI Contributors**: Cursor Auto Agent, Claude Opus 4.5
-**Software**: Claude Code, ChatGPT Codex, VS Code, Obsidian, Continue
+**AI Contributors**: Cursor Auto Agent, Claude Opus 4.5, ChatGPT Codex 5.2
+**Software**: Claude Code, VS Code, Obsidian, Continue
 **Date**: December 2025
 **Version**: 1.1
 
