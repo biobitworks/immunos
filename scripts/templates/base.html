@@ -48,6 +48,13 @@
             </ul>
 
             <div class="nav-status">
+                <!-- Orchestrator Mode Indicator -->
+                <div class="orchestrator-indicator" id="orchestrator-status" title="Orchestrator Mode">
+                    <span class="orchestrator-icon">🧠</span>
+                    <span class="orchestrator-mode" id="orchestrator-mode">Checking...</span>
+                    <span class="orchestrator-provider" id="orchestrator-provider"></span>
+                </div>
+                <!-- WebSocket Status -->
                 <div class="status-indicator" id="ws-status">
                     <span class="status-dot offline"></span>
                     <span class="status-text">Connecting...</span>

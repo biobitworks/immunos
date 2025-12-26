@@ -26,6 +26,14 @@ class ImmunosApp {
         // Setup event listeners
         this.setupEventListeners();
 
+        // Check orchestrator status
+        this.checkOrchestratorStatus();
+
+        // Setup orchestrator status polling (every 60s)
+        this.orchestratorInterval = setInterval(() => {
+            this.checkOrchestratorStatus();
+        }, 60000);
+
         console.log('✓ IMMUNOS Dashboard initialized');
     }
 
@@ -43,8 +51,11 @@ class ImmunosApp {
 
                 // Subscribe to events
                 this.socket.emit('subscribe', {
-                    events: ['scan_progress', 'scan_completed', 'scan_error', 'activity', 'health_updated']
+                    events: ['scan_progress', 'scan_completed', 'scan_error', 'activity', 'health_updated', 'orchestrator_mode_change']
                 });
+
+                // Check orchestrator status on connect
+                this.checkOrchestratorStatus();
             });
 
             this.socket.on('disconnect', () => {
@@ -76,6 +87,11 @@ class ImmunosApp {
             // Health updates
             this.socket.on('health_updated', (data) => {
                 this.handleHealthUpdate(data);
+            });
+
+            // Orchestrator mode change
+            this.socket.on('orchestrator_mode_change', (data) => {
+                this.handleOrchestratorModeChange(data);
             });
 
         } catch (error) {
@@ -576,6 +592,118 @@ class ImmunosApp {
 
         // Format as date
         return date.toLocaleDateString();
+    }
+
+    /**
+     * Handle orchestrator mode change event (via WebSocket)
+     */
+    handleOrchestratorModeChange(data) {
+        console.log('Orchestrator mode changed:', data);
+
+        // Update display
+        this.updateOrchestratorDisplay(data, null);
+
+        // Show notification
+        const wasOnline = data.previous_connectivity === 'online';
+        const isOnline = data.connectivity === 'online';
+
+        if (wasOnline && !isOnline) {
+            // Switched from online to offline (fallback)
+            this.showToast(
+                '⚠️ Switched to Local Mode',
+                `Cloud backend unavailable. Using local ${data.provider || 'Ollama'}.`,
+                'warning'
+            );
+        } else if (!wasOnline && isOnline) {
+            // Switched from offline to online (restored)
+            this.showToast(
+                '☁️ Cloud Mode Restored',
+                `Connected to ${data.provider || 'cloud'} backend.`,
+                'success'
+            );
+            this.fallbackNotified = false; // Reset fallback notification flag
+        }
+    }
+
+    /**
+     * Check orchestrator status and update display
+     */
+    async checkOrchestratorStatus() {
+        try {
+            const response = await fetch('/api/orchestrator/status');
+            const result = await response.json();
+
+            if (result.active_backend) {
+                this.updateOrchestratorDisplay(result.active_backend, result.config);
+            }
+        } catch (error) {
+            console.error('Error checking orchestrator status:', error);
+            this.updateOrchestratorDisplay({ connectivity: 'error', provider: 'unknown' }, null);
+        }
+    }
+
+    /**
+     * Update orchestrator mode indicator
+     */
+    updateOrchestratorDisplay(backend, config) {
+        const modeEl = document.getElementById('orchestrator-mode');
+        const providerEl = document.getElementById('orchestrator-provider');
+        const statusEl = document.getElementById('orchestrator-status');
+
+        if (!modeEl || !providerEl || !statusEl) return;
+
+        const connectivity = backend.connectivity || 'unknown';
+        const provider = backend.provider || 'unknown';
+        const fallbackReason = backend.fallback_reason || '';
+
+        // Remove old classes
+        statusEl.classList.remove('online', 'offline', 'fallback', 'error');
+
+        // Determine display based on connectivity
+        if (connectivity === 'online') {
+            modeEl.textContent = '☁️ Cloud';
+            statusEl.classList.add('online');
+            statusEl.title = `Connected to ${provider}`;
+        } else if (connectivity === 'offline') {
+            if (fallbackReason) {
+                // Fallback occurred - show warning
+                modeEl.textContent = '⚠️ Local (Fallback)';
+                statusEl.classList.add('fallback');
+                statusEl.title = `Fallback to local: ${fallbackReason}. Cloud unavailable.`;
+
+                // Show toast notification on first fallback detection
+                if (!this.fallbackNotified) {
+                    this.showToast(
+                        '⚠️ Orchestrator Fallback',
+                        `Cloud backend unavailable (${fallbackReason}). Using local Ollama.`,
+                        'warning'
+                    );
+                    this.fallbackNotified = true;
+                }
+            } else {
+                modeEl.textContent = '🏠 Local';
+                statusEl.classList.add('offline');
+                statusEl.title = 'Running in local/offline mode with Ollama';
+            }
+        } else {
+            modeEl.textContent = '❓ Unknown';
+            statusEl.classList.add('error');
+            statusEl.title = 'Unable to determine orchestrator status';
+        }
+
+        // Show provider info
+        if (provider && provider !== 'unknown') {
+            const providerNames = {
+                'ollama': 'Ollama',
+                'claude_code': 'Claude',
+                'chatgpt': 'ChatGPT',
+                'openrouter': 'OpenRouter',
+                'local_server': 'Local'
+            };
+            providerEl.textContent = `(${providerNames[provider] || provider})`;
+        } else {
+            providerEl.textContent = '';
+        }
     }
 }
 
