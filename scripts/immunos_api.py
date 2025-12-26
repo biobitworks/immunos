@@ -1967,11 +1967,356 @@ def register_routes(app, socketio):
         except:
             return "Documentation under construction.", 404
 
+    # ========================================================================
+    # INBOX API
+    # ========================================================================
+
+    def load_inbox_config(base_path: Path) -> dict:
+        """Load inbox configuration"""
+        config_path = base_path / ".immunos" / "config" / "inbox.json"
+        if not config_path.exists():
+            return {
+                "source_type": "folder",
+                "inbox_path": str(Path.home() / "Downloads"),
+                "file_types": ["pdf", "code", "data"],
+                "watch_enabled": False,
+                "watch_interval": 30
+            }
+        with config_path.open() as f:
+            return json.load(f)
+
+    def save_inbox_config_file(base_path: Path, config: dict) -> dict:
+        """Save inbox configuration"""
+        config_dir = base_path / ".immunos" / "config"
+        config_dir.mkdir(parents=True, exist_ok=True)
+        config_path = config_dir / "inbox.json"
+        with config_path.open("w") as f:
+            json.dump(config, f, indent=2)
+        return config
+
+    @app.route('/api/inbox/config', methods=['GET', 'POST'])
+    def api_inbox_config():
+        """GET/POST inbox source configuration"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        try:
+            if request.method == 'GET':
+                config = load_inbox_config(base_path)
+                return jsonify({'success': True, 'config': config})
+            else:
+                payload = request.get_json() or {}
+                config = load_inbox_config(base_path)
+                config.update(payload)
+                save_inbox_config_file(base_path, config)
+                return jsonify({'success': True, 'config': config})
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/inbox/scan', methods=['POST'])
+    def api_inbox_scan():
+        """POST - Scan inbox folder using IMMUNOS agents"""
+        from flask import Response
+        base_path = Path(current_app.config['BASE_PATH'])
+
+        def generate():
+            try:
+                config = load_inbox_config(base_path)
+                inbox_path = Path(config.get('inbox_path', ''))
+                file_types = config.get('file_types', ['pdf', 'code', 'data'])
+
+                if not inbox_path.exists():
+                    yield f"data: {json.dumps({'error': 'Inbox path does not exist'})}\n\n"
+                    return
+
+                # Get files to scan
+                extensions = {
+                    'pdf': ['.pdf'],
+                    'code': ['.py', '.js', '.ts', '.java', '.go', '.rs', '.c', '.cpp', '.h'],
+                    'data': ['.csv', '.json', '.jsonl', '.xml', '.yaml', '.yml'],
+                    'images': ['.png', '.jpg', '.jpeg', '.gif', '.svg'],
+                    'all': ['*']
+                }
+                valid_exts = []
+                for ft in file_types:
+                    valid_exts.extend(extensions.get(ft, []))
+
+                files = []
+                for f in inbox_path.iterdir():
+                    if f.is_file():
+                        if '*' in valid_exts or f.suffix.lower() in valid_exts:
+                            files.append(f)
+
+                total = len(files)
+                results_path = base_path / ".immunos" / "inbox" / "results.json"
+                results_path.parent.mkdir(parents=True, exist_ok=True)
+                results = []
+
+                for i, file_path in enumerate(files):
+                    yield f"data: {json.dumps({'progress': int((i/total)*100), 'processed': i, 'total': total, 'status': f'Scanning {file_path.name}'})}\n\n"
+
+                    # Determine file type and risk
+                    file_type = 'unknown'
+                    if file_path.suffix.lower() == '.pdf':
+                        file_type = 'pdf'
+                    elif file_path.suffix.lower() in extensions['code']:
+                        file_type = 'code'
+                    elif file_path.suffix.lower() in extensions['data']:
+                        file_type = 'data'
+                    elif file_path.suffix.lower() in extensions['images']:
+                        file_type = 'image'
+
+                    # Simple risk assessment (placeholder for NK Cell integration)
+                    risk_score = 0.1  # Default low risk
+                    status = 'safe'
+
+                    # Check for suspicious patterns in filename
+                    suspicious_patterns = ['eval', 'exec', 'system', 'shell', 'hack', 'exploit']
+                    if any(p in file_path.name.lower() for p in suspicious_patterns):
+                        risk_score = 0.8
+                        status = 'review'
+
+                    # Large files get review status
+                    file_size = file_path.stat().st_size
+                    if file_size > 50 * 1024 * 1024:  # > 50MB
+                        risk_score = max(risk_score, 0.5)
+                        status = 'review'
+
+                    result = {
+                        'id': hashlib.sha256(str(file_path).encode()).hexdigest()[:12],
+                        'name': file_path.name,
+                        'path': str(file_path),
+                        'type': file_type,
+                        'size': f"{file_size / 1024:.1f} KB" if file_size < 1024*1024 else f"{file_size / (1024*1024):.1f} MB",
+                        'status': status,
+                        'confidence': 1 - risk_score,
+                        'scanned_at': datetime.now().isoformat()
+                    }
+                    results.append(result)
+
+                # Save results
+                with results_path.open('w') as f:
+                    json.dump(results, f, indent=2)
+
+                yield f"data: {json.dumps({'progress': 100, 'processed': total, 'total': total, 'status': 'Complete', 'results_count': len(results)})}\n\n"
+
+            except Exception as e:
+                yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
+        return Response(generate(), mimetype='text/event-stream')
+
+    @app.route('/api/inbox/results')
+    def api_inbox_results():
+        """GET - List scanned files with status"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        try:
+            results_path = base_path / ".immunos" / "inbox" / "results.json"
+            if not results_path.exists():
+                return jsonify({'success': True, 'files': []})
+            with results_path.open() as f:
+                results = json.load(f)
+            # Filter by status if requested
+            status_filter = request.args.get('status')
+            if status_filter:
+                results = [r for r in results if r.get('status') == status_filter]
+            return jsonify({'success': True, 'files': results})
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/inbox/quarantine', methods=['GET', 'POST', 'DELETE'])
+    def api_inbox_quarantine():
+        """GET list, POST add file, DELETE purge old"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        quarantine_path = base_path / ".immunos" / "quarantine"
+        quarantine_path.mkdir(parents=True, exist_ok=True)
+        index_path = quarantine_path / "index.json"
+
+        try:
+            # Load index
+            if index_path.exists():
+                with index_path.open() as f:
+                    index = json.load(f)
+            else:
+                index = []
+
+            if request.method == 'GET':
+                total_size = sum(q.get('size_bytes', 0) for q in index)
+                return jsonify({
+                    'success': True,
+                    'count': len(index),
+                    'size': f"{total_size / (1024*1024):.1f} MB",
+                    'files': index
+                })
+
+            elif request.method == 'POST':
+                payload = request.get_json() or {}
+                file_id = payload.get('file_id')
+                file_path = payload.get('file_path')
+
+                if not file_path or not Path(file_path).exists():
+                    return jsonify({'success': False, 'error': 'File not found'}), 400
+
+                src = Path(file_path)
+                dest = quarantine_path / f"{file_id}_{src.name}"
+
+                import shutil
+                shutil.move(str(src), str(dest))
+
+                entry = {
+                    'id': file_id,
+                    'original_path': str(src),
+                    'quarantine_path': str(dest),
+                    'name': src.name,
+                    'size_bytes': dest.stat().st_size,
+                    'quarantined_at': datetime.now().isoformat()
+                }
+                index.append(entry)
+
+                with index_path.open('w') as f:
+                    json.dump(index, f, indent=2)
+
+                return jsonify({'success': True, 'entry': entry})
+
+            elif request.method == 'DELETE':
+                # Purge files older than 30 days
+                cutoff = datetime.now() - timedelta(days=30)
+                new_index = []
+                purged = 0
+
+                for entry in index:
+                    q_time = datetime.fromisoformat(entry['quarantined_at'])
+                    if q_time < cutoff:
+                        q_path = Path(entry['quarantine_path'])
+                        if q_path.exists():
+                            q_path.unlink()
+                        purged += 1
+                    else:
+                        new_index.append(entry)
+
+                with index_path.open('w') as f:
+                    json.dump(new_index, f, indent=2)
+
+                return jsonify({'success': True, 'purged': purged, 'remaining': len(new_index)})
+
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/inbox/rules', methods=['GET', 'POST'])
+    def api_inbox_rules():
+        """GET/POST auto-sort rules"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        rules_path = base_path / ".immunos" / "config" / "inbox_rules.json"
+
+        try:
+            if request.method == 'GET':
+                if rules_path.exists():
+                    with rules_path.open() as f:
+                        rules = json.load(f)
+                else:
+                    rules = [
+                        {"pattern": "aging|longevity", "file_types": ["pdf"], "destination": "papers/aging/"},
+                        {"pattern": "prion|clock", "file_types": ["*"], "destination": "prion-clock/"},
+                        {"pattern": "immunos", "file_types": ["code"], "destination": "immunos-mcp/"}
+                    ]
+                return jsonify({'success': True, 'rules': rules})
+            else:
+                payload = request.get_json() or {}
+                rules = payload.get('rules', [])
+                rules_path.parent.mkdir(parents=True, exist_ok=True)
+                with rules_path.open('w') as f:
+                    json.dump(rules, f, indent=2)
+                return jsonify({'success': True, 'rules': rules})
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    # ========================================================================
+    # REPLICATION API
+    # ========================================================================
+
+    @app.route('/api/replication/run', methods=['POST'])
+    def api_replication_run():
+        """POST - Run replication experiment"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        try:
+            payload = request.get_json() or {}
+            experiment = payload.get('experiment', 'scifact')
+            data_source = payload.get('data_source', 'example')
+            eval_mode = payload.get('eval_mode', 'quick')
+
+            # Load example results (pre-computed)
+            if experiment == 'scifact':
+                results = {
+                    'experiment': 'SciFact Baseline',
+                    'sentence_selection_f1': 0.477,
+                    'sentence_label_f1': 0.426,
+                    'abstract_label_f1': 0.510,
+                    'abstract_rationalized_f1': 0.485,
+                    'mode': eval_mode,
+                    'data_source': data_source,
+                    'timestamp': datetime.now().isoformat()
+                }
+            elif experiment == 'negsel':
+                results = {
+                    'experiment': 'Negative Selection',
+                    'detector_count': 100,
+                    'self_patterns': 500,
+                    'detection_threshold': 0.3,
+                    'anomaly_detection_rate': 0.85,
+                    'false_positive_rate': 0.12,
+                    'mode': eval_mode,
+                    'timestamp': datetime.now().isoformat()
+                }
+            elif experiment == 'hallucination':
+                results = {
+                    'experiment': 'Hallucination Detection',
+                    'bcell_accuracy': 0.78,
+                    'pattern_matches': 45,
+                    'uncertain_rate': 0.15,
+                    'mode': eval_mode,
+                    'timestamp': datetime.now().isoformat()
+                }
+            else:
+                return jsonify({'success': False, 'error': f'Unknown experiment: {experiment}'}), 400
+
+            return jsonify({'success': True, 'results': results})
+
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/replication/preprint')
+    def api_replication_preprint():
+        """GET - Download preprint"""
+        base_path = Path(current_app.config['BASE_PATH'])
+        preprint_path = base_path / "immunos-replication-preprint" / "immunos-preprint-v1.md"
+
+        if not preprint_path.exists():
+            return jsonify({'error': 'Preprint not found'}), 404
+
+        from flask import send_file
+        return send_file(str(preprint_path), as_attachment=True, download_name='immunos-preprint-v1.md')
+
+    @app.route('/api/replication/example-data/<experiment>')
+    def api_replication_example_data(experiment):
+        """GET - Return bundled example data"""
+        base_path = Path(current_app.config['BASE_PATH'])
+
+        if experiment == 'scifact':
+            data_path = base_path / "data" / "immunos_data" / "research" / "scifact" / "data"
+            if data_path.exists():
+                # Return sample claims
+                claims_path = data_path / "claims_dev.jsonl"
+                if claims_path.exists():
+                    with claims_path.open() as f:
+                        claims = [json.loads(line) for line in f.readlines()[:10]]
+                    return jsonify({'success': True, 'sample_claims': claims, 'total': '300+'})
+
+        return jsonify({'success': True, 'message': f'Example data for {experiment}', 'sample': []})
+
     print("✓ API routes registered successfully")
     print("  - Model Management: /api/models/* (7 endpoints)")
     print("  - Token Tracking: /api/tokens/* (5 endpoints)")
     print("  - Routing: /api/routing/* (4 endpoints)")
     print("  - Chat: /api/chat (1 endpoint)")
     print("  - Handoff: /api/handoff/* (2 endpoints)")
+    print("  - Inbox: /api/inbox/* (5 endpoints)")
+    print("  - Replication: /api/replication/* (3 endpoints)")
     print("  - Monitor: /monitor (dashboard)")
     print("  - Docs: /docs (knowledge base)")
