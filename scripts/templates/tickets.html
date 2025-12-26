@@ -1,0 +1,487 @@
+{% extends "base.html" %}
+
+{% block title %}IMMUNOS - Tickets{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>🎫 Tickets</h2>
+    <p>Issue tracking from Sentinel log monitoring</p>
+</div>
+
+<!-- Ticket Stats -->
+<div class="ticket-stats card">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-value" id="stat-open">0</span>
+            <span class="stat-label">Open</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-in-progress">0</span>
+            <span class="stat-label">In Progress</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-resolved">0</span>
+            <span class="stat-label">Resolved</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-24h">0</span>
+            <span class="stat-label">Last 24h</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value" id="stat-tokens">0</span>
+            <span class="stat-label">Est. Tokens</span>
+        </div>
+    </div>
+</div>
+
+<!-- Filters -->
+<div class="ticket-filters card">
+    <div class="filter-row">
+        <div class="filter-group">
+            <label>Status</label>
+            <select id="filter-status" onchange="loadTickets()">
+                <option value="">All</option>
+                <option value="open">Open</option>
+                <option value="in_progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+                <option value="ignored">Ignored</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Severity</label>
+            <select id="filter-severity" onchange="loadTickets()">
+                <option value="">All</option>
+                <option value="critical">Critical</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+                <option value="info">Info</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <button class="btn btn-primary" onclick="loadTickets()">🔄 Refresh</button>
+        </div>
+    </div>
+</div>
+
+<!-- Ticket List -->
+<div class="ticket-list card">
+    <h3>📋 Tickets</h3>
+    <div class="tickets-container" id="tickets-container">
+        <p class="empty-message">Loading tickets...</p>
+    </div>
+</div>
+
+<!-- Ticket Detail Modal -->
+<div class="modal" id="ticket-modal" style="display: none;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title">Ticket Details</h3>
+            <button class="btn-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <!-- Ticket details loaded here -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+            <button class="btn btn-success" onclick="resolveTicket()">✓ Resolve</button>
+        </div>
+    </div>
+</div>
+
+<!-- Sentinel Status -->
+<div class="sentinel-status card">
+    <h3>📡 Sentinel Status</h3>
+    <div class="sentinel-info">
+        <div class="info-row">
+            <span class="info-label">Active Watchers:</span>
+            <span class="info-value" id="sentinel-watchers">0</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Patterns Loaded:</span>
+            <span class="info-value" id="sentinel-patterns">0</span>
+        </div>
+        <div class="info-row">
+            <span class="info-label">Log Entries:</span>
+            <span class="info-value" id="sentinel-logs">0</span>
+        </div>
+    </div>
+    <div class="sentinel-actions">
+        <button class="btn btn-secondary" onclick="showPatterns()">📋 View Patterns</button>
+        <button class="btn btn-primary" onclick="startWatcher()">▶️ Start Watcher</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<style>
+.ticket-stats .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.ticket-filters .filter-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.filter-group select {
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+.ticket-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ticket-item:hover {
+    background: var(--color-bg);
+}
+
+.ticket-status {
+    font-size: 1.5rem;
+}
+
+.ticket-info {
+    flex: 1;
+}
+
+.ticket-title {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.ticket-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+.ticket-tokens {
+    text-align: right;
+    font-size: 0.85rem;
+}
+
+.ticket-tokens .token-count {
+    font-weight: 500;
+    color: var(--color-primary);
+}
+
+.severity-critical { color: #ff5252; }
+.severity-high { color: #ff9800; }
+.severity-medium { color: #ffc107; }
+.severity-low { color: #4caf50; }
+.severity-info { color: #2196f3; }
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-light);
+}
+
+.sentinel-status .sentinel-info {
+    margin-bottom: 1rem;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sentinel-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+</style>
+
+<script>
+let currentTicketId = null;
+
+async function loadTickets() {
+    const status = document.getElementById('filter-status').value;
+    const severity = document.getElementById('filter-severity').value;
+
+    let url = '/api/tickets?limit=50';
+    if (status) url += `&status=${status}`;
+    if (severity) url += `&severity=${severity}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.success) {
+            renderTickets(data.tickets);
+        }
+    } catch (error) {
+        console.error('Error loading tickets:', error);
+    }
+}
+
+function renderTickets(tickets) {
+    const container = document.getElementById('tickets-container');
+
+    if (tickets.length === 0) {
+        container.innerHTML = '<p class="empty-message">No tickets found. Sentinel is monitoring for issues.</p>';
+        return;
+    }
+
+    const statusIcons = {
+        'open': '🔴',
+        'in_progress': '🟡',
+        'resolved': '🟢',
+        'closed': '⚪',
+        'ignored': '⚫'
+    };
+
+    container.innerHTML = tickets.map(ticket => `
+        <div class="ticket-item" onclick="showTicket(${ticket.id})">
+            <span class="ticket-status">${statusIcons[ticket.status] || '⚪'}</span>
+            <div class="ticket-info">
+                <div class="ticket-title">#${ticket.id} ${ticket.title}</div>
+                <div class="ticket-meta">
+                    <span class="severity-${ticket.severity}">${ticket.severity.toUpperCase()}</span>
+                    | ${ticket.category} | ${ticket.assigned_agent}
+                    | ${new Date(ticket.created_at).toLocaleString()}
+                </div>
+            </div>
+            <div class="ticket-tokens">
+                ${ticket.token_estimate ? `
+                    <div class="token-count">${ticket.token_estimate.total_tokens} tokens</div>
+                    <div>$${ticket.token_estimate.estimated_cost.toFixed(4)}</div>
+                ` : '<div>-</div>'}
+            </div>
+        </div>
+    `).join('');
+
+    // Update stats
+    updateStats(tickets);
+}
+
+function updateStats(tickets) {
+    const open = tickets.filter(t => t.status === 'open').length;
+    const inProgress = tickets.filter(t => t.status === 'in_progress').length;
+    const resolved = tickets.filter(t => t.status === 'resolved').length;
+
+    const totalTokens = tickets.reduce((sum, t) =>
+        sum + (t.token_estimate ? t.token_estimate.total_tokens : 0), 0);
+
+    document.getElementById('stat-open').textContent = open;
+    document.getElementById('stat-in-progress').textContent = inProgress;
+    document.getElementById('stat-resolved').textContent = resolved;
+    document.getElementById('stat-tokens').textContent = totalTokens.toLocaleString();
+}
+
+async function loadStats() {
+    try {
+        const response = await fetch('/api/tickets/stats');
+        const data = await response.json();
+
+        if (data.success) {
+            document.getElementById('stat-24h').textContent = data.stats.recent_tickets_24h || 0;
+            document.getElementById('sentinel-watchers').textContent =
+                data.stats.watchers ? data.stats.watchers.length : 0;
+            document.getElementById('sentinel-patterns').textContent = data.stats.patterns_count || 0;
+            document.getElementById('sentinel-logs').textContent =
+                (data.stats.total_log_entries || 0).toLocaleString();
+        }
+    } catch (error) {
+        console.error('Error loading stats:', error);
+    }
+}
+
+async function showTicket(ticketId) {
+    currentTicketId = ticketId;
+
+    try {
+        const response = await fetch(`/api/tickets/${ticketId}`);
+        const data = await response.json();
+
+        if (data.success) {
+            const ticket = data.ticket;
+            document.getElementById('modal-title').textContent = `#${ticket.id} ${ticket.title}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="ticket-detail">
+                    <p><strong>Description:</strong> ${ticket.description}</p>
+                    <p><strong>Severity:</strong> <span class="severity-${ticket.severity}">${ticket.severity}</span></p>
+                    <p><strong>Category:</strong> ${ticket.category}</p>
+                    <p><strong>Status:</strong> ${ticket.status}</p>
+                    <p><strong>Assigned Agent:</strong> ${ticket.assigned_agent}</p>
+                    <p><strong>Source:</strong> ${ticket.source_file}:${ticket.source_line}</p>
+                    <p><strong>Pattern:</strong> ${ticket.pattern_matched}</p>
+                    ${ticket.token_estimate ? `
+                        <p><strong>Token Estimate:</strong>
+                            ${ticket.token_estimate.total_tokens} tokens
+                            ($${ticket.token_estimate.estimated_cost.toFixed(4)})
+                            via ${ticket.token_estimate.model}
+                        </p>
+                    ` : ''}
+                    <p><strong>Created:</strong> ${new Date(ticket.created_at).toLocaleString()}</p>
+                    ${ticket.log_entries.length > 0 ? `
+                        <h4>Log Entries:</h4>
+                        <pre style="background: #1a1a2e; padding: 1rem; border-radius: 4px; overflow-x: auto;">
+${ticket.log_entries.join('\n')}</pre>
+                    ` : ''}
+                </div>
+            `;
+            document.getElementById('ticket-modal').style.display = 'flex';
+        }
+    } catch (error) {
+        console.error('Error loading ticket:', error);
+    }
+}
+
+function closeModal() {
+    document.getElementById('ticket-modal').style.display = 'none';
+    currentTicketId = null;
+}
+
+async function resolveTicket() {
+    if (!currentTicketId) return;
+
+    try {
+        const response = await fetch(`/api/tickets/${currentTicketId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'resolved' })
+        });
+
+        const data = await response.json();
+        if (data.success) {
+            closeModal();
+            loadTickets();
+        }
+    } catch (error) {
+        console.error('Error resolving ticket:', error);
+    }
+}
+
+async function showPatterns() {
+    try {
+        const response = await fetch('/api/sentinel/patterns');
+        const data = await response.json();
+
+        if (data.success) {
+            alert(`Loaded ${data.patterns.length} patterns:\n\n` +
+                data.patterns.map(p => `${p.name} (${p.severity})`).join('\n'));
+        }
+    } catch (error) {
+        console.error('Error loading patterns:', error);
+    }
+}
+
+function startWatcher() {
+    const filePath = prompt('Enter log file path to watch:', '/Users/byron/projects/scripts/logs/dashboard.log');
+    if (!filePath) return;
+
+    fetch('/api/sentinel/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'manual', file_path: filePath })
+    })
+    .then(r => r.json())
+    .then(data => {
+        alert(data.message || data.error);
+        loadStats();
+    });
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadTickets();
+    loadStats();
+
+    // Auto-refresh every 30 seconds
+    setInterval(() => {
+        loadTickets();
+        loadStats();
+    }, 30000);
+});
+</script>
+{% endblock %}

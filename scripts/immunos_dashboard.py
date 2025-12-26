@@ -209,6 +209,12 @@ def replication():
     return render_template('replication.html')
 
 
+@app.route('/tickets')
+def tickets():
+    """Ticket management page"""
+    return render_template('tickets.html')
+
+
 # WebSocket Events
 # ================
 

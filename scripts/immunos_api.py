@@ -2285,7 +2285,7 @@ def register_routes(app, socketio):
     def api_replication_preprint():
         """GET - Download preprint"""
         base_path = Path(current_app.config['BASE_PATH'])
-        preprint_path = base_path / "immunos-replication-preprint" / "immunos-preprint-v1.md"
+        preprint_path = base_path / "immunos-preprint" / "immunos-preprint-v1.md"
 
         if not preprint_path.exists():
             return jsonify({'error': 'Preprint not found'}), 404
@@ -2310,13 +2310,160 @@ def register_routes(app, socketio):
 
         return jsonify({'success': True, 'message': f'Example data for {experiment}', 'sample': []})
 
+    # ========================================================================
+    # TICKET API (Sentinel Integration)
+    # ========================================================================
+
+    @app.route('/api/tickets', methods=['GET'])
+    def api_tickets_list():
+        """GET - List tickets with optional filters"""
+        try:
+            from immunos_sentinel import Sentinel
+            db_path = str(Path(current_app.config['BASE_PATH']) / '.immunos' / 'db' / 'dashboard.db')
+            sentinel = Sentinel(db_path)
+
+            status = request.args.get('status')
+            severity = request.args.get('severity')
+            limit = int(request.args.get('limit', 50))
+
+            tickets = sentinel.store.get_tickets(status=status, severity=severity, limit=limit)
+            return jsonify({
+                'success': True,
+                'tickets': [t.to_dict() for t in tickets],
+                'count': len(tickets)
+            })
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/tickets/<int:ticket_id>', methods=['GET'])
+    def api_ticket_get(ticket_id):
+        """GET - Get single ticket by ID"""
+        try:
+            from immunos_sentinel import Sentinel
+            db_path = str(Path(current_app.config['BASE_PATH']) / '.immunos' / 'db' / 'dashboard.db')
+            sentinel = Sentinel(db_path)
+
+            ticket = sentinel.store.get_ticket(ticket_id)
+            if ticket:
+                return jsonify({'success': True, 'ticket': ticket.to_dict()})
+            return jsonify({'success': False, 'error': 'Ticket not found'}), 404
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/tickets/<int:ticket_id>', methods=['PATCH'])
+    def api_ticket_update(ticket_id):
+        """PATCH - Update ticket status, resolution, etc."""
+        try:
+            from immunos_sentinel import Sentinel
+            db_path = str(Path(current_app.config['BASE_PATH']) / '.immunos' / 'db' / 'dashboard.db')
+            sentinel = Sentinel(db_path)
+
+            data = request.get_json() or {}
+            updates = {}
+
+            if 'status' in data:
+                updates['status'] = data['status']
+            if 'severity' in data:
+                updates['severity'] = data['severity']
+            if 'assigned_agent' in data:
+                updates['assigned_agent'] = data['assigned_agent']
+            if 'resolution_note' in data:
+                updates['resolution_note'] = data['resolution_note']
+            if 'actual_tokens_used' in data:
+                updates['actual_tokens_used'] = data['actual_tokens_used']
+
+            if updates:
+                sentinel.store.update_ticket(ticket_id, updates)
+                return jsonify({'success': True, 'updated': list(updates.keys())})
+            return jsonify({'success': False, 'error': 'No valid fields to update'}), 400
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/tickets/stats', methods=['GET'])
+    def api_tickets_stats():
+        """GET - Ticket statistics"""
+        try:
+            from immunos_sentinel import Sentinel
+            db_path = str(Path(current_app.config['BASE_PATH']) / '.immunos' / 'db' / 'dashboard.db')
+            sentinel = Sentinel(db_path)
+
+            stats = sentinel.get_stats()
+            return jsonify({'success': True, 'stats': stats})
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/sentinel/start', methods=['POST'])
+    def api_sentinel_start():
+        """POST - Start sentinel watcher"""
+        try:
+            from immunos_sentinel import Sentinel
+            db_path = str(Path(current_app.config['BASE_PATH']) / '.immunos' / 'db' / 'dashboard.db')
+            sentinel = Sentinel(db_path)
+
+            data = request.get_json() or {}
+            name = data.get('name', 'default')
+            file_path = data.get('file_path')
+
+            if not file_path:
+                return jsonify({'success': False, 'error': 'file_path required'}), 400
+
+            sentinel.start_watcher(name, file_path)
+            return jsonify({'success': True, 'message': f'Started watcher {name}'})
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/sentinel/patterns', methods=['GET'])
+    def api_sentinel_patterns():
+        """GET - List available patterns"""
+        try:
+            from immunos_sentinel import SentinelPatterns
+            patterns = SentinelPatterns.get_all_patterns()
+            return jsonify({
+                'success': True,
+                'patterns': [
+                    {
+                        'name': p.name,
+                        'pattern': p.pattern,
+                        'severity': p.severity.value,
+                        'category': p.category.value,
+                        'description': p.description,
+                        'agent': p.agent
+                    }
+                    for p in patterns
+                ]
+            })
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
+    @app.route('/api/tokens/estimate', methods=['POST'])
+    def api_tokens_estimate():
+        """POST - Estimate tokens for a task"""
+        try:
+            from immunos_sentinel import TokenEstimate, TASK_TOKEN_ESTIMATES, MODEL_TOKEN_COSTS
+
+            data = request.get_json() or {}
+            task_type = data.get('task_type', 'ticket_triage')
+            model = data.get('model', 'ollama-qwen2.5-coder')
+
+            estimate = TokenEstimate.for_task(task_type, model)
+            return jsonify({
+                'success': True,
+                'estimate': estimate.to_dict(),
+                'available_tasks': list(TASK_TOKEN_ESTIMATES.keys()),
+                'available_models': list(MODEL_TOKEN_COSTS.keys())
+            })
+        except Exception as e:
+            return jsonify({'success': False, 'error': str(e)}), 500
+
     print("✓ API routes registered successfully")
     print("  - Model Management: /api/models/* (7 endpoints)")
-    print("  - Token Tracking: /api/tokens/* (5 endpoints)")
+    print("  - Token Tracking: /api/tokens/* (6 endpoints)")
     print("  - Routing: /api/routing/* (4 endpoints)")
     print("  - Chat: /api/chat (1 endpoint)")
     print("  - Handoff: /api/handoff/* (2 endpoints)")
     print("  - Inbox: /api/inbox/* (5 endpoints)")
     print("  - Replication: /api/replication/* (3 endpoints)")
+    print("  - Tickets: /api/tickets/* (4 endpoints)")
+    print("  - Sentinel: /api/sentinel/* (2 endpoints)")
     print("  - Monitor: /monitor (dashboard)")
     print("  - Docs: /docs (knowledge base)")

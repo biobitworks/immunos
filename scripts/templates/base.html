@@ -9,7 +9,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}?v=20251226">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}?v=20251226b">
 
     <!-- Chart.js for visualizations -->
     <script src="{{ url_for('static', filename='vendor/chartjs/chart.umd.min.js') }}"></script>
@@ -51,6 +51,9 @@
                 <li><a href="/replication" class="nav-link {% if request.path == '/replication' %}active{% endif %}">
                     <span class="nav-icon">🧪</span> Replicate
                 </a></li>
+                <li><a href="/tickets" class="nav-link {% if request.path == '/tickets' %}active{% endif %}">
+                    <span class="nav-icon">🎫</span> Tickets
+                </a></li>
             </ul>
 
             <div class="nav-status">
@@ -79,7 +82,7 @@
     <!-- Footer with Version -->
     <footer class="dashboard-footer">
         <div class="footer-content">
-            <span class="footer-version">v20251226-inbox</span>
+            <span class="footer-version">v20251226-sentinel</span>
             <span class="footer-divider">|</span>
             <span class="footer-timestamp" id="build-timestamp">Built: Dec 26, 2025</span>
             <span class="footer-divider">|</span>
@@ -97,7 +100,7 @@
     </div>
 
     <!-- Common JavaScript -->
-    <script src="{{ url_for('static', filename='js/app.js') }}?v=20251226"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}?v=20251226b"></script>
 
     <!-- Page-specific JavaScript -->
     {% block scripts %}{% endblock %}
