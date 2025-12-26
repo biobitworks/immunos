@@ -259,10 +259,10 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    background: var(--color-surface);
-    border-top: 1px solid var(--color-border);
-    padding: var(--spacing-xs) var(--spacing-lg);
-    z-index: 100;
+    background: #1a1a2e;
+    border-top: 1px solid #333;
+    padding: 8px 24px;
+    z-index: 1000;
 }
 
 .footer-content {
