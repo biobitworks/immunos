@@ -14,6 +14,7 @@ Main immunOS preprint for publication.
 
 ### Core Files
 - [[immunos-preprint|Main Manuscript]] - Primary document
+- [[immunos-preprint-v1|Replication Draft]] - SciFact baseline study
 - [[README|Project Overview]] - Build instructions and setup
 - [[LINKS|Links]] - Obsidian-friendly navigation
 - [[bibliography|References]] - BibTeX bibliography
@@ -23,6 +24,7 @@ Main immunOS preprint for publication.
 - `supplementary/` - Supplementary materials
 - `data/` - Analysis data and results
 - `scripts/` - Analysis and processing scripts
+- `journal/` - Project log entries
 
 ---
 
@@ -59,7 +61,6 @@ pandoc immunos-preprint.md \
 
 ## Related Projects
 
-- [[../immunos-replication-preprint/README|immunOS Replication Preprint]] - SciFact baseline study
 - [[../immunos-mcp/INDEX|IMMUNOS-MCP]] - MCP server
 - [[../immunos81/INDEX|IMMUNOS81]] - Medical diagnosis system
 - [[../HOME|Projects Hub]] - Main navigation

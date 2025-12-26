@@ -1,5 +1,9 @@
 # IMMUNOS Inbox
 
+## Summary
+Contains 0 subdirectories and 1 files.
+
+
 Automated intake system for processing downloaded files and routing them to appropriate destinations.
 
 ## Quick Start
@@ -175,3 +179,9 @@ No external dependencies required.
 **Part of**: IMMUNOS Research Integrity System  
 **Script**: `/scripts/immunos_inbox.py`  
 **Last Updated**: 2025-12-24
+
+## Directory Map
+```
+inbox/
+└── cursor_projects_intro.md
+```

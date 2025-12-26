@@ -1,5 +1,9 @@
 # Researcher Profiles
 
+## Summary
+Contains 0 subdirectories and 1 files.
+
+
 This directory contains detailed profiles of researchers working in aging biology, longevity science, cellular senescence, immunosenescence, and related fields.
 
 ## Purpose
@@ -90,3 +94,9 @@ bash /Users/byron/projects/scripts/create-researcher-profile.sh "FirstName LastN
 **Template**: `/templates/researcher-profile.md`
 **Script**: `/scripts/create-researcher-profile.sh`
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+researchers/
+└── lidsky-peter.md
+```

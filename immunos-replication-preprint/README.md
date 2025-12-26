@@ -1,21 +1,20 @@
-# immunOS Replication Preprint (v1)
+# immunOS Replication Preprint (Moved)
 
-Local project for the immunOS replication preprint (SciFact baseline + NegSl-AIS framing). This folder keeps the draft and links to data, logs, and readable code snapshots for Obsidian.
+## Summary
+Redirect stub pointing to the canonical preprint workspace.
 
-## Draft
-- Preprint: `immunos-preprint-v1.md`
+This content has moved into:
+- `/Users/byron/projects/immunos-preprint/`
 
-## Key Links (Data, Logs, References)
-- Publications log: `/Users/byron/projects/docs/reference/publications-log.md`
-- SciFact replication notes: `/Users/byron/projects/docs/reference/scifact-baseline-replication.md`
-- NegSl-AIS baseline notes: `/Users/byron/projects/docs/reference/negsl-ais-2025-baseline.md`
-- SciFact metrics log: `/Users/byron/projects/data/immunos_data/research/scifact/logs/metrics_dev.json`
-- SciFact dataset root: `/Users/byron/projects/data/immunos_data/research/scifact`
+Replication draft:
+- `/Users/byron/projects/immunos-preprint/immunos-preprint-v1.md`
 
-## Code (Readable Snapshots)
-- Research trainer: `/Users/byron/projects/docs/code-snapshots/immunos-mcp/src/immunos_mcp/training/research_trainer.py.md`
-- Label prediction model: `/Users/byron/projects/docs/code-snapshots/data/immunos_data/research/scifact/verisci/training/label_prediction/transformer_scifact.py.md`
-- Rationale selection model: `/Users/byron/projects/docs/code-snapshots/data/immunos_data/research/scifact/verisci/training/rationale_selection/transformer_scifact.py.md`
+Project journal:
+- `/Users/byron/projects/immunos-preprint/journal/`
 
-## Journal
-- Project log: `journal/`
+## Directory Map
+```
+immunos-replication-preprint/
+├── LINKS.md
+└── README.md
+```

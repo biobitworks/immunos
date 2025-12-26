@@ -1,5 +1,9 @@
 # Database and Data Repository Profiles
 
+## Summary
+Contains 0 subdirectories and 5 files.
+
+
 This directory documents external databases, data repositories, and platforms that provide aging biology datasets and resources.
 
 ## Purpose
@@ -116,3 +120,13 @@ WHERE contains(focus_area, "aging")
 **Template**: `/templates/database-tool-profile.md`
 **Script**: *N/A (manual creation)*
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+databases/
+├── biccn.md
+├── biogrid.md
+├── huggingface-hub.md
+├── regulomedb.md
+└── spatiallibd.md
+```

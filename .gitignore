@@ -87,6 +87,7 @@ site/
 
 # Data files
 *.csv
+!papers/index.csv
 *.dat
 # *.db  # COMMENTED OUT - We want to track IMMUNOS databases
 # *.sqlite  # COMMENTED OUT - We want to track IMMUNOS databases

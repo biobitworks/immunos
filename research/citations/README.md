@@ -1,5 +1,9 @@
 # Citation Management
 
+## Summary
+Contains 0 subdirectories and 3 files.
+
+
 This directory contains bibliographic data in formats compatible with academic reference managers (Zotero, Mendeley, EndNote) and writing tools (LaTeX, Pandoc, Word).
 
 ## File Formats
@@ -177,3 +181,11 @@ author, title, booktitle, year, pages (optional), doi (recommended)
 **Last Updated**: 2025-12-02
 **Total References**: 3 (GenAge-related)
 **Format**: BibTeX (primary), CSL JSON (optional)
+
+## Directory Map
+```
+citations/
+├── cellage-references.bib
+├── genage-references.bib
+└── immunos-references.bib
+```

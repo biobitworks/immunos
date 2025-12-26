@@ -194,4 +194,4 @@ Primary references:
 - System architecture diagrams: `figures/`
 - Orchestrator logs: `/immunos-mcp/logs/orchestrator_runs.log`
 - Agent state files: `.immunos/agents/`
-- Replication preprint: `/immunos-replication-preprint/`
+- Replication preprint: `/immunos-preprint/immunos-preprint-v1.md`

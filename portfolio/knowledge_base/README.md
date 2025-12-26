@@ -1,5 +1,9 @@
 # Portfolio Knowledge Base
 
+## Summary
+Contains 2 subdirectories and 0 files. Key subfolders: concepts/, processes/.
+
+
 **Purpose:** Centralized repository of learnings, processes, templates, and resources across all Byron Lee projects
 
 **Last Updated:** October 2, 2025
@@ -382,3 +386,10 @@ git commit -m "Initial knowledge base setup"
 **Created By:** Byron P. Lee
 **Last Updated:** October 2, 2025
 **Next Review:** November 1, 2025
+
+## Directory Map
+```
+knowledge_base/
+├── concepts/
+└── processes/
+```

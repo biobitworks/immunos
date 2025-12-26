@@ -1,5 +1,9 @@
 # IMMUNOS Knowledge Base
 
+## Summary
+Contains 0 subdirectories and 11 files.
+
+
 This folder is the living knowledge base for IMMUNOS rollout. Each topic is a focused page with stable links.
 
 ## Index
@@ -22,3 +26,19 @@ This folder is the living knowledge base for IMMUNOS rollout. Each topic is a fo
 - Keep pages short and link out for details.
 - Use dated update notes at the end of each page.
 - Prefer concrete commands and file paths.
+
+## Directory Map
+```
+kb/
+├── architecture.md
+├── handoff.md
+├── immune-system-feature-map.md
+├── immunos-architecture.md
+├── immunos-dashboard.md
+├── immunos-models.md
+├── immunos-mvp.md
+├── immunos-packaging.md
+├── immunos-publications.md
+├── index.md
+└── references.md
+```

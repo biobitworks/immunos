@@ -1,5 +1,9 @@
 # Data Documentation
 
+## Summary
+Contains 1 subdirectories and 2 files. Key subfolders: raw/.
+
+
 ## Overview
 Centralized data management for the proteomics analysis framework. Contains the primary dataset and supplementary resources for neurodegeneration research.
 
@@ -188,3 +192,11 @@ for i in range(0, adata.n_vars, chunk_size):
 - [[../INDEX|Back to Index]]
 - [[../01_research_analysis/README|Research Analysis]]
 - [[../04_documentation/README|Documentation]]
+
+## Directory Map
+```
+proteomics-claims-2025/
+├── raw/
+├── Late-Stage_Mitochondrial_Dysregulation_and_Mitophagy_Failure.pdf
+└── Sequential_Failure_of_Proteostasis_Mechanisms.pdf
+```

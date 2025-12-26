@@ -1,5 +1,9 @@
 # Biobitworks Logistics
 
+## Summary
+Contains 2 subdirectories and 1 files. Key subfolders: labs/, protocols/.
+
+
 Community lab network coordination and logistics management for the San Francisco Bay Area.
 
 ## Overview
@@ -137,3 +141,11 @@ cat protocols/protocols.json | jq '.protocols[] | select(.status == "to_download
 
 **Status**: Initial setup complete
 **Next Action**: Add Google Drive folder URL and begin protocol sync
+
+## Directory Map
+```
+biobitworks-logistics/
+├── labs/
+├── protocols/
+└── GOOGLE_DRIVE_SYNC.md
+```

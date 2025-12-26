@@ -1,5 +1,9 @@
 # Negative selection-based artificial immune system (NegSl-AIS)
 
+## Summary
+Contains 1 subdirectories and 32 files. Key subfolders: opus_implementation/.
+
+
 **FOUNDATIONAL PAPER FOR IMMUNOS**
 
 ## Citation
@@ -46,3 +50,41 @@ to code security anomaly detection.
 See: `/Users/byron/projects/.immunos/journal/IMMUNOS_FOUNDATION_PAPER.md`
 
 **Date added**: 2025-12-18
+
+## Directory Map
+```
+umair2025negsl/
+├── opus_implementation/
+├── 1-s2.0-S2590123025026702-gr1.jpg
+├── 1-s2.0-S2590123025026702-gr10.jpg
+├── 1-s2.0-S2590123025026702-gr10_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr11.jpg
+├── 1-s2.0-S2590123025026702-gr11_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr12.jpg
+├── 1-s2.0-S2590123025026702-gr12_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr13.jpg
+├── 1-s2.0-S2590123025026702-gr13_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr14.jpg
+├── 1-s2.0-S2590123025026702-gr14_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr15.jpg
+├── 1-s2.0-S2590123025026702-gr15_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr1_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr2.jpg
+├── 1-s2.0-S2590123025026702-gr2_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr3.jpg
+├── 1-s2.0-S2590123025026702-gr3_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr4.jpg
+├── 1-s2.0-S2590123025026702-gr4_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr5.jpg
+├── 1-s2.0-S2590123025026702-gr5_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr6.jpg
+├── 1-s2.0-S2590123025026702-gr6_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr7.jpg
+├── 1-s2.0-S2590123025026702-gr7_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr8.jpg
+├── 1-s2.0-S2590123025026702-gr8_lrg.jpg
+├── 1-s2.0-S2590123025026702-gr9.jpg
+├── 1-s2.0-S2590123025026702-gr9_lrg.jpg
+├── 1-s2.0-S2590123025026702-main.pdf
+└── supplementary.pdf
+```

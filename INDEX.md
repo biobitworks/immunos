@@ -18,7 +18,7 @@ Comprehensive index of all projects in the workspace.
 ### Research & Publications
 
 - [[immunos-preprint/INDEX|immunOS Preprint]] - Main immunOS preprint manuscript (Draft)
-- [[immunos-replication-preprint/README|immunOS Replication Preprint]] - SciFact baseline replication (Draft v1)
+- [[immunos-preprint/README|immunOS Preprint]] - Main manuscript + replication draft
 - [[papers/INDEX|Papers Archive]] - Academic papers with figures (32 papers tracked)
 - [[research/INDEX|Aging Biology Research]] - Longevity science research hub
 
@@ -38,7 +38,7 @@ Comprehensive index of all projects in the workspace.
 ## Project Categories
 
 ### By Type
-- **Preprints**: immunos-preprint, immunos-replication-preprint
+- **Preprints**: immunos-preprint
 - **Research**: Aging Biology Research, Papers Archive, BioViz Research
 - **Software**: IMMUNOS-MCP, IMMUNOS81
 - **Professional**: Portfolio, Biobitworks Logistics
@@ -46,7 +46,7 @@ Comprehensive index of all projects in the workspace.
 ### By Status
 - **Active Development**: IMMUNOS81, BioViz Research, Biobitworks Logistics
 - **MVP Complete**: IMMUNOS-MCP
-- **Draft**: immunos-preprint, immunos-replication-preprint (v1)
+- **Draft**: immunos-preprint (includes replication v1)
 - **Ongoing**: Papers Archive, Aging Biology Research, Portfolio
 
 ---
@@ -101,7 +101,7 @@ python3 scripts/immunos_todo.py list --overdue
 ├── biobitworks-logistics/       # Community lab network
 ├── immunos-mcp/                 # MCP server project
 ├── immunos-preprint/            # Main immunOS preprint
-├── immunos-replication-preprint/# SciFact replication study
+├── immunos-preprint/# Main preprint + SciFact replication study
 ├── immunos81/                   # Medical diagnosis system
 ├── papers/                      # Papers archive
 ├── portfolio/                   # Professional development

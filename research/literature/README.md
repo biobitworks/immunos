@@ -115,3 +115,19 @@ graph TD
 **Last Updated**: 2025-11-30
 **Total Papers**: 3
 **Papers Implemented**: 3
+
+## Summary
+Contains 2 subdirectories and 6 files. Key subfolders: archives/, bioviztech-literature/.
+
+## Directory Map
+```
+literature/
+├── archives/
+├── bioviztech-literature/
+├── Genes Dev.-2002-Shvarts-681-6.pdf
+├── de-castro-2001-clonal-selection.md
+├── de-castro-2002-opt-ainet.md
+├── demagalhaes-2024-hagr-genage.md
+├── pang-coghill-2015-qml-ainet.md
+└── shvarts-2002-bcl6-senescence.md
+```

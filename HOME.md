@@ -133,7 +133,7 @@ Welcome to the Byron Projects workspace. Select a project to navigate to its das
 
 **Focus**: SciFact baseline replication + NegSl-AIS framing (preprint)
 
-[[immunos-replication-preprint/README|→ **Open immunOS Replication Preprint**]]
+[[immunos-preprint/README|→ **Open immunOS Preprint**]]
 
 **Status**: Draft v1
 - SciFact dev metrics logged

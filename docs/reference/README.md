@@ -1,5 +1,9 @@
 # Reference Documentation Images
 
+## Summary
+Contains 0 subdirectories and 8 files.
+
+
 This directory contains reference images from research papers and documentation.
 
 ## Images
@@ -34,3 +38,16 @@ These images serve as:
 
 Original images from:
 - Hunt, J. E., & Cooke, D. E. (2000). Learning using an artificial immune system. *Journal of Network and Computer Applications*, 19(2), 189-212.
+
+## Directory Map
+```
+reference/
+├── Sample-Output-from-the-Immunos-81-Recognition-Engine.png
+├── Ten-way-Cross-validation-Results-Cleveland-Data-Set.png
+├── environment-management.md
+├── mmunos-81-Design-Goals.png
+├── negsl-ais-2025-baseline.md
+├── next-phases.md
+├── publications-log.md
+└── scifact-baseline-replication.md
+```

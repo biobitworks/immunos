@@ -1,5 +1,9 @@
 # Research Projects
 
+## Summary
+Contains 1 subdirectories and 0 files. Key subfolders: bioviztech/.
+
+
 This directory contains documentation for active and completed research projects related to aging biology and longevity science.
 
 ## Purpose
@@ -132,3 +136,9 @@ WHERE contains(datasets, "GenAge")
 **Template**: `/templates/project-tracker.md`
 **Script**: *N/A (manual creation)*
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+projects/
+└── bioviztech/
+```

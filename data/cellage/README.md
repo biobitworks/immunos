@@ -1,5 +1,9 @@
 # CellAge Database - Cell Senescence Genes
 
+## Summary
+Contains 0 subdirectories and 7 files.
+
+
 **Source**: Human Ageing Genomic Resources (HAGR)
 **Website**: https://genomics.senescence.info/cells/
 **Downloaded**: 2025-12-02
@@ -162,3 +166,15 @@ print(f"Genes in both GenAge and CellAge: {len(overlap)}")
 **Last Updated**: 2025-12-02
 **Build**: 3 (April 2023)
 **Total Genes**: 950 (CellAge) + 1,259 (Signatures)
+
+## Directory Map
+```
+cellage/
+├── cellAge.zip
+├── cellSignatures.zip
+├── cellage3.tsv
+├── metadata_cellage.json
+├── metadata_signatures.json
+├── release.html
+└── signatures1.csv
+```

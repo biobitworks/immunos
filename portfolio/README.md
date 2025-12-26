@@ -1,5 +1,9 @@
 # Professional Portfolio & Development
 
+## Summary
+Contains 4 subdirectories and 0 files. Key subfolders: fundraising/, knowledge_base/, quarterly_reviews/, strategic_planning/.
+
+
 ## Overview
 
 This directory contains professional development materials, strategic planning documents, career objectives, and fundraising campaign materials.
@@ -87,3 +91,12 @@ This portfolio serves as:
 ---
 
 **Last Updated**: 2025-12-10
+
+## Directory Map
+```
+portfolio/
+├── fundraising/
+├── knowledge_base/
+├── quarterly_reviews/
+└── strategic_planning/
+```

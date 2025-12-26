@@ -1,5 +1,9 @@
 # immunOS Preprint
 
+## Summary
+Preprint workspace with manuscript, replication draft, and supporting data/scripts.
+
+
 ## Overview
 
 Preprint manuscript for immunOS research.
@@ -11,10 +15,12 @@ immunos-preprint/
 ├── README.md              # This file
 ├── LINKS.md               # Obsidian-friendly links to project resources
 ├── immunos-preprint.md    # Main manuscript
+├── immunos-preprint-v1.md # Replication draft (SciFact baseline)
 ├── figures/               # Figure assets
 ├── supplementary/         # Supplementary materials
 ├── data/                  # Analysis data
 ├── scripts/               # Analysis scripts
+├── journal/               # Project log entries
 └── bibliography.bib       # BibTeX references
 ```
 
@@ -61,10 +67,24 @@ pandoc immunos-preprint.md \
 
 ## Related Projects
 
-- [immunOS Replication Preprint](../immunos-replication-preprint/) - SciFact baseline replication study
 - [IMMUNOS-MCP](../immunos-mcp/) - MCP server implementation
 - [IMMUNOS81](../immunos81/) - Medical diagnosis system
 
 ## Links
 
 See [LINKS.md](LINKS.md) for Obsidian-friendly navigation.
+
+## Directory Map
+```
+immunos-preprint/
+├── data/
+├── figures/
+├── journal/
+├── scripts/
+├── supplementary/
+├── INDEX.md
+├── LINKS.md
+├── bibliography.bib
+├── immunos-preprint-v1.md
+└── immunos-preprint.md
+```

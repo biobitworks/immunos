@@ -105,7 +105,7 @@ Open dev (precision/recall/F1):
 - Metrics log: `/Users/byron/projects/data/immunos_data/research/scifact/logs/metrics_dev.json`
 - Dataset root: `/Users/byron/projects/data/immunos_data/research/scifact`
 - Replication notes: `/Users/byron/projects/docs/reference/scifact-baseline-replication.md`
-- Preprint project: `/Users/byron/projects/immunos-replication-preprint/`
+- Preprint project: `/Users/byron/projects/immunos-preprint/`
 
 ### Reproducibility Checklist
 - `metrics_dev.json` and `eval_dev.log` in `/Users/byron/projects/data/immunos_data/research/scifact/logs/`

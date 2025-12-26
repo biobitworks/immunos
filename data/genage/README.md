@@ -1,5 +1,9 @@
 # GenAge Database - Human Ageing Genomic Resources
 
+## Summary
+Contains 3 subdirectories and 0 files. Key subfolders: expression/, human/, models/.
+
+
 **Source**: Human Ageing Genomic Resources (HAGR)
 **Website**: https://genomics.senescence.info/
 **Download Page**: https://genomics.senescence.info/download.html
@@ -139,3 +143,11 @@ print(f"C. elegans longevity genes: {len(worm_genes)}")
 **Last Updated**: 2025-12-02
 **Build**: 21 (August 2023)
 **Total Genes**: 2,512 (307 human + 2,205 model organisms)
+
+## Directory Map
+```
+genage/
+├── expression/
+├── human/
+└── models/
+```

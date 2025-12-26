@@ -198,7 +198,7 @@ python3 scripts/immunos_baseline.py scan
 
 ### 4. immunOS Replication Preprint
 - **Status**: Draft v1 in progress (SciFact baseline + NegSl-AIS framing)
-- **Location**: `/Users/byron/projects/immunos-replication-preprint/`
+- **Location**: `/Users/byron/projects/immunos-preprint/`
 - **Notes**: Related work pruned to core citations; PubMed-backed log maintained in `docs/reference/publications-log.md`
 
 ---

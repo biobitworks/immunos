@@ -1,5 +1,9 @@
 # Research Tools and Software
 
+## Summary
+Contains 0 subdirectories and 0 files.
+
+
 This directory documents software tools, platforms, and computational methods used in aging biology research.
 
 ## Purpose
@@ -118,3 +122,8 @@ WHERE language = "Python"
 **Template**: `/templates/database-tool-profile.md`
 **Script**: *N/A (manual creation)*
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+tools/
+```

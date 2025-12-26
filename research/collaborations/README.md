@@ -1,5 +1,9 @@
 # Collaborations and Partnerships
 
+## Summary
+Contains 0 subdirectories and 0 files.
+
+
 This directory documents collaborative relationships, partnerships, and networking activities in aging biology research.
 
 ## Purpose
@@ -129,3 +133,8 @@ WHERE contains(partners, "Peter Lidsky")
 **Template**: *N/A (use flexible format)*
 **Script**: *N/A (manual creation)*
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+collaborations/
+```

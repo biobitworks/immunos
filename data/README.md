@@ -1,5 +1,9 @@
 # Project Datasets
 
+## Summary
+Contains 4 subdirectories and 0 files. Key subfolders: cellage/, genage/, immunos_data/, proteomics-claims-2025/.
+
+
 Centralized storage for datasets used across all projects in this workspace.
 
 ## Directory Structure
@@ -89,3 +93,12 @@ https://doi.org/10.1186/s13059-020-01990-9
 **Total Datasets**: 2 sources (5 datasets: 3 GenAge + 2 CellAge)
 **Total Genes**: 4,721 total (307 human aging + 2,205 model organisms + 950 senescence + 1,259 signatures)
 **Total Size**: ~250 KB
+
+## Directory Map
+```
+data/
+├── cellage/
+├── genage/
+├── immunos_data/
+└── proteomics-claims-2025/
+```

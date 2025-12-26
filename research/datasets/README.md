@@ -151,3 +151,16 @@ Each dataset note should include:
 **Last Updated**: 2025-12-02
 **Total Datasets**: 3 (GenAge collection)
 **Total Records**: 2,512 genes
+
+## Summary
+Contains 1 subdirectories and 4 files. Key subfolders: mahnob-hci/.
+
+## Directory Map
+```
+datasets/
+├── mahnob-hci/
+├── genage-expression.md
+├── genage-human.md
+├── genage-models.md
+└── mahnob-hci.md
+```

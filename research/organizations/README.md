@@ -1,5 +1,9 @@
 # Organization Profiles
 
+## Summary
+Contains 0 subdirectories and 4 files.
+
+
 This directory contains profiles of universities, research institutes, companies, and labs working in aging biology and longevity research.
 
 ## Purpose
@@ -94,3 +98,12 @@ WHERE contains(focus_areas, "cellular senescence")
 **Template**: `/templates/organization-profile.md`
 **Script**: `/scripts/create-organization-profile.sh`
 **Last Updated**: 2025-12-03
+
+## Directory Map
+```
+organizations/
+├── city-university-hong-kong.md
+├── future-house.md
+├── longevity-db-huggingface.md
+└── monarch-initiative.md
+```

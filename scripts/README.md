@@ -270,3 +270,52 @@ python3 scripts/generate-api-docs.py immunos-mcp
 **Last Updated**: 2025-11-30
 **Total Scripts**: 5
 **Language**: Python 3, Bash
+
+## Summary
+Contains 4 subdirectories and 50 files. Key subfolders: archive/, logs/, static/, templates/.
+
+## Directory Map
+```
+scripts/
+├── archive/
+├── logs/
+├── static/
+├── templates/
+├── DASHBOARD_FEATURE_ROADMAP.md
+├── README_SPATIALLIBD_QUERIES.md
+├── analyze-genage.py
+├── create-daily-note.sh
+├── create-experiment-log.sh
+├── download-genage.py
+├── export_code_snapshots.py
+├── generate-api-docs.py
+├── immunos_api.py
+├── immunos_assist.py
+├── immunos_baseline.py
+├── immunos_chat.py
+├── immunos_cite_verify.py
+├── immunos_config.py
+├── immunos_dashboard.py
+├── immunos_data_logger.py
+├── immunos_download_datasets.sh
+├── immunos_features_code.py
+├── immunos_features_emotion.py
+├── immunos_features_hallucination.py
+├── immunos_features_network.py
+├── immunos_features_research.py
+├── immunos_github_validator.py
+├── immunos_gui.py
+├── immunos_handoff.py
+├── immunos_inbox.py
+├── immunos_journal.py
+├── immunos_log_session.py
+├── immunos_memory.py
+├── immunos_model_manager.py
+├── immunos_negsel.py
+├── immunos_nk_scan.py
+├── immunos_recover.py
+├── immunos_review.py
+├── immunos_routing.py
+└── immunos_sentinel.py
+└── ... (14 more)
+```
