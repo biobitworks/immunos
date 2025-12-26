@@ -45,6 +45,12 @@
                 <li><a href="http://localhost:5001" class="nav-link" target="_blank" rel="noopener noreferrer">
                     <span class="nav-icon">✅</span> Todos
                 </a></li>
+                <li><a href="/inbox" class="nav-link {% if request.path == '/inbox' %}active{% endif %}">
+                    <span class="nav-icon">📥</span> Inbox
+                </a></li>
+                <li><a href="/replication" class="nav-link {% if request.path == '/replication' %}active{% endif %}">
+                    <span class="nav-icon">🧪</span> Replicate
+                </a></li>
             </ul>
 
             <div class="nav-status">

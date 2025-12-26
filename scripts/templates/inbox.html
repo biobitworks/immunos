@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+
+{% block title %}IMMUNOS - Inbox & File Scanner{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>📥 Inbox & File Scanner</h2>
+    <p>Scan, sort, and quarantine files using IMMUNOS agents</p>
+</div>
+
+<!-- Source Configuration -->
+<div class="inbox-config card">
+    <h3>📁 Source Configuration</h3>
+    <div class="source-tabs">
+        <button class="tab-btn active" data-source="folder">Local Folder</button>
+        <button class="tab-btn" data-source="ftp">FTP/SFTP</button>
+        <button class="tab-btn" data-source="s3">S3 Bucket</button>
+        <button class="tab-btn" data-source="watch">Watch Folder</button>
+    </div>
+
+    <!-- Local Folder Config -->
+    <div class="source-config" id="config-folder">
+        <div class="form-group">
+            <label>Inbox Folder Path</label>
+            <input type="text" id="inbox-path" placeholder="/Users/byron/Downloads" value="">
+            <button class="btn btn-secondary" onclick="browseFolder()">Browse</button>
+        </div>
+        <div class="form-group">
+            <label>File Types to Scan</label>
+            <div class="checkbox-group">
+                <label><input type="checkbox" value="pdf" checked> PDFs</label>
+                <label><input type="checkbox" value="code" checked> Code Files</label>
+                <label><input type="checkbox" value="data" checked> Data Files (CSV, JSON)</label>
+                <label><input type="checkbox" value="images"> Images</label>
+                <label><input type="checkbox" value="all"> All Files</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- FTP Config -->
+    <div class="source-config hidden" id="config-ftp">
+        <div class="form-row">
+            <div class="form-group">
+                <label>Host</label>
+                <input type="text" id="ftp-host" placeholder="ftp.example.com">
+            </div>
+            <div class="form-group">
+                <label>Port</label>
+                <input type="number" id="ftp-port" value="21">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="ftp-user" placeholder="anonymous">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="ftp-pass">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Remote Path</label>
+            <input type="text" id="ftp-path" placeholder="/inbox">
+        </div>
+        <label><input type="checkbox" id="ftp-sftp"> Use SFTP (secure)</label>
+    </div>
+
+    <!-- S3 Config -->
+    <div class="source-config hidden" id="config-s3">
+        <div class="form-group">
+            <label>S3 Bucket</label>
+            <input type="text" id="s3-bucket" placeholder="my-bucket">
+        </div>
+        <div class="form-group">
+            <label>Prefix (folder)</label>
+            <input type="text" id="s3-prefix" placeholder="inbox/">
+        </div>
+        <div class="form-group">
+            <label>AWS Region</label>
+            <input type="text" id="s3-region" value="us-east-1">
+        </div>
+        <p class="hint">Uses AWS credentials from environment or ~/.aws/credentials</p>
+    </div>
+
+    <!-- Watch Folder Config -->
+    <div class="source-config hidden" id="config-watch">
+        <div class="form-group">
+            <label>Watch Folder Path</label>
+            <input type="text" id="watch-path" placeholder="/Users/byron/Inbox">
+        </div>
+        <div class="form-group">
+            <label>Poll Interval (seconds)</label>
+            <input type="number" id="watch-interval" value="30" min="5">
+        </div>
+        <label><input type="checkbox" id="watch-auto" checked> Auto-process new files</label>
+    </div>
+
+    <div class="config-actions">
+        <button class="btn btn-primary" onclick="saveConfig()">💾 Save Configuration</button>
+        <button class="btn btn-success" onclick="scanInbox()">🔍 Scan Now</button>
+    </div>
+</div>
+
+<!-- Scan Progress -->
+<div class="scan-progress card hidden" id="scan-progress">
+    <h3>🔄 Scanning...</h3>
+    <div class="progress-bar">
+        <div class="progress-fill" id="scan-fill" style="width: 0%"></div>
+    </div>
+    <div class="progress-stats">
+        <span id="scan-current">0</span> / <span id="scan-total">0</span> files
+    </div>
+    <div id="scan-status">Initializing...</div>
+</div>
+
+<!-- Results Section -->
+<div class="results-section">
+    <div class="results-header">
+        <h3>📊 Scan Results</h3>
+        <div class="results-actions">
+            <button class="btn btn-sm" onclick="sortResults('all')">All</button>
+            <button class="btn btn-sm btn-success" onclick="sortResults('safe')">✅ Safe</button>
+            <button class="btn btn-sm btn-warning" onclick="sortResults('review')">⚠️ Review</button>
+            <button class="btn btn-sm btn-danger" onclick="sortResults('quarantine')">🔒 Quarantine</button>
+        </div>
+    </div>
+
+    <!-- Results Grid -->
+    <div class="results-grid" id="results-grid">
+        <div class="no-results">
+            <div class="no-results-icon">📭</div>
+            <p>No files scanned yet. Configure a source and click "Scan Now".</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quarantine Section -->
+<div class="quarantine-section card">
+    <h3>🔒 Quarantine</h3>
+    <p class="section-desc">Files flagged as potentially dangerous are moved here for review.</p>
+
+    <div class="quarantine-stats">
+        <div class="stat">
+            <span class="stat-value" id="quarantine-count">0</span>
+            <span class="stat-label">Files in Quarantine</span>
+        </div>
+        <div class="stat">
+            <span class="stat-value" id="quarantine-size">0 MB</span>
+            <span class="stat-label">Total Size</span>
+        </div>
+    </div>
+
+    <div class="quarantine-list" id="quarantine-list">
+        <p class="empty-message">No files in quarantine.</p>
+    </div>
+
+    <div class="quarantine-actions">
+        <button class="btn btn-secondary" onclick="reviewQuarantine()">👁️ Review All</button>
+        <button class="btn btn-danger" onclick="purgeQuarantine()">🗑️ Purge (30+ days)</button>
+    </div>
+</div>
+
+<!-- Auto-Sort Rules -->
+<div class="sort-rules card">
+    <h3>📋 Auto-Sort Rules</h3>
+    <p class="section-desc">Define rules for automatically sorting files into projects.</p>
+
+    <div class="rules-list" id="rules-list">
+        <div class="rule-item">
+            <div class="rule-condition">
+                <span class="rule-icon">📄</span>
+                <span>PDFs with "aging" or "longevity"</span>
+            </div>
+            <div class="rule-action">→ papers/aging/</div>
+            <button class="btn-icon" onclick="editRule(0)">✏️</button>
+        </div>
+        <div class="rule-item">
+            <div class="rule-condition">
+                <span class="rule-icon">🧬</span>
+                <span>Files with "prion" or "clock"</span>
+            </div>
+            <div class="rule-action">→ prion-clock/</div>
+            <button class="btn-icon" onclick="editRule(1)">✏️</button>
+        </div>
+        <div class="rule-item">
+            <div class="rule-condition">
+                <span class="rule-icon">🔬</span>
+                <span>Code files with "immunos"</span>
+            </div>
+            <div class="rule-action">→ immunos-mcp/</div>
+            <button class="btn-icon" onclick="editRule(2)">✏️</button>
+        </div>
+    </div>
+
+    <button class="btn btn-secondary" onclick="addRule()">+ Add Rule</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.source-config').forEach(c => c.classList.add('hidden'));
+        btn.classList.add('active');
+        document.getElementById('config-' + btn.dataset.source).classList.remove('hidden');
+    });
+});
+
+// Load saved config on page load
+async function loadConfig() {
+    try {
+        const response = await fetch('/api/inbox/config');
+        const result = await response.json();
+        if (result.config) {
+            document.getElementById('inbox-path').value = result.config.inbox_path || '';
+            // Load other settings...
+        }
+    } catch (error) {
+        console.error('Error loading config:', error);
+    }
+}
+
+// Save configuration
+async function saveConfig() {
+    const sourceType = document.querySelector('.tab-btn.active').dataset.source;
+    let config = { source_type: sourceType };
+
+    if (sourceType === 'folder') {
+        config.inbox_path = document.getElementById('inbox-path').value;
+        config.file_types = Array.from(document.querySelectorAll('#config-folder input[type=checkbox]:checked'))
+            .map(cb => cb.value);
+    } else if (sourceType === 'ftp') {
+        config.ftp = {
+            host: document.getElementById('ftp-host').value,
+            port: parseInt(document.getElementById('ftp-port').value),
+            user: document.getElementById('ftp-user').value,
+            password: document.getElementById('ftp-pass').value,
+            path: document.getElementById('ftp-path').value,
+            sftp: document.getElementById('ftp-sftp').checked
+        };
+    }
+    // Add S3, watch configs...
+
+    try {
+        const response = await fetch('/api/inbox/config', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(config)
+        });
+        const result = await response.json();
+        if (result.success) {
+            app.showToast('Configuration Saved', 'Inbox settings updated.', 'success');
+        }
+    } catch (error) {
+        app.showToast('Error', 'Failed to save configuration.', 'error');
+    }
+}
+
+// Scan inbox
+async function scanInbox() {
+    const progressEl = document.getElementById('scan-progress');
+    progressEl.classList.remove('hidden');
+
+    try {
+        const response = await fetch('/api/inbox/scan', { method: 'POST' });
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+
+            const text = decoder.decode(value);
+            const lines = text.split('\n').filter(l => l.startsWith('data:'));
+
+            for (const line of lines) {
+                const data = JSON.parse(line.slice(5));
+                updateScanProgress(data);
+            }
+        }
+
+        loadResults();
+    } catch (error) {
+        app.showToast('Scan Error', error.message, 'error');
+    }
+
+    progressEl.classList.add('hidden');
+}
+
+function updateScanProgress(data) {
+    document.getElementById('scan-fill').style.width = data.progress + '%';
+    document.getElementById('scan-current').textContent = data.processed;
+    document.getElementById('scan-total').textContent = data.total;
+    document.getElementById('scan-status').textContent = data.status;
+}
+
+// Load results
+async function loadResults() {
+    try {
+        const response = await fetch('/api/inbox/results');
+        const result = await response.json();
+        renderResults(result.files || []);
+    } catch (error) {
+        console.error('Error loading results:', error);
+    }
+}
+
+function renderResults(files) {
+    const grid = document.getElementById('results-grid');
+
+    if (files.length === 0) {
+        grid.innerHTML = `
+            <div class="no-results">
+                <div class="no-results-icon">📭</div>
+                <p>No files scanned yet.</p>
+            </div>`;
+        return;
+    }
+
+    grid.innerHTML = files.map(file => `
+        <div class="result-card ${file.status}">
+            <div class="result-icon">${getFileIcon(file.type)}</div>
+            <div class="result-info">
+                <div class="result-name">${file.name}</div>
+                <div class="result-meta">${file.size} | ${file.type}</div>
+            </div>
+            <div class="result-status">
+                ${getStatusBadge(file.status, file.confidence)}
+            </div>
+            <div class="result-actions">
+                <button onclick="sortFile('${file.id}', 'auto')">📁 Sort</button>
+                <button onclick="quarantineFile('${file.id}')">🔒 Quarantine</button>
+                <button onclick="viewDetails('${file.id}')">👁️ Details</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function getFileIcon(type) {
+    const icons = {
+        'pdf': '📄',
+        'code': '💻',
+        'data': '📊',
+        'image': '🖼️',
+        'unknown': '📁'
+    };
+    return icons[type] || icons.unknown;
+}
+
+function getStatusBadge(status, confidence) {
+    const badges = {
+        'safe': `<span class="badge safe">✅ Safe (${Math.round(confidence * 100)}%)</span>`,
+        'review': `<span class="badge review">⚠️ Review (${Math.round(confidence * 100)}%)</span>`,
+        'quarantine': `<span class="badge quarantine">🔒 Quarantine</span>`
+    };
+    return badges[status] || '';
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    loadConfig();
+    loadResults();
+    loadQuarantine();
+});
+
+async function loadQuarantine() {
+    try {
+        const response = await fetch('/api/inbox/quarantine');
+        const result = await response.json();
+        document.getElementById('quarantine-count').textContent = result.count || 0;
+        document.getElementById('quarantine-size').textContent = result.size || '0 MB';
+    } catch (error) {
+        console.error('Error loading quarantine:', error);
+    }
+}
+</script>
+{% endblock %}

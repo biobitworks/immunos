@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}IMMUNOS - Replication & Experiments{% endblock %}
+
+{% block content %}
+<div class="section-header">
+    <h2>🧪 Replication & Experiments</h2>
+    <p>Replicate IMMUNOS negative selection experiments with your own data</p>
+</div>
+
+<!-- Quick Start -->
+<div class="card quickstart">
+    <h3>🚀 Quick Start</h3>
+    <p>Run the SciFact baseline replication with example data:</p>
+    <button class="btn btn-primary btn-lg" onclick="runQuickStart()">
+        ▶️ Run Example Replication
+    </button>
+    <p class="hint">Uses bundled SciFact dev set (~300 claims)</p>
+</div>
+
+<!-- Experiment Selection -->
+<div class="experiments-grid">
+    <div class="experiment-card" data-experiment="scifact">
+        <div class="exp-icon">📚</div>
+        <h4>SciFact Baseline</h4>
+        <p>Claim verification pipeline with sentence selection and labeling.</p>
+        <div class="exp-meta">
+            <span class="badge">F1: 0.477</span>
+            <span class="badge">~5 min</span>
+        </div>
+        <button class="btn btn-secondary" onclick="selectExperiment('scifact')">Configure</button>
+    </div>
+
+    <div class="experiment-card" data-experiment="negsel">
+        <div class="exp-icon">🧬</div>
+        <h4>Negative Selection</h4>
+        <p>Train detectors against trusted "self" patterns for anomaly detection.</p>
+        <div class="exp-meta">
+            <span class="badge">NK Cell</span>
+            <span class="badge">~10 min</span>
+        </div>
+        <button class="btn btn-secondary" onclick="selectExperiment('negsel')">Configure</button>
+    </div>
+
+    <div class="experiment-card" data-experiment="hallucination">
+        <div class="exp-icon">🔍</div>
+        <h4>Hallucination Detection</h4>
+        <p>Detect unsupported claims using B Cell pattern matching.</p>
+        <div class="exp-meta">
+            <span class="badge">B Cell</span>
+            <span class="badge">~3 min</span>
+        </div>
+        <button class="btn btn-secondary" onclick="selectExperiment('hallucination')">Configure</button>
+    </div>
+</div>
+
+<!-- Configuration Panel (shows when experiment selected) -->
+<div class="config-panel card hidden" id="config-panel">
+    <h3 id="config-title">Configure Experiment</h3>
+
+    <div class="form-group">
+        <label>Data Source</label>
+        <select id="data-source">
+            <option value="example">Example Data (bundled)</option>
+            <option value="scifact">SciFact Dataset</option>
+            <option value="custom">Custom Dataset</option>
+        </select>
+    </div>
+
+    <div class="form-group hidden" id="custom-data-group">
+        <label>Custom Data Path</label>
+        <input type="text" id="custom-data-path" placeholder="/path/to/your/data.json">
+        <p class="hint">JSON format: [{"claim": "...", "evidence": "..."}]</p>
+    </div>
+
+    <div class="form-group">
+        <label>Model Backend</label>
+        <select id="model-backend">
+            <option value="local">Local (Ollama)</option>
+            <option value="cloud">Cloud (if available)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Evaluation Mode</label>
+        <select id="eval-mode">
+            <option value="quick">Quick (sample 100)</option>
+            <option value="full">Full Dataset</option>
+            <option value="custom">Custom Size</option>
+        </select>
+    </div>
+
+    <div class="config-actions">
+        <button class="btn btn-primary" onclick="runExperiment()">▶️ Run Experiment</button>
+        <button class="btn btn-secondary" onclick="hideConfig()">Cancel</button>
+    </div>
+</div>
+
+<!-- Results Section -->
+<div class="results-section card hidden" id="results-section">
+    <h3>📊 Results</h3>
+    <div id="results-content">
+        <!-- Populated by JavaScript -->
+    </div>
+</div>
+
+<!-- Preprint Reference -->
+<div class="card preprint-ref">
+    <h3>📄 Reference</h3>
+    <p><strong>immunOS Replication v1: SciFact Baseline and Negative-Selection AIS Framing</strong></p>
+    <p class="authors">Byron (BiobitWorks) + AI Contributors</p>
+    <div class="preprint-actions">
+        <a href="/api/replication/preprint" class="btn btn-secondary" target="_blank">📥 Download Preprint</a>
+        <a href="https://github.com/biobitworks/immunos" class="btn btn-secondary" target="_blank">💻 View Code</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentExperiment = null;
+
+function selectExperiment(exp) {
+    currentExperiment = exp;
+    document.getElementById('config-panel').classList.remove('hidden');
+    document.getElementById('config-title').textContent = 'Configure: ' + exp.charAt(0).toUpperCase() + exp.slice(1);
+}
+
+function hideConfig() {
+    document.getElementById('config-panel').classList.add('hidden');
+}
+
+async function runQuickStart() {
+    app.showToast('Starting...', 'Running SciFact example replication', 'info');
+    await runExperimentAPI('scifact', { data_source: 'example', eval_mode: 'quick' });
+}
+
+async function runExperiment() {
+    const config = {
+        data_source: document.getElementById('data-source').value,
+        model_backend: document.getElementById('model-backend').value,
+        eval_mode: document.getElementById('eval-mode').value
+    };
+    await runExperimentAPI(currentExperiment, config);
+}
+
+async function runExperimentAPI(experiment, config) {
+    try {
+        const response = await fetch('/api/replication/run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ experiment, ...config })
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            showResults(result.results);
+        } else {
+            app.showToast('Error', result.error, 'error');
+        }
+    } catch (error) {
+        app.showToast('Error', error.message, 'error');
+    }
+}
+
+function showResults(results) {
+    const section = document.getElementById('results-section');
+    section.classList.remove('hidden');
+    document.getElementById('results-content').innerHTML = `
+        <table class="results-table">
+            <tr><th>Metric</th><th>Value</th></tr>
+            ${Object.entries(results).map(([k, v]) =>
+                `<tr><td>${k}</td><td>${typeof v === 'number' ? v.toFixed(3) : v}</td></tr>`
+            ).join('')}
+        </table>
+    `;
+}
+
+// Toggle custom data input
+document.getElementById('data-source')?.addEventListener('change', (e) => {
+    document.getElementById('custom-data-group').classList.toggle('hidden', e.target.value !== 'custom');
+});
+</script>
+{% endblock %}

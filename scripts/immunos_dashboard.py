@@ -197,6 +197,18 @@ def todos():
     return redirect('http://localhost:5001', code=302)
 
 
+@app.route('/inbox')
+def inbox():
+    """Inbox and file scanner page"""
+    return render_template('inbox.html')
+
+
+@app.route('/replication')
+def replication():
+    """Replication experiments page"""
+    return render_template('replication.html')
+
+
 # WebSocket Events
 # ================
 
