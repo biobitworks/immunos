@@ -288,6 +288,88 @@
             </div>
         </section>
 
+        <!-- Inbox & File Scanner -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Inbox & File Scanner</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-4">
+                    IMMUNOS can automatically scan and organize files from multiple sources:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-2xl mb-2">📁</div>
+                        <h4 class="font-bold mb-2">Local Folders</h4>
+                        <p class="text-sm text-gray-400">Monitor ~/Downloads or any folder for new files</p>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-2xl mb-2">📡</div>
+                        <h4 class="font-bold mb-2">FTP/SFTP</h4>
+                        <p class="text-sm text-gray-400">Connect to remote servers for file retrieval</p>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-2xl mb-2">☁️</div>
+                        <h4 class="font-bold mb-2">S3 Buckets</h4>
+                        <p class="text-sm text-gray-400">AWS S3 integration for cloud storage</p>
+                    </div>
+                    <div class="bg-gray-700/50 p-4 rounded">
+                        <div class="text-2xl mb-2">👁️</div>
+                        <h4 class="font-bold mb-2">Watch Mode</h4>
+                        <p class="text-sm text-gray-400">Continuous monitoring with auto-sorting rules</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Features:</h4>
+                    <ul class="space-y-1 text-sm text-gray-400">
+                        <li>• SSE streaming progress for real-time scan updates</li>
+                        <li>• Quarantine system for suspicious files (30-day auto-purge)</li>
+                        <li>• Auto-sort rules based on file type, content, or patterns</li>
+                        <li>• Risk assessment using NK Cell anomaly detection</li>
+                    </ul>
+                </div>
+                <div class="mt-4">
+                    <pre class="bg-black p-3 rounded text-sm"><code>http://localhost:5001/inbox</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Replication Experiments -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-4 text-blue-400">Replication Experiments</h2>
+            <div class="bg-gray-800 rounded-lg p-6 border border-gray-700">
+                <p class="text-gray-300 mb-4">
+                    Run reproducible experiments to validate IMMUNOS detection capabilities:
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-900/30 border border-blue-700 p-4 rounded">
+                        <div class="text-2xl mb-2">📊</div>
+                        <h4 class="font-bold mb-2 text-blue-400">SciFact</h4>
+                        <p class="text-sm text-gray-400">300+ scientific claims for citation verification testing</p>
+                    </div>
+                    <div class="bg-purple-900/30 border border-purple-700 p-4 rounded">
+                        <div class="text-2xl mb-2">🧬</div>
+                        <h4 class="font-bold mb-2 text-purple-400">NegSel-AIS</h4>
+                        <p class="text-sm text-gray-400">Negative selection detector evaluation</p>
+                    </div>
+                    <div class="bg-red-900/30 border border-red-700 p-4 rounded">
+                        <div class="text-2xl mb-2">🎭</div>
+                        <h4 class="font-bold mb-2 text-red-400">Hallucination</h4>
+                        <p class="text-sm text-gray-400">LLM hallucination detection benchmarks</p>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Experiment Modes:</h4>
+                    <ul class="space-y-1 text-sm text-gray-400">
+                        <li>• <strong>Quick:</strong> 10 samples for rapid validation</li>
+                        <li>• <strong>Full:</strong> Complete dataset evaluation</li>
+                        <li>• <strong>Custom:</strong> User-defined sample size and parameters</li>
+                    </ul>
+                </div>
+                <div class="mt-4">
+                    <pre class="bg-black p-3 rounded text-sm"><code>http://localhost:5001/replication</code></pre>
+                </div>
+            </div>
+        </section>
+
         <!-- Token Savings -->
         <section class="mb-12">
             <h2 class="text-3xl font-bold mb-4 text-blue-400">Token Savings & Model Routing</h2>
@@ -325,7 +407,7 @@
         <footer class="text-center text-gray-500 text-sm py-8 border-t border-gray-700">
             <p>IMMUNOS - Universal Artificial Immune System</p>
             <p class="mt-2">Developed by Byron P. Lee | <a href="https://github.com/biobitworks/immunos" class="text-blue-400 hover:underline">GitHub</a> | Licensed under MIT</p>
-            <p class="mt-2 text-xs">Last Updated: December 19, 2025</p>
+            <p class="mt-2 text-xs">Last Updated: December 26, 2025</p>
         </footer>
 
     </div>
