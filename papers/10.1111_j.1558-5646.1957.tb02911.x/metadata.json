@@ -1,0 +1,14 @@
+{
+  "doi": "10.1111/j.1558-5646.1957.tb02911.x",
+  "title": "Pleiotropy, Natural Selection, and the Evolution of Senescence",
+  "authors": ["Williams, George C."],
+  "journal": "Evolution",
+  "year": 1957,
+  "volume": "11",
+  "issue": "4",
+  "pages": "398-411",
+  "abstract": "Classic foundational paper on the evolutionary theory of aging. Proposes that genes with beneficial effects early in life but harmful effects later (antagonistic pleiotropy) can be favored by natural selection, leading to senescence.",
+  "relevance": "prion-clock",
+  "tags": ["aging", "evolution", "senescence", "antagonistic-pleiotropy", "foundational"],
+  "added": "2025-12-26"
+}

@@ -1,0 +1,14 @@
+{
+  "doi": "10.1038/npjamd.2016.6",
+  "title": "Cytochrome b5 reductase and the control of lipid metabolism and healthspan",
+  "authors": ["Martin-Montalvo, A.", "Sun, Y.", "Diaz-Ruiz, A.", "et al."],
+  "journal": "npj Aging and Mechanisms of Disease",
+  "year": 2016,
+  "volume": "2",
+  "article": "16006",
+  "abstract": "Cytochrome b5 reductases (CYB5R) are required for elongation and desaturation of fatty acids, cholesterol synthesis and mono-oxygenation of cytochrome P450 enzymes. CYB5R overexpression in flies and mice leads to improved metabolic parameters and modest lifespan extension. The lifespan improvement was mediated by different biochemical pathways than calorie restriction.",
+  "relevance": "prion-clock",
+  "tags": ["CYB5R", "lipid-metabolism", "healthspan", "lifespan", "calorie-restriction-alternative"],
+  "added": "2025-12-26",
+  "figures": ["41514_2016_Article_BFnpjamd20166_Fig1_HTML.png"]
+}

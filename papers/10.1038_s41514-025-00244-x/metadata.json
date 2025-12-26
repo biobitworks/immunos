@@ -1,0 +1,14 @@
+{
+  "doi": "10.1038/s41514-025-00244-x",
+  "title": "Psilocybin treatment extends cellular lifespan and improves survival of aged mice",
+  "authors": ["Kato, Kosuke", "Kleinhenz, Jennifer M", "Shin, Yoon-Joo", "Coarfa, Cristian", "Zarrabi, Ali J", "Hecker, Louise"],
+  "journal": "npj Aging",
+  "year": 2025,
+  "volume": "11",
+  "article": "55",
+  "abstract": "Psilocybin, the naturally occurring psychedelic compound produced by hallucinogenic mushrooms, has therapeutic potential for psychiatric and neurodegenerative indications. This study provides the first experimental evidence that psilocin (the active metabolite of psilocybin) treatment extends cellular lifespan and psilocybin treatment promotes increased longevity in aged mice, suggesting psilocybin may be a potent geroprotective agent.",
+  "relevance": "aging-research",
+  "tags": ["psilocybin", "longevity", "geroprotective", "cellular-lifespan", "aging"],
+  "added": "2025-12-26",
+  "figures": ["41514_2025_244_Fig1_HTML.png", "41514_2025_244_Fig2_HTML.png"]
+}
