@@ -1,0 +1,11 @@
+name: IMMUNOS-MCP
+version: 0.1.0
+schema: v1
+mcpServers:
+  - name: immunos-mcp
+    type: stdio
+    command: /Users/byron/projects/immunos-mcp/.venv/bin/python
+    args:
+      - /Users/byron/projects/immunos-mcp/src/immunos_mcp/servers/simple_mcp_server.py
+    env:
+      PYTHONPATH: /Users/byron/projects/immunos-mcp/src
